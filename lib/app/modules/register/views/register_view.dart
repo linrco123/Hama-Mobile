@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/register/views/terms_and_conditions.dart';
+import 'package:musaneda/app/modules/register/views/terms_conditions_webview.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myInkWell.dart';
@@ -78,8 +80,8 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                       myInkWell(
                         fun: () {
-                          termsAndConditions(
-                              LanguageController.I.privacyPolicy);
+                          Get.put(HomeController());
+                          Get.to(TermsConditionsWebview());
                         },
                         text: "terms_and_conditions",
                         size: 14,
@@ -190,7 +192,7 @@ class RegisterView extends GetView<RegisterController> {
           child: Text(
             "966+",
             style: TextStyle(
-              color: MYColor.buttons,
+              color: MYColor.secondary1,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -216,7 +218,7 @@ class RegisterView extends GetView<RegisterController> {
                 Text(
                   "phone_number".tr,
                   style: TextStyle(
-                    color: MYColor.black,
+                    color: MYColor.primary,
                     fontSize: 14,
                   ),
                 ),

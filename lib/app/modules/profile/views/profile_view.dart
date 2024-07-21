@@ -31,7 +31,7 @@ class ProfileView extends GetView<ProfileController> {
             ),
             centerTitle: true,
             iconTheme: IconThemeData(
-              color: MYColor.black,
+              color: MYColor.buttons,
             ),
             leading: isReal
                 ? IconButton(
@@ -170,7 +170,7 @@ class ProfileView extends GetView<ProfileController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.person),
+        prefixIcon:  Icon(CupertinoIcons.person , color: MYColor.primary,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -203,7 +203,7 @@ class ProfileView extends GetView<ProfileController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.creditcard),
+        prefixIcon:   Icon(CupertinoIcons.creditcard, color: MYColor.primary,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -229,7 +229,7 @@ class ProfileView extends GetView<ProfileController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.mail),
+        prefixIcon:   Icon(CupertinoIcons.mail, color: MYColor.primary,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -266,7 +266,7 @@ class ProfileView extends GetView<ProfileController> {
           child: Text(
             "966+",
             style: TextStyle(
-              color: MYColor.black,
+              color: MYColor.secondary1,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -283,12 +283,12 @@ class ProfileView extends GetView<ProfileController> {
             width: 103,
             child: Row(
               children: [
-                const Icon(CupertinoIcons.phone),
+                  Icon(CupertinoIcons.phone, color: MYColor.primary,),
                 const SizedBox(width: 10),
                 Text(
                   "phone_number".tr,
                   style: TextStyle(
-                    color: MYColor.black,
+                    color: MYColor.buttons,
                     fontSize: 14,
                   ),
                 ),

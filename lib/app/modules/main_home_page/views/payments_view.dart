@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/main_home_page/controllers/main_home_page_controller.dart';
 import 'package:musaneda/app/modules/order/controllers/order_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../config/myColor.dart';
 import '../../custom_payment/controllers/custom_payment_controller.dart';
@@ -19,9 +20,16 @@ class PaymentsView extends GetView<MainHomePageController> {
     OrderController.I.paymentMethod.value = 0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: MYColor.primary,
-        title: Text('payment'.tr),
+        backgroundColor: MYColor.white,
+        title: Text(
+          'payment'.tr,
+          style: TextStyle(color: MYColor.buttons),
+        ),
         centerTitle: true,
+        leading: ReturnButton(
+          color: MYColor.buttons,
+          size: 20.0,
+        ),
       ),
       body: GetX(
         init: controller,

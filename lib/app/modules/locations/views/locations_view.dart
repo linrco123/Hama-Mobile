@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../components/myWarningDialog.dart';
 import '../../../../config/myColor.dart';
@@ -16,6 +17,7 @@ class LocationsView extends GetView<LocationsController> {
         backgroundColor: MYColor.primary,
         title: Text('location'.tr),
         centerTitle: true,
+        leading:ReturnButton(color: MYColor.white, size: 20.0)
       ),
       body: Stack(
         children: [

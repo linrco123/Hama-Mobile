@@ -46,7 +46,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                           'assets/images/nations.png',
                           height: 25.0,
                           width: 25,
-                          color: MYColor.icons,
+                          color: MYColor.buttons,
                           filterQuality: FilterQuality.high,
                         ),
                         const SizedBox(
@@ -97,7 +97,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       children: [
                         Icon(
                           Icons.confirmation_number_outlined,
-                          color: MYColor.icons,
+                          color: MYColor.buttons,
                         ),
                         const SizedBox(
                           width: 10.0,
@@ -148,7 +148,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       children: [
                         Icon(
                           Icons.calendar_month_outlined,
-                          color: MYColor.icons,
+                          color: MYColor.buttons,
                         ),
                         const SizedBox(
                           width: 10.0,
@@ -195,7 +195,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       children: [
                         Icon(
                           Icons.calendar_today_outlined,
-                          color: MYColor.icons,
+                          color: MYColor.buttons,
                         ),
                         const SizedBox(
                           width: 10.0,

@@ -192,8 +192,8 @@ class OrderController extends GetxController {
   }
 
   Future<void> increment() async {
-    //( HomeController.I.listActive.isNotEmpty || HomeController.I.listPending.isNotEmpty)
-    if (currentStep.value == 3 && false) {
+    
+    if (currentStep.value == 3 && ( HomeController.I.listActive.isNotEmpty || HomeController.I.listPending.isNotEmpty)) {
       //
       mySnackBar(
         title: "error".tr,

@@ -123,8 +123,7 @@ class CustomPaymentController extends GetxController {
             orderId: OrderController.I.orderID);
     OrderController.I.merchantTransactionID =
         transactionId.data!.transactionId!;
-    print('22222222222222222----${OrderController.I.merchantTransactionID}');
-    if (OrderController.I.paymentMethod.value != 10 ||
+     if (OrderController.I.paymentMethod.value != 10 ||
         OrderController.I.tabbyOption.value == true) {
       if (OrderController.I.tabbyOption.value) {
         Get.put(TabbyPaymentController());

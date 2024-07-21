@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myDropdown.dart';
@@ -27,6 +28,7 @@ class CreateDelegationView extends GetView<DelegationController> {
           action == 'create' ? 'add_delegation'.tr : 'update_delegation'.tr,
         ),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
       ),
       body: GetBuilder(
         init: DelegationController.I,
@@ -172,7 +174,7 @@ class CreateDelegationView extends GetView<DelegationController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.person),
+        prefixIcon:  Icon(CupertinoIcons.person,color: MYColor.buttons,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -204,7 +206,7 @@ class CreateDelegationView extends GetView<DelegationController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.creditcard),
+        prefixIcon:   Icon(CupertinoIcons.creditcard,color: MYColor.buttons,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -236,7 +238,7 @@ class CreateDelegationView extends GetView<DelegationController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.phone),
+        prefixIcon:   Icon(CupertinoIcons.phone,color: MYColor.buttons,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(

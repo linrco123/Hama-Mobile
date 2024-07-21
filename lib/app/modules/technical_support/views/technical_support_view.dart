@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../controllers/technical_support_controller.dart';
@@ -18,6 +19,7 @@ class TechnicalSupportView extends GetView<TechnicalSupportController> {
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
           backgroundColor: MYColor.primary,
+          leading: ReturnButton(color: MYColor.white , size: 20.0,),
           title: Obx(() {
             return InkWell(
               onTap: () {

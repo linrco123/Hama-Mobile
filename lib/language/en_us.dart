@@ -364,7 +364,7 @@ const Map<String, String> enUS = {
   'good_afternoon': 'Good Afternoon',
   'good_evening': 'Good Evening ',
   'check_service': 'Check Service',
-  'musanda_offers': 'Musanda offers ⏰',
+  'musanda_offers': 'Hama offers ⏰',
   'one_time_visit': 'Sign one-time visit package with unique offers 🥰',
   'stayin_offers': '🎗️ Stay-In offers 🗓️',
   '3month_maid': ' For resident housemaid is 3-month package',

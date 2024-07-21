@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 import 'package:musaneda/components/myWarningDialog.dart';
 
@@ -17,6 +18,7 @@ class DelegationView extends GetView<DelegationController> {
         backgroundColor: MYColor.primary,
         title: Text('delegate_client'.tr),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
       ),
       body: Stack(
         children: [

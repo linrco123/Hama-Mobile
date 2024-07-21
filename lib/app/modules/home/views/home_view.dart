@@ -11,6 +11,7 @@ import 'package:musaneda/app/modules/home/views/taps/home_tap.dart';
 import 'package:musaneda/app/modules/home/views/taps/services_tap.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/config/exitapp_alert.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myFilterDialog.dart';
@@ -49,7 +50,8 @@ class HomeView extends GetView<HomeController> {
           drawer: myDrawer(context),
           child: Scaffold(
             appBar: myAppBar(context),
-            body: myHome(context),
+            body: WillPopScope(onWillPop: exitAlertApp,
+            child: myHome(context)),
             bottomNavigationBar: Container(
               height: 85,
               decoration: BoxDecoration(
@@ -430,9 +432,7 @@ class HomeView extends GetView<HomeController> {
                             const Spacer(),
                             LanguageController.I.getLocale.startsWith("a") ==
                                     LanguageController.I.lang[i].startsWith("a")
-                                ? SvgPicture.asset(
-                                    "assets/images/drawer/checked.svg",
-                                  )
+                                ? Icon(CupertinoIcons.checkmark_circle , color: MYColor.buttons,size: 25.0,)
                                 : const SizedBox(),
                           ],
                         ),

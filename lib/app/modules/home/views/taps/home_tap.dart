@@ -79,7 +79,7 @@ Widget homeTap(context) {
             child: Text(
               'services_include'.tr,
               style: TextStyle(
-                color: MYColor.black,
+                color: MYColor.primary,
                 fontSize: 16,
                 // fontWeight: FontWeight.bold,
               ),

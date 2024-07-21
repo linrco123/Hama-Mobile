@@ -132,7 +132,7 @@ class LoginView extends GetView<LoginController> {
           child: Text(
             "966+",
             style: TextStyle(
-              color: MYColor.buttons,
+              color: MYColor.secondary1,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -157,7 +157,7 @@ class LoginView extends GetView<LoginController> {
                 Text(
                   "phone_number".tr,
                   style: TextStyle(
-                    color: MYColor.black,
+                    color: MYColor.buttons,
                     fontSize: 14,
                   ),
                 ),

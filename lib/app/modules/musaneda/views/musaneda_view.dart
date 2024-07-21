@@ -6,6 +6,7 @@ import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/complaint/controllers/complaint_controller.dart';
 import 'package:musaneda/app/modules/home/musaneda_model.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myServices.dart';
@@ -18,7 +19,6 @@ class MusanedaView extends GetView<MusanedaController> {
   @override
   Widget build(BuildContext context) {
     MusanedaData musanedaData = Get.arguments as MusanedaData;
-    // Get.put(MusanedaController() , permanent: true);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -53,27 +53,12 @@ class MusanedaView extends GetView<MusanedaController> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                        child: Stack(
+                        child: const Stack(
                           children: [
                             Positioned(
                               top: 50,
                               right: 10,
-                              child: IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      color: MYColor.buttons,
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.arrow_back,
-                                    color: MYColor.white,
-                                  ),
-                                ),
-                              ),
+                              child: CircledBackButton()
                             ),
                           ],
                         ),
@@ -384,24 +369,10 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 100,
               right: 10,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: MYColor.buttons, shape: BoxShape.circle),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: MYColor.white,
-                  ),
-                ),
-              ),
+              child: CircledBackButton()
             ),
           ],
         ),

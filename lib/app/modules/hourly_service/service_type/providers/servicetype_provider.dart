@@ -62,6 +62,14 @@ class ServiceTypeProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
+      if(jsonDecode(res.body)['code'] == 1){
+         mySnackBar(
+          title: "success".tr,
+          message: "msg_order_success".tr,
+          color: MYColor.success,
+          icon: CupertinoIcons.info_circle,
+        );
+      }
 
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);

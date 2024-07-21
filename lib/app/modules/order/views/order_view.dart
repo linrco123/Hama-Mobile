@@ -12,6 +12,7 @@ import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/order/views/tabby_stc_paymentview/components/tabby_method.dart';
 
 import 'package:musaneda/app/modules/profile/controllers/profile_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 import 'package:musaneda/components/myStepper.dart';
 import 'package:musaneda/components/payment_bank_direct.dart';
@@ -45,6 +46,7 @@ class OrderView extends GetView<OrderController> {
           ),
         ),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.buttons, size: 20.0),
       ),
       body: GetBuilder(
         init: controller,
@@ -153,7 +155,7 @@ class OrderView extends GetView<OrderController> {
               child: Text(
                 'city'.tr,
                 style: TextStyle(
-                  color: MYColor.texts,
+                  color: MYColor.buttons,
                   fontSize: 14,
                   fontFamily: 'cairo_regular',
                 ),
@@ -193,7 +195,7 @@ class OrderView extends GetView<OrderController> {
               child: Text(
                 'location'.tr,
                 style: TextStyle(
-                  color: MYColor.texts,
+                  color: MYColor.buttons,
                   fontSize: 14,
                   fontFamily: 'cairo_regular',
                 ),
@@ -239,7 +241,7 @@ class OrderView extends GetView<OrderController> {
               child: Text(
                 'pick_up_branch'.tr,
                 style: TextStyle(
-                  color: MYColor.texts,
+                  color: MYColor.buttons,
                   fontSize: 14,
                   fontFamily: 'cairo_regular',
                 ),
@@ -382,7 +384,8 @@ class OrderView extends GetView<OrderController> {
                                             height: 30.0,
                                             width: 30.0,
                                             decoration: BoxDecoration(
-                                                color: MYColor.btnTxtColor1.withOpacity(0.3),
+                                                color: MYColor.btnTxtColor1
+                                                    .withOpacity(0.3),
                                                 shape: BoxShape.circle),
                                             child: Image.asset(
                                               'assets/images/check1.png',
@@ -1135,6 +1138,8 @@ class OrderView extends GetView<OrderController> {
                                             .I.paymentMethods[index].image,
                                         height: 20.0,
                                         width: 20.0,
+                                        color:
+                                            index == 0 ? MYColor.primary : null,
                                       )
                                     : Image.asset(
                                         OrderController
@@ -1147,7 +1152,7 @@ class OrderView extends GetView<OrderController> {
                                 ),
                                 Text(
                                   controller.paymentMethods[index].name,
-                                  style: TextStyle(fontSize: 16.0),
+                                  style: const TextStyle(fontSize: 16.0),
                                 )
                               ],
                             ),

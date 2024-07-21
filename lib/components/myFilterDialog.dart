@@ -37,7 +37,7 @@ void myFilterDialog(context) => Get.defaultDialog(
                   child: Text(
                     'nationality'.tr,
                     style: TextStyle(
-                      color: MYColor.texts,
+                      color: MYColor.buttons,
                       fontSize: 14,
                       fontFamily: 'cairo_regular',
                     ),
@@ -73,7 +73,7 @@ void myFilterDialog(context) => Get.defaultDialog(
                   child: Text(
                     'age'.tr,
                     style: TextStyle(
-                      color: MYColor.texts,
+                      color: MYColor.buttons,
                       fontSize: 14,
                       fontFamily: 'cairo_regular',
                     ),
@@ -109,7 +109,7 @@ void myFilterDialog(context) => Get.defaultDialog(
                   child: Text(
                     'marital_status'.tr,
                     style: TextStyle(
-                      color: MYColor.texts,
+                      color: MYColor.buttons,
                       fontSize: 14,
                       fontFamily: 'cairo_regular',
                     ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myDropdown.dart';
@@ -19,6 +20,7 @@ class CreateComplaintView extends GetView<ComplaintController> {
         backgroundColor: MYColor.primary,
         title: Text('add_ticket'.tr),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
       ),
       body: Stack(
         children: [
@@ -169,6 +171,7 @@ class CreateComplaintView extends GetView<ComplaintController> {
                                     'assets/images/icon/attach.svg',
                                     width: 17.52,
                                     height: 19.5,
+                                    color: MYColor.secondary,
                                   )
                                 : GestureDetector(
                                     onTap: () => controller.removeFile(),

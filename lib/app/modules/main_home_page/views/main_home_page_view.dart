@@ -24,7 +24,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
         appBar: _appBar(context),
         body: _body(context),
         bottomNavigationBar: Obx(
-              () {
+          () {
             return Container(
               height: 85,
               decoration: BoxDecoration(
@@ -64,6 +64,9 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                   ? "assets/images/bar/home_red.svg"
                                   : "assets/images/bar/home_black.svg",
                               fit: BoxFit.fill,
+                              color: controller.getTap == 0
+                                  ? MYColor.buttons
+                                  : MYColor.black,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -101,6 +104,9 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                   ? "assets/images/bar/contracts_red.svg"
                                   : "assets/images/bar/contracts_black.svg",
                               fit: BoxFit.fill,
+                              color: controller.getTap == 1
+                                  ? MYColor.buttons
+                                  : MYColor.black,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -138,6 +144,9 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                   ? 'assets/images/bar/profile_red.svg'
                                   : 'assets/images/bar/profile_black.svg',
                               fit: BoxFit.fill,
+                              color: controller.getTap == 2
+                                  ? MYColor.buttons
+                                  : MYColor.black,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -221,7 +230,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                   onTap: () {
                                     HapticFeedback.mediumImpact();
                                     controller.setSelectedService =
-                                    controller.services[i];
+                                        controller.services[i];
                                   },
                                   borderRadius: BorderRadius.circular(10),
                                   child: Container(
@@ -229,24 +238,24 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                       color: MYColor.white,
                                       borderRadius: BorderRadius.circular(10),
                                       boxShadow:
-                                      controller.getSelectedService ==
-                                          controller.services[i].id
-                                          ? [
-                                        BoxShadow(
-                                          color: MYColor.primary,
-                                          blurRadius: 0,
-                                          offset: const Offset(0, 2),
-                                        ),
-                                      ]
-                                          : [],
+                                          controller.getSelectedService ==
+                                                  controller.services[i].id
+                                              ? [
+                                                  BoxShadow(
+                                                    color: MYColor.primary,
+                                                    blurRadius: 0,
+                                                    offset: const Offset(0, 2),
+                                                  ),
+                                                ]
+                                              : [],
                                     ),
                                     child: SizedBox(
                                       width: Get.width / 5,
                                       height: 80,
                                       child: SvgPicture.asset(
-                                        "${controller.services[i].image}",
-                                        fit: BoxFit.fill,
-                                      ),
+                                          "${controller.services[i].image}",
+                                          fit: BoxFit.fill,
+                                          color: MYColor.buttons),
                                     ),
                                   ),
                                 ),
@@ -256,7 +265,10 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                 Text(
                                   "${controller.services[i].name}",
                                   style: TextStyle(
-                                    color: MYColor.black,
+                                    color: controller.getSelectedService ==
+                                            controller.services[i].id
+                                        ? MYColor.primary
+                                        : MYColor.black,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -286,13 +298,13 @@ class MainHomePageView extends GetView<MainHomePageController> {
                           itemBuilder: (ctx, i) {
                             var package = controller.services
                                 .where((e) =>
-                            e.id == controller.getSelectedService)
+                                    e.id == controller.getSelectedService)
                                 .first
                                 .packages![i];
 
                             var service = controller.services
                                 .where((e) =>
-                            e.id == controller.getSelectedService)
+                                    e.id == controller.getSelectedService)
                                 .first;
 
                             return Padding(
@@ -314,7 +326,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                   );
                                   controller.selectedPackageIndex.value = i;
                                   Get.to(
-                                        () => const CreateLocationView(
+                                    () => const CreateLocationView(
                                       action: 'create',
                                       page: 'main_home_page',
                                     ),
@@ -350,13 +362,13 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                           padding: const EdgeInsets.all(18),
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
                                                 width: Get.width / 2,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       "${package.name}",
@@ -364,7 +376,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                                         color: MYColor.black,
                                                         fontSize: 18,
                                                         fontFamily:
-                                                        'cairo_regular',
+                                                            'cairo_regular',
                                                       ),
                                                     ),
                                                     const SizedBox(
@@ -376,7 +388,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                                         color: MYColor.black,
                                                         fontSize: 12,
                                                         fontFamily:
-                                                        'cairo_regular',
+                                                            'cairo_regular',
                                                       ),
                                                     ),
                                                   ],
@@ -392,7 +404,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                                         color: MYColor.black,
                                                         fontSize: 14,
                                                         fontFamily:
-                                                        'cairo_regular',
+                                                            'cairo_regular',
                                                       ),
                                                     ),
                                                     const SizedBox(
@@ -404,7 +416,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                                         color: MYColor.black,
                                                         fontSize: 12,
                                                         fontFamily:
-                                                        'cairo_regular',
+                                                            'cairo_regular',
                                                       ),
                                                     ),
                                                   ],
@@ -556,7 +568,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
             child: Text(
               "no_contracts_paid".tr,
               style: TextStyle(
-                color: MYColor.black,
+                color: MYColor.grey,
                 fontSize: 14,
                 fontFamily: 'cairo_regular',
               ),
@@ -566,7 +578,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
 
         return ListView.builder(
           itemCount:
-          controller.contracts.where((e) => e.isPaid! == true).length,
+              controller.contracts.where((e) => e.isPaid! == true).length,
           itemBuilder: (ctx, i) {
             var obj = controller.contracts
                 .where((e) => e.isPaid! == true)
@@ -576,7 +588,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                 MainHomePageController.I.setServiceModel = obj.service!;
 
                 Get.to(
-                      () => ContractDetailsView(
+                  () => ContractDetailsView(
                     isPaid: obj.isPaid!,
                     contractModel: obj,
                   ),
@@ -748,7 +760,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
             child: Text(
               "no_contracts_unpaid".tr,
               style: TextStyle(
-                color: MYColor.black,
+                color: MYColor.grey,
                 fontSize: 14,
                 fontFamily: 'cairo_regular',
               ),
@@ -756,8 +768,10 @@ class MainHomePageView extends GetView<MainHomePageController> {
           );
         }
         return ListView.builder(
-          itemCount:
-          controller.contracts.where((e) => e.isPaid! == false).toList().length,
+          itemCount: controller.contracts
+              .where((e) => e.isPaid! == false)
+              .toList()
+              .length,
           itemBuilder: (ctx, i) {
             var obj = controller.contracts
                 .where((e) => e.isPaid! == false)
@@ -766,7 +780,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
               onTap: () {
                 MainHomePageController.I.setServiceModel = obj.service!;
                 Get.to(
-                      () => ContractDetailsView(
+                  () => ContractDetailsView(
                     isPaid: false,
                     contractModel: obj,
                   ),

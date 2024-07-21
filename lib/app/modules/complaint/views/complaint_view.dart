@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myComplaintCard.dart';
@@ -18,6 +19,7 @@ class ComplaintView extends GetView<ComplaintController> {
         backgroundColor: MYColor.primary,
         title: Text('tickets'.tr),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
         actions: [
           IconButton(
             onPressed: () {

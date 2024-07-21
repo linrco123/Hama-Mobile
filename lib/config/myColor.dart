@@ -29,4 +29,6 @@ class MYColor {
 
   static Color btnTxtColor = MYColor.white.withOpacity(0.8);
   static Color btnTxtColor1 = Colors.grey.shade400;
+
+    
 }

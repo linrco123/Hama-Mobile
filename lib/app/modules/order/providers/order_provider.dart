@@ -13,7 +13,6 @@ import '../../../../config/myColor.dart';
 import '../single_bill_model.dart';
 
 class OrderProvider extends GetConnect {
-
   Future<OrderModel> postOrder(Map data) async {
     try {
       await EasyLoading.show(status: 'loading'.tr);
@@ -25,21 +24,22 @@ class OrderProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print('=============================== order ============================');
+      print(
+          '=============================== order ============================');
       print(res.body);
       if (res.body['code'] == 0) {
         await EasyLoading.dismiss();
-      // if (res.body['message'] == 'sorry you have an order') {
-      //     mySnackBar(
-      //       title: "error".tr,
-      //       message: "you_have_unexpired_contract".tr,
-      //       color: MYColor.sadad,
-      //       icon: CupertinoIcons.info_circle,
-      //     );
-      //     return Future.error(res.status);
-      //   }
+        if (res.body['message'] == 'sorry you have an order') {
+          mySnackBar(
+            title: "error".tr,
+            message: "you_have_unexpired_contract".tr,
+            color: MYColor.sadad,
+            icon: CupertinoIcons.info_circle,
+          );
+        }
+        return Future.error(res.status);
 
-         return OrderModel(code: 1,data: null,msg: '');
+        //return OrderModel(code: 1,data: null,msg: '');
       }
       if (res.body['code'] == 1) {
         mySnackBar(
@@ -96,7 +96,7 @@ class OrderProvider extends GetConnect {
       }
 
       if (res.status.hasError) {
-        return Future.error(res.status);//res.body['code']
+        return Future.error(res.status); //res.body['code']
       } else {
         return res.body['code'];
       }
@@ -106,8 +106,6 @@ class OrderProvider extends GetConnect {
       return Future.error(e.toString());
     }
   }
-
-
 
   /// Create Single Bill
   Future<SingleBill> createSingleBill(Map data) async {

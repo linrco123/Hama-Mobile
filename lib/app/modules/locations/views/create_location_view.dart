@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:musaneda/app/modules/locations/controllers/locations_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 
 import '../../../../config/myColor.dart';
@@ -68,24 +69,10 @@ class CreateLocationView extends GetView<LocationsController> {
                   color: MYColor.buttons,
                 ),
               ),
-              Positioned(
+              const Positioned(
                   top: 50,
                   right: 20,
-                  child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: MYColor.buttons, shape: BoxShape.circle),
-                      child: Icon(
-                        Icons.arrow_back,
-                        color: MYColor.white,
-                      ),
-                    ),
-                  )),
+                  child: CircledBackButton()),
               Positioned(
                 top: Get.height / 2,
                 right: 20,

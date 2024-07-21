@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/main_home_page/views/payments_view.dart';
 import 'package:musaneda/app/modules/order/controllers/order_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../../main_home_page/controllers/main_home_page_controller.dart';
@@ -19,9 +20,14 @@ class SelectedPackageView extends GetView<MainHomePageController> {
       init: controller,
       builder: (_) => Scaffold(
         appBar: AppBar(
-          backgroundColor: MYColor.transparent,
-          title: Text('contract_duration'.tr),
+          title: Text(
+            'contract_duration'.tr,
+            style: TextStyle(
+              color: MYColor.primary,
+            ),
+          ),
           centerTitle: true,
+          leading: ReturnButton(color: MYColor.primary, size: 20.0),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10),
@@ -31,9 +37,7 @@ class SelectedPackageView extends GetView<MainHomePageController> {
               const SizedBox(height: 10),
               Text(
                 'select_duration'.tr,
-                style: const TextStyle(
-                  fontSize: 18,
-                ),
+                style: TextStyle(fontSize: 18, color: MYColor.primary),
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -85,9 +89,7 @@ class SelectedPackageView extends GetView<MainHomePageController> {
               const SizedBox(height: 20),
               Text(
                 'select_date'.tr,
-                style: const TextStyle(
-                  fontSize: 18,
-                ),
+                style: TextStyle(fontSize: 18, color: MYColor.primary),
               ),
               const SizedBox(height: 10),
               GetBuilder(
@@ -381,9 +383,10 @@ class SelectedPackageView extends GetView<MainHomePageController> {
                                   color: MYColor.grey,
                                   fontSize: 14,
                                 ),
-                                textAlign: LanguageController.I.getLocale == 'ar'
-                                    ? TextAlign.end
-                                    : TextAlign.start,
+                                textAlign:
+                                    LanguageController.I.getLocale == 'ar'
+                                        ? TextAlign.end
+                                        : TextAlign.start,
                               ),
                             ),
                           ],
@@ -411,9 +414,10 @@ class SelectedPackageView extends GetView<MainHomePageController> {
                                   color: MYColor.success,
                                   fontSize: 14,
                                 ),
-                                textAlign: LanguageController.I.getLocale == 'ar'
-                                    ? TextAlign.end
-                                    : TextAlign.start,
+                                textAlign:
+                                    LanguageController.I.getLocale == 'ar'
+                                        ? TextAlign.end
+                                        : TextAlign.start,
                               ),
                             ),
                           ],
@@ -441,9 +445,10 @@ class SelectedPackageView extends GetView<MainHomePageController> {
                                   color: MYColor.grey,
                                   fontSize: 14,
                                 ),
-                                textAlign: LanguageController.I.getLocale == 'ar'
-                                    ? TextAlign.end
-                                    : TextAlign.start,
+                                textAlign:
+                                    LanguageController.I.getLocale == 'ar'
+                                        ? TextAlign.end
+                                        : TextAlign.start,
                               ),
                             ),
                           ],
@@ -491,7 +496,6 @@ class SelectedPackageView extends GetView<MainHomePageController> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    // controller.payment();
                     Get.to(
                       () => const PaymentsView(
                         isFake: false,
@@ -499,16 +503,16 @@ class SelectedPackageView extends GetView<MainHomePageController> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    //backgroundColor: MYColor.buttons,
+                    backgroundColor: MYColor.buttons,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
                   child: Text(
                     'confirm'.tr,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+                    style: TextStyle(
+                      color: MYColor.btnTxtColor,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
