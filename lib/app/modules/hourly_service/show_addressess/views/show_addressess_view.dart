@@ -83,15 +83,26 @@ class ShowAddressessView extends GetView<LocationsController> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(children: [
+                Expanded(child: Divider(color: MYColor.primary,thickness: 1.0,)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Text('OR' , style: TextStyle(fontSize: 15.0 , color: MYColor.primary),),
+                ),
+                Expanded(child: Divider(color: MYColor.primary,thickness: 1.0,)),
+              ],),
+            ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 10.0),
+              margin: const EdgeInsets.only(bottom: 10.0,top: 0.0),
               child: Row(
                 children: [
                   Image.asset(
                     height: 30.0,
                     width: 30.0,
                     'assets/images/location.png',
-                    color: MYColor.icons,
+                    color: MYColor.buttons,
                   ),
                   const SizedBox(
                     width: 10.0,
@@ -188,17 +199,11 @@ class ShowAddressessView extends GetView<LocationsController> {
             const SizedBox(
               height: 10.0,
             ),
-            // AnimatedList(
-            //   initialItemCount: 2,
-            //   itemBuilder: (context, index, animation) => const Center(),
-
-            // ),
             SizedBox(
               height: 50.0,
               width: Get.width,
               child: MyCupertinoButton(
                   fun: () {
-                    serviceTypeController.printDataMembers();
                     if (serviceTypeController.selectedLocation.value != 0) {
                       Get.toNamed(Routes.DATEPICKER);
                     } else {

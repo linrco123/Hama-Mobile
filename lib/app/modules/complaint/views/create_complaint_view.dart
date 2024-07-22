@@ -159,7 +159,7 @@ class CreateComplaintView extends GetView<ComplaintController> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          controller.uploadFile();
+                          controller.selectFile();
                         },
                         borderRadius: BorderRadius.circular(10),
                         child: Column(

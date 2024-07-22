@@ -16,12 +16,12 @@ import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myFilterDialog.dart';
 import '../../../controllers/language_controller.dart';
- import '../../register/views/terms_conditions_webview.dart';
+import '../../register/views/terms_conditions_webview.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
-
+  
   final _drawer = AdvancedDrawerController();
 
   @override

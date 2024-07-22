@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/sockets/src/socket_notifier.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/config/myColor.dart';
 

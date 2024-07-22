@@ -414,6 +414,7 @@ const Map<String, String> enUS = {
   ////////////////////////////
   'money_should_pay':'All money you should to pay is',
      'question_close':'Do you want to close the app ? ',
-     'ok':'OK'
+     'ok':'OK',
+     'or':'OR'
 
 };

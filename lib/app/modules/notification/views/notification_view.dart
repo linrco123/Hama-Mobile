@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../config/myColor.dart';
 import '../controllers/notification_controller.dart';
@@ -17,6 +17,10 @@ class NotificationView extends GetView<NotificationController> {
         backgroundColor: MYColor.primary,
         title: Text('notification'.tr),
         centerTitle: true,
+        leading: ReturnButton(
+          color: MYColor.white,
+          size: 20.0,
+        ),
       ),
       body: Stack(
         children: [
@@ -42,7 +46,10 @@ class NotificationView extends GetView<NotificationController> {
               builder: (ctx) {
                 if (controller.getNotify.isEmpty) {
                   return Center(
-                    child: Text('no_notifications'.tr),
+                    child: Text(
+                      'no_notifications'.tr,
+                      style: TextStyle(color: Colors.grey.shade300 , fontSize: 25.0),
+                    ),
                   );
                 }
                 return Column(
@@ -52,7 +59,7 @@ class NotificationView extends GetView<NotificationController> {
                         itemCount: controller.getNotify.length,
                         itemBuilder: (context, i) {
                           return Container(
-                           // height: 90,
+                            // height: 90,
                             width: Get.width,
                             decoration: BoxDecoration(
                               color: MYColor.white,

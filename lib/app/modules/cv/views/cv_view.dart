@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../config/myColor.dart';
 import '../controllers/cv_controller.dart';
@@ -14,6 +15,7 @@ class CvView extends GetView<CvController> {
         backgroundColor: MYColor.primary,
         title: const Text('CvView'),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
       ),
       body: Stack(
         children: <Widget>[

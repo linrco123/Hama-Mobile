@@ -44,7 +44,7 @@ class DatePickerView extends GetView<DatePickerController> {
                   Icon(
                     Icons.calendar_today_outlined,
                     size: 30.0,
-                    color: MYColor.primary,
+                    color: MYColor.primary.withOpacity(0.7),
                   ),
                   const SizedBox(
                     width: 10.0,

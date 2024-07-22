@@ -119,17 +119,18 @@ class ComplaintController extends GetxController {
       );
     }
   }
-
+final filePicker = FilePicker.platform;  
+FilePickerResult? result;
   void selectFile() async {
     try {
       await FilePicker.platform.clearTemporaryFiles();
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
+      result = await filePicker.pickFiles(
         type: FileType.image,
         allowMultiple: false,
       );
       if (result != null) {
-        fileName.value = result.files.single.name;
-        filePath.value = result.files.single.path!;
+        fileName.value = result!.files.single.name;
+        filePath.value = result!.files.single.path!;
         print('File Name is ${fileName.value}');
         print('File Name is ${filePath.value}');
       } else {

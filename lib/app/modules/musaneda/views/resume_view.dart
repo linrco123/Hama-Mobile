@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../config/myColor.dart';
 import '../controllers/musaneda_controller.dart';
@@ -16,6 +17,7 @@ class ResumeView extends GetView<MusanedaController> {
         backgroundColor: MYColor.primary,
         title: Text('resume'.tr),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
       ),
       body: GetBuilder(
         init: controller,
@@ -45,9 +47,9 @@ class ResumeView extends GetView<MusanedaController> {
               print('$page: ${error.toString()}');
             }
           },
-          // onViewCreated: (pdfCtrl) {
-          //   controller.cTr.complete(pdfCtrl);
-          // },
+          onViewCreated: (pdfCtrl) {
+            controller.cTr.complete(pdfCtrl);
+          },
           onLinkHandler: (String? uri) {
             if (kDebugMode) {
               print('Goto uri: $uri');

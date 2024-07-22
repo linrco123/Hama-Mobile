@@ -97,7 +97,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       children: [
                         Icon(
                           Icons.confirmation_number_outlined,
-                          color: MYColor.buttons,
+                          color: MYColor.buttons.withOpacity(0.7),
                         ),
                         const SizedBox(
                           width: 10.0,
@@ -148,7 +148,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       children: [
                         Icon(
                           Icons.calendar_month_outlined,
-                          color: MYColor.buttons,
+                          color: MYColor.buttons.withOpacity(0.7),
                         ),
                         const SizedBox(
                           width: 10.0,
@@ -195,7 +195,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       children: [
                         Icon(
                           Icons.calendar_today_outlined,
-                          color: MYColor.buttons,
+                          color: MYColor.buttons.withOpacity(0.7),
                         ),
                         const SizedBox(
                           width: 10.0,
@@ -245,7 +245,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       children: [
                         Icon(
                           Icons.numbers_outlined,
-                          color: MYColor.icons,
+                          color: MYColor.buttons.withOpacity(0.7),
                           //size: ,
                         ),
                         const SizedBox(
