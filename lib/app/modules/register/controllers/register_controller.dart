@@ -89,9 +89,9 @@ class RegisterController extends GetxController {
     if (value.isEmpty) {
       return "msg_plz_enter_iqama_number".tr;
     }
-    //  else if (IqamaValidator.validate(value) == false) {
-    //   return "msg_plz_enter_correct_iqama_number".tr;
-    // }
+     else if (IqamaValidator.validate(value) == false) {
+      return "msg_plz_enter_correct_iqama_number".tr;
+    }
     return null;
   }
 

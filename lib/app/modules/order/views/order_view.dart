@@ -5,8 +5,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
+ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/order/views/tabby_stc_paymentview/components/tabby_method.dart';
@@ -18,8 +17,7 @@ import 'package:musaneda/components/myStepper.dart';
 import 'package:musaneda/components/payment_bank_direct.dart';
 import 'package:musaneda/components/payment_branch.dart';
 import 'package:musaneda/config/myColor.dart';
-import '../../../../components/formatters.dart';
-import '../../../../components/myDropdown.dart';
+ import '../../../../components/myDropdown.dart';
 import '../../custom_payment/controllers/custom_payment_controller.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../home/musaneda_model.dart';
@@ -166,7 +164,8 @@ class OrderView extends GetView<OrderController> {
                 context: context,
                 value: controller.selectedCity.value,
                 onChanged: (value) {
-                  controller.setCity = value;
+                 // controller.setCity = value;
+                 controller.selectedCity.value = 1;
                 },
                 items: HomeController.I.listCities.map(
                   (item) {
@@ -1344,7 +1343,7 @@ class OrderView extends GetView<OrderController> {
                       ? "confirm".tr
                       : "pay".tr,
           btnColor: MYColor.buttons,
-          txtColor: MYColor.white,
+          txtColor: MYColor.btnTxtColor,
         ),
       ),
     );

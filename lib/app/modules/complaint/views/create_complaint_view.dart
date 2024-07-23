@@ -201,7 +201,7 @@ class CreateComplaintView extends GetView<ComplaintController> {
                     width: double.infinity,
                     child: MyCupertinoButton(
                       btnColor: MYColor.buttons,
-                      txtColor: MYColor.white,
+                      txtColor: MYColor.btnTxtColor,
                       text: "add_ticket".tr,
                       fun: () => controller.createComplaint(),
                     ),

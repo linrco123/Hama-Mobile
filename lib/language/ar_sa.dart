@@ -29,7 +29,7 @@ const Map<String, String> arSA = {
   "sign_up": "انشاء حساب",
   "full_name": "الاسم الكامل",
   "phone_number": "الهاتف",
-  "iqama_number": "الاقامة",
+  "iqama_number": "رقم الإقامة-الهوية",
   "password": "كلمة المرور",
   "email": "البريد الالكتروني",
   "by_clicking_on_create": "بالضغط على إنشاء حساب جديد تكون موافق على",

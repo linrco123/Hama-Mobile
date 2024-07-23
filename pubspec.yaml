@@ -66,13 +66,11 @@ flutter_native_splash:
   ios: true
   web: false
   color: "#118697"
-  icon_background_color: "#EA553B"
   image: assets/images/mobile6.png
   
 
   android_12:
     color: "#118697"
-    icon_background_color: "#EA553B"
     image: assets/images/mobile6.png
     
 

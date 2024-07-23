@@ -367,7 +367,7 @@ class PaymentsView extends GetView<MainHomePageController> {
             padding: EdgeInsets.zero,
             minSize: 45,
             onPressed: () {
-              CustomPaymentController.I.payWithAmazon(isFake: true);
+               CustomPaymentController.I.payWithAmazon(isFake: true);
             },
             color: MYColor.white,
             borderRadius: BorderRadius.circular(10),

@@ -30,14 +30,37 @@ class RegisterView extends GetView<RegisterController> {
               key: controller.formRegisterKey,
               child: ListView(
                 children: [
-                  SizedBox(height: Get.height / 20),
+                  SizedBox(
+                    height: Get.height / 20,
+                    child: Row(
+                      mainAxisAlignment: LanguageController.I.isEnglish
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            child: TextButton(
+                                onPressed: () {
+                                  LanguageController.I
+                                      .updateLangForLOGINSIGNUP();
+                                },
+                                child: Text(
+                                  LanguageController.I.getLocale.toUpperCase(),
+                                  style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w900,
+                                      color: MYColor.primary),
+                                ))),
+                      ],
+                    ),
+                  ),
                   Center(
                     child: Image.asset(
                       'assets/images/hamaLogo.png',
                       height: 100,
                       width: 200,
                       fit: BoxFit.cover,
-                       filterQuality: FilterQuality.high,
+                      filterQuality: FilterQuality.high,
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -81,7 +104,7 @@ class RegisterView extends GetView<RegisterController> {
                       myInkWell(
                         fun: () {
                           Get.put(HomeController());
-                          Get.to(TermsConditionsWebview());
+                          Get.to(const TermsConditionsWebview());
                         },
                         text: "terms_and_conditions",
                         size: 14,
@@ -185,30 +208,33 @@ class RegisterView extends GetView<RegisterController> {
         filled: true,
         // prefixText: "phone_number".tr,
         // hintText: "phone_number".tr,
-        suffixIcon: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 14,
-          ),
-          child: Text(
-            "966+",
-            style: TextStyle(
-              color: MYColor.secondary1,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        suffixIcon: LanguageController.I.isEnglish
+            ? const SizedBox()
+            : Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 5.0),
+                child: Text(
+                  "966+",
+                  style: TextStyle(
+                    color: MYColor.secondary1,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         hintText: "5XXXXXXX".tr,
         hintStyle: TextStyle(
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
+          padding: LanguageController.I.isEnglish
+              ? const EdgeInsets.only(left: 15, right: 0)
+              : const EdgeInsets.only(left: 0, right: 15),
           child: SizedBox(
-            width: 103,
+            //width: 103,
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
                   CupertinoIcons.phone,
@@ -222,10 +248,25 @@ class RegisterView extends GetView<RegisterController> {
                     fontSize: 14,
                   ),
                 ),
+                 LanguageController.I.isEnglish
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 14, horizontal: 5.0),
+                        child: Text(
+                          "+966",
+                          style: TextStyle(
+                            color: MYColor.secondary1,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),
         ),
+
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(

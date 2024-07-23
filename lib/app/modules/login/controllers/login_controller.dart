@@ -89,8 +89,7 @@ class LoginController extends GetxController {
               };
                print('=========================LOGIN======================');
                print(res!.data!.token);
-               print('user    id');
-               print( res.data!.id);
+                print( res.data!.id);
               box.write('LOGIN_MODEL', data).then((value) {
                 getName();
               });
@@ -104,6 +103,7 @@ class LoginController extends GetxController {
                   if (value == "SA") {
                     box.write('SA', true);
                      Get.offAllNamed(Routes.WELCOME);
+                     //Get.offAllNamed(Routes.MAIN_HOME_PAGE);
                   } else {
                     Get.offAllNamed(Routes.WELCOME);
                     //Get.offAllNamed(Routes.MAIN_HOME_PAGE);

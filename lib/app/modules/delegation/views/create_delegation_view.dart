@@ -133,7 +133,7 @@ class CreateDelegationView extends GetView<DelegationController> {
                         width: double.infinity,
                         child: MyCupertinoButton(
                           btnColor: MYColor.buttons,
-                          txtColor: MYColor.white,
+                          txtColor: MYColor.btnTxtColor,
                           text: action == 'create' ? "add".tr : "edit".tr,
                           fun: () {
                             if (action == 'create') {

@@ -116,28 +116,37 @@ class CustomPaymentController extends GetxController {
 
   Future<void> payWithAmazon({bool isFake = false}) async {
     var amazonPay = Get.put(AmazonPayController());
-    //update transaction_id each time this function is executed.( with order_id )
-    final transactionId = await amazonPay.transactionIdProvider
-        .updateTransactionId(
-            transactionId: const Uuid().v4(),
-            orderId: OrderController.I.orderID);
-    OrderController.I.merchantTransactionID =
-        transactionId.data!.transactionId!;
-     if (OrderController.I.paymentMethod.value != 10 ||
+
+    if (!isFake) {
+      try {
+        final transactionId = await amazonPay.transactionIdProvider
+            .updateTransactionId(
+                transactionId: const Uuid().v4(),
+                orderId: OrderController.I.orderID);
+        OrderController.I.merchantTransactionID =
+            transactionId.data!.transactionId!;
+      } catch (e, s) {
+        await Sentry.captureException(e, stackTrace: s);
+        print('exception is as follows :::: ${e.toString()}');
+      }
+    }
+
+    if (OrderController.I.paymentMethod.value != 10 ||
         OrderController.I.tabbyOption.value == true) {
       if (OrderController.I.tabbyOption.value) {
+
         Get.put(TabbyPaymentController());
         Get.to(const TabbyPaymentView(), arguments: [
           OrderController.I.merchantTransactionID,
           OrderController.I.orderID
         ]);
+        
       } else {
         if (OrderController.I.paymentMethod.value == 0 ||
             OrderController.I.paymentMethod.value == 1) {
           //credit card - MADA
           AmazonPayController.I.paymentWithCreditOrDebitCard(
             onSucceeded: (result) async {
-              log('Inside on succeeded  ===================');
               mySnackBar(
                 title: "success".tr,
                 message: "payment_success".tr,
@@ -148,8 +157,8 @@ class CustomPaymentController extends GetxController {
                 await CustomPaymentProvider().sendTransactionPay(
                   transactionId:
                       OrderController.I.merchantTransactionID.toString(),
-                      orderId: OrderController.I.orderID,
-                      paymentOption: 'Credit Card',
+                  orderId: OrderController.I.orderID,
+                  paymentOption: 'Credit Card',
                 );
                 Get.offAllNamed(Routes.HOME);
               } else {
@@ -231,7 +240,6 @@ class CustomPaymentController extends GetxController {
               }
             },
             onFailed: (error) {
-              log('  onFailed: (error) { Apple pay  ');
               mySnackBar(
                 title: "error".tr,
                 message: "payment_failed".tr,

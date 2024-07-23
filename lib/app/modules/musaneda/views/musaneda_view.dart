@@ -335,7 +335,7 @@ class MusanedaView extends GetView<MusanedaController> {
                             height: 52,
                             child: MyCupertinoButton(
                               btnColor: MYColor.buttons,
-                              txtColor: MYColor.white,
+                              txtColor: MYColor.btnTxtColor,
                               fun: () {
                                 //ComplaintController.I.getComplaints();
                                 Get.toNamed(Routes.ORDER,

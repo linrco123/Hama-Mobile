@@ -30,7 +30,7 @@ const Map<String, String> enUS = {
   "sign_up": "Sign up",
   "full_name": "Full Name",
   "phone_number": "Phone",
-  "iqama_number": "Iqama Number",
+  "iqama_number": "National-Iqama ID",
   "password": "Password",
   "email": "Email",
   "by_clicking_on_create": "By clicking on create an account, you agree to the",
