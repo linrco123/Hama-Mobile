@@ -412,5 +412,6 @@ const Map<String, String> arSA = {
    'money_should_pay':'ما يتوجب عليك دفعه عبر الحساب ',
    'question_close':'هل تريد إغلاق التطبيق ؟ ',
    'ok':'نعم',
-   'or':'أو'
+   'or':'أو',
+   'contact_us':'اتصل بنا  '
 };

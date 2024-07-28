@@ -127,8 +127,7 @@ class CustomPaymentController extends GetxController {
             transactionId.data!.transactionId!;
       } catch (e, s) {
         await Sentry.captureException(e, stackTrace: s);
-        print('exception is as follows :::: ${e.toString()}');
-      }
+       }
     }
 
     if (OrderController.I.paymentMethod.value != 10 ||

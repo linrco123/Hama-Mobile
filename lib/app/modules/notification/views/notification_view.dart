@@ -48,7 +48,7 @@ class NotificationView extends GetView<NotificationController> {
                   return Center(
                     child: Text(
                       'no_notifications'.tr,
-                      style: TextStyle(color: Colors.grey.shade300 , fontSize: 25.0),
+                      style: TextStyle(color: Colors.grey.shade300 , fontSize: 20.0),
                     ),
                   );
                 }

@@ -1315,7 +1315,7 @@ class OrderView extends GetView<OrderController> {
               //send request to endpoint (pay_in_branch)
               // parameters ===>  order_id =  ; // payment_branch = true or 1;
               //if suceess to confirm goto home
-              Get.to(BankAccountdetails(), arguments: {
+              Get.to(const BankAccountdetails(), arguments: {
                 'orderID': 33,
                 'totalPrice': 3000.0,
                 'page': 'order'
@@ -1323,7 +1323,7 @@ class OrderView extends GetView<OrderController> {
             } else if (OrderController.I.paymentBank.value) {
               // //send request to endpoint (pay-through-bank) flag option to 1 for ex
               //if success go to BankAccountdetails screen
-              Get.to(BankAccountdetails(), arguments: {
+              Get.to(const BankAccountdetails(), arguments: {
                 'orderID': 33,
                 'totalPrice': 3000,
                 'page': 'order'

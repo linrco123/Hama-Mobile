@@ -7,21 +7,21 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 class TechnicalSupportProvider extends GetConnect {
-  final channelId = "e63c2083-7f88-4546-bf08-165ae2bb53a3";
+  final channelId = "648966184456d63137fa717d@webchat.eazy.im";
   final webhook = "6fe9eac2-a73d-4bb2-9a8b-3ef594397871";
   final apiUrl = "https://chat-api.keytime.sa/webhooks";
-  final apiKey = "Bearer y8PJgaoGamg0R1Ed1ku0SbirhdlWGDMwKQI5mKgw";
+  final apiKey = "Bearer U0QOk4SoOrZkkUbjWg2AZLrA3kCaOpXLqjl7PNEr";
 
   Future<List<dynamic>> sendMessage(messageText, theID, theName) async {
     try {
-      final res = await post(
-        'https://chat-api.keytime.sa/webhooks/6fe9eac2-a73d-4bb2-9a8b-3ef594397871',
+      final  res = await post(
+        '$apiUrl/$webhook',
         {
           "channel": {
-            "id": "e63c2083-7f88-4546-bf08-165ae2bb53a3",
+            "id": "648966184456d63137fa717d@webchat.eazy.im",
           },
           "contact": {
-            "id": "ed07fefa-1458-11ee-be56-0242ac120002$theID",//theID = 479
+            "id": "8772cf4e-1a0f-45f8-bb74-2c504bed8$theID",
             "name": theName
           },
           "message": {
@@ -34,11 +34,11 @@ class TechnicalSupportProvider extends GetConnect {
           "type": "message"
         },
         headers: {
-          "Authorization": "Bearer y8PJgaoGamg0R1Ed1ku0SbirhdlWGDMwKQI5mKgw",
+          "Authorization": apiKey,
         },
       );
       Pretty.instance.logger.d(messageText);
-      if (res.statusCode == 200) {
+       if (res.statusCode == 200) {
         return res.body;
       } else {
         Pretty.instance.logger.w(res.body);
@@ -49,7 +49,7 @@ class TechnicalSupportProvider extends GetConnect {
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
       Pretty.instance.logger.e(e);
-      return Future.error(e);
+       return Future.error(e);
     }
   }
 
@@ -66,7 +66,7 @@ class TechnicalSupportProvider extends GetConnect {
         List messages = jsonDecode(res.body);
         return messages.map((e) => MessagesModel.fromJson(e)).toList();
       } else {
-        Pretty.instance.logger.w(res.body);
+       Pretty.instance.logger.w(res.body);
         return Future.error(
           "fetchMessage(): Technical Support Provider Error fetching message",
         );

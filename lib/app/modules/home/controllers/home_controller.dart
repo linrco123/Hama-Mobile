@@ -13,6 +13,7 @@ import 'package:musaneda/app/modules/home/views/filter_view.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../cities_model.dart';
@@ -107,6 +108,14 @@ class HomeController extends GetxController {
     update();
   }
 
+  Future<void> makePhoneCall() async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: Constance.technicalSupport_phone.toString(),
+    );
+    await launchUrl(launchUri);
+  }
+
   RxBool isLoading = false.obs;
 
   var listSliders = List<SliderData>.empty(growable: true).obs;
@@ -179,9 +188,7 @@ class HomeController extends GetxController {
       }
       isLoading(false);
     });
-    print('if listActive is empty ::::: ${listActive.isEmpty}');
-    print('if listContracts is empty ::::: ${listContracts.isEmpty}');
-    update();
+     update();
   }
 
   var listNationalities = List<NationalitiesData>.empty(growable: true).obs;

@@ -383,8 +383,6 @@ class OrderController extends GetxController {
       };
       OrderProvider().postOrder(data).then((value) async {
         if (value.code == 1) {
-          // ordermodel = value;
-          // orderID = value.data!.orderId!.toString();
           OrderController.I.orderID = value.data!.orderId.toString();
           await EasyLoading.dismiss();
           await Future.delayed(const Duration(seconds: 1)).then((value) {

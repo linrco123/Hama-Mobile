@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
@@ -30,38 +31,61 @@ class RegisterView extends GetView<RegisterController> {
               key: controller.formRegisterKey,
               child: ListView(
                 children: [
-                  SizedBox(
-                    height: Get.height / 20,
-                    child: Row(
-                      mainAxisAlignment: LanguageController.I.isEnglish
-                          ? MainAxisAlignment.end
-                          : MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.only(top: 0.0),
-                            child: TextButton(
-                                onPressed: () {
+                  Stack(
+                    children: [
+                      SizedBox(
+                        height: Get.height / 20,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: Get.height / 20,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/hamaLogo.png',
+                            height: 100,
+                            width: 200,
+                            fit: BoxFit.cover,
+                            filterQuality: FilterQuality.high,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 10.0,
+                        right: LanguageController.I.isEnglish ? 0.0 : null,
+                        left: LanguageController.I.isEnglish ? null : 0.0,
+                        child: Obx(
+                          () => Container(
+                             child: DropdownButton(
+                               borderRadius: BorderRadius.circular(20.0),
+                              elevation: 1,
+                              iconEnabledColor: MYColor.buttons,
+                              alignment: AlignmentDirectional.centerEnd,
+                              value: LoginController.I.selectedLanguage.value,
+                              dropdownColor: MYColor.white,
+                              items: LoginController.I.languageList
+                                  .map((item) => DropdownMenuItem(
+                                      value: item.id!,
+                                      child: Text(
+                                        LanguageController.I.isEnglish
+                                            ? item.name!.ar!
+                                            : item.name!.en!,
+                                        style:
+                                            TextStyle(color: MYColor.primary),
+                                      )))
+                                  .toList(),
+                              onChanged: (value) {
+                                if (value != 0) {
                                   LanguageController.I
-                                      .updateLangForLOGINSIGNUP();
-                                },
-                                child: Text(
-                                  LanguageController.I.getLocale.toUpperCase(),
-                                  style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w900,
-                                      color: MYColor.primary),
-                                ))),
-                      ],
-                    ),
-                  ),
-                  Center(
-                    child: Image.asset(
-                      'assets/images/hamaLogo.png',
-                      height: 100,
-                      width: 200,
-                      fit: BoxFit.cover,
-                      filterQuality: FilterQuality.high,
-                    ),
+                                      .updateLangForLOGINSIGNUP(value!);
+                                  LoginController.I.selectedLanguage.value = value;
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 10.0),
                   Center(
@@ -248,7 +272,7 @@ class RegisterView extends GetView<RegisterController> {
                     fontSize: 14,
                   ),
                 ),
-                 LanguageController.I.isEnglish
+                LanguageController.I.isEnglish
                     ? Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 14, horizontal: 5.0),

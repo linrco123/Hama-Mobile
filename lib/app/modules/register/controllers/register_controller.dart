@@ -89,7 +89,7 @@ class RegisterController extends GetxController {
     if (value.isEmpty) {
       return "msg_plz_enter_iqama_number".tr;
     }
-     else if (IqamaValidator.validate(value) == false) {
+     else if (IqamaValidator().validateSaudiNationalID(value) == false) {
       return "msg_plz_enter_correct_iqama_number".tr;
     }
     return null;
@@ -135,7 +135,8 @@ class RegisterController extends GetxController {
         RegisterProvider().postRegister(data).then(
           (res) {
             isProcessing(false);
-            _showDialog(context);
+           // _showDialog(context);
+            Get.offNamed('/login');
           },
         );
       } catch (e, s) {

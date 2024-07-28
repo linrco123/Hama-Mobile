@@ -82,4 +82,32 @@ class IqamaValidator {
       return false;
     }
   }
+
+  bool validateSaudiNationalID(String id) {
+  // Check if the ID is exactly 10 digits
+  if (!RegExp(r'^\d{10}$').hasMatch(id)) {  
+    return false;
+  }
+
+  // Check if the first digit is 1 or 2
+  int firstDigit = int.parse(id[0]);
+  if (firstDigit != 1 && firstDigit != 2) {
+    return false;
+  }
+   return true;
+  // Checksum validation
+  // int sum = 0;
+  // for (int i = 0; i < 10; i++) {
+  //   int digit = int.parse(id[i]);
+  //   if (i % 2 == 0) { // even index
+  //     digit *= 2;
+  //     if (digit > 9) {
+  //       digit -= 9;
+  //     }
+  //   }
+  //   sum += digit;
+  // }
+  // return sum % 10 == 0;
+}
+
 }

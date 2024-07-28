@@ -83,8 +83,8 @@ class LanguageController extends GetxController implements Translations {
     return Get.locale;
   }
 
-  updateLangForLOGINSIGNUP() {
-    String language = isEnglish ? 'arabic' : 'english';
+  updateLangForLOGINSIGNUP(int value) {
+    String language = value == 1 ? 'arabic' : 'english';
     changeLocale(language);
   }
 }

@@ -21,7 +21,7 @@ class TechnicalSupportController extends GetxController {
   var box = GetStorage();
 
   io.Socket socket = io.io(
-    'https://kdamat.fnrco.com.sa/api/v1/webhooks',
+    'https://kdamat.com/api/v1/webhooks',
     <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,

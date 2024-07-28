@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -69,14 +70,18 @@ Future<void> main() async {
   var notificationController = Get.put(NotificationController());
   await notificationController.initNotify();
   await GetStorage.init();
-  await SentryFlutter.init(
-    (options) {
-      options.dsn =
-          'https://d301f511b2ce4c39041ffc6c5019c12d@o4505695906693120.ingest.sentry.io/4505695907872768';
-      options.tracesSampleRate = 1.0;
-    },
-    appRunner: () => runApp(const App()),
-  );
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp , DeviceOrientation.portraitDown])
+      .then((_) async {
+    await SentryFlutter.init(
+      (options) {
+        options.dsn =
+            'https://d301f511b2ce4c39041ffc6c5019c12d@o4505695906693120.ingest.sentry.io/4505695907872768';
+        options.tracesSampleRate = 1.0;
+      },
+      appRunner: () => runApp(const App()),
+    );
+  });
+
   configLoading();
   performance();
 }
@@ -104,7 +109,7 @@ initialRoute() {
         return AppPages.WELCOME;
         //return AppPages.MAIN_HOME_PAGE;
       } else {
-         return AppPages.WELCOME;
+        return AppPages.WELCOME;
         //return AppPages.MAIN_HOME_PAGE;
       }
     }
