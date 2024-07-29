@@ -3,8 +3,8 @@ const Map<String, String> enUS = {
   "other_details_text": "ex: Building number, Floor number, etc.",
   "delivery_location": "Delivery Location",
   "waiting": "Please wait",
-  "app_name": "Musaneda Services",
-  "app_name_sa": "مساندة للخادمات",
+  "app_name": "Hama Services",
+  "app_name_sa": "هامة للخادمات",
   "success": "Success",
   "error": "Error",
   "warning": "Warning",
@@ -151,7 +151,7 @@ const Map<String, String> enUS = {
   "msg_select_branch": "Please select branch!",
   "msg_select_location": "Please select location!",
   "order_success_msg": "Order sent successfully",
-  "Can't_find": "Can't find any filtered musaneda",
+  "Can't_find": "Can't find any filtered workers",
   "choose_atleast_one": "Choose at least one option",
   "card_holder_name": "Card Holder Name",
   "card_number": "Card Number",
@@ -163,15 +163,15 @@ const Map<String, String> enUS = {
   "search": "Search",
 
   // Services
-  "all_musaneda": "All Musaneda",
+  "all_musaneda": "All Workers",
   "filter_by": "Filter by",
   "marital_status": "Marital status",
   "filter": "Filter",
   "search_by_name": "Search by name",
   "there_are_no_results": "There are no results",
-  "show_musaneda": "Show Musaneda",
+  "show_musaneda": "Show Workers",
   "search_results": "Search results",
-  "see_musaneda": "See Musaneda",
+  "see_musaneda": "Show Workers",
 
   // Contracts
   "my_contracts": "My Contracts",
@@ -193,7 +193,7 @@ const Map<String, String> enUS = {
   "no_expired_contracts": "No expired contracts yet",
   "contract_number": "Contract Number",
 
-  "musaneda_details": "Musaneda Details",
+  "musaneda_details": "Worker Details",
 
   // Side menu
   "profile": "Profile",
@@ -288,7 +288,7 @@ const Map<String, String> enUS = {
   "you_have_no_locations_yet": "You have no locations yet",
   "you_have_unexpired_contract": "You have unexpired contract",
   "loading": "Loading...",
-  "success_login": "Welcome to Musaneda",
+  "success_login": "Welcome to Hama",
   "msg_success_login": "We're happy to see you again",
   "personal": "Profile",
   "silver_package": "Silver Package",
@@ -364,7 +364,7 @@ const Map<String, String> enUS = {
   'good_afternoon': 'Good Afternoon',
   'good_evening': 'Good Evening ',
   'check_service': 'Check Service',
-  'musanda_offers': 'Hama offers ⏰',
+  'hama_offers': 'Hama offers ⏰',
   'one_time_visit': 'Sign one-time visit package with unique offers 🥰',
   'stayin_offers': '🎗️ Stay-In offers 🗓️',
   '3month_maid': ' For resident housemaid is 3-month package',

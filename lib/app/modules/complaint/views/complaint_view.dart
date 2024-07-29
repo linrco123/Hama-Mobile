@@ -101,7 +101,7 @@ class ComplaintView extends GetView<ComplaintController> {
                               child: Text(
                                 "no_tickets_found".tr,
                                 style: TextStyle(
-                                  color: MYColor.black,
+                                  color: MYColor.grey,
                                   fontSize: 16,
                                 ),
                               ),

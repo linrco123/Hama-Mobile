@@ -3,8 +3,8 @@ const Map<String, String> arSA = {
   "other_details_text": "مثال: رقم المبنى, الطابق, الشقة",
   "delivery_location": "عنوان التوصيل",
   "waiting": "لحظة من فضلك",
-  "app_name": "مساندة للخدمات",
-  "app_name_sa": "مساندة للخادمات",
+  "app_name": "هامة للخدمات",
+  "app_name_sa": "هامة للخدمات",
   "success": "نجاح",
   "error": "خطأ",
   "warning": "تحذير",
@@ -158,15 +158,15 @@ const Map<String, String> arSA = {
   "credit_card": "بطاقة الائتمان",
   "sadad": "نظام سداد للمدفوعات",
   // Services
-  "all_musaneda": "كل المساندة",
+  "all_musaneda": "كل العاملات",
   "filter_by": "تصفية حسب",
   "marital_status": "الحالة الاجتماعية",
   "filter": "تصفية",
   "search_by_name": "بحث بالاسم",
   "there_are_no_results": "لا توجد نتائج",
-  "show_musaneda": "عرض المساندة",
+  "show_musaneda": "عرض العاملات",
   "search_results": "نتائج البحث",
-  "see_musaneda": "عرض المساندة",
+  "see_musaneda": "عرض العاملات",
 
   // Contracts
   "my_contracts": "عقودي",
@@ -186,7 +186,7 @@ const Map<String, String> arSA = {
   "no_active_contracts": "لا توجد عقود نشطة",
   "no_expired_contracts": "لا توجد عقود منتهية",
   "contract_number": "رقم العقد",
-  "musaneda_details": "تفاصيل المساندة",
+  "musaneda_details": "معلومات العاملة",
 
   // Side menu
   "profile": "بياناتي الشخصية",
@@ -360,8 +360,8 @@ const Map<String, String> arSA = {
   'good_afternoon': 'مساء الخير',
   'good_evening': 'مساء الخير',
   'check_service': 'تصفح الخدمة',
-  //'عروض مساندة', //Musanda offers
-  'musanda_offers': '⏰عروض هامة',
+  //'عروض هامة', //Hama offers
+  'hama_offers': '⏰عروض هامة',
   'one_time_visit': '🥰 تعاقدى على باقة الزيارة الواحدة بعروض مميزة ',
   'stayin_offers': '🎗️عروض مقيمة🗓️',
   '3month_maid': 'للعاملة المنزلية المقيمة باقة الثلاث أشهر',
@@ -378,7 +378,7 @@ const Map<String, String> arSA = {
   'evening': 'مسائى',
   'visits_number': ' عدد الزيارات ',
   'maids_number': 'عدد الخادمات',
-  'proceed':"تابع",
+  'proceed': "تابع",
   //'Address Name' 'Street Name'  building_number floor_number 'Postal Code/Zip Code'
   'address_name': 'اسم العنوان',
   'street_name': 'اسم الشارع',
@@ -390,11 +390,11 @@ const Map<String, String> arSA = {
   'no_addressess': 'لا يوجد عناوين',
   'choose_location': 'اختر الموقع',
   'address_details': 'تفاصيل الموقع',
-  'pick_date':'من فضلك قم بإختيار تاريخ',
-  'choose_visit_date':'اختر تاريخ الزيارة ',
-  'choose_address':' اختر عنوانك',
-  'choose_addressess':'من فضلك, اختر عنوانا',  
-  
+  'pick_date': 'من فضلك قم بإختيار تاريخ',
+  'choose_visit_date': 'اختر تاريخ الزيارة ',
+  'choose_address': ' اختر عنوانك',
+  'choose_addressess': 'من فضلك, اختر عنوانا',
+
   //"choose_nationality"  "choose_visit_number" "choose_working_hour" "choose_shift_type" "choose_maid_number"
   "choose_nationality": " اختر الجنسية",
   "choose_visit_number": " اختر عدد الزيارات",
@@ -409,9 +409,9 @@ const Map<String, String> arSA = {
   "insert_floor_number": "ادخل رقم الطابق",
   "insert_zip_code": "ادخل الرمز/الكود البريدى",
   ////////////////////////////////////////////////
-   'money_should_pay':'ما يتوجب عليك دفعه عبر الحساب ',
-   'question_close':'هل تريد إغلاق التطبيق ؟ ',
-   'ok':'نعم',
-   'or':'أو',
-   'contact_us':'اتصل بنا  '
+  'money_should_pay': 'ما يتوجب عليك دفعه عبر الحساب ',
+  'question_close': 'هل تريد إغلاق التطبيق ؟ ',
+  'ok': 'نعم',
+  'or': 'أو',
+  'contact_us': 'اتصل بنا  '
 };
