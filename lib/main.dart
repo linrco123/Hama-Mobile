@@ -124,7 +124,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "musaneda",
+      title: "Hama",
       builder: EasyLoading.init(),
       getPages: AppPages.routes,
       initialRoute: initialRoute(),

@@ -317,6 +317,8 @@ class PaymentsView extends GetView<MainHomePageController> {
                                             .I.paymentMethods[index].image,
                                         height: 20.0,
                                         width: 20.0,
+                                        // color:
+                                        //     index == 0 ? MYColor.buttons : null,
                                       ),
                                       const SizedBox(
                                         width: 10.0,
@@ -367,7 +369,7 @@ class PaymentsView extends GetView<MainHomePageController> {
             padding: EdgeInsets.zero,
             minSize: 45,
             onPressed: () {
-               CustomPaymentController.I.payWithAmazon(isFake: true);
+              CustomPaymentController.I.payWithAmazon(isFake: true);
             },
             color: MYColor.white,
             borderRadius: BorderRadius.circular(10),
@@ -398,6 +400,7 @@ class PaymentsView extends GetView<MainHomePageController> {
                           .paymentMethods[OrderController.I.paymentMethod.value]
                           .image,
                       fit: BoxFit.contain,
+                      // color: OrderController.I.paymentMethod.value == 0?MYColor.buttons : null,
                     ),
                   ),
                 ],

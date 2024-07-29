@@ -11,7 +11,7 @@ class BankAccountPayment extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isArabic = Get.locale!.languageCode == 'ar';
     return Obx(
-          () => GestureDetector(
+      () => GestureDetector(
         onTap: () {
           OrderController.I.changepaymentBankOption();
         },
@@ -45,31 +45,33 @@ class BankAccountPayment extends StatelessWidget {
                 Expanded(
                   child: isArabic
                       ? RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'payment_bank'.tr,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              height: 1.5,
-                              fontSize: 17), // Normal font style
-                        ),
-                      ],
-                    ),
-                  )
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'payment_bank'.tr,
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'cairo_regular',
+                                    height: 1.5,
+                                    fontSize: 15), // Normal font style
+                              ),
+                            ],
+                          ),
+                        )
                       : RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'payment_bank'.tr,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              height: 1.5,
-                              fontSize: 16), // Normal font style
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'payment_bank'.tr,
+                                style: const TextStyle(
+                                    fontFamily: 'cairo_regular',
+                                    color: Colors.black,
+                                    height: 1.5,
+                                    fontSize: 16), // Normal font style
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
                 ),
                 Padding(
                     padding: isArabic

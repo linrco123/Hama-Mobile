@@ -354,7 +354,7 @@ const Map<String, String> enUS = {
   "pay": "Pay",
   'won': 'Won #',
   "payment_branch": "Payment Through Branch",
-  "payment_bank": "Payment Through Bank Account ",
+  "payment_bank": "Payment Via Bank Account ",
   "bank_accounts": " Bank Accounts",
   'bank_script':
       'copy this bank account and head over to related bank application to carry out payment process then after finishing take the notification sent to you by bank screenshot and send it to us with submitted order via ',

@@ -10,7 +10,7 @@ class TechnicalSupportProvider extends GetConnect {
   final channelId = "648966184456d63137fa717d@webchat.eazy.im";
   final webhook = "6fe9eac2-a73d-4bb2-9a8b-3ef594397871";
   final apiUrl = "https://chat-api.keytime.sa/webhooks";
-  final apiKey = "Bearer U0QOk4SoOrZkkUbjWg2AZLrA3kCaOpXLqjl7PNEr";
+  final apiKey = "Bearer y8PJgaoGamg0R1Ed1ku0SbirhdlWGDMwKQI5mKgw";
 
   Future<List<dynamic>> sendMessage(messageText, theID, theName) async {
     try {
@@ -18,7 +18,7 @@ class TechnicalSupportProvider extends GetConnect {
         '$apiUrl/$webhook',
         {
           "channel": {
-            "id": "648966184456d63137fa717d@webchat.eazy.im",
+            "id": "e63c2083-7f88-4546-bf08-165ae2bb53a3",
           },
           "contact": {
             "id": "8772cf4e-1a0f-45f8-bb74-2c504bed8$theID",

@@ -38,12 +38,14 @@ class WelcomeCard extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 18.0,
                     color: MYColor.primary,
+                    fontFamily: 'cairo_regular',
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 description,
                 style: TextStyle(
                     fontSize: 13.0,
+                     fontFamily: 'cairo_regular',
                     color: MYColor.secondary1,
                     fontWeight: FontWeight.bold),
               ),
@@ -89,8 +91,10 @@ class WelcomeCard extends StatelessWidget {
                   minSize: 30.0,
                   child: Text(
                     'check_service'.tr,
-                    style:
-                        TextStyle(fontSize: 17.0, color: MYColor.btnTxtColor),
+                    style: TextStyle(
+                        fontSize: 17.0,
+                        color: MYColor.btnTxtColor,
+                        fontFamily: 'cairo_regular'),
                   ),
                   onPressed: () {
                     WelcomeController.instance.goToServiceTypeView();

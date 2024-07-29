@@ -129,11 +129,11 @@ class LoginController extends GetxController {
                 (value) {
                   if (value == "SA") {
                     box.write('SA', true);
-                    Get.offAllNamed(Routes.WELCOME);
-                    //Get.offAllNamed(Routes.MAIN_HOME_PAGE);
+                    //Get.offAllNamed(Routes.WELCOME);
+                    Get.offAllNamed(Routes.MAIN_HOME_PAGE);
                   } else {
-                    Get.offAllNamed(Routes.WELCOME);
-                    //Get.offAllNamed(Routes.MAIN_HOME_PAGE);
+                    //Get.offAllNamed(Routes.WELCOME);
+                    Get.offAllNamed(Routes.MAIN_HOME_PAGE);
                   }
                 },
               );
