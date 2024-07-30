@@ -173,7 +173,6 @@ class HomeController extends GetxController {
   Future<void> getContracts() async {
     isLoading(true);
     HomeProvider().getContracts().then((value) {
-      print('=======================Contracts=================');
       for (var data in value.data as List) {
         listContracts.add(data);
         if (data.status == "active") {
@@ -399,7 +398,9 @@ class HomeController extends GetxController {
         isLoading(false);
         Get.to(() => const FilterView());
       },
-    );
+    ).catchError((error){
+        isLoading(false);
+    });
 
     update();
   }
