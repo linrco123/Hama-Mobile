@@ -164,9 +164,10 @@ class CustomPaymentController extends GetxController {
                 if (isPayOrder.value) {
                   MainHomePageController.I
                       .payOrder(isPaid: false, showSuccess: true);
+                } else {
+                  MainHomePageController.I
+                      .postOrderToServer(isPaid: true, showSuccess: true);
                 }
-                MainHomePageController.I
-                    .postOrderToServer(isPaid: true, showSuccess: true);
               }
             },
             onFailed: (error) {

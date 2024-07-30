@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
- import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/order/views/tabby_stc_paymentview/components/tabby_method.dart';
@@ -13,11 +13,12 @@ import 'package:musaneda/app/modules/order/views/tabby_stc_paymentview/component
 import 'package:musaneda/app/modules/profile/controllers/profile_controller.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
+import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/components/myStepper.dart';
 import 'package:musaneda/components/payment_bank_direct.dart';
 import 'package:musaneda/components/payment_branch.dart';
 import 'package:musaneda/config/myColor.dart';
- import '../../../../components/myDropdown.dart';
+import '../../../../components/myDropdown.dart';
 import '../../custom_payment/controllers/custom_payment_controller.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../home/musaneda_model.dart';
@@ -164,8 +165,8 @@ class OrderView extends GetView<OrderController> {
                 context: context,
                 value: controller.selectedCity.value,
                 onChanged: (value) {
-                 // controller.setCity = value;
-                 controller.selectedCity.value = 1;
+                  // controller.setCity = value;
+                  controller.selectedCity.value = 1;
                 },
                 items: HomeController.I.listCities.map(
                   (item) {
@@ -1315,21 +1316,39 @@ class OrderView extends GetView<OrderController> {
               //send request to endpoint (pay_in_branch)
               // parameters ===>  order_id =  ; // payment_branch = true or 1;
               //if suceess to confirm goto home
-              Get.to(const BankAccountdetails(), arguments: {
-                'orderID': 33,
-                'totalPrice': 3000.0,
-                'page': 'order'
-              });
+              // Get.to(const BankAccountdetails(), arguments: {
+              //   'orderID': 33,
+              //   'totalPrice': 3000.0,
+              //   'page': 'order'
+              // });
+              mySnackBar(
+                title: "warning".tr,
+                message: 'under_development'.tr,
+                color: MYColor.warning,
+                icon: CupertinoIcons.info_circle,
+              );
             } else if (OrderController.I.paymentBank.value) {
               // //send request to endpoint (pay-through-bank) flag option to 1 for ex
               //if success go to BankAccountdetails screen
-              Get.to(const BankAccountdetails(), arguments: {
-                'orderID': 33,
-                'totalPrice': 3000,
-                'page': 'order'
-              }); //OrderController.I.orderID
+              // Get.to(const BankAccountdetails(), arguments: {
+              //   'orderID': 33,
+              //   'totalPrice': 3000,
+              //   'page': 'order'
+              // }); //OrderController.I.orderID
+              mySnackBar(
+                title: "warning".tr,
+                message: 'under_development'.tr,
+                color: MYColor.warning,
+                icon: CupertinoIcons.info_circle,
+              );
             } else if (controller.currentStep.value == 4) {
-              CustomPaymentController.I.payWithAmazon();
+              // CustomPaymentController.I.payWithAmazon();
+              mySnackBar(
+                title: "warning".tr,
+                message: 'under_development'.tr,
+                color: MYColor.warning,
+                icon: CupertinoIcons.info_circle,
+              );
             } else {
               controller.increment();
             }

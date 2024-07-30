@@ -217,7 +217,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                           () => Row(
                             children: [
                               ShiftTypeButton(
-                                  title: 'Morning'.tr,
+                                  title: 'morning'.tr,
                                   isActive:
                                       serviceTypeController.shiftType.value ==
                                           'am',

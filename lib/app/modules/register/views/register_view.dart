@@ -143,7 +143,7 @@ class RegisterView extends GetView<RegisterController> {
                     width: double.infinity,
                     child: MyCupertinoButton(
                       btnColor: MYColor.buttons,
-                      txtColor: MYColor.white,
+                      txtColor: MYColor.btnTxtColor,
                       text: "create_an_account".tr,
                       fun: () => controller.register(context),
                     ),

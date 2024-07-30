@@ -262,7 +262,7 @@ class LocationsController extends GetxController {
                   width: double.infinity,
                   child: MyCupertinoButton(
                     btnColor: MYColor.buttons,
-                    txtColor: MYColor.white,
+                    txtColor: MYColor.btnTxtColor,
                     text: "add_location".tr,
                     fun: () {
                       if (formExtraKey.currentState!.validate()) {

@@ -120,7 +120,7 @@ class LoginView extends GetView<LoginController> {
                     width: double.infinity,
                     child: MyCupertinoButton(
                       btnColor: MYColor.buttons,
-                      txtColor: MYColor.white,
+                      txtColor: MYColor.btnTxtColor,
                       text: "sign_in".tr,
                       fun: () => controller.login(),
                     ),

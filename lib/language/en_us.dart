@@ -1,3 +1,17 @@
+/*
+*
+*
+* so important
+*-----------------
+*
+The old name of the application is 'Musenada'
+*
+*
+* so don't be confused when 'Musenada'
+*
+*
+*/
+
 const Map<String, String> enUS = {
   "location_address_text": "ex: Home, Work, etc.",
   "other_details_text": "ex: Building number, Floor number, etc.",
@@ -416,6 +430,7 @@ const Map<String, String> enUS = {
      'question_close':'Do you want to close the app ? ',
      'ok':'OK',
      'or':'OR',
-     'contact_us':'Contact Us'
+     'contact_us':'Contact Us',
+     'under_development':' Under Development',
 
 };

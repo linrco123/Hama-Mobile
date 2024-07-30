@@ -1,3 +1,17 @@
+/*
+*
+*
+* so important
+*-----------------
+*
+The old name of the application is مساندة
+*
+*
+* so don't be confused when مساندة
+*
+*
+*/
+
 const Map<String, String> arSA = {
   "location_address_text": "مثال: المنزل, العمل, الخ",
   "other_details_text": "مثال: رقم المبنى, الطابق, الشقة",
@@ -283,7 +297,7 @@ const Map<String, String> arSA = {
   "you_have_no_locations_yet": "ليس لديك مواقع بعد",
   "you_have_unexpired_contract": "لديك عقد غير منتهي الصلاحية",
   "loading": "جاري...",
-  "success_login": "مرحبا بك في مساندة",
+  "success_login": "مرحبا بك في هامة",
   "msg_success_login": "نحن سعداء لرؤيتك مرة أخرى",
   'personal': 'البروفايل',
   "silver_package": "باقة فضية",
@@ -413,5 +427,6 @@ const Map<String, String> arSA = {
   'question_close': 'هل تريد إغلاق التطبيق ؟ ',
   'ok': 'نعم',
   'or': 'أو',
-  'contact_us': 'اتصل بنا  '
+  'contact_us': 'اتصل بنا',
+  'under_development':'تحت التطوير ',
 };
