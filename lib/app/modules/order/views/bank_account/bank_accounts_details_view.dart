@@ -13,12 +13,10 @@ class BankAccountdetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //// orderID totalPrice
-    int orderId = Get.arguments['orderID'];
+     int orderId = Get.arguments['orderID'];
     double totalPrice = double.parse(Get.arguments['totalPrice'].toString());
     String page = Get.arguments['page'];
-    // String orderId = 76.toString();
-    return Scaffold(
+     return Scaffold(
       appBar: AppBar(
         title: Text('bank_accounts'.tr),
         backgroundColor: MYColor.primary,
@@ -335,14 +333,6 @@ class BankAccountdetails extends StatelessWidget {
                             fontSize: 18.0,
                             fontWeight: FontWeight.w900),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      //   child: Text(
-                      //     ':',
-                      //     style:
-                      //         TextStyle(color: MYColor.primary, fontSize: 18.0),
-                      //   ),
-                      // ),
                       SelectableText(
                         Constance.ALinma_BankAccount,
                         style:

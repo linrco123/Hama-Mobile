@@ -1316,39 +1316,29 @@ class OrderView extends GetView<OrderController> {
               //send request to endpoint (pay_in_branch)
               // parameters ===>  order_id =  ; // payment_branch = true or 1;
               //if suceess to confirm goto home
-              // Get.to(const BankAccountdetails(), arguments: {
-              //   'orderID': 33,
-              //   'totalPrice': 3000.0,
-              //   'page': 'order'
-              // });
-              mySnackBar(
-                title: "warning".tr,
-                message: 'under_development'.tr,
-                color: MYColor.warning,
-                icon: CupertinoIcons.info_circle,
-              );
+              Get.to(const BankAccountdetails(), arguments: {
+                'orderID': OrderController.I.orderID,
+                'totalPrice': OrderController.I.packagesData.total!.toInt(),
+                'page': 'order'
+              });
+ 
             } else if (OrderController.I.paymentBank.value) {
               // //send request to endpoint (pay-through-bank) flag option to 1 for ex
               //if success go to BankAccountdetails screen
-              // Get.to(const BankAccountdetails(), arguments: {
-              //   'orderID': 33,
-              //   'totalPrice': 3000,
-              //   'page': 'order'
-              // }); //OrderController.I.orderID
-              mySnackBar(
-                title: "warning".tr,
-                message: 'under_development'.tr,
-                color: MYColor.warning,
-                icon: CupertinoIcons.info_circle,
-              );
+              Get.to(const BankAccountdetails(), arguments: {
+                'orderID': OrderController.I.orderID,
+                'totalPrice': OrderController.I.packagesData.total!.toInt(),
+                'page': 'order'
+              });
+ 
             } else if (controller.currentStep.value == 4) {
-              // CustomPaymentController.I.payWithAmazon();
-              mySnackBar(
-                title: "warning".tr,
-                message: 'under_development'.tr,
-                color: MYColor.warning,
-                icon: CupertinoIcons.info_circle,
-              );
+               //CustomPaymentController.I.payWithAmazon();
+                Get.to(const BankAccountdetails(), arguments: {
+                'orderID': OrderController.I.orderID,
+                'totalPrice': OrderController.I.packagesData.total!.toInt(),
+                'page': 'order'
+              });
+            
             } else {
               controller.increment();
             }
