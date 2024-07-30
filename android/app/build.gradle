@@ -59,7 +59,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.fnrco.musaneda"
+        applicationId "com.fnrco.hamma"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
