@@ -58,7 +58,7 @@ class AppDelegate: FlutterAppDelegate, SFSafariViewControllerDelegate{
         application.registerForRemoteNotifications()
         
         
-        GMSServices.provideAPIKey("AIzaSyCsE5KDJqjPpbTHsQFqSjnJHclQuCBw8c4")
+        GMSServices.provideAPIKey("AIzaSyCfcoVfoQeomNp9NqM064sotPihqGSR6KM")
         let controller: FlutterViewController = window?.rootViewController as! FlutterViewController
         
         let batteryChannel = FlutterMethodChannel(name: "com.fnrco.musaneda/channel", binaryMessenger: controller.binaryMessenger)
