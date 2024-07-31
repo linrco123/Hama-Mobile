@@ -39,7 +39,6 @@ class MusanedaView extends GetView<MusanedaController> {
                               height: double.infinity,
                               margin: const EdgeInsets.only(top: 20),
                               decoration: BoxDecoration(
-                                // color: Colors.grey,
                                 borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(15),
                                   bottomRight: Radius.circular(8),
@@ -335,7 +334,7 @@ class MusanedaView extends GetView<MusanedaController> {
                             height: 52,
                             child: MyCupertinoButton(
                               btnColor: MYColor.buttons,
-                              txtColor: MYColor.white,
+                              txtColor: MYColor.btnTxtColor,
                               fun: () {
                                 //ComplaintController.I.getComplaints();
                                 Get.toNamed(Routes.ORDER,

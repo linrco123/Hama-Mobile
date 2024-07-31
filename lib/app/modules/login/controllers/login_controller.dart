@@ -3,13 +3,16 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
+import '../../home/nationalities_model.dart';
 import '../../profile/controllers/profile_controller.dart';
 import '../providers/login_provider.dart';
 
@@ -23,6 +26,30 @@ class LoginController extends GetxController {
 
   TextEditingController txtPhone = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
+  RxInt selectedLanguage = 0.obs;
+  List<NationalitiesData> languageList = [
+    NationalitiesData(
+      id: 0,
+      name: NameLanguage(
+        ar: "اللغة",
+        en: "Language",
+      ),
+    ),
+    NationalitiesData(
+      id: 1,
+      name: NameLanguage(
+        ar: "عربى",
+        en: "Arabic",
+      ),
+    ),
+    NationalitiesData(
+      id: 2,
+      name: NameLanguage(
+        ar: "انجليزى",
+        en: "English",
+      ),
+    ),
+  ];
 
   void toggleObscureText() {
     obscureText.value = !obscureText.value;
@@ -87,10 +114,9 @@ class LoginController extends GetxController {
                 "token": res.data!.token,
                 "firebaseToken": "",
               };
-               print('=========================LOGIN======================');
-               print(res!.data!.token);
-               print('user    id');
-               print( res.data!.id);
+              print('=========================LOGIN======================');
+              print(res!.data!.token);
+              print(res.data!.id);
               box.write('LOGIN_MODEL', data).then((value) {
                 getName();
               });
@@ -103,10 +129,11 @@ class LoginController extends GetxController {
                 (value) {
                   if (value == "SA") {
                     box.write('SA', true);
-                     Get.offAllNamed(Routes.WELCOME);
+                    //Get.offAllNamed(Routes.WELCOME);
+                    Get.offAllNamed(Routes.MAIN_HOME_PAGE);
                   } else {
-                    Get.offAllNamed(Routes.WELCOME);
-                    //Get.offAllNamed(Routes.MAIN_HOME_PAGE);
+                    //Get.offAllNamed(Routes.WELCOME);
+                    Get.offAllNamed(Routes.MAIN_HOME_PAGE);
                   }
                 },
               );

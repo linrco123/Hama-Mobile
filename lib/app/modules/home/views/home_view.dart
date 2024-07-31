@@ -419,7 +419,7 @@ class HomeView extends GetView<HomeController> {
                               backgroundImage: AssetImage(
                                 LanguageController.I.lang[i] == 'english'
                                     ? "assets/images/en.png"
-                                    : "assets/images/ar.png",
+                                    : "assets/images/ar1.png",
                               ),
                             ),
                             const SizedBox(width: 20),
@@ -454,14 +454,14 @@ class HomeView extends GetView<HomeController> {
         textColor: Colors.white,
         iconColor: Colors.white,
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          //mainAxisSize: MainAxisSize.max,
           children: [
             Container(
               width: 100,
               height: 100,
               margin: const EdgeInsets.only(
-                top: 30,
-                bottom: 20,
+                top: 20.0,
+                bottom: 10.0,
               ),
               clipBehavior: Clip.antiAlias,
               decoration: const BoxDecoration(
@@ -474,7 +474,7 @@ class HomeView extends GetView<HomeController> {
             ),
             Container(
               margin: const EdgeInsets.only(
-                bottom: 30,
+                bottom: 10,
               ),
               child: Text(
                 "${LoginController.I.getName()}",
@@ -539,13 +539,20 @@ class HomeView extends GetView<HomeController> {
               title: Text('technical_support'.tr),
             ),
             ListTile(
+              onTap: () async{
+                await controller.makePhoneCall();
+               },
+              leading: const Icon(CupertinoIcons.phone_arrow_up_right),
+              title: Text('contact_us'.tr),
+            ),
+            ListTile(
               onTap: () => LoginController.I.logout(),
               leading: SvgPicture.asset(
                 'assets/images/drawer/logout.svg',
               ),
               title: Text('logout'.tr),
             ),
-            const Spacer(),
+           // const Spacer(),
 
             DefaultTextStyle(
               style: const TextStyle(
@@ -558,9 +565,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    Get.to(TermsConditionsWebview());
-                    // LanguageController.I.loadPrivacyPolicy();
-                    // termsAndConditions(LanguageController.I.privacyPolicy);
+                    Get.to(const TermsConditionsWebview());
                   },
                   child: Text(
                     '${'service_terms'.tr} | ${'privacy_policy'.tr}',
@@ -578,7 +583,7 @@ class HomeView extends GetView<HomeController> {
               ),
               child: Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 10.0,
+                  vertical: 5.0,
                 ),
                 child: GetBuilder(
                   init: controller,

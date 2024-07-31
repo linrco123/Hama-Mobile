@@ -130,7 +130,7 @@ class WelcomeView extends GetView<WelcomeController> {
                   child: Column(
                     children: [
                       WelcomeCard(
-                        title: 'musanda_offers'.tr, 
+                        title: 'hama_offers'.tr, 
                         description: 'one_time_visit'.tr,
                         image: 'assets/images/maid.jpg',
                       ),

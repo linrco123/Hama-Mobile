@@ -262,17 +262,12 @@ class MainHomePageController extends GetxController {
       "is_paid": isPaid,
       "merchant_id": CustomPaymentController.I.merchantTransactionID,
     };
-
+    
     MainHomePageProvider().postContractList(data,showSuccess).then(
       (res) {
         if (res.code == 1) {
           getContractList();
           Get.offAllNamed(Routes.MAIN_HOME_PAGE);
-          // NotificationController.I.showNotify(
-          //   id: 1,
-          //   title: response.result.description,
-          //   body: "${response.customer!.givenName} ${'your_order_with_id'.tr} ${response.resultDetails!.orderID} ${'is_success'.tr}",
-          // );
         }
       },
     );

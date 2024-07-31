@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
+ 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';

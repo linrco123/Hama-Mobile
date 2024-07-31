@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/config/myColor.dart';
 
@@ -124,7 +125,7 @@ class ProfileView extends GetView<ProfileController> {
                     width: double.infinity,
                     child: MyCupertinoButton(
                       btnColor: MYColor.buttons,
-                      txtColor: MYColor.white,
+                      txtColor: MYColor.btnTxtColor,
                       text: "save_updates".tr,
                       fun: () => controller.postProfile(),
                     ),
@@ -140,7 +141,7 @@ class ProfileView extends GetView<ProfileController> {
                       // );
                     },
                     btnColor: MYColor.buttons,
-                    txtColor: MYColor.white,
+                    txtColor: MYColor.btnTxtColor,
                     text: "remove_account".tr,
                   ),
               ],
@@ -170,7 +171,10 @@ class ProfileView extends GetView<ProfileController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon:  Icon(CupertinoIcons.person , color: MYColor.primary,),
+        prefixIcon: Icon(
+          CupertinoIcons.person,
+          color: MYColor.primary,
+        ),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -203,7 +207,10 @@ class ProfileView extends GetView<ProfileController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon:   Icon(CupertinoIcons.creditcard, color: MYColor.primary,),
+        prefixIcon: Icon(
+          CupertinoIcons.creditcard,
+          color: MYColor.primary,
+        ),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -229,7 +236,10 @@ class ProfileView extends GetView<ProfileController> {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon:   Icon(CupertinoIcons.mail, color: MYColor.primary,),
+        prefixIcon: Icon(
+          CupertinoIcons.mail,
+          color: MYColor.primary,
+        ),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -259,31 +269,38 @@ class ProfileView extends GetView<ProfileController> {
         ),
         fillColor: Colors.grey.shade100,
         filled: true,
-        suffixIcon: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 14,
-          ),
-          child: Text(
-            "966+",
-            style: TextStyle(
-              color: MYColor.secondary1,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        suffixIcon: LanguageController.I.isEnglish
+            ? const SizedBox()
+            : Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 5.0),
+                child: Text(
+                  "966+",
+                  style: TextStyle(
+                    color: MYColor.secondary1,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         hintText: "5XXXXXXX".tr,
         hintStyle: TextStyle(
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
+          padding: LanguageController.I.isEnglish
+              ? const EdgeInsets.only(left: 15, right: 0)
+              : const EdgeInsets.only(left: 0, right: 15),
           child: SizedBox(
-            width: 103,
+            // width: 103,
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                  Icon(CupertinoIcons.phone, color: MYColor.primary,),
+                Icon(
+                  CupertinoIcons.phone,
+                  color: MYColor.primary,
+                ),
                 const SizedBox(width: 10),
                 Text(
                   "phone_number".tr,
@@ -292,6 +309,20 @@ class ProfileView extends GetView<ProfileController> {
                     fontSize: 14,
                   ),
                 ),
+                LanguageController.I.isEnglish
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 14, horizontal: 5.0),
+                        child: Text(
+                          "+966",
+                          style: TextStyle(
+                            color: MYColor.secondary1,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),

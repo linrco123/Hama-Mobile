@@ -178,7 +178,7 @@ class DatePickerView extends GetView<DatePickerController> {
                     },
                     text: 'Submit',
                     btnColor: MYColor.buttons,
-                    txtColor: MYColor.white.withOpacity(0.8)),
+                    txtColor: MYColor.btnTxtColor),
               )
             ],
           ),

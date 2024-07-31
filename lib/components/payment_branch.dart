@@ -51,8 +51,9 @@ class PaymentBranch extends StatelessWidget {
                                 text: 'payment_branch'.tr,
                                 style: const TextStyle(
                                     color: Colors.black,
+                                    fontFamily: 'cairo_regular',
                                     height: 1.5,
-                                    fontSize: 17), // Normal font style
+                                    fontSize: 15), // Normal font style
                               ),
                             ],
                           ),
@@ -64,6 +65,7 @@ class PaymentBranch extends StatelessWidget {
                                 text: 'payment_branch'.tr,
                                 style: const TextStyle(
                                     color: Colors.black,
+                                    fontFamily: 'cairo_regular',
                                     height: 1.5,
                                     fontSize: 16), // Normal font style
                               ),
@@ -80,7 +82,7 @@ class PaymentBranch extends StatelessWidget {
                         width: 70,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15.0),
-                            image: DecorationImage(
+                            image: const DecorationImage(
                               image: AssetImage(
                                 'assets/images/payment-branch.jpg',
                               ),

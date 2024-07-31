@@ -13,12 +13,10 @@ class BankAccountdetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //// orderID totalPrice
-    int orderId = Get.arguments['orderID'];
+     int orderId = Get.arguments['orderID'];
     double totalPrice = double.parse(Get.arguments['totalPrice'].toString());
     String page = Get.arguments['page'];
-    // String orderId = 76.toString();
-    return Scaffold(
+     return Scaffold(
       appBar: AppBar(
         title: Text('bank_accounts'.tr),
         backgroundColor: MYColor.primary,
@@ -106,32 +104,35 @@ class BankAccountdetails extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RichText(
-                        text: TextSpan(
-                            text: 'money_should_pay'.tr,
-                            style: TextStyle(
-                                //decoration: TextDecoration.underline,
-                                color: MYColor.primary,
-                                fontSize: 18.0),
-                            children: [
-                          TextSpan(
-                              text:
-                                  LanguageController.I.isEnglish ? ' :' : ': ',
-                              style: TextStyle(color: MYColor.primary)),
-                          TextSpan(
-                              text: totalPrice.toString(),
+                    Expanded(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                          text: TextSpan(
+                              text: 'money_should_pay'.tr,
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: MYColor.black)),
-                          TextSpan(
-                              text: LanguageController.I.isEnglish
-                                  ? ' SAR'
-                                  : ' ريال',
-                              style: TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: MYColor.primary))
-                        ])),
+                                  //decoration: TextDecoration.underline,
+                                  color: MYColor.primary,
+                                  fontSize: 17.0),
+                              children: [
+                            TextSpan(
+                                text:
+                                    LanguageController.I.isEnglish ? ' :' : ': ',
+                                style: TextStyle(color: MYColor.primary)),
+                            TextSpan(
+                                text: totalPrice.toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: MYColor.black)),
+                            TextSpan(
+                                text: LanguageController.I.isEnglish
+                                    ? ' SAR'
+                                    : ' ريال',
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: MYColor.primary))
+                          ])),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -335,14 +336,6 @@ class BankAccountdetails extends StatelessWidget {
                             fontSize: 18.0,
                             fontWeight: FontWeight.w900),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      //   child: Text(
-                      //     ':',
-                      //     style:
-                      //         TextStyle(color: MYColor.primary, fontSize: 18.0),
-                      //   ),
-                      // ),
                       SelectableText(
                         Constance.ALinma_BankAccount,
                         style:

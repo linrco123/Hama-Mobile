@@ -2,18 +2,19 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/notification/controllers/notification_controller.dart';
 import 'package:musaneda/app/modules/profile/controllers/profile_controller.dart';
+import 'package:musaneda/firebase_options.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'app/controllers/language_controller.dart';
 import 'app/modules/login/controllers/login_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'config/myColor.dart';
-import 'firebase_options.dart';
 
 performance() async {
   final transaction = Sentry.startTransaction('processOrderBatch()', 'task');
@@ -63,20 +64,26 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    name: "MUSANEDA",
+    name: "Hamma",
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   var notificationController = Get.put(NotificationController());
   await notificationController.initNotify();
   await GetStorage.init();
-  await SentryFlutter.init(
-    (options) {
-      options.dsn =
-          'https://d301f511b2ce4c39041ffc6c5019c12d@o4505695906693120.ingest.sentry.io/4505695907872768';
-      options.tracesSampleRate = 1.0;
-    },
-    appRunner: () => runApp(const App()),
-  );
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      .then((_) async {
+    await SentryFlutter.init(
+      (options) {
+        options.dsn =
+            'https://d301f511b2ce4c39041ffc6c5019c12d@o4505695906693120.ingest.sentry.io/4505695907872768';
+        options.tracesSampleRate = 1.0;
+      },
+      appRunner: () => runApp(const App()),
+    );
+  });
+
   configLoading();
   performance();
 }
@@ -102,9 +109,9 @@ initialRoute() {
     } else {
       if (LoginController.I.isSA()) {
         return AppPages.WELCOME;
-       // return AppPages.MAIN_HOME_PAGE;
+        //return AppPages.MAIN_HOME_PAGE;
       } else {
-         return AppPages.WELCOME;
+        return AppPages.WELCOME;
         //return AppPages.MAIN_HOME_PAGE;
       }
     }
@@ -119,7 +126,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "musaneda",
+      title: "Hama",
       builder: EasyLoading.init(),
       getPages: AppPages.routes,
       initialRoute: initialRoute(),

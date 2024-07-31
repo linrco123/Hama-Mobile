@@ -73,7 +73,7 @@ class Constance {
     }
   }
 
-  static const domain = "https://kdamat.com";
+  static const domain = "https://kdamat.com"; 
   //static const domain = "https://devlop.kdamat.com";
   static const apiEndpoint = "$domain/api/v1";
   static const mediaEndpoint = "$domain/storage/media/";

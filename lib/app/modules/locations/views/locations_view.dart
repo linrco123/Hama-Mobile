@@ -91,7 +91,7 @@ class LocationsView extends GetView<LocationsController> {
                     child: Text(
                       "you_have_no_locations_yet".tr,
                       style: TextStyle(
-                        color: MYColor.black,
+                        color: MYColor.grey,
                         fontSize: 16,
                       ),
                     ),

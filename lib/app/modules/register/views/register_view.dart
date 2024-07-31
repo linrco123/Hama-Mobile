@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
@@ -30,15 +31,61 @@ class RegisterView extends GetView<RegisterController> {
               key: controller.formRegisterKey,
               child: ListView(
                 children: [
-                  SizedBox(height: Get.height / 20),
-                  Center(
-                    child: Image.asset(
-                      'assets/images/hamaLogo.png',
-                      height: 100,
-                      width: 200,
-                      fit: BoxFit.cover,
-                       filterQuality: FilterQuality.high,
-                    ),
+                  Stack(
+                    children: [
+                      SizedBox(
+                        height: Get.height / 20,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: Get.height / 20,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/hamaLogo.png',
+                            height: 100,
+                            width: 200,
+                            fit: BoxFit.cover,
+                            filterQuality: FilterQuality.high,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 10.0,
+                        right: LanguageController.I.isEnglish ? 0.0 : null,
+                        left: LanguageController.I.isEnglish ? null : 0.0,
+                        child: Obx(
+                          () => Container(
+                             child: DropdownButton(
+                               borderRadius: BorderRadius.circular(20.0),
+                              elevation: 1,
+                              iconEnabledColor: MYColor.buttons,
+                              alignment: AlignmentDirectional.centerEnd,
+                              value: LoginController.I.selectedLanguage.value,
+                              dropdownColor: MYColor.white,
+                              items: LoginController.I.languageList
+                                  .map((item) => DropdownMenuItem(
+                                      value: item.id!,
+                                      child: Text(
+                                        LanguageController.I.isEnglish
+                                            ? item.name!.ar!
+                                            : item.name!.en!,
+                                        style:
+                                            TextStyle(color: MYColor.primary),
+                                      )))
+                                  .toList(),
+                              onChanged: (value) {
+                                if (value != 0) {
+                                  LanguageController.I
+                                      .updateLangForLOGINSIGNUP(value!);
+                                  LoginController.I.selectedLanguage.value = value;
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 10.0),
                   Center(
@@ -81,7 +128,7 @@ class RegisterView extends GetView<RegisterController> {
                       myInkWell(
                         fun: () {
                           Get.put(HomeController());
-                          Get.to(TermsConditionsWebview());
+                          Get.to(const TermsConditionsWebview());
                         },
                         text: "terms_and_conditions",
                         size: 14,
@@ -96,7 +143,7 @@ class RegisterView extends GetView<RegisterController> {
                     width: double.infinity,
                     child: MyCupertinoButton(
                       btnColor: MYColor.buttons,
-                      txtColor: MYColor.white,
+                      txtColor: MYColor.btnTxtColor,
                       text: "create_an_account".tr,
                       fun: () => controller.register(context),
                     ),
@@ -185,30 +232,33 @@ class RegisterView extends GetView<RegisterController> {
         filled: true,
         // prefixText: "phone_number".tr,
         // hintText: "phone_number".tr,
-        suffixIcon: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 14,
-          ),
-          child: Text(
-            "966+",
-            style: TextStyle(
-              color: MYColor.secondary1,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        suffixIcon: LanguageController.I.isEnglish
+            ? const SizedBox()
+            : Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 5.0),
+                child: Text(
+                  "966+",
+                  style: TextStyle(
+                    color: MYColor.secondary1,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         hintText: "5XXXXXXX".tr,
         hintStyle: TextStyle(
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
+          padding: LanguageController.I.isEnglish
+              ? const EdgeInsets.only(left: 15, right: 0)
+              : const EdgeInsets.only(left: 0, right: 15),
           child: SizedBox(
-            width: 103,
+            //width: 103,
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
                   CupertinoIcons.phone,
@@ -222,10 +272,25 @@ class RegisterView extends GetView<RegisterController> {
                     fontSize: 14,
                   ),
                 ),
+                LanguageController.I.isEnglish
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 14, horizontal: 5.0),
+                        child: Text(
+                          "+966",
+                          style: TextStyle(
+                            color: MYColor.secondary1,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),
         ),
+
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(

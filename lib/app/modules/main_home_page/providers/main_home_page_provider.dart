@@ -38,14 +38,14 @@ class MainHomePageProvider extends GetConnect {
 
     log(response.body.toString(), name: 'post contract list');
 
-    if (response.body['code'] == 0) {
-      mySnackBar(
-        title: "error".tr,
-        message: "msg_order_already_exist".tr,
-        color: MYColor.warning,
-        icon: CupertinoIcons.info_circle,
-      );
-    }
+    // if (response.body['code'] == 0) {
+    //   mySnackBar(
+    //     title: "error".tr,
+    //     message: "msg_order_already_exist".tr,
+    //     color: MYColor.warning,
+    //     icon: CupertinoIcons.info_circle,
+    //   );
+    // }
 
     if (response.body['code'] == 1) {
        if(showSuccess){

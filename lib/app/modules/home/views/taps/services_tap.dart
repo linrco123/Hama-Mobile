@@ -64,17 +64,19 @@ Widget servicesTap(context) {
                 ),
               ],
             ),
-            Visibility(
-              visible: HomeController.I.isLoading.value,
-              maintainAnimation: true,
-              maintainState: true,
-              maintainSize: true,
-              child: Center(
-                child: LinearProgressIndicator(
-                  minHeight: 1,
-                  backgroundColor: MYColor.success,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    MYColor.warning,
+            Obx(
+              ()=> Visibility(
+                visible: HomeController.I.isLoading.value,
+                maintainAnimation: true,
+                maintainState: true,
+                maintainSize: true,
+                child: Center(
+                  child: LinearProgressIndicator(
+                    minHeight: 1,
+                    backgroundColor: MYColor.success,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      MYColor.warning,
+                    ),
                   ),
                 ),
               ),

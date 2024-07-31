@@ -150,19 +150,19 @@ class NotificationController extends GetxController {
       ),
     );
 
-    // FirebaseMessaging.instance.getInitialMessage().then((message) {
-    //   FirebaseMessageModel frmModel = FirebaseMessageModel(
-    //     title: message!.notification!.title!,
-    //     body: message.notification!.body!,
-    //     type: message.data['type'],
-    //     dateTime: since(date: message.data['date_time']),
-    //   );
-    //   notifyList.add(frmModel);
-    //
-    //   Get.toNamed(Routes.NOTIFICATION);
-    // });
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      FirebaseMessageModel frmModel = FirebaseMessageModel(
+        title: message!.notification!.title!,
+        body: message.notification!.body!,
+        type: message.data['type'],
+        dateTime: since(date: message.data['date_time']),
+      );
+      notifyList.add(frmModel);
+    
+      Get.toNamed(Routes.NOTIFICATION);
+    });
 
-    //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     // executed when interacting with notification while the app in the background
     FirebaseMessaging.onMessageOpenedApp.listen(

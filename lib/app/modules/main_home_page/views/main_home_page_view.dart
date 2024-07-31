@@ -373,7 +373,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                                     Text(
                                                       "${package.name}",
                                                       style: TextStyle(
-                                                        color: MYColor.black,
+                                                        color: MYColor.primary,
                                                         fontSize: 18,
                                                         fontFamily:
                                                             'cairo_regular',
@@ -401,7 +401,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                                                     Text(
                                                       'price'.tr,
                                                       style: TextStyle(
-                                                        color: MYColor.black,
+                                                        color: MYColor.primary,
                                                         fontSize: 14,
                                                         fontFamily:
                                                             'cairo_regular',

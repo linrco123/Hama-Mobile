@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 
 import '../../language/ar_sa.dart';
 import '../../language/en_us.dart';
@@ -49,7 +50,13 @@ class LanguageController extends GetxController implements Translations {
 
   set setLocale(languageCode) {
     storage.write('locale', languageCode);
-    Get.offAllNamed('home');
+    
+    if (Get.currentRoute == Routes.LOGIN ||
+        Get.currentRoute == Routes.REGISTER) {
+      update();
+    }else{
+      Get.offAllNamed('home');
+    }
   }
 
   final lang = ['english', 'arabic'].obs;
@@ -74,5 +81,10 @@ class LanguageController extends GetxController implements Translations {
       if (language == lang[i]) return locales[i];
     }
     return Get.locale;
+  }
+
+  updateLangForLOGINSIGNUP(int value) {
+    String language = value == 1 ? 'arabic' : 'english';
+    changeLocale(language);
   }
 }

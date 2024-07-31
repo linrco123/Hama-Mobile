@@ -34,13 +34,27 @@ void myFilterDialog(context) => Get.defaultDialog(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 5),
-                  child: Text(
-                    'nationality'.tr,
-                    style: TextStyle(
-                      color: MYColor.buttons,
-                      fontSize: 14,
-                      fontFamily: 'cairo_regular',
-                    ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/nations.png',
+                        height: 25.0,
+                        width: 25,
+                        color: MYColor.buttons,
+                        filterQuality: FilterQuality.high,
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        'nationality'.tr,
+                        style: TextStyle(
+                          color: MYColor.primary,
+                          fontSize: 16,
+                          fontFamily: 'cairo_regular',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 myDropdown(
@@ -70,13 +84,28 @@ void myFilterDialog(context) => Get.defaultDialog(
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 5),
-                  child: Text(
-                    'age'.tr,
-                    style: TextStyle(
-                      color: MYColor.buttons,
-                      fontSize: 14,
-                      fontFamily: 'cairo_regular',
-                    ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/age.png',
+                        height: 35.0,
+                        width: 35.0,
+                        color: MYColor.buttons,
+                        fit: BoxFit.fill,
+                        filterQuality: FilterQuality.high,
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        'age'.tr,
+                        style: TextStyle(
+                          color: MYColor.buttons,
+                          fontSize: 16,
+                          fontFamily: 'cairo_regular',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Obx(() => myDropdown(
@@ -104,15 +133,30 @@ void myFilterDialog(context) => Get.defaultDialog(
                         );
                       }).toList(),
                     )),
-                Padding(
+                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 5),
-                  child: Text(
-                    'marital_status'.tr,
-                    style: TextStyle(
-                      color: MYColor.buttons,
-                      fontSize: 14,
-                      fontFamily: 'cairo_regular',
-                    ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/status.png',
+                        height: 25.0,
+                        width: 25.0,
+                        color: MYColor.buttons,
+                        fit: BoxFit.fill,
+                        filterQuality: FilterQuality.high,
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        'marital_status'.tr,
+                        style: TextStyle(
+                          color: MYColor.buttons,
+                          fontSize: 16,
+                          fontFamily: 'cairo_regular',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Obx(
@@ -152,7 +196,7 @@ void myFilterDialog(context) => Get.defaultDialog(
         height: 52,
         child: MyCupertinoButton(
           btnColor: MYColor.buttons,
-          txtColor: MYColor.white,
+          txtColor: MYColor.btnTxtColor,
           fun: () {
             if (HomeController.I.a.value == 0 &&
                 HomeController.I.nationality.value == 0 &&

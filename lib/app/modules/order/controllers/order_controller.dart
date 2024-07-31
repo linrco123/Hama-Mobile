@@ -53,7 +53,7 @@ class OrderController extends GetxController {
   final location = "".obs;
 
   final currentStep = 1.obs;
-  final selectedCity = 0.obs;
+  final selectedCity = 1.obs;
   final selectedBranch = 0.obs;
   final selectedPayment = 0.obs;
   final selectedPackage = 0.obs;
@@ -383,8 +383,7 @@ class OrderController extends GetxController {
       };
       OrderProvider().postOrder(data).then((value) async {
         if (value.code == 1) {
-          // ordermodel = value;
-          // orderID = value.data!.orderId!.toString();
+          OrderController.I.orderID = value.data!.orderId.toString();
           await EasyLoading.dismiss();
           await Future.delayed(const Duration(seconds: 1)).then((value) {
             currentStep.value++;

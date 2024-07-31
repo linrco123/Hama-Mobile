@@ -24,8 +24,6 @@ class OrderProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(
-          '=============================== order ============================');
       print(res.body);
       if (res.body['code'] == 0) {
         await EasyLoading.dismiss();

@@ -103,12 +103,14 @@ class SearchView extends GetView<HomeController> {
                                 "assets/images/icon/no_result.svg",
                                 height: 134.36,
                                 width: 100,
+                                color: MYColor.primary,
                               ),
                               const SizedBox(height: 15),
                               Text(
                                 "there_are_no_results".tr,
-                                style: const TextStyle(
+                                style:   TextStyle(
                                   fontSize: 16,
+                                  color: MYColor.grey,
                                   fontFamily: 'cairo_regular',
                                 ),
                               ),
@@ -126,7 +128,7 @@ class SearchView extends GetView<HomeController> {
                                   },
                                   text: "see_musaneda".tr,
                                   btnColor: MYColor.buttons,
-                                  txtColor: MYColor.white,
+                                  txtColor: MYColor.btnTxtColor,
                                 ),
                               ),
                             ],

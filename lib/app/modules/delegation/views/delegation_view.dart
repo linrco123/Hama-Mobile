@@ -288,7 +288,7 @@ class DelegationView extends GetView<DelegationController> {
                               controller.listDelegations[i].status == 2
                                   ? MYColor.success
                                   : MYColor.buttons,
-                              txtColor: MYColor.white,
+                              txtColor: MYColor.btnTxtColor,
                             );
                           },
                         ),

@@ -173,7 +173,7 @@ class CreateLocationView extends GetView<LocationsController> {
                         ),
                         text: "select_location".tr,
                         btnColor: MYColor.buttons,
-                        txtColor: MYColor.white,
+                        txtColor: MYColor.btnTxtColor,
                       ),
                     ),
                   ],

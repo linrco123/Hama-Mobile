@@ -7,6 +7,7 @@ import 'package:musaneda/app/modules/main_home_page/contract_model.dart';
 import 'package:musaneda/app/modules/main_home_page/controllers/main_home_page_controller.dart';
 import 'package:musaneda/app/modules/main_home_page/views/payments_view.dart';
 import 'package:musaneda/app/modules/profile/controllers/profile_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 import 'package:musaneda/components/myWarningDialog.dart';
 
@@ -29,6 +30,7 @@ class ContractDetailsView extends GetView<MainHomePageController> {
           color: MYColor.buttons,
           size: 20,
         ),
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         title: Text(
           'contract_details'.tr,
@@ -515,7 +517,7 @@ class ContractDetailsView extends GetView<MainHomePageController> {
                           );
                         },
                         btnColor: MYColor.warning,
-                        txtColor: MYColor.white,
+                        txtColor: MYColor.btnTxtColor,
                       ),
                     ),
                   ),
@@ -541,7 +543,7 @@ class ContractDetailsView extends GetView<MainHomePageController> {
                           );
                         },
                         btnColor: MYColor.buttons,
-                        txtColor: MYColor.white,
+                        txtColor: MYColor.btnTxtColor,
                       ),
                     ),
                   ),

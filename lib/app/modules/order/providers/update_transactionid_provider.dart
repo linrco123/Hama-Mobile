@@ -31,9 +31,10 @@ class UpdateTransactionIdProvider extends GetConnect {
           "transaction_id": transactionId,
         },
       );
-
+      
       var statusCode = response.statusCode;
       var data = response.body;
+      print(data);
 
       if (data['code'] == 0) {
         return Future.error(0);

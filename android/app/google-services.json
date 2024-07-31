@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "122613956416",
-    "project_id": "musaneda-notify",
-    "storage_bucket": "musaneda-notify.appspot.com"
+    "project_number": "742951082421",
+    "project_id": "hamma-khdamat",
+    "storage_bucket": "hamma-khdamat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:122613956416:android:29a5b49598adaaed6784a5",
+        "mobilesdk_app_id": "1:742951082421:android:050b3e7400fb2e67c261fc",
         "android_client_info": {
-          "package_name": "com.fnrco.musaneda"
+          "package_name": "com.fnrco.hamma"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "122613956416-e1a3imva25qd2cmiebna82vbsu4betmt.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBsg3iC50cHvbDxWJj77JxZ-ff9EKfcsIw"
+          "current_key": "AIzaSyC_NWoNTtmQJxG0TZ3hfPczkqo1h-W8u_k"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "122613956416-e1a3imva25qd2cmiebna82vbsu4betmt.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

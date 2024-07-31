@@ -3,19 +3,16 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/modules/order/controllers/order_controller.dart';
 import 'package:musaneda/config/myColor.dart';
 
-
-
-Widget tabbyMethod(
-    BuildContext context, double totalPrice) {
+Widget tabbyMethod(BuildContext context, double totalPrice) {
   var isArabic = Get.locale!.languageCode == 'ar';
-  var price = totalPrice  / 4;
+  var price = totalPrice / 4;
   return Obx(
-        () => GestureDetector(
+    () => GestureDetector(
       onTap: () {
         OrderController.I.changeTabbyOption();
       },
       child: Container(
-        width:  double.infinity, // 315,
+        width: double.infinity, // 315,
         height: 75,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -26,9 +23,9 @@ Widget tabbyMethod(
                 : MYColor.primary,
             width: 2,
           ),
-          boxShadow:  [
+          boxShadow: [
             BoxShadow(
-              color:  MYColor.primary.withOpacity(0.5),
+              color: MYColor.primary.withOpacity(0.5),
               offset: const Offset(0, 0),
               blurRadius: 5,
               spreadRadius: 0,
@@ -45,56 +42,58 @@ Widget tabbyMethod(
                 children: [
                   Expanded(
                     child: isArabic
-                        ?  RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '${'tabby_des1'.tr} ',
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  height: 1.5,
-                                  fontSize: 15), // Normal font style
+                        ? RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '${'tabby_des1'.tr} ',
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'cairo_regular',
+                                      height: 1.5,
+                                      fontSize: 15), // Normal font style
+                                ),
+                                TextSpan(
+                                  text: '${price.toString()} SAR ',
+                                  style: const TextStyle(
+                                      fontFamily: 'cairo_regular',
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      height: 1.5), // Bold font style
+                                ),
+                                // TextSpan(
+                                //   text: 'tabby_des2'.tr,
+                                //   style: const TextStyle(
+                                //       color: Colors.black,
+                                //       height: 1.5,
+                                //       fontSize: 15), // Normal font style
+                                // ),
+                              ],
                             ),
-                            TextSpan(
-                              text:'${price.toString()} SAR ',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  height: 1.5), // Bold font style
+                          )
+                        : RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '${'tabby_des1'.tr} ',
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'cairo_regular',
+                                      height: 1.5), // Normal font style
+                                ),
+                                TextSpan(
+                                  text: '$price SAR.',
+                                  style: const TextStyle(
+                                    fontFamily: 'cairo_regular',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ],
                             ),
-                            // TextSpan(
-                            //   text: 'tabby_des2'.tr,
-                            //   style: const TextStyle(
-                            //       color: Colors.black,
-                            //       height: 1.5,
-                            //       fontSize: 15), // Normal font style
-                            // ),
-                          ],
-                        ),
-
-                    )
-                        :  RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '${'tabby_des1'.tr} ',
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  height: 1.5), // Normal font style
-                            ),
-                            TextSpan(
-                              text:'$price SAR.',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                height: 1.5,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
+                          ),
+                  ),
                   Padding(
                     padding: isArabic
                         ? const EdgeInsets.only(top: 5, left: 15)
