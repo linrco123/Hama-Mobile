@@ -44,7 +44,7 @@
                 <action android:name="FLUTTER_NOTIFICATION_CLICK" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="com.fnrco.musaneda.payments" />
+               
 
             </intent-filter>
 

@@ -104,32 +104,35 @@ class BankAccountdetails extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RichText(
-                        text: TextSpan(
-                            text: 'money_should_pay'.tr,
-                            style: TextStyle(
-                                //decoration: TextDecoration.underline,
-                                color: MYColor.primary,
-                                fontSize: 18.0),
-                            children: [
-                          TextSpan(
-                              text:
-                                  LanguageController.I.isEnglish ? ' :' : ': ',
-                              style: TextStyle(color: MYColor.primary)),
-                          TextSpan(
-                              text: totalPrice.toString(),
+                    Expanded(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                          text: TextSpan(
+                              text: 'money_should_pay'.tr,
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: MYColor.black)),
-                          TextSpan(
-                              text: LanguageController.I.isEnglish
-                                  ? ' SAR'
-                                  : ' ريال',
-                              style: TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: MYColor.primary))
-                        ])),
+                                  //decoration: TextDecoration.underline,
+                                  color: MYColor.primary,
+                                  fontSize: 17.0),
+                              children: [
+                            TextSpan(
+                                text:
+                                    LanguageController.I.isEnglish ? ' :' : ': ',
+                                style: TextStyle(color: MYColor.primary)),
+                            TextSpan(
+                                text: totalPrice.toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: MYColor.black)),
+                            TextSpan(
+                                text: LanguageController.I.isEnglish
+                                    ? ' SAR'
+                                    : ' ريال',
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: MYColor.primary))
+                          ])),
+                    ),
                   ],
                 ),
                 const SizedBox(

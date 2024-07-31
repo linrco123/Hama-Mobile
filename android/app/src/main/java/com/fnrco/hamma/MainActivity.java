@@ -1,5 +1,5 @@
 package com.fnrco.hamma;
-
+ 
 import android.content.ComponentName;
 import android.content.ComponentName;
 import android.content.Context;
@@ -148,8 +148,7 @@ public class MainActivity extends FlutterActivity implements ITransactionListene
           }
         }
       );
-    // new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL).setMethodCallHandler(hand);
-  }
+   }
 
   private void openCheckoutUI(String checkoutId) {
     Set<String> paymentBrands = new LinkedHashSet<String>();
@@ -252,18 +251,9 @@ public class MainActivity extends FlutterActivity implements ITransactionListene
         String firstnumber = String.valueOf(number.charAt(0));
         // To add MADA
         if (brands.equals("mada")) {
-//          String bin = number.substring(0, 6);
-//          if (bin.matches(madaRegexV) || bin.matches(madaRegexM)) {
+ 
             brand = "MADA";
-//          } else {
-//            Toast
-//              .makeText(
-//                MainActivity.this,
-//                "This card is not Mada card",
-//                Toast.LENGTH_LONG
-//              )
-//              .show();
-//          }
+ 
         } else {
           if (firstnumber.equals("4")) {
             brand = "VISA";
