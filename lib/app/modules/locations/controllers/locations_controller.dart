@@ -409,7 +409,7 @@ class LocationsController extends GetxController {
   }
 
   String get getStreetBuildingFloorZipcode =>
-      '${country.value}, ${city.value}, ${subLocality.value}, street: ${streetController.text.trim()}.Building: ${buildingController.text.trim()}.Floor: ${floorController.text.trim()}';
+      '${country.value}, ${city.value}, ${subLocality.value}, ${streetController.text.trim()}.Building: ${buildingController.text.trim()}.Floor: ${floorController.text.trim()}';
 
   void postHourlyLocation(String page) {
     if (txtTitle.text.isEmpty) {
