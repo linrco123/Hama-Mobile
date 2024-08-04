@@ -187,7 +187,7 @@ class HomeController extends GetxController {
       }
       isLoading(false);
     });
-     update();
+    update();
   }
 
   var listNationalities = List<NationalitiesData>.empty(growable: true).obs;
@@ -384,9 +384,9 @@ class HomeController extends GetxController {
     isLoading(true);
     HomeProvider()
         .getFilter(
-      national: nationality.value ,
+      national: nationality.value,
       age: a.value,
-      marital: maritalStatus.value ,
+      marital: maritalStatus.value,
       page: page.value,
     )
         .then(
@@ -398,8 +398,9 @@ class HomeController extends GetxController {
         isLoading(false);
         Get.to(() => const FilterView());
       },
-    ).catchError((error){
-        isLoading(false);
+    ).catchError((error) {
+      isLoading(false);
+      Get.to(() => const FilterView());
     });
 
     update();

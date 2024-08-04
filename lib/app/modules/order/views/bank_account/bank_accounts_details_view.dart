@@ -13,7 +13,7 @@ class BankAccountdetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     int orderId = Get.arguments['orderID'];
+     String orderId = Get.arguments['orderID'];
     double totalPrice = double.parse(Get.arguments['totalPrice'].toString());
     String page = Get.arguments['page'];
      return Scaffold(
@@ -110,13 +110,12 @@ class BankAccountdetails extends StatelessWidget {
                           text: TextSpan(
                               text: 'money_should_pay'.tr,
                               style: TextStyle(
-                                  //decoration: TextDecoration.underline,
                                   color: MYColor.primary,
                                   fontSize: 17.0),
                               children: [
                             TextSpan(
                                 text:
-                                    LanguageController.I.isEnglish ? ' :' : ': ',
+                                    LanguageController.I.isEnglish ? ' : ' : ' : ',
                                 style: TextStyle(color: MYColor.primary)),
                             TextSpan(
                                 text: totalPrice.toString(),
@@ -153,27 +152,6 @@ class BankAccountdetails extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                     ),
-                    // Container(
-                    //   height: 50.0,
-                    //   width: 170.0,
-                    //   //color: Colors.green,
-                    //   decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(10.0),
-                    //       image: const DecorationImage(
-                    //         image: AssetImage(
-                    //           'assets/images/rajhi1.png',
-                    //
-                    //           //fit: BoxFit.fill,
-                    //         ),
-                    //       ),
-                    //       boxShadow: <BoxShadow>[
-                    //         BoxShadow(
-                    //             color: MYColor.primary.withOpacity(0.2),
-                    //             offset: const Offset(1, 0),
-                    //             blurRadius: 3.0,
-                    //             spreadRadius: 3.0),
-                    //       ]),
-                    // )
                   ],
                 ),
                 const SizedBox(
@@ -186,23 +164,23 @@ class BankAccountdetails extends StatelessWidget {
                   child: Row(
                     children: [
                       const SizedBox(
-                        width: 2.0,
+                        width: 10.0,
                       ),
                       Text(
-                        'Bank Account :  ',
+                        'bank_account'.tr,
                         style: TextStyle(
                             color: MYColor.primary,
-                            fontSize: 18.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w900),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      //   child: Text(
-                      //     ':',
-                      //     style:
-                      //         TextStyle(color: MYColor.primary, fontSize: 18.0),
-                      //   ),
-                      // ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Text(
+                          ':',
+                          style:
+                              TextStyle(color: MYColor.primary, fontSize: 18.0),
+                        ),
+                      ),
                       SelectableText(
                         Constance.ALrajhi_BankAccount,
                         style:
@@ -212,7 +190,7 @@ class BankAccountdetails extends StatelessWidget {
                       IconButton(
                           onPressed: () {
                             Fluttertoast.showToast(
-                              msg: 'copied to clipboard',
+                              msg: 'copied_clipboard'.tr,
                               backgroundColor: MYColor.primary,
                               gravity: ToastGravity.CENTER_RIGHT,
                             );
@@ -237,24 +215,24 @@ class BankAccountdetails extends StatelessWidget {
                   child: Row(
                     children: [
                       const SizedBox(
-                        width: 2.0,
+                        width: 10.0,
                       ),
 
                       Text(
-                        'IBAN :  ',
+                        'iban'.tr,
                         style: TextStyle(
                             color: MYColor.primary,
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w900),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      //   child: Text(
-                      //     ':',
-                      //     style:
-                      //         TextStyle(color: MYColor.primary, fontSize: 18.0),
-                      //   ),
-                      // ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Text(
+                          ':',
+                          style:
+                              TextStyle(color: MYColor.primary, fontSize: 18.0),
+                        ),
+                      ),
                       SelectableText(
                         Constance.ALrajhi_BankAccountIBAN,
                         style:
@@ -264,7 +242,7 @@ class BankAccountdetails extends StatelessWidget {
                       IconButton(
                           onPressed: () {
                             Fluttertoast.showToast(
-                              msg: 'copied to clipboard',
+                              msg: 'copied_clipboard'.tr,
                               backgroundColor: MYColor.primary,
                               gravity: ToastGravity.CENTER_RIGHT,
                             );
@@ -295,27 +273,6 @@ class BankAccountdetails extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  // Container(
-                  //   height: 50.0,
-                  //   width: 170.0,
-                  //   //color: Colors.green,
-                  //   decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(10.0),
-                  //       image: const DecorationImage(
-                  //         image: AssetImage(
-                  //           'assets/images/alinma.jpeg',
-                  //
-                  //           //fit: BoxFit.fill,
-                  //         ),
-                  //       ),
-                  //       boxShadow: <BoxShadow>[
-                  //         BoxShadow(
-                  //             color: MYColor.primary.withOpacity(0.2),
-                  //             offset: const Offset(1, 0),
-                  //             blurRadius: 3.0,
-                  //             spreadRadius: 3.0),
-                  //       ]),
-                  // )
                 ]),
                 const SizedBox(
                   height: 20.0,
@@ -327,14 +284,22 @@ class BankAccountdetails extends StatelessWidget {
                   child: Row(
                     children: [
                       const SizedBox(
-                        width: 2.0,
+                        width: 10.0,
                       ),
                       Text(
-                        'Bank Account :  ',
+                        'bank_account'.tr,
                         style: TextStyle(
                             color: MYColor.primary,
-                            fontSize: 18.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w900),
+                      ),
+                       Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Text(
+                          ':',
+                          style:
+                              TextStyle(color: MYColor.primary, fontSize: 18.0),
+                        ),
                       ),
                       SelectableText(
                         Constance.ALinma_BankAccount,
@@ -345,7 +310,7 @@ class BankAccountdetails extends StatelessWidget {
                       IconButton(
                           onPressed: () {
                             Fluttertoast.showToast(
-                              msg: 'copied to clipboard',
+                              msg: 'copied_clipboard'.tr,
                               backgroundColor: MYColor.primary,
                               gravity: ToastGravity.CENTER_RIGHT,
                             );
@@ -370,23 +335,23 @@ class BankAccountdetails extends StatelessWidget {
                   child: Row(
                     children: [
                       const SizedBox(
-                        width: 2.0,
+                        width: 10.0,
                       ),
                       Text(
-                        'IBAN :  ',
+                        'iban'.tr,
                         style: TextStyle(
                             color: MYColor.primary,
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w900),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      //   child: Text(
-                      //     ':',
-                      //     style:
-                      //         TextStyle(color: MYColor.primary, fontSize: 18.0),
-                      //   ),
-                      // ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Text(
+                          ':',
+                          style:
+                              TextStyle(color: MYColor.primary, fontSize: 18.0),
+                        ),
+                      ),
                       SelectableText(
                         Constance.ALinma_BankAccountIBAN,
                         style:
@@ -396,7 +361,7 @@ class BankAccountdetails extends StatelessWidget {
                       IconButton(
                           onPressed: () {
                             Fluttertoast.showToast(
-                              msg: 'copied to clipboard',
+                              msg: 'copied_clipboard'.tr,
                               backgroundColor: MYColor.primary,
                               gravity: ToastGravity.CENTER_RIGHT,
                             );

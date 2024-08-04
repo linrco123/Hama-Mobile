@@ -372,7 +372,9 @@ const Map<String, String> enUS = {
   "bank_accounts": " Bank Accounts",
   'bank_script':
       'copy this bank account and head over to related bank application to carry out payment process then after finishing take the notification sent to you by bank screenshot and send it to us with submitted order via ',
-
+  'bank_account':'Bank Account',
+  'iban':'IBAN',
+  'copied_clipboard':'copied to clipboard',
   //Hourly Service
   'good_morning': 'Good Morning',
   'good_afternoon': 'Good Afternoon',
@@ -411,7 +413,7 @@ const Map<String, String> enUS = {
    'choose_visit_date':'Please, choose visit date',
    'choose_addressess':'Please, choose an address',
    'choose_address':'Choose Addresss',
-   ''
+   'confirm_address':'confirm Address',
   //"choose_nationality"  "choose_visit_number" "choose_working_hour" "choose_shift_type" "choose_maid_number"
 
   "choose_nationality": "Choose nationality",

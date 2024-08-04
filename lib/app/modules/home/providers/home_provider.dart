@@ -84,14 +84,13 @@ class HomeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(jsonDecode(res.body));
       if (jsonDecode(res.body)['code'] == 0) {
-        mySnackBar(
-          title: "error".tr,
-          message: "Can't_find".tr,
-          color: MYColor.warning,
-          icon: CupertinoIcons.info_circle,
-        );
+        // mySnackBar(
+        //   title: "error".tr,
+        //   message: "Can't_find".tr,
+        //   color: MYColor.warning,
+        //   icon: CupertinoIcons.info_circle,
+        // );
         return Future.error(res.statusCode);
       }
       if (res.statusCode != 200) {

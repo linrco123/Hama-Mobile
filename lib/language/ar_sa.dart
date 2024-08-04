@@ -368,6 +368,9 @@ const Map<String, String> arSA = {
   "bank_accounts": "حسابات البنك ",
   'bank_script':
       'انسخ هذا الحساب وتوجه به إلى التطبيق المناسب لإتمام الدفع ثم انسخ الاشعار المرسل من جهه البنك وأرسله إلينا مع رقم الطلب على هذا الرقم  ',
+  'bank_account':'حساب البنك',
+  'iban': 'الإيبان', 
+  'copied_clipboard':'نسخ إلى الحافظة',   
   //Hourly Service
 
   'good_morning': 'صباح الخير',
@@ -408,7 +411,7 @@ const Map<String, String> arSA = {
   'choose_visit_date': 'اختر تاريخ الزيارة ',
   'choose_address': ' اختر عنوانك',
   'choose_addressess': 'من فضلك, اختر عنوانا',
-
+  'confirm_address':'تاكيد العنوان',
   //"choose_nationality"  "choose_visit_number" "choose_working_hour" "choose_shift_type" "choose_maid_number"
   "choose_nationality": " اختر الجنسية",
   "choose_visit_number": " اختر عدد الزيارات",

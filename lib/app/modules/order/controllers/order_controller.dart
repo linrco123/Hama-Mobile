@@ -53,7 +53,7 @@ class OrderController extends GetxController {
   final location = "".obs;
 
   final currentStep = 1.obs;
-  final selectedCity = 1.obs;
+  final selectedCity = 0.obs;
   final selectedBranch = 0.obs;
   final selectedPayment = 0.obs;
   final selectedPackage = 0.obs;
@@ -192,8 +192,9 @@ class OrderController extends GetxController {
   }
 
   Future<void> increment() async {
-    
-    if (currentStep.value == 3 && ( HomeController.I.listActive.isNotEmpty || HomeController.I.listPending.isNotEmpty)) {
+    if (currentStep.value == 3 &&
+        (HomeController.I.listActive.isNotEmpty ||
+            HomeController.I.listPending.isNotEmpty)) {
       //
       mySnackBar(
         title: "error".tr,
@@ -279,7 +280,9 @@ class OrderController extends GetxController {
     isLoading(true);
     LocationsProvider().getLocations().then((value) {
       for (var data in value.data as List) {
-        listLocations.add(data);
+        if ((data as LocationsData).type == 'c') {
+          listLocations.add(data);
+        }
       }
       isLoading(false);
     });

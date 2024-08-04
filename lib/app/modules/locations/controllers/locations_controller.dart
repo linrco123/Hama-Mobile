@@ -169,7 +169,7 @@ class LocationsController extends GetxController {
       return;
     }
     getAddress(myLocation!);
-    
+
     if (page == 'order' || page == 'main_home_page') {
       showExtraDetailsDialog(context, page);
     } else if (page == 'hour' && myLocation != null) {
@@ -365,6 +365,8 @@ class LocationsController extends GetxController {
   }
 
   var listLocations = List<LocationsData>.empty(growable: true).obs;
+  var contractsLocations = List<LocationsData>.empty(growable: true).obs;
+  var hourLocations = List<LocationsData>.empty(growable: true).obs;
 
   Future<void> getLocations() async {
     isLoading(true);
@@ -372,6 +374,12 @@ class LocationsController extends GetxController {
       listLocations.clear();
       for (var data in value.data as List) {
         listLocations.add(data);
+
+        if ((data as LocationsData).type == 'h') {
+          hourLocations.add(data);
+        } else {
+          contractsLocations.add(data);
+        }
       }
       isLoading(false);
       update();
@@ -390,6 +398,7 @@ class LocationsController extends GetxController {
       "longitude": longitude.value,
       "title": txtTitle.text,
       "notes": page == 'hour' ? address.value : txtNotes.text,
+      "type": page == 'hour' ? 'h': 'c'
     };
     print(data);
     LocationsProvider().postLocations(data).then((value) {

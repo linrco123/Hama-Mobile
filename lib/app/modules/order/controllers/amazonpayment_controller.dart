@@ -25,7 +25,7 @@ class AmazonPayController extends GetxController {
    UpdateTransactionIdProvider transactionIdProvider = UpdateTransactionIdProvider();
   void _initPayfort() async {
     await AmazonPayfort.initialize(
-      const PayFortOptions(environment: AmazonPayConfigue.testEnviroment),
+      const PayFortOptions(environment: AmazonPayConfigue.productionEnviroment),
       // const PayFortOptions(environment: AmazonPayConfigue.productionEnviroment),
     );
   }
@@ -45,13 +45,13 @@ class AmazonPayController extends GetxController {
       EasyLoading.show(status: 'loading'.tr);
 
       var sdkTokenResponse =
-          await generateSandboxSdkToken(transactionId: merchantReference);
+          await generateProductionSdkToken(transactionId: merchantReference);
 
       FortRequest request = FortRequest(
         amount: amount * 100,
         customerName: customerName,
         customerEmail: customerEmail,
-        orderDescription: 'Musanda order description',
+        orderDescription: 'Sandeny order description',
         sdkToken: sdkTokenResponse?.sdkToken ?? '',
         merchantReference: merchantReference,
         currency: 'SAR',
@@ -88,14 +88,14 @@ class AmazonPayController extends GetxController {
   }) async {
     try {
       EasyLoading.show(status: 'loading'.tr);
-      var sdkToken = await generateSandboxSdkToken(
+      var sdkToken = await generateProductionSdkToken(
           isApplePay: true, transactionId: merchantReference);
 
       FortRequest request = FortRequest(
         amount: amount,
         customerName: customerName,
         customerEmail: customerEmail,
-        orderDescription: 'Musaneda',
+        orderDescription: 'Sandeny',
         sdkToken: sdkToken?.sdkToken ?? '',
         merchantReference: merchantReference,
         currency: 'SAR',

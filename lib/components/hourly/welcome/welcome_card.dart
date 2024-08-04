@@ -87,7 +87,7 @@ class WelcomeCard extends StatelessWidget {
               CupertinoButton(
                   borderRadius: BorderRadius.circular(10.0),
                   color: MYColor.buttons,
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical:10.0),
                   minSize: 30.0,
                   child: Text(
                     'check_service'.tr,

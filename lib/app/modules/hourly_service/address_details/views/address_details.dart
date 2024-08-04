@@ -81,7 +81,7 @@ class AddressDetailsView extends GetView<LocationsController> {
                   fun: () {
                     locationController.postHourlyLocation('hour');
                   },
-                  text: 'confirm Address',
+                  text: 'confirm_address'.tr,
                   btnColor: MYColor.buttons,
                   txtColor: MYColor.white.withOpacity(0.9)),
             )

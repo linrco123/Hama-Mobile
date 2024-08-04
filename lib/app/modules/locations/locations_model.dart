@@ -31,6 +31,7 @@ class LocationsData {
   double? latitude;
   double? longitude;
   User? user;
+  String? type;
 
   LocationsData({
     this.id,
@@ -42,6 +43,7 @@ class LocationsData {
     this.latitude,
     this.longitude,
     this.user,
+    this.type,
   });
 
   LocationsData.fromJson(Map<String, dynamic> json) {
@@ -54,6 +56,7 @@ class LocationsData {
     latitude = Constance.checkDouble(json['latitude']);
     longitude = Constance.checkDouble(json['longitude']);
     user = json['user'] != null ? User.fromJson(json['user']) : null;
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -69,6 +72,8 @@ class LocationsData {
     if (user != null) {
       data['user'] = user?.toJson();
     }
+    data['type'] = type;
+
     return data;
   }
 }

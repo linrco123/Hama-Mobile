@@ -83,7 +83,7 @@ class ServiceTypeController extends GetxController {
 
     ServiceTypeProvider().submitHourOrder(map).then((value) {
       EasyLoading.dismiss();
-      int orderID = int.parse(value.data!.order!.id!.toString());
+      String orderID = value.data!.order!.id!.toString();
       double totalPrice = double.parse(value.data!.order!.cost!.toString());
       Get.to(() => const BankAccountdetails(),
           arguments: {'orderID': orderID, 'totalPrice': totalPrice , 'page':'hour'});

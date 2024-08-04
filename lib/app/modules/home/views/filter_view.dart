@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/components/myFilterDialog.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myMusaneda.dart';
@@ -39,7 +41,7 @@ class FilterView extends GetView<HomeController> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 70, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
             child: Column(
               children: [
                 Row(
@@ -50,6 +52,24 @@ class FilterView extends GetView<HomeController> {
                       style: const TextStyle(
                         fontSize: 16,
                         fontFamily: 'cairo_medium',
+                      ),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        HapticFeedback.mediumImpact();
+                        HomeController.I.setPrev();
+                        HomeController.I.setTap = 1;
+                        myFilterDialog(context);
+                      },
+                      borderRadius: BorderRadius.circular(10),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: SvgPicture.asset(
+                          "assets/images/icon/filtter.svg",
+                          fit: BoxFit.fill,
+                          color: MYColor.primary,
+                        ),
                       ),
                     ),
                   ],
@@ -90,7 +110,7 @@ class FilterView extends GetView<HomeController> {
                         const SizedBox(height: 15),
                         Text(
                           "there_are_no_results".tr,
-                          style:   TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             color: MYColor.grey,
                             fontFamily: 'cairo_regular',

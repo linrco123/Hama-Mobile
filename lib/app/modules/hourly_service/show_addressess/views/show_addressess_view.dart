@@ -116,7 +116,7 @@ class ShowAddressessView extends GetView<LocationsController> {
             ),
             GetBuilder<LocationsController>(builder: (_) {
               return Expanded(
-                child: locationController.listLocations.isEmpty
+                child: locationController.hourLocations.isEmpty
                     ? Center(
                         child: Text(
                         'no_addressess'.tr,
@@ -124,12 +124,12 @@ class ShowAddressessView extends GetView<LocationsController> {
                             fontSize: 20.0, color: Colors.grey.shade400),
                       ))
                     : ListView.separated(
-                        itemCount: locationController.listLocations.length,
+                        itemCount: locationController.hourLocations.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
                               serviceTypeController.pickAddress(
-                                  locationController.listLocations[index].id!);
+                                  locationController.hourLocations[index].id!);
                             },
                             child: Obx(
                               () => Container(
@@ -141,7 +141,7 @@ class ShowAddressessView extends GetView<LocationsController> {
                                     color: serviceTypeController
                                                 .selectedLocation.value ==
                                             locationController
-                                                .listLocations[index].id
+                                                .hourLocations[index].id
                                         ? MYColor.primary
                                         : MYColor.white),
                                 child: Column(
@@ -149,13 +149,13 @@ class ShowAddressessView extends GetView<LocationsController> {
                                   children: [
                                     Text(
                                       locationController
-                                          .listLocations[index].title!,
+                                          .hourLocations[index].title!,
                                       style: TextStyle(
                                           fontSize: 14.0,
                                           color: serviceTypeController
                                                       .selectedLocation.value ==
                                                   locationController
-                                                      .listLocations[index].id
+                                                      .hourLocations[index].id
                                               ? MYColor.white
                                               : MYColor.primary,
                                           fontWeight: FontWeight.bold),
@@ -168,14 +168,14 @@ class ShowAddressessView extends GetView<LocationsController> {
                                         Expanded(
                                           child: Text(
                                             locationController
-                                                .listLocations[index].address!,
+                                                .hourLocations[index].address!,
                                             style: TextStyle(
                                               fontSize: 12.0,
                                               color: serviceTypeController
                                                           .selectedLocation
                                                           .value ==
                                                       locationController
-                                                          .listLocations[index]
+                                                          .hourLocations[index]
                                                           .id
                                                   ? MYColor.white
                                                   : MYColor.primary,

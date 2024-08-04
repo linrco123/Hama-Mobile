@@ -13,7 +13,6 @@ import 'package:musaneda/app/modules/order/views/tabby_stc_paymentview/component
 import 'package:musaneda/app/modules/profile/controllers/profile_controller.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
-import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/components/myStepper.dart';
 import 'package:musaneda/components/payment_bank_direct.dart';
 import 'package:musaneda/components/payment_branch.dart';
@@ -165,8 +164,8 @@ class OrderView extends GetView<OrderController> {
                 context: context,
                 value: controller.selectedCity.value,
                 onChanged: (value) {
-                  // controller.setCity = value;
-                  controller.selectedCity.value = 1;
+                   controller.setCity = value;
+                  //controller.selectedCity.value = 1;
                 },
                 items: HomeController.I.listCities.map(
                   (item) {
@@ -1318,7 +1317,7 @@ class OrderView extends GetView<OrderController> {
               //if suceess to confirm goto home
               Get.to(const BankAccountdetails(), arguments: {
                 'orderID': OrderController.I.orderID,
-                'totalPrice': OrderController.I.packagesData.total!.toInt(),
+                'totalPrice': OrderController.I.packagesData.total!,
                 'page': 'order'
               });
  
@@ -1327,7 +1326,7 @@ class OrderView extends GetView<OrderController> {
               //if success go to BankAccountdetails screen
               Get.to(const BankAccountdetails(), arguments: {
                 'orderID': OrderController.I.orderID,
-                'totalPrice': OrderController.I.packagesData.total!.toInt(),
+                'totalPrice': OrderController.I.packagesData.total!,
                 'page': 'order'
               });
  
@@ -1335,7 +1334,7 @@ class OrderView extends GetView<OrderController> {
                //CustomPaymentController.I.payWithAmazon();
                 Get.to(const BankAccountdetails(), arguments: {
                 'orderID': OrderController.I.orderID,
-                'totalPrice': OrderController.I.packagesData.total!.toInt(),
+                'totalPrice': OrderController.I.packagesData.total!,
                 'page': 'order'
               });
             

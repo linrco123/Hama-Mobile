@@ -67,8 +67,8 @@ class DatePickerView extends GetView<DatePickerController> {
                     width: Get.width,
                     height: Get.height / 2.1,
                     child: DatePicker(
-                      initialDate: DateTime.now(),
-                      minDate: DateTime.now(), //? maybe after today with 2 days
+                      initialDate: DateTime.now().add(const Duration(days: 1)),
+                      minDate: DateTime.now().add(const Duration(days: 1)), //? maybe after today with 2 days
                       maxDate: DateTime(DateTime.now().year + 3, 12, 30),
                       //disabledDayPredicate: ,
                       initialPickerType: PickerType.days,
@@ -114,18 +114,7 @@ class DatePickerView extends GetView<DatePickerController> {
                           color: MYColor.primary.withOpacity(0.3),
                           fontSize: 18.0,
                           fontWeight: FontWeight.w600),
-                      currentDate: DateTime.now(),
-                      // currentDateDecoration: BoxDecoration(
-                      //     shape: BoxShape.circle,
-                      //     //color: MYColor.primary,
-                      //    // borderRadius: BorderRadius.circular(5.0),
-                      //     border: Border.all(
-                      //         color: MYColor.primary.withOpacity(0.3),
-                      //         width: 1.0)),
-                      // currentDateTextStyle: TextStyle(
-                      //     color: MYColor.white,
-                      //     fontSize: 18.0,
-                      //     fontWeight: FontWeight.w600),
+                      currentDate: DateTime.now().add(const Duration(days:1)),
                       onDateSelected: (value) {
                         datePickerController.selectDateTime(value);
                       },
@@ -176,7 +165,7 @@ class DatePickerView extends GetView<DatePickerController> {
                         icon: Icons.warning,
                       );
                     },
-                    text: 'Submit',
+                    text: 'submit'.tr,
                     btnColor: MYColor.buttons,
                     txtColor: MYColor.btnTxtColor),
               )
