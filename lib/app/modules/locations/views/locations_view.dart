@@ -149,7 +149,7 @@ class LocationsView extends GetView<LocationsController> {
                                     Get.to(
                                           () => const CreateLocationView(
                                         action: 'update',
-                                        page: 'location',
+                                        page: 'order',
                                       ),
                                     );
                                   },

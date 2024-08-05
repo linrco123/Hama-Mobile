@@ -136,15 +136,15 @@ class MusanedaView extends GetView<MusanedaController> {
                                           ),
                                         ),
                                         const Spacer(),
-                                        InkWell(
-                                          onTap: () {},
-                                          child: SvgPicture.asset(
-                                            "assets/images/icon/video.svg",
-                                            width: 30,
-                                            height: 30,
-                                            color: MYColor.icons,
-                                          ),
-                                        ),
+                                        // InkWell(
+                                        //   onTap: () {},
+                                        //   child: SvgPicture.asset(
+                                        //     "assets/images/icon/video.svg",
+                                        //     width: 30,
+                                        //     height: 30,
+                                        //     color: MYColor.icons,
+                                        //   ),
+                                        // ),
                                         const SizedBox(width: 10),
                                         InkWell(
                                           onTap: () {

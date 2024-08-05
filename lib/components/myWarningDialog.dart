@@ -16,6 +16,7 @@ void myWarningDialog({
   required Function funWillPop,
 }) =>
     Get.defaultDialog(
+        backgroundColor: MYColor.primary,
         title: title,
         titleStyle: TextStyle(
           color: MYColor.warning,
@@ -44,8 +45,8 @@ void myWarningDialog({
           width: 115,
           height: 45,
           child: MyCupertinoButton(
-            btnColor: MYColor.buttons,
-            txtColor: MYColor.white,
+            btnColor: MYColor.accent,
+            txtColor: MYColor.black,
             text: cancel,
             fun: () => funCancel(),
           ),
@@ -54,8 +55,8 @@ void myWarningDialog({
           width: 115,
           height: 45,
           child: MyCupertinoButton(
-            btnColor: MYColor.accent,
-            txtColor: MYColor.black,
+            btnColor: MYColor.error,
+            txtColor: MYColor.white,
             text: confirm,
             fun: () => funConfirm(),
           ),
