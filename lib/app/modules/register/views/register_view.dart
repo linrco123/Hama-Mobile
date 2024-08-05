@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+ import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
-import 'package:musaneda/app/modules/register/views/terms_and_conditions.dart';
-import 'package:musaneda/app/modules/register/views/terms_conditions_webview.dart';
+ import 'package:musaneda/app/modules/register/views/terms_conditions_webview.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myInkWell.dart';
-import '../../../../components/myPreferredSize.dart';
-import '../../../../config/myColor.dart';
+ import '../../../../config/myColor.dart';
 import '../../../routes/app_pages.dart';
 import '../../login/controllers/login_controller.dart';
 import '../controllers/register_controller.dart';

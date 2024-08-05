@@ -20,7 +20,8 @@ void myWarningDialog({
         title: title,
         titleStyle: TextStyle(
           color: MYColor.warning,
-          fontSize: 16,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
           fontFamily: 'cairo_medium',
         ),
         radius: 8,
@@ -31,7 +32,7 @@ void myWarningDialog({
             Text(
               content,
               style: TextStyle(
-                color: MYColor.black,
+                color: MYColor.white,
                 fontSize: 15,
               ),
               textAlign: TextAlign.center,

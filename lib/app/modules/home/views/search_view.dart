@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 
 import '../../../../components/myMusaneda.dart';
@@ -21,6 +22,7 @@ class SearchView extends GetView<HomeController> {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: MYColor.primary,
+            leading: ReturnButton(color: MYColor.white, size: 20.0),
             title: SizedBox(
               height: 50,
               child: TextField(

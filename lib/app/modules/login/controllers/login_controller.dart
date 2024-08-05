@@ -90,7 +90,7 @@ class LoginController extends GetxController {
     try {
       if (formLoginKey.currentState!.validate()) {
         Map data = {
-          "phone": "+966${txtPhone.text}",
+          "phone": "966${txtPhone.text}",
           "password": txtPassword.text,
           "device_token": box.read("fcm_token"),
         };

@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../components/myContractDetailsCard.dart';
-import '../../../../components/myCupertinoButton.dart';
-import '../../../../components/myWarningDialog.dart';
 import '../../../../config/myColor.dart';
 import '../controllers/contract_controller.dart';
 
@@ -18,6 +17,7 @@ class ContractView extends GetView<ContractController> {
         backgroundColor: MYColor.primary,
         title: Text('contract_details'.tr),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
       ),
       body: GetBuilder(
         init: controller,
@@ -129,44 +129,9 @@ class ContractView extends GetView<ContractController> {
                       ? const SizedBox()
                       : Get.arguments.status == 'canceled'
                       ? const SizedBox()
-                      : SizedBox(
+                      : const SizedBox(
                     height: 50,
                     width: double.infinity,
-                    child: MyCupertinoButton(
-                      btnColor: Get.arguments.status == "active"
-                          ? MYColor.accent
-                          : MYColor.buttons,
-                      txtColor: Get.arguments.status == "active"
-                          ? MYColor.black
-                          : MYColor.white,
-                      text: Get.arguments.status == "active"
-                          ? "cancel_the_contract".tr
-                          : "contract_renewal".tr,
-                      fun: () {
-                        int musanedaId = Get.arguments.musaneda.id;
-                        if (Get.arguments.status == "active") {
-                          myWarningDialog(
-                            title: "cancel_the_contract".tr,
-                            content:
-                            "if_the_contract_is_cancelled".tr,
-                            cancel: "cancel".tr,
-                            confirm: "confirm".tr,
-                            funConfirm: () =>
-                                controller.cancelContract(
-                                  musanedaId,
-                                ),
-                            funWillPop: () {
-                              Get.back();
-                            },
-                            funCancel: () {
-                              Get.back();
-                            },
-                          );
-                        } else {
-                          controller.renewContract(musanedaId);
-                        }
-                      },
-                    ),
                   ),
                 ],
               ),

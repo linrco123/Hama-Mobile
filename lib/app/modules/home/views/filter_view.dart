@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myFilterDialog.dart';
 
 import '../../../../components/myCupertinoButton.dart';
@@ -22,6 +23,7 @@ class FilterView extends GetView<HomeController> {
         backgroundColor: MYColor.primary,
         title: Text('add_order'.tr),
         centerTitle: true,
+        leading: ReturnButton(color: MYColor.white, size: 20.0),
       ),
       body: Stack(
         children: [
