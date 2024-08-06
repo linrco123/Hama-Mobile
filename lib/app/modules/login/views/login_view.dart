@@ -36,13 +36,16 @@ class LoginView extends GetView<LoginController> {
                         padding: EdgeInsets.only(
                           top: Get.height / 20,
                         ),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/images/hamaLogo.png',
-                            height: 100,
-                            width: 200,
-                            fit: BoxFit.cover,
-                            filterQuality: FilterQuality.high,
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/images/hamaLogo.png',
+                              height: 100,
+                              width: 200,
+                              fit: BoxFit.fill,
+                              filterQuality: FilterQuality.high,
+                            ),
                           ),
                         ),
                       ),
@@ -52,10 +55,8 @@ class LoginView extends GetView<LoginController> {
                         left: LanguageController.I.isEnglish ? null : 0.0,
                         child: Obx(
                           () => Container(
-                            //color: Colors.green,
-                            child: DropdownButton(
-                              //icon: const Icon(CupertinoIcons.chevron_up_chevron_down , size: 18.0,),
-                              borderRadius: BorderRadius.circular(20.0),
+                             child: DropdownButton(
+                               borderRadius: BorderRadius.circular(20.0),
                               elevation: 1,
                               iconEnabledColor: MYColor.buttons,
                               alignment: AlignmentDirectional.centerEnd,

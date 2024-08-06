@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBW04pir802MNX34wCRpF6WQ4LOOXWchzs',
-    appId: '1:742951082421:web:2caa77ca2c9b7207c261fc',
-    messagingSenderId: '742951082421',
-    projectId: 'hamma-khdamat',
-    authDomain: 'hamma-khdamat.firebaseapp.com',
-    storageBucket: 'hamma-khdamat.appspot.com',
-    measurementId: 'G-LVBZ8YW05B',
+    apiKey: 'AIzaSyD2gDo_mY0BF4IjpbS_OA9ZfJ23rsydXsc',
+    appId: '1:213649598855:web:1667e3b903cee97778cb22',
+    messagingSenderId: '213649598855',
+    projectId: 'musaneda-khdamat',
+    authDomain: 'musaneda-khdamat.firebaseapp.com',
+    storageBucket: 'musaneda-khdamat.appspot.com',
+    measurementId: 'G-KRW8Q1F7ZL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC_NWoNTtmQJxG0TZ3hfPczkqo1h-W8u_k',
-    appId: '1:742951082421:android:050b3e7400fb2e67c261fc',
-    messagingSenderId: '742951082421',
-    projectId: 'hamma-khdamat',
-    storageBucket: 'hamma-khdamat.appspot.com',
+    apiKey: 'AIzaSyCyBaZjk0NhgdUj8vA20UQSyzlL9KUQ3HM',
+    appId: '1:213649598855:android:698b698974a5a0c078cb22',
+    messagingSenderId: '213649598855',
+    projectId: 'musaneda-khdamat',
+    storageBucket: 'musaneda-khdamat.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBp4Iqo7UnUV-EJCXeEjBKxpVv_SWCQN1I',
-    appId: '1:742951082421:ios:2bc1eff1270b431bc261fc',
-    messagingSenderId: '742951082421',
-    projectId: 'hamma-khdamat',
-    storageBucket: 'hamma-khdamat.appspot.com',
-    iosBundleId: 'com.fnrco.hamma',
+    apiKey: 'AIzaSyC0P-IcQnviTU6ZDKjqKLGiIZvJXNEaPvg',
+    appId: '1:213649598855:ios:1cbe4d972e89a2e178cb22',
+    messagingSenderId: '213649598855',
+    projectId: 'musaneda-khdamat',
+    storageBucket: 'musaneda-khdamat.appspot.com',
+    iosBundleId: 'com.fnrco.musaneda',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBp4Iqo7UnUV-EJCXeEjBKxpVv_SWCQN1I',
-    appId: '1:742951082421:ios:249c2d7741549d10c261fc',
-    messagingSenderId: '742951082421',
-    projectId: 'hamma-khdamat',
-    storageBucket: 'hamma-khdamat.appspot.com',
+    apiKey: 'AIzaSyC0P-IcQnviTU6ZDKjqKLGiIZvJXNEaPvg',
+    appId: '1:213649598855:ios:1cbe4d972e89a2e178cb22',
+    messagingSenderId: '213649598855',
+    projectId: 'musaneda-khdamat',
+    storageBucket: 'musaneda-khdamat.appspot.com',
     iosBundleId: 'com.fnrco.musaneda',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBW04pir802MNX34wCRpF6WQ4LOOXWchzs',
-    appId: '1:742951082421:web:652a455c8b4d1156c261fc',
-    messagingSenderId: '742951082421',
-    projectId: 'hamma-khdamat',
-    authDomain: 'hamma-khdamat.firebaseapp.com',
-    storageBucket: 'hamma-khdamat.appspot.com',
-    measurementId: 'G-S3E7YSQXKP',
+    apiKey: 'AIzaSyD2gDo_mY0BF4IjpbS_OA9ZfJ23rsydXsc',
+    appId: '1:213649598855:web:e32bc614dc3d880f78cb22',
+    messagingSenderId: '213649598855',
+    projectId: 'musaneda-khdamat',
+    authDomain: 'musaneda-khdamat.firebaseapp.com',
+    storageBucket: 'musaneda-khdamat.appspot.com',
+    measurementId: 'G-72Y54BVQW6',
   );
+
 }

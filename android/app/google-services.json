@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "742951082421",
-    "project_id": "hamma-khdamat",
-    "storage_bucket": "hamma-khdamat.appspot.com"
+    "project_number": "213649598855",
+    "project_id": "musaneda-khdamat",
+    "storage_bucket": "musaneda-khdamat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:742951082421:android:050b3e7400fb2e67c261fc",
+        "mobilesdk_app_id": "1:213649598855:android:698b698974a5a0c078cb22",
         "android_client_info": {
-          "package_name": "com.fnrco.hamma"
+          "package_name": "com.fnrco.musaneda"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC_NWoNTtmQJxG0TZ3hfPczkqo1h-W8u_k"
+          "current_key": "AIzaSyCyBaZjk0NhgdUj8vA20UQSyzlL9KUQ3HM"
         }
       ],
       "services": {

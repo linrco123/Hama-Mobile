@@ -445,6 +445,7 @@ class LocationsController extends GetxController {
     } else if (floorController.text.isEmpty) {
       mySnackBar(
         title: "warning".tr,
+
         message: "insert_floor_number".tr,
         color: MYColor.warning,
         icon: CupertinoIcons.info_circle,

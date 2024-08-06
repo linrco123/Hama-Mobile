@@ -64,7 +64,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    name: "Hamma",
+    name: "musaneda",
     options: DefaultFirebaseOptions.currentPlatform,
   );
 

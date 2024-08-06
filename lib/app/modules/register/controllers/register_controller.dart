@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
@@ -135,8 +136,8 @@ class RegisterController extends GetxController {
         RegisterProvider().postRegister(data).then(
           (res) {
             isProcessing(false);
-           // _showDialog(context);
-            Get.offNamed('/login');
+            _showDialog(context);
+            //Get.offNamed('/login');
           },
         );
       } catch (e, s) {
@@ -152,7 +153,7 @@ class RegisterController extends GetxController {
       isProcessing(true);
 
       Map data = {
-        "phone": "+966${txtPhone.text}",
+        "phone": "966${txtPhone.text}",
         "code": otpCode,
       };
 
@@ -161,7 +162,7 @@ class RegisterController extends GetxController {
           if (res == 1) {
             isProcessing(false);
             Get.back();
-            Get.offNamed('/login');
+            Get.offNamed(Routes.MAIN_HOME_PAGE);
           }
         },
       );
@@ -174,7 +175,7 @@ class RegisterController extends GetxController {
   /// resend OTP after 60 seconds
   void resendOtp() {
     Map data = {
-      "phone": "+966${txtPhone.text}",
+      "phone": "966${txtPhone.text}",
     };
     RegisterProvider().postResendOtp(data);
     update();
@@ -187,6 +188,7 @@ class RegisterController extends GetxController {
       anchorPoint: const Offset(0.5, 0.5),
       builder: (context) {
         return Dialog(
+          backgroundColor: MYColor.primary.withOpacity(0.1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

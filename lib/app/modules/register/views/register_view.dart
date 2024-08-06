@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
- import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
- import 'package:musaneda/app/modules/register/views/terms_conditions_webview.dart';
+import 'package:musaneda/app/modules/register/views/terms_conditions_webview.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myInkWell.dart';
- import '../../../../config/myColor.dart';
+import '../../../../config/myColor.dart';
 import '../../../routes/app_pages.dart';
 import '../../login/controllers/login_controller.dart';
 import '../controllers/register_controller.dart';
@@ -37,13 +37,16 @@ class RegisterView extends GetView<RegisterController> {
                         padding: EdgeInsets.only(
                           top: Get.height / 20,
                         ),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/images/hamaLogo.png',
-                            height: 100,
-                            width: 200,
-                            fit: BoxFit.cover,
-                            filterQuality: FilterQuality.high,
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 10.0),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/images/hamaLogo.png',
+                              height: 100,
+                              width: 200,
+                              fit: BoxFit.fill,
+                              filterQuality: FilterQuality.high,
+                            ),
                           ),
                         ),
                       ),
@@ -53,8 +56,8 @@ class RegisterView extends GetView<RegisterController> {
                         left: LanguageController.I.isEnglish ? null : 0.0,
                         child: Obx(
                           () => Container(
-                             child: DropdownButton(
-                               borderRadius: BorderRadius.circular(20.0),
+                            child: DropdownButton(
+                              borderRadius: BorderRadius.circular(20.0),
                               elevation: 1,
                               iconEnabledColor: MYColor.buttons,
                               alignment: AlignmentDirectional.centerEnd,
@@ -75,7 +78,8 @@ class RegisterView extends GetView<RegisterController> {
                                 if (value != 0) {
                                   LanguageController.I
                                       .updateLangForLOGINSIGNUP(value!);
-                                  LoginController.I.selectedLanguage.value = value;
+                                  LoginController.I.selectedLanguage.value =
+                                      value;
                                 }
                               },
                             ),

@@ -172,15 +172,15 @@ const Map<String, String> arSA = {
   "credit_card": "بطاقة الائتمان",
   "sadad": "نظام سداد للمدفوعات",
   // Services
-  "all_musaneda": "كل العاملات",
+  "all_musaneda": "كل المساندة",
   "filter_by": "تصفية حسب",
   "marital_status": "الحالة الاجتماعية",
   "filter": "تصفية",
   "search_by_name": "بحث بالاسم",
   "there_are_no_results": "لا توجد نتائج",
-  "show_musaneda": "عرض العاملات",
+  "show_musaneda": "عرض المساندة",
   "search_results": "نتائج البحث",
-  "see_musaneda": "عرض العاملات",
+   "see_musaneda": "عرض المساندة",
 
   // Contracts
   "my_contracts": "عقودي",
@@ -200,7 +200,7 @@ const Map<String, String> arSA = {
   "no_active_contracts": "لا توجد عقود نشطة",
   "no_expired_contracts": "لا توجد عقود منتهية",
   "contract_number": "رقم العقد",
-  "musaneda_details": "معلومات العاملة",
+  "musaneda_details": "تفاصيل المساندة",
 
   // Side menu
   "profile": "بياناتي الشخصية",
@@ -378,7 +378,7 @@ const Map<String, String> arSA = {
   'good_evening': 'مساء الخير',
   'check_service': 'تصفح الخدمة',
   //'عروض هامة', //Hama offers
-  'hama_offers': '⏰عروض هامة',
+  'hama_offers': '⏰عروض مساندة',
   'one_time_visit': '🥰 تعاقدى على باقة الزيارة الواحدة بعروض مميزة ',
   'stayin_offers': '🎗️عروض مقيمة🗓️',
   '3month_maid': 'للعاملة المنزلية المقيمة باقة الثلاث أشهر',
@@ -417,7 +417,7 @@ const Map<String, String> arSA = {
   "choose_visit_number": " اختر عدد الزيارات",
   "choose_working_hour": "اختر عدد الساعات",
   "choose_shift_type": "اختر نوع النوبة",
-  "choose_maid_number": "اختر عدد العاملات",
+  "choose_maid_number": "اختر عدد المساندة",
 
   //===================================
   "insert_address_name": "ادخل اسم العنوان",

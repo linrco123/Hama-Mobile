@@ -177,15 +177,15 @@ const Map<String, String> enUS = {
   "search": "Search",
 
   // Services
-  "all_musaneda": "All Workers",
+  "all_musaneda": "All Musaneda",
   "filter_by": "Filter by",
   "marital_status": "Marital status",
   "filter": "Filter",
   "search_by_name": "Search by name",
   "there_are_no_results": "There are no results",
-  "show_musaneda": "Show Workers",
+  "show_musaneda": "Show Musaneda",
   "search_results": "Search results",
-  "see_musaneda": "Show Workers",
+  "see_musaneda": "See Musaneda",
 
   // Contracts
   "my_contracts": "My Contracts",
@@ -207,7 +207,7 @@ const Map<String, String> enUS = {
   "no_expired_contracts": "No expired contracts yet",
   "contract_number": "Contract Number",
 
-  "musaneda_details": "Worker Details",
+  "musaneda_details": "Musaneda Details",
 
   // Side menu
   "profile": "Profile",
@@ -302,7 +302,7 @@ const Map<String, String> enUS = {
   "you_have_no_locations_yet": "You have no locations yet",
   "you_have_unexpired_contract": "You have unexpired contract",
   "loading": "Loading...",
-  "success_login": "Welcome to Hama",
+  "success_login": "Welcome to Musaneda",
   "msg_success_login": "We're happy to see you again",
   "personal": "Profile",
   "silver_package": "Silver Package",
@@ -380,7 +380,7 @@ const Map<String, String> enUS = {
   'good_afternoon': 'Good Afternoon',
   'good_evening': 'Good Evening ',
   'check_service': 'Check Service',
-  'hama_offers': 'Hama offers ⏰',
+  'hama_offers': 'Musaneda offers ⏰',
   'one_time_visit': 'Sign one-time visit package with unique offers 🥰',
   'stayin_offers': '🎗️ Stay-In offers 🗓️',
   '3month_maid': ' For resident housemaid is 3-month package',
@@ -420,7 +420,7 @@ const Map<String, String> enUS = {
   "choose_visit_number": "Choose visits number",
   "choose_working_hour": "Choose working hour",
   "choose_shift_type": "Choose shift type",
-  "choose_maid_number": "Choose maid number",
+  "choose_maid_number": "Choose Musaneda number",
   //"insert_address_name".tr,:"Please insert address name"
   "insert_address_name": "Please insert address name",
   "insert_street_name": "Please insert street name",

@@ -29,13 +29,17 @@ class WelcomeView extends GetView<WelcomeController> {
                 const SizedBox(
                   height: 15.0,
                 ),
-                Center(
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10.0),
+                  child: Center(
                     child: Image.asset(
-                  'assets/images/hamaLogo.png',
-                  height: 60.0,
-                  width: 150.0,
-                  //fit: BoxFit.fill,
-                )),
+                      'assets/images/hamaLogo.png',
+                      height: 70.0,
+                      width: 170.0,
+                      // fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
                 const SizedBox(
                   height: 5.0,
                 ),
