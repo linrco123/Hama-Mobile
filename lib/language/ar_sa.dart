@@ -58,7 +58,7 @@ const Map<String, String> arSA = {
   "msg_plz_enter_correct_iqama_number": "الرجاء إدخال رقم الاقامة الصحيح",
   "msg_plz_enter_email": "الرجاء إدخال البريد الإلكتروني",
   "msg_plz_enter_correct_email": "الرجاء إدخال بريد إلكتروني صحيح",
-  "msg_register_success": "تم التسجيل بنجاح",
+  "msg_register_success": " يرجى ادخل رمز التأكيد الذي وصلك لإستكمال عملية انشاء الحساب",
   "msg_phone_already_exist": "رقم الهاتف موجود بالفعل",
   "msg_iqama_already_exist": "رقم الاقامة موجود بالفعل",
   "msg_email_already_exist": "البريد الإلكتروني موجود بالفعل",

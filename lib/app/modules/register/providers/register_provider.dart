@@ -59,12 +59,12 @@ class RegisterProvider extends GetConnect {
       }
 
       if (res.body['code'] == 1) {
-        mySnackBar(
-          title: "success".tr,
-          message: "msg_register_success".tr,
-          color: MYColor.success,
-          icon: CupertinoIcons.check_mark_circled,
-        );
+        // mySnackBar(
+        //   title: "success".tr,
+        //   message: "msg_register_success".tr,
+        //   color: MYColor.success,
+        //   icon: CupertinoIcons.check_mark_circled,
+        // );
       }
 
       if (res.status.hasError) {

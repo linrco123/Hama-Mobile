@@ -61,7 +61,7 @@ const Map<String, String> enUS = {
   "msg_plz_enter_correct_iqama_number": "Please enter correct iqama number",
   "msg_plz_enter_email": "Please enter email",
   "msg_plz_enter_correct_email": "Please enter correct email",
-  "msg_register_success": "Register success",
+  "msg_register_success": "Enter verification code to complete signup",
   "msg_phone_already_exist": "Phone number already exists!",
   "msg_iqama_already_exist": "Iqama number already exists!",
   "msg_email_already_exist": "Email already exists!",

@@ -106,7 +106,7 @@ class ProfileController extends GetxController {
       isProcessing.value = true;
       Map data = {
         "name": txtFullName.text,
-        "phone": "+966${txtPhone.text}",
+        "phone": "966${txtPhone.text}",
         "iqama": txtIqama.text,
         "email": txtEmail.text,
       };

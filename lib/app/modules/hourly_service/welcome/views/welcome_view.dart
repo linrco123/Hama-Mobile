@@ -6,6 +6,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/controllers/welcome_controller.dart';
 import 'package:musaneda/components/hourly/welcome/welcome_card.dart';
 import 'package:musaneda/config/constance.dart';
@@ -57,61 +58,58 @@ class WelcomeView extends GetView<WelcomeController> {
                           height: Get.height / 4,
                           width: Get.width,
                           decoration: BoxDecoration(
-                              gradient: RadialGradient(
-                                  center: Alignment.center,
-                                  tileMode: TileMode.mirror,
-                                  // focalRadius: 6.0,
-                                  // radius: 0.2,
+                              gradient: LinearGradient(
+                                  begin: LanguageController.I.isEnglish? Alignment.bottomLeft:Alignment.topRight,
+                                  end:  LanguageController.I.isEnglish? Alignment.topRight:Alignment.bottomLeft,
                                   colors: [
                                 MYColor.primary,
                                 MYColor.primary.withOpacity(0.5),
                               ])),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 7.0, right: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                     children: [
+                                      Text(
+                                        controller.greetings(),
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            // height: 1.7,
+                                            color: MYColor.white,
+                                            fontWeight: FontWeight.w900),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Text(
+                                        Constance.instance.name,
+                                        style: TextStyle(
+                                            fontSize: 17.0,
+                                            color: MYColor.white,
+                                            fontWeight: FontWeight.w900),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0, right: 10.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            controller.greetings(),
-                                            style: TextStyle(
-                                                fontSize: 20.0,
-                                                color: MYColor.secondary1,
-                                                fontWeight: FontWeight.w900),
-                                          ),
-                                          const SizedBox(
-                                            height: 5.0,
-                                          ),
-                                          Text(
-                                            Constance.instance.name,
-                                            style: TextStyle(
-                                                fontSize: 17.0,
-                                                color: MYColor.white,
-                                                fontWeight: FontWeight.w900),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 10.0, left: 10.0),
+                                      padding: const EdgeInsets.all(
+                                          15.0),
                                       child: Image.asset(
                                         'assets/images/sunrise2.png',
                                         height: 70,
                                         width: 70,
-                                      ))
+                                      )),
                                 ],
                               ),
                             ],

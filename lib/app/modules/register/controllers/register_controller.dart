@@ -4,11 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import '../../../../components/myInkWell.dart';
-import '../../../../config/constance.dart';
+ import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../../../data/iqama_validator.dart';
 import '../providers/register_provider.dart';
@@ -89,8 +88,7 @@ class RegisterController extends GetxController {
   validateIqama(String value) {
     if (value.isEmpty) {
       return "msg_plz_enter_iqama_number".tr;
-    }
-     else if (IqamaValidator().validateSaudiNationalID(value) == false) {
+    } else if (IqamaValidator().validateSaudiNationalID(value) == false) {
       return "msg_plz_enter_correct_iqama_number".tr;
     }
     return null;
@@ -180,7 +178,6 @@ class RegisterController extends GetxController {
     RegisterProvider().postResendOtp(data);
     update();
   }
-
   /// show dialog when register success
   void _showDialog(context) {
     showDialog(
@@ -188,7 +185,7 @@ class RegisterController extends GetxController {
       anchorPoint: const Offset(0.5, 0.5),
       builder: (context) {
         return Dialog(
-          backgroundColor: MYColor.primary.withOpacity(0.1),
+          backgroundColor: MYColor.secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -204,9 +201,8 @@ class RegisterController extends GetxController {
                 Text(
                   "verification_code".tr,
                   style: TextStyle(
-                    color: MYColor.buttons,
+                    color: MYColor.white,
                     fontSize: 16,
-                    decoration: TextDecoration.underline,
                     fontFamily: 'cairo_medium',
                   ),
                 ),
@@ -216,7 +212,7 @@ class RegisterController extends GetxController {
                 Text(
                   "enter_the_code_sent_to".tr,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 15,
                   ),
                   textAlign: TextAlign.center,
@@ -225,7 +221,7 @@ class RegisterController extends GetxController {
                 Text(
                   "enter_the_code_below".tr,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 15,
                   ),
                   textAlign: TextAlign.center,
@@ -241,19 +237,24 @@ class RegisterController extends GetxController {
                   children: [
                     Text(
                       "did_not_receive_the_code".tr,
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: TextStyle(
+                        color: MYColor.white,
                         fontSize: 14,
                         fontFamily: 'cairo_extra_light',
                       ),
                     ),
-                    myInkWell(
-                      fun: () => resendOtp(),
-                      text: "resend_code".tr,
-                      size: 14,
-                      font: 'cairo_extra_light',
-                      color: MYColor.buttons,
-                    ),
+                    TextButton(
+                      onPressed: () => resendOtp(),
+                      child: Text("resend_code".tr,
+                          style: TextStyle(color: MYColor.white,fontSize: 14,)),
+                    )
+                    // myInkWell(
+                    //   fun: () => resendOtp(),
+                    //   text: "resend_code".tr,
+                    //   size: 14,
+                    //   font: 'cairo_extra_light',
+                    //   color: MYColor.white,
+                    // ),
                   ],
                 )
               ],
