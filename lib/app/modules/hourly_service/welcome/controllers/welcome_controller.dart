@@ -39,6 +39,6 @@ class WelcomeController extends GetxController {
   }
 
   void goToServiceTypeView() {
-    Get.offNamed(Routes.SERVICETYPE);
+    Get.toNamed(Routes.SERVICETYPE);
   }
 }

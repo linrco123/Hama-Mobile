@@ -168,6 +168,7 @@ const Map<String, String> arSA = {
   "confirm": "تأكيد",
   'submit': "تقديم الطلب",
   "filter_menu_due_to": "تصفية القائمة بناء على",
+  "hour_filter_menu_due_to": "تفاصيل الطلب ",
   "search": "بحث",
   "credit_card": "بطاقة الائتمان",
   "sadad": "نظام سداد للمدفوعات",
@@ -394,8 +395,9 @@ const Map<String, String> arSA = {
   'morning': 'صباحى',
   'evening': 'مسائى',
   'visits_number': ' عدد الزيارات ',
-  'maids_number': 'عدد الخادمات',
+  'maids_number': 'عدد العاملات',
   'proceed': "تابع",
+  'choose_package':'اختر الباقة المناسبة ',
   //'Address Name' 'Street Name'  building_number floor_number 'Postal Code/Zip Code'
   'address_name': 'اسم العنوان',
   'street_name': 'اسم الشارع',
@@ -408,10 +410,13 @@ const Map<String, String> arSA = {
   'choose_location': 'اختر الموقع',
   'address_details': 'تفاصيل الموقع',
   'pick_date': 'من فضلك قم بإختيار تاريخ',
-  'choose_visit_date': 'اختر تاريخ الزيارة ',
+  'visit_date': 'تاريخ الزيارة ',
+  'start_v_date':'تاريخ البدء',
   'choose_address': ' اختر عنوانك',
   'choose_addressess': 'من فضلك, اختر عنوانا',
   'confirm_address':'تاكيد العنوان',
+  'confirm_date':' تاكيد التاريخ',
+
   //"choose_nationality"  "choose_visit_number" "choose_working_hour" "choose_shift_type" "choose_maid_number"
   "choose_nationality": " اختر الجنسية",
   "choose_visit_number": " اختر عدد الزيارات",

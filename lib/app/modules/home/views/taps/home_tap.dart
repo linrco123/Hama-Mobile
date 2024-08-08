@@ -1,4 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
@@ -18,57 +18,57 @@ Widget homeTap(context) {
     builder: (ctx) {
       return ListView(
         children: [
-          CarouselSlider(
-            items: HomeController.I.listSliders.map(
-              (e) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          decoration:  BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                e.image,
-                              ),
-                              fit: BoxFit.fill,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(8),
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ).toList(),
-            options: CarouselOptions(
-              height: 159,
-              aspectRatio: 16 / 9,
-              viewportFraction: 0.8,
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              reverse: false,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 3),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enlargeCenterPage: true,
-              scrollDirection: Axis.horizontal,
-              autoPlayAnimationDuration: const Duration(
-                milliseconds: 1000,
-              ),
-              onPageChanged: (index, reason) {},
-            ),
-          ),
+          // CarouselSlider(
+          //   items: HomeController.I.listSliders.map(
+          //     (e) {
+          //       return Builder(
+          //         builder: (BuildContext context) {
+          //           return SizedBox(
+          //             width: double.infinity,
+          //             child: Card(
+          //               shape: const RoundedRectangleBorder(
+          //                 borderRadius: BorderRadius.all(
+          //                   Radius.circular(8),
+          //                 ),
+          //               ),
+          //               child: Container(
+          //                 width: double.infinity,
+          //                 decoration:  BoxDecoration(
+          //                   image: DecorationImage(
+          //                     image: NetworkImage(
+          //                       e.image,
+          //                     ),
+          //                     fit: BoxFit.fill,
+          //                   ),
+          //                   borderRadius: const BorderRadius.all(
+          //                     Radius.circular(8),
+          //                   ),
+          //                 ),
+          //               ),
+          //             ),
+          //           );
+          //         },
+          //       );
+          //     },
+          //   ).toList(),
+          //   options: CarouselOptions(
+          //     height: 159,
+          //     aspectRatio: 16 / 9,
+          //     viewportFraction: 0.8,
+          //     initialPage: 0,
+          //     enableInfiniteScroll: true,
+          //     reverse: false,
+          //     autoPlay: true,
+          //     autoPlayInterval: const Duration(seconds: 3),
+          //     autoPlayCurve: Curves.fastOutSlowIn,
+          //     enlargeCenterPage: true,
+          //     scrollDirection: Axis.horizontal,
+          //     autoPlayAnimationDuration: const Duration(
+          //       milliseconds: 1000,
+          //     ),
+          //     onPageChanged: (index, reason) {},
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(
               top: 15,

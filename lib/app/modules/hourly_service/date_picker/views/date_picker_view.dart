@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/controllers/date_picker_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/myColor.dart';
@@ -48,9 +49,11 @@ class DatePickerView extends GetView<DatePickerController> {
                   ),
                   const SizedBox(
                     width: 10.0,
-                  ),
+                  ), //'visit_date' 'start_v_date'
                   Text(
-                    'choose_visit_date'.tr,
+                    serviceTypeController.visitsNumber.value == 2
+                        ? 'visit_date'.tr 
+                        : 'start_v_date'.tr,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: MYColor.primary,
@@ -68,7 +71,8 @@ class DatePickerView extends GetView<DatePickerController> {
                     height: Get.height / 2.1,
                     child: DatePicker(
                       initialDate: DateTime.now().add(const Duration(days: 1)),
-                      minDate: DateTime.now().add(const Duration(days: 1)), //? maybe after today with 2 days
+                      minDate: DateTime.now().add(const Duration(
+                          days: 1)), //? maybe after today with 2 days
                       maxDate: DateTime(DateTime.now().year + 3, 12, 30),
                       //disabledDayPredicate: ,
                       initialPickerType: PickerType.days,
@@ -114,7 +118,7 @@ class DatePickerView extends GetView<DatePickerController> {
                           color: MYColor.primary.withOpacity(0.3),
                           fontSize: 18.0,
                           fontWeight: FontWeight.w600),
-                      currentDate: DateTime.now().add(const Duration(days:1)),
+                      currentDate: DateTime.now().add(const Duration(days: 1)),
                       onDateSelected: (value) {
                         datePickerController.selectDateTime(value);
                       },
@@ -125,7 +129,9 @@ class DatePickerView extends GetView<DatePickerController> {
               ),
               Obx(
                 () => datePickerController.selectedDate.value.isEmpty
-                    ?   SizedBox(height: Get.height/47,)
+                    ? SizedBox(
+                        height: Get.height / 47,
+                      )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -152,10 +158,10 @@ class DatePickerView extends GetView<DatePickerController> {
                 height: 60.0,
                 child: MyCupertinoButton(
                     fun: () {
-                      // Get.to(const BankAccountdetails());
-                      if (datePickerController.selectedDate.value.isNotEmpty) {
-                        serviceTypeController.submitHourlyOrder(
-                            datePickerController.selectedDate.value);
+                       if (datePickerController.selectedDate.value.isNotEmpty) {
+                        // serviceTypeController.submitHourlyOrder(
+                        //     datePickerController.selectedDate.value);
+                        Get.toNamed(Routes.SHOWADDRESS);
                         return;
                       }
                       mySnackBar(
@@ -165,7 +171,7 @@ class DatePickerView extends GetView<DatePickerController> {
                         icon: Icons.warning,
                       );
                     },
-                    text: 'submit'.tr,
+                    text: 'confirm_date'.tr,
                     btnColor: MYColor.buttons,
                     txtColor: MYColor.btnTxtColor),
               )

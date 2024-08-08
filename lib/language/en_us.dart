@@ -174,6 +174,7 @@ const Map<String, String> enUS = {
   "confirm": "Confirm",
   'submit': "Submit Order",
   "filter_menu_due_to": "Filter menu due to",
+  "hour_filter_menu_due_to": "Order Details",
   "search": "Search",
 
   // Services
@@ -396,8 +397,9 @@ const Map<String, String> enUS = {
   'morning': 'Morning',
   'evening': 'Evening',
   'visits_number': 'Visits Number',
-  'maids_number': 'Maids Number',
+  'maids_number': 'Workers Number',
   'proceed': "Proceed",
+  'choose_package':'Choose a package',
   //'Address Name' 'Street Name'  'Building Name'   'Floor Name'  'Postal Code/Zip Code'
   'address_name': 'Address Name',
   'street_name': 'Street Name',
@@ -410,7 +412,9 @@ const Map<String, String> enUS = {
   'choose_location': 'Choose Location',
   'address_details': ' Address Details',
    'pick_date':'please , pick a date',
-   'choose_visit_date':'Please, choose visit date',
+   'visit_date':'visit date',
+   'start_v_date':'Start date',
+   'confirm_date':'Confirm Date',
    'choose_addressess':'Please, choose an address',
    'choose_address':'Choose Addresss',
    'confirm_address':'confirm Address',

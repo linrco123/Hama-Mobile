@@ -89,7 +89,7 @@ class ShowAddressessView extends GetView<LocationsController> {
                 Expanded(child: Divider(color: MYColor.primary,thickness: 1.0,)),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Text('OR' , style: TextStyle(fontSize: 15.0 , color: MYColor.primary),),
+                  child: Text('or'.tr , style: TextStyle(fontSize: 15.0 , color: MYColor.primary),),
                 ),
                 Expanded(child: Divider(color: MYColor.primary,thickness: 1.0,)),
               ],),
@@ -196,29 +196,29 @@ class ShowAddressessView extends GetView<LocationsController> {
                       ),
               );
             }),
-            const SizedBox(
-              height: 10.0,
-            ),
-            SizedBox(
-              height: 50.0,
-              width: Get.width,
-              child: MyCupertinoButton(
-                  fun: () {
-                    if (serviceTypeController.selectedLocation.value != 0) {
-                      Get.toNamed(Routes.DATEPICKER);
-                    } else {
-                      mySnackBar(
-                        title: "warning".tr,
-                        message: 'choose_addressess'.tr,
-                        color: MYColor.warning,
-                        icon: CupertinoIcons.info_circle,
-                      );
-                    }
-                  },
-                  text: 'choose_location'.tr,
-                  btnColor: MYColor.buttons,
-                  txtColor: MYColor.btnTxtColor),
-            )
+            // const SizedBox(
+            //   height: 10.0,
+            // ),
+            // SizedBox(
+            //   height: 50.0,
+            //   width: Get.width,
+            //   child: MyCupertinoButton(
+            //       fun: () {
+            //         if (serviceTypeController.selectedLocation.value != 0) {
+            //           Get.toNamed(Routes.DATEPICKER);
+            //         } else {
+            //           mySnackBar(
+            //             title: "warning".tr,
+            //             message: 'choose_addressess'.tr,
+            //             color: MYColor.warning,
+            //             icon: CupertinoIcons.info_circle,
+            //           );
+            //         }
+            //       },
+            //       text: 'choose_location'.tr,
+            //       btnColor: MYColor.buttons,
+            //       txtColor: MYColor.btnTxtColor),
+            // )
           ],
         ),
       ),

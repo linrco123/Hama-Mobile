@@ -3,6 +3,8 @@
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/bindings/date_picker_bindings.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/views/date_picker_view.dart';
+import 'package:musaneda/app/modules/hourly_service/packages_view/bindings/bindings.dart';
+import 'package:musaneda/app/modules/hourly_service/packages_view/views/packages_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/bindings/servicetype_binding.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/views/service_type_view.dart';
 import 'package:musaneda/app/modules/hourly_service/show_addressess/views/show_addressess_view.dart';
@@ -180,5 +182,12 @@ class AppPages {
       page: () => const TechnicalSupportView(),
       binding: TechnicalSupportBinding(),
     ),
+
+     GetPage(
+      name: _Paths.PACKAGES,
+      page: () => const PackagesView(),
+      binding: PackagesBindings(),
+    ),
+    
   ];
 }

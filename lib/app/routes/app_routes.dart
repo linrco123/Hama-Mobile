@@ -31,6 +31,8 @@ abstract class Routes {
   static const MESSAGE = _Paths.MESSAGE;
   static const TRANSFER_SPONSORSHIP = _Paths.TRANSFER_SPONSORSHIP;
   static const TECHNICAL_SUPPORT = _Paths.TECHNICAL_SUPPORT;
+  static const PACKAGES = _Paths.PACKAGES;  
+  static const ORDERDETAILS = _Paths.ORDERDETAILS; 
 }
 
 abstract class _Paths {
@@ -62,4 +64,8 @@ abstract class _Paths {
   static const MESSAGE = '/message';
   static const TRANSFER_SPONSORSHIP = '/transfer-sponsorship';
   static const TECHNICAL_SUPPORT = '/technical-support';
+  static const PACKAGES = '/packages';  
+  static const ORDERDETAILS = '/orderDetails';  
+
+  
 }

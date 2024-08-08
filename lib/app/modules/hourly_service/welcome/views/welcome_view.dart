@@ -1,10 +1,5 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/controllers/welcome_controller.dart';
@@ -17,6 +12,8 @@ class WelcomeView extends GetView<WelcomeController> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark));
     return GetBuilder<WelcomeController>(
       init: controller,
       builder: (controller) => Scaffold(
@@ -59,11 +56,21 @@ class WelcomeView extends GetView<WelcomeController> {
                           width: Get.width,
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                  begin: LanguageController.I.isEnglish? Alignment.bottomLeft:Alignment.topRight,
-                                  end:  LanguageController.I.isEnglish? Alignment.topRight:Alignment.bottomLeft,
+                                  begin: LanguageController.I.isEnglish
+                                      ? Alignment.bottomLeft
+                                      : Alignment.topRight,
+                                  end: LanguageController.I.isEnglish
+                                      ? Alignment.topRight
+                                      : Alignment.bottomLeft,
+                                  stops: const [
+                                0.0,
+                                0.5,
+                                1.0
+                              ],
                                   colors: [
                                 MYColor.primary,
-                                MYColor.primary.withOpacity(0.5),
+                                MYColor.primary.withOpacity(0.6),
+                                MYColor.primary.withOpacity(0.2),
                               ])),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,9 +81,8 @@ class WelcomeView extends GetView<WelcomeController> {
                                   padding: const EdgeInsets.only(
                                       top: 7.0, right: 10.0),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                     children: [
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
                                       Text(
                                         controller.greetings(),
                                         style: TextStyle(
@@ -86,12 +92,12 @@ class WelcomeView extends GetView<WelcomeController> {
                                             fontWeight: FontWeight.w900),
                                       ),
                                       const SizedBox(
-                                        width: 10.0,
+                                        width: 5.0,
                                       ),
                                       Text(
                                         Constance.instance.name,
                                         style: TextStyle(
-                                            fontSize: 17.0,
+                                            fontSize: 20.0,
                                             color: MYColor.white,
                                             fontWeight: FontWeight.w900),
                                       )
@@ -103,8 +109,7 @@ class WelcomeView extends GetView<WelcomeController> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Padding(
-                                      padding: const EdgeInsets.all(
-                                          15.0),
+                                      padding: const EdgeInsets.all(15.0),
                                       child: Image.asset(
                                         'assets/images/sunrise2.png',
                                         height: 70,

@@ -1,4 +1,3 @@
- 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ class ServiceTypeController extends GetxController {
   void onInit() {
     super.onInit();
     getCities();
-    workersNumbercontroller = TextEditingController()..text = '0';
+    workersNumbercontroller = TextEditingController()..text = '1';
   }
 
   void increaseMaidssNumber() {
@@ -26,7 +25,7 @@ class ServiceTypeController extends GetxController {
   }
 
   void decreaseMaidssNumber() {
-    if (maidsNumber.value > 0) {
+    if (maidsNumber.value > 1) {
       maidsNumber.value--;
     }
     workersNumbercontroller.text = maidsNumber.value.toString();
@@ -35,12 +34,16 @@ class ServiceTypeController extends GetxController {
   void pickAddress(int addressId) {
     selectedLocation.value = addressId;
     update();
+     Get.toNamed(Routes.ORDERDETAILS);
+    // Future.delayed(const Duration(milliseconds: 600)).then((value){
+    //   Get.toNamed(Routes.ORDERDETAILS);
+    // });
   }
 
   //void Function(String)? onChanged
   void onChanged(String number) {
     if (number.isEmpty) {
-      maidsNumber.value = 0;
+      maidsNumber.value = 1;
       workersNumbercontroller.text = maidsNumber.value.toString();
     } else {
       if (number.startsWith('0')) {
@@ -64,7 +67,7 @@ class ServiceTypeController extends GetxController {
   //shiftType1 = 'am'  ------ shiftType1 = 'pm'
   RxString shiftType = ' '.obs;
   RxInt visitsNumber = 0.obs;
-  RxInt maidsNumber = 0.obs;
+  RxInt maidsNumber = 1.obs;
   final selectedLocation = 0.obs;
 
   void submitHourlyOrder(String date) {
@@ -85,8 +88,11 @@ class ServiceTypeController extends GetxController {
       EasyLoading.dismiss();
       String orderID = value.data!.order!.id!.toString();
       double totalPrice = double.parse(value.data!.order!.cost!.toString());
-      Get.to(() => const BankAccountdetails(),
-          arguments: {'orderID': orderID, 'totalPrice': totalPrice , 'page':'hour'});
+      Get.to(() => const BankAccountdetails(), arguments: {
+        'orderID': orderID,
+        'totalPrice': totalPrice,
+        'page': 'hour'
+      });
     }).catchError((error) {
       EasyLoading.dismiss();
       print('=================== Error =============');
@@ -138,20 +144,6 @@ class ServiceTypeController extends GetxController {
         color: MYColor.warning,
         icon: CupertinoIcons.info_circle,
       );
-    } else if (workingHours.value == 0) {
-      mySnackBar(
-        title: "warning".tr,
-        message: "choose_working_hour".tr,
-        color: MYColor.warning,
-        icon: CupertinoIcons.info_circle,
-      );
-    } else if (shiftType.value == '0') {
-      mySnackBar(
-        title: "warning".tr,
-        message: "choose_shift_type".tr,
-        color: MYColor.warning,
-        icon: CupertinoIcons.info_circle,
-      );
     } else if (maidsNumber.value == 0) {
       mySnackBar(
         title: "warning".tr,
@@ -161,7 +153,8 @@ class ServiceTypeController extends GetxController {
       );
     } else {
       Get.back();
-      Get.toNamed(Routes.SHOWADDRESS);
+      //Get.toNamed(Routes.SHOWADDRESS);
+       Get.toNamed(Routes.PACKAGES);
     }
   }
   //nationalities section
@@ -274,3 +267,5 @@ class ServiceTypeController extends GetxController {
     ),
   ];
 }
+
+
