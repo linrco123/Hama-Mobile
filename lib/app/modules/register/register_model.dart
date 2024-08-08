@@ -1,11 +1,13 @@
 class Register {
   int? code;
   RegisterData? data;
+  String? message;
 
-  Register({this.code, this.data});
+  Register({this.code, this.data , this.message});
 
   Register.fromJson(Map<String, dynamic> json) {
     code = json['code'];
+    message = json["message"];
     data = json['data'] != null ? RegisterData?.fromJson(json['data']) : null;
   }
 }

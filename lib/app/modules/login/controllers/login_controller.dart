@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
+import 'package:musaneda/app/modules/register/controllers/register_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -99,13 +100,11 @@ class LoginController extends GetxController {
         isProcessing(true);
         LoginProvider().postLogin(data).then(
           (res) {
+            if(res.code == 0 && res.message! == "Verify account"){
+              RegisterController.I.showLogInDialog(Get.context);
+              
+            }
             if (res.code == 1) {
-              // NotificationController.I.showNotify(
-              //   id: res.data!.id,
-              //   title: '😍 ${'success_login'.tr}',
-              //   body: '❤️ ${res.data!.name} ${'msg_success_login'.tr}',
-              // );
-
               Map data = {
                 "id": res.data!.id,
                 "name": res.data!.name,

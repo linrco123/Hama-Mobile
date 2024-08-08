@@ -178,6 +178,9 @@ class RegisterController extends GetxController {
     RegisterProvider().postResendOtp(data);
     update();
   }
+  void showLogInDialog(context) {
+    _showDialog(context);
+  }
   /// show dialog when register success
   void _showDialog(context) {
     showDialog(

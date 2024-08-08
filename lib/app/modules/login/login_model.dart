@@ -1,11 +1,13 @@
 class Login {
   int? code;
   LoginData? data;
+  String? message;
 
-  Login({this.code, this.data});
+  Login({this.code, this.data, this.message});
 
   Login.fromJson(Map<String, dynamic> json) {
     code = json['code'];
+        message = json["message"];
     data = json['data'] != null ? LoginData?.fromJson(json['data']) : null;
   }
 }
