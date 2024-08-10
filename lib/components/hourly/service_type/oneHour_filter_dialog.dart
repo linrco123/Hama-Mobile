@@ -270,7 +270,7 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: SizedBox(
                           height: 40.0,
-                          width: 42.0,
+                          width: 45.0,
                           child: TextFormField(
                             style: TextStyle(
                               fontSize: 17.0,

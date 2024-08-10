@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/app/modules/locations/controllers/locations_controller.dart';
 import 'package:musaneda/app/modules/locations/views/create_location_view.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
-import 'package:musaneda/components/myCupertinoButton.dart';
-import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/myColor.dart';
 
 class ShowAddressessView extends GetView<LocationsController> {
@@ -85,17 +83,30 @@ class ShowAddressessView extends GetView<LocationsController> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Row(children: [
-                Expanded(child: Divider(color: MYColor.primary,thickness: 1.0,)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Text('or'.tr , style: TextStyle(fontSize: 15.0 , color: MYColor.primary),),
-                ),
-                Expanded(child: Divider(color: MYColor.primary,thickness: 1.0,)),
-              ],),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Divider(
+                    color: MYColor.primary,
+                    thickness: 1.0,
+                  )),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: Text(
+                      'or'.tr,
+                      style: TextStyle(fontSize: 15.0, color: MYColor.primary),
+                    ),
+                  ),
+                  Expanded(
+                      child: Divider(
+                    color: MYColor.primary,
+                    thickness: 1.0,
+                  )),
+                ],
+              ),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 10.0,top: 0.0),
+              margin: const EdgeInsets.only(bottom: 10.0, top: 0.0),
               child: Row(
                 children: [
                   Image.asset(
@@ -118,11 +129,23 @@ class ShowAddressessView extends GetView<LocationsController> {
               return Expanded(
                 child: locationController.hourLocations.isEmpty
                     ? Center(
-                        child: Text(
-                        'no_addressess'.tr,
-                        style: TextStyle(
-                            fontSize: 20.0, color: Colors.grey.shade400),
-                      ))
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                            SvgPicture.asset(
+                              "assets/images/icon/no_result.svg",
+                              height: 134.36,
+                              width: 100,
+                              color: MYColor.primary,
+                            ),
+                            const SizedBox(height: 15),
+                            Text(
+                              'no_addressess'.tr,
+                              style: TextStyle(
+                                fontFamily: 'cairo_regular',
+                                  color: MYColor.grey, fontSize: 18.0),
+                            ),
+                          ]))
                     : ListView.separated(
                         itemCount: locationController.hourLocations.length,
                         itemBuilder: (context, index) {

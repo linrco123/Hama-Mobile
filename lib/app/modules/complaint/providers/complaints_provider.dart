@@ -103,12 +103,6 @@ class ComplaintsProvider extends GetConnect {
       }
 
       if (res.body['code'] == 1) {
-        // mySnackBar(
-        //   title: "تم",
-        //   message: "تم ارسال الشكوى بنجاح",
-        //   color: MYColor.success,
-        //   icon: CupertinoIcons.check_mark_circled,
-        // );
         mySnackBar(
           title: "success".tr,
           message: "msg_ticket_success".tr,
@@ -123,7 +117,6 @@ class ComplaintsProvider extends GetConnect {
         return res.body['code'];
       }
     } catch (e, s) {
-      print('====================================== $e');
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

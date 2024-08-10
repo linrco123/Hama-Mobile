@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -50,11 +51,13 @@ class ComplaintController extends GetxController {
   var listHigh = List<ComplaintsData>.empty(growable: true).obs;
   var listMedium = List<ComplaintsData>.empty(growable: true).obs;
   var listLow = List<ComplaintsData>.empty(growable: true).obs;
+  var listComplaints = List<ComplaintsData>.empty(growable: true).obs;
 
   Future<void> getComplaints() async {
     isLoading(true);
     ComplaintsProvider().getComplaints().then((value) {
       for (var data in value.data as List) {
+       listComplaints.add(data);
         if (data.importance == 1) {
           listHigh.add(data);
         }
@@ -85,42 +88,41 @@ class ComplaintController extends GetxController {
     } else if (status.isDenied) {
       await showDialog(
         context: Get.overlayContext!,
-        builder: (_) =>
-            AlertDialog(
-              title: const Text('Permission Required'),
-              content: const Text('Please grant permission to select a file.'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(Get.context!),
-                  child: const Text('OK'),
-                ),
-              ],
+        builder: (_) => AlertDialog(
+          title: const Text('Permission Required'),
+          content: const Text('Please grant permission to select a file.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(Get.context!),
+              child: const Text('OK'),
             ),
+          ],
+        ),
       );
     } else if (status.isPermanentlyDenied) {
       await showDialog(
         context: Get.overlayContext!,
-        builder: (_) =>
-            AlertDialog(
-              title: const Text('Permission Required'),
-              content: const Text(
-                  'Please grant permission to select a file. Go to app settings > permissions and enable storage permission.'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(Get.context!),
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () => openAppSettings(),
-                  child: const Text('Settings'),
-                ),
-              ],
+        builder: (_) => AlertDialog(
+          title: const Text('Permission Required'),
+          content: const Text(
+              'Please grant permission to select a file. Go to app settings > permissions and enable storage permission.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(Get.context!),
+              child: const Text('Cancel'),
             ),
+            TextButton(
+              onPressed: () => openAppSettings(),
+              child: const Text('Settings'),
+            ),
+          ],
+        ),
       );
     }
   }
-final filePicker = FilePicker.platform;  
-FilePickerResult? result;
+
+  final filePicker = FilePicker.platform;
+  FilePickerResult? result;
   void selectFile() async {
     try {
       await FilePicker.platform.clearTemporaryFiles();
@@ -255,15 +257,7 @@ FilePickerResult? result;
   createComplaint() {
     try {
       if (formComplaintKey.currentState!.validate()) {
-
-        if (selectedTicketType.value == 0) {
-          mySnackBar(
-            title: "error".tr,
-            message: "برجاء اختيار نوع التذكرة",
-            color: Colors.red,
-            icon: Icons.error,
-          );
-        } else if (selectedTicketPriority.value == 0) {
+        if (selectedTicketPriority.value == 0) {
           mySnackBar(
             title: "error".tr,
             message: "برجاء اختيار الأولوية",
@@ -276,12 +270,12 @@ FilePickerResult? result;
             "name": txtTitle.text,
             "description": txtNotes.text,
             "contract_id": HomeController.I.listContracts.first.id ?? 0,
-            "type": selectedTicketType.value,
+            "type": Random().nextInt(200) % 2 == 0? 1:2,
             "importance": selectedTicketPriority.value,
             "file": fileName.value,
           };
           ComplaintsProvider().postComplaints(map).then(
-                (value) {
+            (value) {
               if (value == 1) {
                 isLoading(false);
                 Get.offAllNamed(Routes.HOME);
@@ -297,6 +291,7 @@ FilePickerResult? result;
     update();
   }
 }
+
 class TicketType {
   final int id;
   final NameLanguage name;

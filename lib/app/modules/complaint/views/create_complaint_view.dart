@@ -68,47 +68,6 @@ class CreateComplaintView extends GetView<ComplaintController> {
                   _notesTextField(context),
                   const SizedBox(height: 10),
                   Text(
-                    'ticket_type'.tr,
-                    style: TextStyle(
-                      color: MYColor.buttons,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Obx(
-                    () => myDropdown(
-                      context: context,
-                      value: controller.selectedTicketType.value,
-                      onChanged: (value) {
-                        controller.setTicketType = value;
-                      },
-                      items: controller.ticketTypes.map(
-                        (item) {
-                          return DropdownMenuItem(
-                            value: item.id,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 10,
-                                right: 10,
-                              ),
-                              child: Text(
-                                LanguageController.I.getLocale == 'ar'
-                                    ? item.name.ar!
-                                    : item.name.en!,
-                                style: TextStyle(
-                                  color: MYColor.greyDeep,
-                                  fontSize: 12,
-                                  fontFamily: 'cairo_regular',
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ).toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
                     'ticket_importance'.tr,
                     style: TextStyle(
                       color: MYColor.buttons,
@@ -195,7 +154,7 @@ class CreateComplaintView extends GetView<ComplaintController> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 70.0,),
                   SizedBox(
                     height: 52,
                     width: double.infinity,

@@ -63,11 +63,12 @@ class AddressDetailsView extends GetView<LocationsController> {
                     controler: locationController.floorController,
                     textInputType: TextInputType.number,
                   ),
-                  AddressDetailsWidget(
-                    title: 'zip_code'.tr,
-                    controler: locationController.zipController,
-                    textInputType: TextInputType.number,
-                  )
+                  
+                  // AddressDetailsWidget(
+                  //   title: 'zip_code'.tr,
+                  //   controler: locationController.zipController,
+                  //   textInputType: TextInputType.number,
+                  // )
                 ],
               ),
             ),

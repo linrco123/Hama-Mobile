@@ -71,7 +71,7 @@ class MyComplaintCard extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        status == "closed" ? "مغلق" : "مفتوح",
+                        status == "closed" ? "closed".tr : "open".tr,
                         style: TextStyle(
                           color: status == "closed"
                               ? MYColor.buttons

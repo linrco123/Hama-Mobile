@@ -52,7 +52,7 @@ class DatePickerView extends GetView<DatePickerController> {
                   ), //'visit_date' 'start_v_date'
                   Text(
                     serviceTypeController.visitsNumber.value == 2
-                        ? 'visit_date'.tr 
+                        ? 'visit_date'.tr
                         : 'start_v_date'.tr,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -64,66 +64,64 @@ class DatePickerView extends GetView<DatePickerController> {
               const SizedBox(
                 height: 10.0,
               ),
-              Container(
-                //color: MYColor.accent,
-                child: SizedBox(
-                    width: Get.width,
-                    height: Get.height / 2.1,
-                    child: DatePicker(
-                      initialDate: DateTime.now().add(const Duration(days: 1)),
-                      minDate: DateTime.now().add(const Duration(
-                          days: 1)), //? maybe after today with 2 days
-                      maxDate: DateTime(DateTime.now().year + 3, 12, 30),
-                      //disabledDayPredicate: ,
-                      initialPickerType: PickerType.days,
-                      highlightColor: MYColor.primary,
-                      splashRadius: 10.0,
-                      daysOfTheWeekTextStyle: TextStyle(
-                          color: MYColor.primary.withOpacity(0.6),
-                          fontWeight: FontWeight.bold),
-                      padding: EdgeInsets.zero,
-                      centerLeadingDate: true,
-                      leadingDateTextStyle: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18.0),
+              SizedBox(
+                  width: Get.width,
+                  height: Get.height / 2.1,
+                  child: DatePicker(
+                    initialDate: DateTime.now().add(const Duration(days: 1)),
+                    minDate: DateTime.now().add(const Duration(
+                        days: 1)), //? maybe after today with 2 days
+                    maxDate: DateTime(DateTime.now().year + 3, 12, 30),
+                    //disabledDayPredicate: ,
+                    initialPickerType: PickerType.days,
+                    highlightColor: MYColor.primary,
+                    splashRadius: 10.0,
+                    daysOfTheWeekTextStyle: TextStyle(
+                        color: MYColor.primary.withOpacity(0.6),
+                        fontWeight: FontWeight.bold),
+                    padding: EdgeInsets.zero,
+                    centerLeadingDate: true,
+                    leadingDateTextStyle: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18.0),
 
-                      selectedCellDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: MYColor.primary,
-                          borderRadius: BorderRadius.circular(5.0),
-                          border: Border.all(
-                              color: MYColor.primary.withOpacity(0.3),
-                              width: 1.0)),
-                      selectedCellTextStyle: TextStyle(
-                          color: MYColor.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600),
-                      enabledCellsTextStyle: TextStyle(
-                          color: MYColor.primary,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600),
-                      enabledCellsDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: MYColor.white,
-                          borderRadius: BorderRadius.circular(5.0),
-                          border: Border.all(
-                              color: MYColor.primary.withOpacity(0.3),
-                              width: 1.0)),
-                      disabledCellsDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: MYColor.primary.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(5.0),
-                          border: Border.all(
-                              color: MYColor.primary.withOpacity(0.2))),
-                      disabledCellsTextStyle: TextStyle(
-                          color: MYColor.primary.withOpacity(0.3),
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600),
-                      currentDate: DateTime.now().add(const Duration(days: 1)),
-                      onDateSelected: (value) {
-                        datePickerController.selectDateTime(value);
-                      },
-                    )),
-              ),
+                    selectedCellDecoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: MYColor.primary,
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(
+                            color: MYColor.primary.withOpacity(0.3),
+                            width: 1.0)),
+                    selectedCellTextStyle: TextStyle(
+                        color: MYColor.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600),
+                    enabledCellsTextStyle: TextStyle(
+                        color: MYColor.primary,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600),
+                    enabledCellsDecoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: MYColor.white,
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(
+                            color: MYColor.primary.withOpacity(0.3),
+                            width: 1.0)),
+                    disabledCellsDecoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: MYColor.primary.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(
+                            color: MYColor.primary.withOpacity(0.2))),
+                    disabledCellsTextStyle: TextStyle(
+                        color: MYColor.primary.withOpacity(0.3),
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600),
+                    currentDate: DateTime.now().add(const Duration(days: 1)),
+                    onDateSelected: (value) {
+                      datePickerController.selectDateTime(value);
+                    },
+                  )),
+
               const SizedBox(
                 height: 5.0,
               ),
@@ -158,9 +156,7 @@ class DatePickerView extends GetView<DatePickerController> {
                 height: 60.0,
                 child: MyCupertinoButton(
                     fun: () {
-                       if (datePickerController.selectedDate.value.isNotEmpty) {
-                        // serviceTypeController.submitHourlyOrder(
-                        //     datePickerController.selectedDate.value);
+                      if (datePickerController.selectedDate.value.isNotEmpty) {
                         Get.toNamed(Routes.SHOWADDRESS);
                         return;
                       }

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
+import 'package:musaneda/app/modules/home/nationalities_model.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/models/hourly_order_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
@@ -42,7 +43,37 @@ class ServiceTypeProvider extends GetConnect {
       return Future.error(e.toString());
     }
   }
+  /// Get all Nationalities from api
+  Future<Nationalities> getNationalities() async {
+    try {
+      final res = await get(
+        "${Constance.apiEndpoint}/musaneda_nationality",
+        headers: {
+          "Accept": "application/json",
+          "Authorization": "Bearer ${Constance.instance.token}",
+        },
+      );
 
+      if (res.body['code'] == 0) {
+        mySnackBar(
+          title: "error".tr,
+          message: "Can't fetch nationalities",
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
+      }
+
+      if (res.status.hasError) {
+        return Future.error(res.status);
+      } else {
+        return Nationalities.fromJson(res.body);
+      }
+      
+    } catch (e, s) {
+      await Sentry.captureException(e, stackTrace: s);
+      return Future.error(e.toString());
+    }
+  }
   Future<HourlyOrderModel> submitHourOrder(Map<String, dynamic> map) async {
     try {
       await EasyLoading.show(status: 'waiting'.tr);
@@ -54,6 +85,7 @@ class ServiceTypeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
+      print(res.body);
       if (jsonDecode(res.body)['code'] == 0) {
         mySnackBar(
           title: "warning".tr,
@@ -77,6 +109,7 @@ class ServiceTypeProvider extends GetConnect {
         return HourlyOrderModel.fromJson(jsonDecode(res.body));
       }
     } catch (e, s) {
+      print('exception is                 $e');
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

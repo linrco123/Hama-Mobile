@@ -3,8 +3,10 @@
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/bindings/date_picker_bindings.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/views/date_picker_view.dart';
-import 'package:musaneda/app/modules/hourly_service/packages_view/bindings/bindings.dart';
-import 'package:musaneda/app/modules/hourly_service/packages_view/views/packages_view.dart';
+import 'package:musaneda/app/modules/hourly_service/order_details/bindings/orderDetails_binding.dart';
+import 'package:musaneda/app/modules/hourly_service/order_details/views/orderDetails_view.dart';
+import 'package:musaneda/app/modules/hourly_service/packages/bindings/bindings.dart';
+import 'package:musaneda/app/modules/hourly_service/packages/views/packages_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/bindings/servicetype_binding.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/views/service_type_view.dart';
 import 'package:musaneda/app/modules/hourly_service/show_addressess/views/show_addressess_view.dart';
@@ -16,7 +18,6 @@ import '../modules/complaint/bindings/complaint_binding.dart';
 import '../modules/complaint/views/complaint_view.dart';
 import '../modules/contract/bindings/contract_binding.dart';
 import '../modules/contract/views/contract_view.dart';
-import '../modules/custom_payment/bindings/custom_payment_binding.dart';
 import '../modules/delegation/bindings/delegation_binding.dart';
 import '../modules/delegation/views/delegation_view.dart';
 import '../modules/forget/bindings/forget_binding.dart';
@@ -145,6 +146,11 @@ class AppPages {
       name: _Paths.ORDER,
       page: () => const OrderView(),
       binding: OrderBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDERDETAILS,
+      page: () => const OrderDetailsView(),
+      binding: OrderdetailsBinding(),
     ),
     GetPage(
       name: _Paths.NOTIFICATION,

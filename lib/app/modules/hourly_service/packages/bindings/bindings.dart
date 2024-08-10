@@ -1,7 +1,7 @@
 
 
 import 'package:get/get.dart';
-import 'package:musaneda/app/modules/hourly_service/packages_view/controllers/packages_controller.dart';
+import 'package:musaneda/app/modules/hourly_service/packages/controllers/packages_controller.dart';
  
 class PackagesBindings extends Bindings{
   @override

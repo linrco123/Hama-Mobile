@@ -16,12 +16,14 @@ class ServiceTypeController extends GetxController {
   void onInit() {
     super.onInit();
     getCities();
+    getNationalities();
     workersNumbercontroller = TextEditingController()..text = '1';
   }
 
   void increaseMaidssNumber() {
     maidsNumber.value++;
     workersNumbercontroller.text = maidsNumber.value.toString();
+    update();
   }
 
   void decreaseMaidssNumber() {
@@ -29,15 +31,15 @@ class ServiceTypeController extends GetxController {
       maidsNumber.value--;
     }
     workersNumbercontroller.text = maidsNumber.value.toString();
+    update();
   }
-
   void pickAddress(int addressId) {
     selectedLocation.value = addressId;
     update();
-     Get.toNamed(Routes.ORDERDETAILS);
-    // Future.delayed(const Duration(milliseconds: 600)).then((value){
-    //   Get.toNamed(Routes.ORDERDETAILS);
-    // });
+    Future.delayed(const Duration(seconds: 1)).then((value) {
+      print('===========================rdffffffffffff========================d');
+      Get.toNamed(Routes.ORDERDETAILS);
+    });
   }
 
   //void Function(String)? onChanged
@@ -46,8 +48,8 @@ class ServiceTypeController extends GetxController {
       maidsNumber.value = 1;
       workersNumbercontroller.text = maidsNumber.value.toString();
     } else {
-      if (number.startsWith('0')) {
-        String num = number.split('0')[1];
+      if (number.startsWith('1')) {
+        String num = number.split('1')[1];
 
         workersNumbercontroller.text = '';
         workersNumbercontroller.text = num;
@@ -63,18 +65,19 @@ class ServiceTypeController extends GetxController {
   late TextEditingController workersNumbercontroller;
   RxInt nationality = 0.obs;
   RxInt city = 0.obs;
-  RxInt workingHours = 0.obs;
+  RxInt workingHours = 4.obs;
   //shiftType1 = 'am'  ------ shiftType1 = 'pm'
-  RxString shiftType = ' '.obs;
+  RxString shiftType = 'am'.obs;
   RxInt visitsNumber = 0.obs;
   RxInt maidsNumber = 1.obs;
   final selectedLocation = 0.obs;
 
-  void submitHourlyOrder(String date) {
+  void submitHourlyOrder(String date, int packageId) {
     Map<String, dynamic> map = {
       'country_id': nationality.value.toString(),
       'shift': shiftType.value.toString(),
       'from_date': date.toString(),
+      //'package_id': packageId,
       //'to_date': date,
       'from_time': getShiftStartingTime.toString(),
       'duration': workingHours.value.toString(),
@@ -126,7 +129,7 @@ class ServiceTypeController extends GetxController {
   }
 
   goToHomePage() {
-    Get.offAllNamed(Routes.HOME);
+    Get.toNamed(Routes.HOME);
   }
 
   void validateFilterOptions() {
@@ -154,48 +157,35 @@ class ServiceTypeController extends GetxController {
     } else {
       Get.back();
       //Get.toNamed(Routes.SHOWADDRESS);
-       Get.toNamed(Routes.PACKAGES);
+      Get.toNamed(Routes.PACKAGES);
     }
   }
-  //nationalities section
 
-  List<NationalitiesData> nationalityList = [
-    NationalitiesData(
-      id: 0,
-      name: NameLanguage(
-        ar: "اختر الجنسيه",
-        en: "Select nationality",
+  //nationalities section
+  List<NationalitiesData> nationalityList =
+      List<NationalitiesData>.empty(growable: true).obs;
+
+  Future<void> getNationalities() async {
+    nationalityList.add(
+      NationalitiesData(
+        id: 0,
+        name: NameLanguage(
+          ar: "اختر الجنسيه",
+          en: "Select Nationality",
+        ),
       ),
-    ),
-    NationalitiesData(
-      id: 101,
-      name: NameLanguage(
-        ar: "اندونيسيا",
-        en: "Indonesia",
-      ),
-    ),
-    NationalitiesData(
-      id: 114,
-      name: NameLanguage(
-        ar: "كينيا",
-        en: "Kenya",
-      ),
-    ),
-    NationalitiesData(
-      id: 69,
-      name: NameLanguage(
-        ar: "اثيوبيا",
-        en: "Ethiopia",
-      ),
-    ),
-    NationalitiesData(
-      id: 176,
-      name: NameLanguage(
-        ar: "الفلبين",
-        en: "Philipin",
-      ),
-    ),
-  ];
+    );
+
+    isLoading(true);
+    ServiceTypeProvider().getNationalities().then((value) {
+      for (var data in value.data as List) {
+        nationalityList.add(data);
+      }
+      isLoading(false);
+    });
+
+    update();
+  }
 
   set setNationality(setBranch) {
     nationality.value = setBranch;
@@ -267,5 +257,3 @@ class ServiceTypeController extends GetxController {
     ),
   ];
 }
-
-

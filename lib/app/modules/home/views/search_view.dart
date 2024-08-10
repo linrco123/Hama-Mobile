@@ -128,7 +128,7 @@ class SearchView extends GetView<HomeController> {
                                     controller.setTap = 2;
                                     Get.back();
                                   },
-                                  text: "see_musaneda".tr,
+                                  text: "back_to_home".tr,
                                   btnColor: MYColor.buttons,
                                   txtColor: MYColor.btnTxtColor,
                                 ),

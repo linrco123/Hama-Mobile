@@ -11,6 +11,7 @@ import 'package:musaneda/app/modules/home/views/taps/home_tap.dart';
 import 'package:musaneda/app/modules/home/views/taps/services_tap.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/config/exitapp_alert.dart';
 import 'package:musaneda/config/myColor.dart';
 
@@ -21,7 +22,7 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
-  
+
   final _drawer = AdvancedDrawerController();
 
   @override
@@ -50,8 +51,7 @@ class HomeView extends GetView<HomeController> {
           drawer: myDrawer(context),
           child: Scaffold(
             appBar: myAppBar(context),
-            body: WillPopScope(onWillPop: exitAlertApp,
-            child: myHome(context)),
+            body: myHome(context),
             bottomNavigationBar: Container(
               height: 85,
               decoration: BoxDecoration(
@@ -277,6 +277,11 @@ class HomeView extends GetView<HomeController> {
               icon: const Icon(CupertinoIcons.search),
               color: MYColor.white,
             ),
+            IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_forward_ios_outlined))
           ],
           leading: myDrawerIcon(context, MYColor.white),
         );
@@ -292,6 +297,13 @@ class HomeView extends GetView<HomeController> {
           ),
           centerTitle: true,
           leading: myDrawerIcon(context, MYColor.white),
+          actions: [
+            IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_forward_ios_outlined))
+          ],
         );
       default:
         return myHomeAppBar(context);
@@ -325,11 +337,16 @@ class HomeView extends GetView<HomeController> {
     return AppBar(
       backgroundColor: MYColor.transparent,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
-      title: Text(
-        'home'.tr,
-        style: TextStyle(
-          color: MYColor.buttons,
-        ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'home'.tr,
+            style: TextStyle(
+              color: MYColor.buttons,
+            ),
+          ),
+        ],
       ),
       centerTitle: true,
       iconTheme: IconThemeData(
@@ -350,6 +367,11 @@ class HomeView extends GetView<HomeController> {
           },
           icon: const Icon(CupertinoIcons.bell),
         ),
+        IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_forward_ios_outlined))
       ],
     );
   }
@@ -432,7 +454,11 @@ class HomeView extends GetView<HomeController> {
                             const Spacer(),
                             LanguageController.I.getLocale.startsWith("a") ==
                                     LanguageController.I.lang[i].startsWith("a")
-                                ? Icon(CupertinoIcons.checkmark_circle , color: MYColor.buttons,size: 25.0,)
+                                ? Icon(
+                                    CupertinoIcons.checkmark_circle,
+                                    color: MYColor.buttons,
+                                    size: 25.0,
+                                  )
                                 : const SizedBox(),
                           ],
                         ),
@@ -539,9 +565,9 @@ class HomeView extends GetView<HomeController> {
               title: Text('technical_support'.tr),
             ),
             ListTile(
-              onTap: () async{
+              onTap: () async {
                 await controller.makePhoneCall();
-               },
+              },
               leading: const Icon(CupertinoIcons.phone_arrow_up_right),
               title: Text('contact_us'.tr),
             ),
@@ -552,7 +578,7 @@ class HomeView extends GetView<HomeController> {
               ),
               title: Text('logout'.tr),
             ),
-           // const Spacer(),
+            // const Spacer(),
 
             DefaultTextStyle(
               style: const TextStyle(

@@ -106,6 +106,7 @@ class LocationsController extends GetxController {
   var countryCode = ''.obs;
   var street = ''.obs;
   var addressName = ''.obs;
+  var zipCode = ''.obs;
   final box = GetStorage();
 
   void getAddress(LatLng position) async {
@@ -154,6 +155,7 @@ class LocationsController extends GetxController {
     countryCode.value = first.isoCountryCode!;
     street.value = first.street!;
     addressName.value = first.name!;
+    zipCode.value = first.postalCode!;
 
     update();
   }
@@ -405,12 +407,10 @@ class LocationsController extends GetxController {
       if (value.code == 1) {
         getLocations();
         ServiceTypeController.I.selectedLocation.value = value.data!.id!;
-        print(
-            'ServiceTypeController.I.selectedLocation.value ${ServiceTypeController.I.selectedLocation.value}');
         OrderController.I.getLocations();
         Get.back();
         if (page == 'hour') {
-          Get.toNamed(Routes.DATEPICKER);
+          Get.toNamed(Routes.ORDERDETAILS);
         }
       }
     });
@@ -445,20 +445,12 @@ class LocationsController extends GetxController {
     } else if (floorController.text.isEmpty) {
       mySnackBar(
         title: "warning".tr,
-
         message: "insert_floor_number".tr,
         color: MYColor.warning,
         icon: CupertinoIcons.info_circle,
       );
-    } else if (zipController.text.isEmpty) {
-      mySnackBar(
-        title: "warning".tr,
-        message: "insert_zip_code".tr,
-        color: MYColor.warning,
-        icon: CupertinoIcons.info_circle,
-      );
     } else {
-      postLocations(page!);
+      postLocations(page);
     }
   }
 
