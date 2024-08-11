@@ -50,6 +50,7 @@ dependencies:
   fluttertoast: ^8.2.6
   date_picker_plus: ^4.1.0
   url_launcher: ^6.3.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -57,6 +58,13 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/hamaLogo.png"
+  remove_alpha_ios: true
+  min_sdk_android: 21
 
 flutter_native_splash:
   android: true
