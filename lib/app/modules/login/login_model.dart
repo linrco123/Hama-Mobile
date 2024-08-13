@@ -8,7 +8,7 @@ class Login {
   Login.fromJson(Map<String, dynamic> json) {
     code = json['code'];
         message = json["message"];
-    data = json['data'] != null ? LoginData?.fromJson(json['data']) : null;
+    data = json['data'] != {} ? LoginData?.fromJson(json['data']) : null;
   }
 }
 

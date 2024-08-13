@@ -1,17 +1,3 @@
-/*
-*
-*
-* so important
-*-----------------
-*
-The old name of the application is 'Musenada'
-*
-*
-* so don't be confused when 'Musenada'
-*
-*
-*/
-
 const Map<String, String> enUS = {
   "location_address_text": "ex: Home, Work, etc.",
   "other_details_text": "ex: Building number, Floor number, etc.",
@@ -95,6 +81,7 @@ const Map<String, String> enUS = {
   "enter_the_code_below": "Enter the code below to verify your account",
   "did_not_receive_the_code": "Didn't receive the code?",
   "resend_code": "Resend Code",
+  "msg_verification_code_is_invalid": "Verification code is not correct !",
 
   // Verification messages and errors
   "msg_plz_enter_otp": "Please enter OTP",
@@ -109,10 +96,10 @@ const Map<String, String> enUS = {
   "cleaning": "Cleaning",
   "cooking": "Cooking",
   "washing": "Washing",
-  "best_services": "House Workers",
+  "best_services": "House workers",
   "see_all": "See all",
   "add_order": "Add Order",
-  "services": "House Workers",
+  "services": "Workers",
   "contract": "Contracts",
   "education": "Education",
   "nationality": "Nationality",
@@ -120,7 +107,7 @@ const Map<String, String> enUS = {
   "language": "Language",
   "request": "Request",
   "service_request": "Request Service",
-  "back_to_home":"Back To Home",
+  "back_to_home": "Back To Home",
   // Order
   "information": "Information",
   "package": "Package",
@@ -267,6 +254,9 @@ const Map<String, String> enUS = {
   "low": "Low",
   "medium": "Medium",
   "high": "High",
+  'date': 'Date',
+  "contract_id": "Contract ID",
+  "type": " Type",
   //"ticket_name": "Title",
   "ticket_name": "Complaint Title",
   "ticket_details": "Ticket Details",
@@ -397,13 +387,13 @@ const Map<String, String> enUS = {
   'shift_type': 'Shift Type',
   'morning': 'Morning',
   'evening': 'Evening',
-  'visits_number': 'Visits Number',
-  'maids_number': 'Workers Number',
+  'visits_number': 'Visits number',
+  'maids_number': 'Workers number',
   'proceed': "Proceed",
   'choose_package': 'Choose a package',
   //'Address Name' 'Street Name'  'Building Name'   'Floor Name'  'Postal Code/Zip Code'
-  'address_name': 'Address Name',
-  'street_name': 'Street Name',
+  'address_name': 'Address',
+  'street_name': 'Street',
   'building_number': 'Building Number',
   'floor_number': 'Floor Number',
   'zip_code': 'Postal Code/Zip Code',
@@ -437,12 +427,23 @@ const Map<String, String> enUS = {
   'question_close': 'Do you want to close the app ? ',
   'ok': 'OK',
   'or': 'OR',
+  'accept': 'Accept',
+  'refuse': 'Refuse',
   'contact_us': 'Contact Us',
   'under_development': ' Under Development',
   'from': 'From',
-  'to': 'To',
-  'open':'Open',
-  'closed':'Closed',
-    "hours":"Hours"
-
+  'to': 'to',
+  'open': 'Open',
+  'closed': 'Closed',
+  "hours": "Hours",
+  "acceptance_condition":
+      'This service is only available for families , so a house wife should exist at home during the shift',
+  "period": "Period",
+  'hours_number': "Hours number",
+  'time': "Time",
+  'total_price': 'Total Price ',
+  'btn_title_online': 'Complete order and Pay Online',
+  'btn_title_mada': 'Complete order and Pay via MADA on hand over',
+  'btn_title_bank_transfer': 'Complete order and Pay via bank transfer',
+  'mada_content':'Payment process \'ll be through MADA when handing over a house worker from a supervisor at home',
 };

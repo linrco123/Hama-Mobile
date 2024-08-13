@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
@@ -39,6 +40,7 @@ class ShowAddressessView extends GetView<LocationsController> {
             color: MYColor.primary,
           ),
         ),
+        systemOverlayStyle: const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark) ,
       ),
       body: Container(
         color: MYColor.primary.withOpacity(0.1),

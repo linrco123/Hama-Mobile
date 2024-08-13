@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
-import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myCupertinoButton.dart';
@@ -120,31 +119,21 @@ class ProfileView extends GetView<ProfileController> {
                 const SizedBox(height: 10),
                 _phoneTextField(context),
                 const SizedBox(height: 20),
-                if (controller.enabled.value)
-                  SizedBox(
+                Visibility(
+                  visible: controller.enabled.value,
+                  child: SizedBox(
                     height: 52,
                     width: double.infinity,
                     child: MyCupertinoButton(
                       btnColor: MYColor.buttons,
                       txtColor: MYColor.btnTxtColor,
                       text: "save_updates".tr,
-                      fun: () => controller.postProfile(),
+                      fun: () {
+                          controller.postProfile();
+                      },
                     ),
-                  )
-                else
-                  MyCupertinoButton(
-                    fun: () {
-                      // mySnackBar(
-                      //   title: "remove_account".tr,
-                      //   message: "msg_remove_account".tr,
-                      //   color: MYColor.buttons,
-                      //   icon: Icons.delete,
-                      // );
-                    },
-                    btnColor: MYColor.buttons,
-                    txtColor: MYColor.btnTxtColor,
-                    text: "remove_account".tr,
                   ),
+                )
               ],
             ),
           ),
@@ -189,7 +178,7 @@ class ProfileView extends GetView<ProfileController> {
   /// iqama text field
   TextFormField _iqamaTextField(BuildContext context) {
     return TextFormField(
-      enabled: controller.enabled.value,
+      enabled: false,
       controller: controller.txtIqama,
       keyboardType: TextInputType.number,
       inputFormatters: [
@@ -254,7 +243,7 @@ class ProfileView extends GetView<ProfileController> {
   /// phone text field
   TextFormField _phoneTextField(BuildContext context) {
     return TextFormField(
-      enabled: controller.enabled.value,
+      enabled: false,
       autofillHints: const [AutofillHints.telephoneNumber],
       controller: controller.txtPhone,
       keyboardType: TextInputType.phone,

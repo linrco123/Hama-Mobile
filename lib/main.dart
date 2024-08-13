@@ -68,8 +68,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  var notificationController = Get.put(NotificationController());
-  await notificationController.initNotify();
+  // var notificationController = Get.put(NotificationController());
+  // await notificationController.initNotify();
   await GetStorage.init();
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])

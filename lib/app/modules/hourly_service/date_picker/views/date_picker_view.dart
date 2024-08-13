@@ -30,7 +30,7 @@ class DatePickerView extends GetView<DatePickerController> {
             )),
         backgroundColor: MYColor.primary.withOpacity(0.1),
         systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.light),
+            statusBarIconBrightness: Brightness.dark),
       ),
       body: Container(
         height: Get.height,
@@ -40,6 +40,15 @@ class DatePickerView extends GetView<DatePickerController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Image.asset(
+                'assets/images/hamaLogo.png',
+                height: 80.0,
+                width: 150.0,
+                fit: BoxFit.fill,
+              ),
+              const SizedBox(
+                height: 15.0,
+              ),
               Row(
                 children: [
                   Icon(
@@ -48,7 +57,7 @@ class DatePickerView extends GetView<DatePickerController> {
                     color: MYColor.primary.withOpacity(0.7),
                   ),
                   const SizedBox(
-                    width: 10.0,
+                    width: 15.0,
                   ), //'visit_date' 'start_v_date'
                   Text(
                     serviceTypeController.visitsNumber.value == 2
@@ -62,16 +71,15 @@ class DatePickerView extends GetView<DatePickerController> {
                 ],
               ),
               const SizedBox(
-                height: 10.0,
+                height: 15.0,
               ),
               SizedBox(
                   width: Get.width,
                   height: Get.height / 2.1,
                   child: DatePicker(
-                    initialDate: DateTime.now().add(const Duration(days: 1)),
-                    minDate: DateTime.now().add(const Duration(
-                        days: 1)), //? maybe after today with 2 days
-                    maxDate: DateTime(DateTime.now().year + 3, 12, 30),
+                    initialDate: DateTime.now(),
+                    minDate: DateTime.now(), //? maybe after today with 2 days
+                    maxDate: DateTime(DateTime.now().year + 1, 12, 30),
                     //disabledDayPredicate: ,
                     initialPickerType: PickerType.days,
                     highlightColor: MYColor.primary,
@@ -116,7 +124,7 @@ class DatePickerView extends GetView<DatePickerController> {
                         color: MYColor.primary.withOpacity(0.3),
                         fontSize: 18.0,
                         fontWeight: FontWeight.w600),
-                    currentDate: DateTime.now().add(const Duration(days: 1)),
+                    currentDate: DateTime.now(),
                     onDateSelected: (value) {
                       datePickerController.selectDateTime(value);
                     },
@@ -149,7 +157,7 @@ class DatePickerView extends GetView<DatePickerController> {
               ),
               //const Spacer(),
               SizedBox(
-                height: Get.height / 5,
+                height: Get.height / 15,
               ),
               SizedBox(
                 width: Get.width,

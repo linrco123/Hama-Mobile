@@ -84,14 +84,14 @@ class ProfileController extends GetxController {
       profile = ProfileData(
         id: value.data!.id,
         name: value.data?.name,
-        phone: value.data?.phone!.substring(4),
+        phone: value.data?.phone!,
         iqama: value.data?.iqama,
         email: value.data?.email,
         emailVerifiedAt: value.data?.emailVerifiedAt,
         createdAt: value.data?.createdAt,
         updatedAt: value.data?.updatedAt,
       );
-      txtFullName.text = profile.name!;
+       txtFullName.text = profile.name!;
       txtPhone.text = profile.phone!;
       txtIqama.text = profile.iqama!;
       txtEmail.text = profile.email!;
@@ -100,18 +100,18 @@ class ProfileController extends GetxController {
     update();
   }
 
-  void postProfile() async {
+  postProfile() async {
     if (formProfileKey.currentState!.validate()) {
-      setEnabled = false;
       isProcessing.value = true;
       Map data = {
         "name": txtFullName.text,
-        "phone": "966${txtPhone.text}",
+        "phone": txtPhone.text,
         "iqama": txtIqama.text,
         "email": txtEmail.text,
       };
       ProfileProvider().postProfile(data).then((value) {
         isProcessing.value = false;
+        setEnabled = false;
 
         // Get.offAllNamed(Routes.HOME);
 

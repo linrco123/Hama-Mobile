@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
- import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
- import '../../../../config/constance.dart';
+import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../../../data/iqama_validator.dart';
 import '../providers/register_provider.dart';
@@ -134,7 +134,18 @@ class RegisterController extends GetxController {
         RegisterProvider().postRegister(data).then(
           (res) {
             isProcessing(false);
-            _showDialog(context);
+            if (res.code! == 1) {
+              Map data = {
+                "id": res.data!.id,
+                "name": res.data!.name,
+                "phone": res.data!.phone!.substring(4),
+                "email": res.data!.email,
+                "token": res.data!.token,
+                "firebaseToken": "",
+              };
+              box.write('LOGIN_MODEL', data).then((value) {});
+              _showDialog(context);
+            }
             //Get.offNamed('/login');
           },
         );
@@ -178,9 +189,11 @@ class RegisterController extends GetxController {
     RegisterProvider().postResendOtp(data);
     update();
   }
+
   void showLogInDialog(context) {
     _showDialog(context);
   }
+
   /// show dialog when register success
   void _showDialog(context) {
     showDialog(
@@ -249,7 +262,10 @@ class RegisterController extends GetxController {
                     TextButton(
                       onPressed: () => resendOtp(),
                       child: Text("resend_code".tr,
-                          style: TextStyle(color: MYColor.white,fontSize: 14,)),
+                          style: TextStyle(
+                            color: MYColor.white,
+                            fontSize: 14,
+                          )),
                     )
                     // myInkWell(
                     //   fun: () => resendOtp(),

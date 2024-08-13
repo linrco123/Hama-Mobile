@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../../../../components/myInkWell.dart';
-import '../../../../components/myPreferredSize.dart';
 import '../../../../config/myColor.dart';
 import '../../../routes/app_pages.dart';
-import '../../login/controllers/login_controller.dart';
 import '../controllers/forget_controller.dart';
 
 class ForgetView extends GetView<ForgetController> {
@@ -16,9 +15,6 @@ class ForgetView extends GetView<ForgetController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myPreferredSize(
-        title: LoginController.I.isSA() ? "app_name_sa".tr : "app_name".tr,
-      ),
       body: GetBuilder(
         init: controller,
         builder: (ctx) {
@@ -28,7 +24,23 @@ class ForgetView extends GetView<ForgetController> {
               key: controller.formForgetKey,
               child: ListView(
                 children: [
-                  const SizedBox(height: 25),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: Get.height / 10,
+                    ),
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 0.0, top: 0.0),
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/hamaLogo.png',
+                          height: 80.0,
+                          width: 150.0,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10.0),
                   Center(
                     child: Text(
                       "reset_password".tr,
@@ -100,43 +112,67 @@ class ForgetView extends GetView<ForgetController> {
         ),
         fillColor: Colors.grey.shade100,
         filled: true,
-        suffixIcon: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 14,
-          ),
-          child: Text(
-            "966+",
-            style: TextStyle(
-              color: MYColor.black,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        // prefixText: "phone_number".tr,
+        // hintText: "phone_number".tr,
+        suffixIcon: LanguageController.I.isEnglish
+            ? const SizedBox()
+            : Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 5.0),
+                child: Text(
+                  "966+",
+                  style: TextStyle(
+                    color: MYColor.secondary1,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         hintText: "5XXXXXXX".tr,
         hintStyle: TextStyle(
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
+          padding: LanguageController.I.isEnglish
+              ? const EdgeInsets.only(left: 15, right: 0)
+              : const EdgeInsets.only(left: 0, right: 15),
           child: SizedBox(
-            width: 103,
+            //width: 103,
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(CupertinoIcons.phone),
+                Icon(
+                  CupertinoIcons.phone,
+                  color: MYColor.buttons,
+                ),
                 const SizedBox(width: 10),
                 Text(
                   "phone_number".tr,
                   style: TextStyle(
-                    color: MYColor.black,
+                    color: MYColor.primary,
                     fontSize: 14,
                   ),
                 ),
+                LanguageController.I.isEnglish
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 14, horizontal: 5.0),
+                        child: Text(
+                          "+966",
+                          style: TextStyle(
+                            color: MYColor.secondary1,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),
         ),
+
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(

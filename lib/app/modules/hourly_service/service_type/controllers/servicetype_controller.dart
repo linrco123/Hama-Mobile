@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -7,6 +9,7 @@ import 'package:musaneda/app/modules/home/nationalities_model.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/providers/servicetype_provider.dart';
 import 'package:musaneda/app/modules/order/views/bank_account/bank_accounts_details_view.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/components/hourly/service_type/oneHour_filter_dialog.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/myColor.dart';
 
@@ -20,6 +23,20 @@ class ServiceTypeController extends GetxController {
     workersNumbercontroller = TextEditingController()..text = '1';
   }
 
+  RxDouble packageCost = 0.0.obs;
+  set setPackageCost(double cost) {
+    packageCost.value = cost;
+  }
+
+  get totalPackageCost => packageCost.value * maidsNumber.value;
+
+  var hourServiceAcceptance = false.obs;
+
+  set acceptHourService(bool value) {
+    hourServiceAcceptance.value = value;
+  }
+
+  //var ContractServiceAcceptance = false.obs;
   void increaseMaidssNumber() {
     maidsNumber.value++;
     workersNumbercontroller.text = maidsNumber.value.toString();
@@ -33,11 +50,11 @@ class ServiceTypeController extends GetxController {
     workersNumbercontroller.text = maidsNumber.value.toString();
     update();
   }
+
   void pickAddress(int addressId) {
     selectedLocation.value = addressId;
     update();
     Future.delayed(const Duration(seconds: 1)).then((value) {
-      print('===========================rdffffffffffff========================d');
       Get.toNamed(Routes.ORDERDETAILS);
     });
   }
@@ -62,58 +79,104 @@ class ServiceTypeController extends GetxController {
     }
   }
 
+  showAcceptanceDialogue(context) async {
+    if (hourServiceAcceptance.value == false) {
+      showAlertDialogue(
+        title: 'alert'.tr,
+        content: "acceptance_condition".tr,
+        onConfirm: () {
+          acceptHourService = true;
+          Get.back();
+        },
+      );
+    } else {
+      await EasyLoading.show(status: 'loading'.tr);
+      myOneHourFilterDialog(context);
+    }
+  }
+
   late TextEditingController workersNumbercontroller;
   RxInt nationality = 0.obs;
   RxInt city = 0.obs;
   RxInt workingHours = 4.obs;
-  //shiftType1 = 'am'  ------ shiftType1 = 'pm'
   RxString shiftType = 'am'.obs;
   RxInt visitsNumber = 0.obs;
   RxInt maidsNumber = 1.obs;
   final selectedLocation = 0.obs;
 
-  void submitHourlyOrder(String date, int packageId) {
+  void submitHourlyOrder(String date, int packageId, int paymmentOption) {
+    double cost = maidsNumber.value * packageCost.value;
     Map<String, dynamic> map = {
-      'country_id': nationality.value.toString(),
-      'shift': shiftType.value.toString(),
       'from_date': date.toString(),
-      //'package_id': packageId,
-      //'to_date': date,
-      'from_time': getShiftStartingTime.toString(),
-      'duration': workingHours.value.toString(),
+      'package_id': packageId,
       'user_address_id': selectedLocation.value.toString(),
       'servant_count': maidsNumber.value.toString(),
       'visits': visitsNumber.value.toString(),
-      //'cost':1000
+      'cost': cost,
+      'way_payment': paymmentOption.toString()
     };
+    // const PAYMENT_WAY = [
+    //  1 => 'CASH',
+    //  2 => 'Online',
+    //  3 => 'Bank transfer',
+    //  4 => 'MADA',
+    //      ];
 
     ServiceTypeProvider().submitHourOrder(map).then((value) {
       EasyLoading.dismiss();
       String orderID = value.data!.order!.id!.toString();
       double totalPrice = double.parse(value.data!.order!.cost!.toString());
-      Get.to(() => const BankAccountdetails(), arguments: {
-        'orderID': orderID,
-        'totalPrice': totalPrice,
-        'page': 'hour'
-      });
+
+      if (paymmentOption == 3) {
+        Get.to(() => const BankAccountdetails(), arguments: {
+          'orderID': orderID,
+          'totalPrice': totalPrice,
+          'page': 'hour'
+        });
+      } else if (paymmentOption == 2) {
+        // It is supposed to transition to online payment screen
+        //    Get.to(() => const BankAccountdetails(), arguments: {
+        //   'orderID': orderID,
+        //   'totalPrice': totalPrice,
+        //   'page': 'hour'
+        // });
+      } else if (paymmentOption == 4) {
+        showAlertDialogue(
+            title: 'alert'.tr,
+            content: 'mada_content'.tr,
+            onConfirm: () {
+              Get.offAllNamed(Routes.SERVICETYPE);
+            });
+      }
     }).catchError((error) {
       EasyLoading.dismiss();
       print('=================== Error =============');
     });
   }
 
+  showAlertDialogue({title, content, void Function()? onConfirm}) =>
+      Get.defaultDialog(
+        backgroundColor: MYColor.secondary,
+        title: title, //'alert'.tr 'mada_content'.tr
+        titleStyle: TextStyle(color: MYColor.white),
+        content: Text(
+          textAlign: TextAlign.center,
+          content,
+          style: TextStyle(
+              color: MYColor.white,
+              fontSize: 16.0,
+              fontFamily: 'cairo_regular'),
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+        textConfirm: 'ok'.tr,
+        confirmTextColor: MYColor.white,
+        buttonColor: MYColor.buttons,
+        onConfirm: onConfirm,
+      );
+
   String get getShiftStartingTime =>
       shiftType.value == 'am' ? '08:00' : '12:00';
-
-  printDataMembers() {
-    print('============ ServiceType Data Members =======================');
-    print('nationality ==============> ${nationality.value}');
-    print('workingHours ==============> ${workingHours.value}');
-    print('shiftType ==============> ${shiftType.value}');
-    print('visitsNumber ==============> ${visitsNumber.value}');
-    print('maidsNumber ==============> ${maidsNumber.value}');
-    print('selectedLocation ==============> ${selectedLocation.value}');
-  }
 
   set changeWorkingHours(int wHours) {
     workingHours.value = wHours;

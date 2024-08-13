@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -26,7 +25,8 @@ class BankAccountdetails extends StatelessWidget {
                 Get.offAllNamed(Routes.HOME);
               }
               if (page == 'hour') {
-                Get.offAllNamed(Routes.SERVICETYPE);
+                Get.back();
+               // Get.offAllNamed(Routes.SERVICETYPE);
               }
             },
             icon: Icon(

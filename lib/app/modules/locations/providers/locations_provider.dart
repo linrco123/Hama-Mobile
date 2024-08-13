@@ -47,7 +47,6 @@ class LocationsProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
       await EasyLoading.dismiss();
       if (res.body['code'] == 0) {
         if (res.body['data']['city'] != null) {

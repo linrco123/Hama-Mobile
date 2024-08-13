@@ -43,6 +43,7 @@ class ServiceTypeProvider extends GetConnect {
       return Future.error(e.toString());
     }
   }
+
   /// Get all Nationalities from api
   Future<Nationalities> getNationalities() async {
     try {
@@ -68,25 +69,25 @@ class ServiceTypeProvider extends GetConnect {
       } else {
         return Nationalities.fromJson(res.body);
       }
-      
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }
   }
+
   Future<HourlyOrderModel> submitHourOrder(Map<String, dynamic> map) async {
     try {
       await EasyLoading.show(status: 'waiting'.tr);
-      final res = await http.post(
-        Uri.parse("${Constance.apiEndpoint}/create/hour/order"),
-        body: map,
+       final res = await post(
+        "${Constance.apiEndpoint}/create/hour/order",
+        map,
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
       print(res.body);
-      if (jsonDecode(res.body)['code'] == 0) {
+        if (res.body['code'] == 0) {
         mySnackBar(
           title: "warning".tr,
           message: 'try_again'.tr,
@@ -94,8 +95,8 @@ class ServiceTypeProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-      if(jsonDecode(res.body)['code'] == 1){
-         mySnackBar(
+      if ( res.body['code'] == 1) {
+        mySnackBar(
           title: "success".tr,
           message: "msg_order_success".tr,
           color: MYColor.success,
@@ -103,13 +104,13 @@ class ServiceTypeProvider extends GetConnect {
         );
       }
 
-      if (res.statusCode != 200) {
-        return Future.error(res.statusCode);
+      if (res.status.hasError) {
+        return Future.error(res.statusCode!);
       } else {
-        return HourlyOrderModel.fromJson(jsonDecode(res.body));
+        return HourlyOrderModel.fromJson(res.body);
       }
     } catch (e, s) {
-      print('exception is                 $e');
+      print('exception is     ***********            $e');
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

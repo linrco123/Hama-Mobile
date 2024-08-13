@@ -86,16 +86,6 @@ class RegisterProvider extends GetConnect {
       await EasyLoading.dismiss();
      print(res.body);
       if (res.body['code'] == 0) {
-        // Verification code is required
-        if (res.body['data']['code'] != null) {
-          mySnackBar(
-            title: "error".tr,
-            message: "msg_plz_enter_verification_code".tr,
-            color: MYColor.warning,
-            icon: CupertinoIcons.info_circle,
-          );
-        }
-
         // Verification code is invalid
         if (res.body['data']['code'] != null) {
           mySnackBar(

@@ -17,8 +17,8 @@ class ServiceTypeView extends GetView<ServiceTypeController> {
       appBar: AppBar(
         backgroundColor: MYColor.primary.withOpacity(0.1),
         leading: ReturnButton(color: MYColor.primary, size: 20.0),
-        systemOverlayStyle:
-            const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.dark),
       ),
       body: GetBuilder<ServiceTypeController>(
           init: controller,
@@ -36,9 +36,9 @@ class ServiceTypeView extends GetView<ServiceTypeController> {
                       child: Center(
                         child: Image.asset(
                           'assets/images/hamaLogo.png',
-                          height: 70.0,
-                          width: 170.0,
-                          // fit: BoxFit.fill,
+                          height: 80.0,
+                          width: 150.0,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
@@ -60,9 +60,7 @@ class ServiceTypeView extends GetView<ServiceTypeController> {
                         description: 'hour_service_desc'.tr,
                         image: 'assets/images/hours.png',
                         function: () async {
-                          await EasyLoading.show(status: 'loading'.tr);
-                          myOneHourFilterDialog(context);
-                          // Get.defaultDialog();
+                          controller.showAcceptanceDialogue(context);
                         }),
                     const SizedBox(
                       height: 10.0,
@@ -74,7 +72,16 @@ class ServiceTypeView extends GetView<ServiceTypeController> {
                         function: () async {
                           await EasyLoading.show(status: 'loading'.tr);
                           controller.goToHomePage();
-                        })
+                        }),
+                        const SizedBox(
+                      height: 10.0,
+                    ),
+                    ServiceTypeCard(
+                        title: 'خدمة الوساطة',
+                        description: 'خدمة الوساطة',
+                        function: () {},
+                        svg: true,
+                        image: 'assets/images/drawer/delegation.svg')
                   ],
                 ),
               ),

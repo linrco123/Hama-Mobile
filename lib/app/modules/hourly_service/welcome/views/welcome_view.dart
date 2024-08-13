@@ -35,8 +35,8 @@ class WelcomeView extends GetView<WelcomeController> {
                     child: Center(
                       child: Image.asset(
                         'assets/images/hamaLogo.png',
-                        height: 70.0,
-                        width: 170.0,
+                          height: 80.0,
+                          width: 150.0,
                         // fit: BoxFit.fill,
                       ),
                     ),

@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
-import 'package:musaneda/components/myDropdown.dart';
-import 'package:musaneda/components/myInkWell.dart';
+ import 'package:musaneda/components/myInkWell.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myCupertinoButton.dart';
@@ -34,17 +33,16 @@ class LoginView extends GetView<LoginController> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                          top: Get.height / 20,
+                          top: Get.height / 10,
                         ),
                         child: Container(
-                          margin: const EdgeInsets.symmetric(vertical: 10.0),
+                          margin: const EdgeInsets.only(bottom: 0.0, top: 0.0),
                           child: Center(
                             child: Image.asset(
                               'assets/images/hamaLogo.png',
-                              height: 100,
-                              width: 200,
+                              height: 80.0,
+                              width: 150.0,
                               fit: BoxFit.fill,
-                              filterQuality: FilterQuality.high,
                             ),
                           ),
                         ),
@@ -55,8 +53,8 @@ class LoginView extends GetView<LoginController> {
                         left: LanguageController.I.isEnglish ? null : 0.0,
                         child: Obx(
                           () => Container(
-                             child: DropdownButton(
-                               borderRadius: BorderRadius.circular(20.0),
+                            child: DropdownButton(
+                              borderRadius: BorderRadius.circular(20.0),
                               elevation: 1,
                               iconEnabledColor: MYColor.buttons,
                               alignment: AlignmentDirectional.centerEnd,

@@ -15,37 +15,10 @@ class LoginProvider extends GetConnect {
       final res = await post("${Constance.apiEndpoint}/login", data);
 
       if (res.body['code'] == 0) {
-        mySnackBar(
-          title: "error".tr,
-          message: "msg_unauthorized".tr,
-          color: MYColor.warning,
-          icon: CupertinoIcons.info_circle,
-        );
-
-        if (res.body['error']['unauthorized'] != null) {
+        if (res.body['message'] == 'phone Or Password InCorrect') {
           mySnackBar(
             title: "error".tr,
             message: "msg_unauthorized".tr,
-            color: MYColor.warning,
-            icon: CupertinoIcons.info_circle,
-          );
-        }
-
-        // Phone number is not registered!
-        if (res.body['error']['phone'] != null) {
-          mySnackBar(
-            title: "error".tr,
-            message: "msg_phone_not_registered".tr,
-            color: MYColor.warning,
-            icon: CupertinoIcons.info_circle,
-          );
-        }
-
-        // Password is incorrect!
-        if (res.body['error']['password'] != null) {
-          mySnackBar(
-            title: "error".tr,
-            message: "msg_password_incorrect".tr,
             color: MYColor.warning,
             icon: CupertinoIcons.info_circle,
           );
@@ -60,13 +33,13 @@ class LoginProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-
       if (res.status.hasError) {
         return Future.error(res.status);
       } else {
         return Login.fromJson(res.body);
       }
     } catch (e, s) {
+      print('Exception ====================>   $e');
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

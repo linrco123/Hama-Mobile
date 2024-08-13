@@ -97,6 +97,7 @@ class LocationsController extends GetxController {
   }
 
   var address = ''.obs;
+  var name = ''.obs;
   var subLocality = ''.obs;
   var formattedAddress = ''.obs;
   var city = ''.obs;
@@ -126,6 +127,7 @@ class LocationsController extends GetxController {
     Map location = {
       'address': first.street,
       'formattedAddress': '${first.name}, ${first.street}',
+      "name":first.name,
       'city': first.locality,
       'country': first.country,
       'latitude': position.latitude,
@@ -140,12 +142,14 @@ class LocationsController extends GetxController {
       'featureName': first.name,
       'hashCode': first.hashCode,
     };
-    log(location.toString(), name: 'location');
+    print(location);
+   // log(location.toString(), name: 'location');
 
     box.write('my_location_objects', location);
     box.write('countryCode', first.isoCountryCode);
 
     address.value = first.street!;
+    name.value = first.name!;
     subLocality.value = first.subLocality!;
     formattedAddress.value = '${first.name}, ${first.street}';
     city.value = first.locality!;
@@ -175,6 +179,8 @@ class LocationsController extends GetxController {
     if (page == 'order' || page == 'main_home_page') {
       showExtraDetailsDialog(context, page);
     } else if (page == 'hour' && myLocation != null) {
+      txtTitle.text = name.value;
+      streetController.text = address.value!;
       Get.to(const AddressDetailsView());
     } else {
       mySnackBar(
@@ -374,6 +380,8 @@ class LocationsController extends GetxController {
     isLoading(true);
     LocationsProvider().getLocations().then((value) {
       listLocations.clear();
+      hourLocations.clear();
+      contractsLocations.clear();
       for (var data in value.data as List) {
         listLocations.add(data);
 
@@ -400,7 +408,7 @@ class LocationsController extends GetxController {
       "longitude": longitude.value,
       "title": txtTitle.text,
       "notes": page == 'hour' ? address.value : txtNotes.text,
-      "type": page == 'hour' ? 'h': 'c'
+      "type": page == 'hour' ? 'h' : 'c'
     };
     print(data);
     LocationsProvider().postLocations(data).then((value) {

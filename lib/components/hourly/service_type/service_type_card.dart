@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/config/myColor.dart';
 
@@ -7,17 +8,19 @@ class ServiceTypeCard extends StatelessWidget {
   final String title;
   final String description;
   final String image;
+  final bool svg;
   final void Function() function;
   const ServiceTypeCard(
       {super.key,
       required this.title,
       required this.description,
       required this.function,
-      required this.image});
-
+      required this.image,
+      this.svg = false});
+//'assets/images/drawer/delegation.svg'
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: function,
       child: Card(
         elevation: 2.0,
@@ -29,12 +32,21 @@ class ServiceTypeCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                image,
-                height: 60.0,
-                width: 60.0,
-                fit: BoxFit.fill,
-              ),
+              svg
+                  ? SvgPicture.asset(
+                      image,
+                      height: 50.0,
+                      width: 50.0,
+                      fit: BoxFit.fill,
+                      color: MYColor.primary,
+                    )
+                  : Image.asset(
+                      image,
+                      height: 60.0,
+                      width: 60.0,
+                      fit: BoxFit.fill,
+                      color: MYColor.primary,
+                    ),
               const SizedBox(
                 height: 10.0,
               ),
@@ -60,6 +72,7 @@ class ServiceTypeCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
+                      textAlign: TextAlign.center,
                       description,
                       style: TextStyle(
                         fontSize: 13.0,

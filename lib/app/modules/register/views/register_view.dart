@@ -35,17 +35,17 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                          top: Get.height / 20,
+                          top: Get.height / 10,
                         ),
                         child: Container(
-                          margin: const EdgeInsets.only(top: 10.0),
+                          margin:
+                              const EdgeInsets.only(bottom: 0.0, top: 0.0),
                           child: Center(
                             child: Image.asset(
                               'assets/images/hamaLogo.png',
-                              height: 100,
-                              width: 200,
+                              height: 80.0,
+                              width: 150.0,
                               fit: BoxFit.fill,
-                              filterQuality: FilterQuality.high,
                             ),
                           ),
                         ),

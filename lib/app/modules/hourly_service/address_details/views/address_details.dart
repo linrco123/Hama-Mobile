@@ -42,7 +42,18 @@ class AddressDetailsView extends GetView<LocationsController> {
           children: [
             Expanded(
               child: ListView(
-                children: [  
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/hamaLogo.png',
+                        height: 80.0,
+                        width: 150.0,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
                   AddressDetailsWidget(
                     title: 'address_name'.tr,
                     controler: locationController.txtTitle,
@@ -63,7 +74,7 @@ class AddressDetailsView extends GetView<LocationsController> {
                     controler: locationController.floorController,
                     textInputType: TextInputType.number,
                   ),
-                  
+
                   // AddressDetailsWidget(
                   //   title: 'zip_code'.tr,
                   //   controler: locationController.zipController,

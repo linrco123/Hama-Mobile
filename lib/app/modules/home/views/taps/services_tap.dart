@@ -38,7 +38,7 @@ Widget servicesTap(context) {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "services".tr,
+                  "best_services".tr,
                   style: const TextStyle(
                     fontSize: 16,
                     fontFamily: 'cairo_medium',

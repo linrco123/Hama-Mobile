@@ -18,7 +18,7 @@ class ForgotProvider extends GetConnect {
       log(res.body.toString(), name: 'forgot password');
 
       await EasyLoading.dismiss();
-
+    
       if (res.body['code'] == 0) {
         // Phone number already exists!
         if (res.body['data']['phone'] != null) {

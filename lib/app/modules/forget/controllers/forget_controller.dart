@@ -93,6 +93,7 @@ class ForgetController extends GetxController {
       anchorPoint: const Offset(0.5, 0.5),
       builder: (context) {
         return Dialog(
+          backgroundColor: MYColor.secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -108,9 +109,8 @@ class ForgetController extends GetxController {
                 Text(
                   "verification_code".tr,
                   style: TextStyle(
-                    color: MYColor.buttons,
+                    color: MYColor.white,
                     fontSize: 16,
-                    decoration: TextDecoration.underline,
                     fontFamily: 'cairo_medium',
                   ),
                 ),
@@ -120,7 +120,7 @@ class ForgetController extends GetxController {
                 Text(
                   "enter_the_code_sent_to".tr,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 15,
                   ),
                   textAlign: TextAlign.center,
@@ -129,7 +129,7 @@ class ForgetController extends GetxController {
                 Text(
                   "enter_the_code_below".tr,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 15,
                   ),
                   textAlign: TextAlign.center,
@@ -157,7 +157,7 @@ class ForgetController extends GetxController {
                     Text(
                       "did_not_receive_the_code".tr,
                       style: const TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 14,
                         fontFamily: 'cairo_extra_light',
                       ),
@@ -168,16 +168,17 @@ class ForgetController extends GetxController {
                         // start.value == 0 ? resendOtp() : null,
                         return Visibility(
                           visible: start.value == 0,
-                          child: myInkWell(
-                            fun: () {
+                          child: TextButton(
+                            onPressed: () {
                               resetTimer();
                               startTimer();
                               resendOtp();
                             },
-                            text: "resend_code".tr,
-                            size: 14,
-                            font: 'cairo_extra_light',
-                            color: MYColor.buttons,
+                            child: Text("resend_code".tr,
+                                style: TextStyle(
+                                  color: MYColor.white,
+                                  fontSize: 14,
+                                )),
                           ),
                         );
                       },
@@ -450,7 +451,7 @@ class ForgetController extends GetxController {
   restPassword(context) {
     if (formRestKey.currentState!.validate()) {
       Map data = {
-        "phone": "+966${txtPhone.text}",
+        "phone": "966${txtPhone.text}",
         "code": otpCode,
         "password": txtPassword.text,
       };
@@ -468,7 +469,7 @@ class ForgetController extends GetxController {
     if (formForgetKey.currentState!.validate()) {
       /// Send POST Request to Server for sending sms OTP
       Map data = {
-        "phone": '+966${txtPhone.text}',
+        "phone": txtPhone.text,
       };
       ForgotProvider().forgotPassword(data).then((value) {
         if (value == 1) {
@@ -484,7 +485,7 @@ class ForgetController extends GetxController {
 
   resendOtp() {
     Map data = {
-      "phone": '+966${txtPhone.text}',
+      "phone": txtPhone.text,
     };
     ForgotProvider().sendCode(data);
     startTimer();

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/packages/controllers/packages_controller.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/components/hourly/packages/package_card.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/config/myColor.dart';
@@ -12,23 +13,23 @@ class PackagesView extends GetView<PackagesController> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark));
+    var servcieTypeController = Get.put(ServiceTypeController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MYColor.primary.withOpacity(0.1),
         title: Text('choose_package'.tr,
             style: TextStyle(color: MYColor.primary, fontSize: 18.0)),
         leading: ReturnButton(color: MYColor.primary, size: 20.0),
+        systemOverlayStyle: const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
       ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
         color: MYColor.primary.withOpacity(0.1),
         padding: const EdgeInsets.all(10.0),
-        child: GetBuilder<PackagesController>(
+        child: GetX<PackagesController>(
           init: controller,
-          builder: (controller) => controller.packages.isEmpty
+          builder: (controller) => controller.hourPackages.isEmpty
               ? Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   SvgPicture.asset(
                     "assets/images/icon/no_result.svg",
@@ -42,23 +43,44 @@ class PackagesView extends GetView<PackagesController> {
                     style: TextStyle(color: MYColor.grey, fontSize: 18.0),
                   ),
                 ])
-              : ListView.separated(
-                  itemCount: controller.packages.length,
-                  itemBuilder: (context, index) {
-                    return Obx(
-                     ()=> MyPackageCard(
-                        package: controller.packages[index],
-                        isActive: controller.selectedPackage.value ==
-                            controller.packages[index].id,
-                        onTap: () {
-                          controller.selectPackage(controller.packages[index].id);
-                        },
+              : Column(
+                  children: [
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Image.asset(
+                      'assets/images/hamaLogo.png',
+                      height: 80.0,
+                      width: 150.0,
+                      fit: BoxFit.fill,
+                    ),
+                    const SizedBox(
+                      height: 15.0,
+                    ),
+                    Expanded(
+                        child: ListView.separated(
+                      itemCount: controller.hourPackages.length,
+                      itemBuilder: (context, index) {
+                        return Obx(
+                          () => MyPackageCard(
+                            package: controller.hourPackages[index],
+                            isActive: controller.selectedPackage.value ==
+                                controller.hourPackages[index].id,
+                            onTap: () {
+                              controller.selectPackage(
+                                  controller.hourPackages[index].id!);
+                              servcieTypeController.setPackageCost = controller
+                                  .hourPackages[index].cost!
+                                  .toDouble();
+                            },
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 15.0,
                       ),
-                    );
-                  },
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 15.0,
-                  ),
+                    ))
+                  ],
                 ),
         ),
       ),

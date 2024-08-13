@@ -18,9 +18,6 @@ class RegisterData {
   String? iqama;
   String? phone;
   String? email;
-  String? emailVerifiedAt;
-  String? createdAt;
-  String? updatedAt;
   String? token;
 
   RegisterData(
@@ -28,10 +25,6 @@ class RegisterData {
       this.name,
       this.iqama,
       this.phone,
-      this.email,
-      this.emailVerifiedAt,
-      this.createdAt,
-      this.updatedAt,
       this.token});
 
   RegisterData.fromJson(Map<String, dynamic> json) {
@@ -40,9 +33,6 @@ class RegisterData {
     iqama = json['iqama'];
     phone = json['phone'];
     email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
     token = json['token'];
   }
 
@@ -53,9 +43,6 @@ class RegisterData {
     data['iqama'] = iqama;
     data['phone'] = phone;
     data['email'] = email;
-    data['email_verified_at'] = emailVerifiedAt;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
     data['token'] = token;
     return data;
   }

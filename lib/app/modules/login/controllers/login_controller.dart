@@ -101,6 +101,7 @@ class LoginController extends GetxController {
         LoginProvider().postLogin(data).then(
           (res) {
             if(res.code == 0 && res.message! == "Verify account"){
+              // data should be stored here 
               RegisterController.I.showLogInDialog(Get.context);
               
             }

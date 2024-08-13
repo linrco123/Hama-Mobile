@@ -127,7 +127,7 @@ class CreateDelegationView extends GetView<DelegationController> {
                           ).toList(),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 100),
                       SizedBox(
                         height: 52,
                         width: double.infinity,

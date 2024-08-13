@@ -152,11 +152,11 @@ class AppPages {
       page: () => const OrderDetailsView(),
       binding: OrderdetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.NOTIFICATION,
-      page: () => const NotificationView(),
-      binding: NotificationBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.NOTIFICATION,
+    //   page: () => const NotificationView(),
+    //   binding: NotificationBinding(),
+    // ),
     GetPage(
       name: _Paths.MAIN_HOME_PAGE,
       page: () => const MainHomePageView(),

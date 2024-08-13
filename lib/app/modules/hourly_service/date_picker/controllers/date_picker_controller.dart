@@ -11,6 +11,8 @@ class DatePickerController extends GetxController {
   RxString selectedDate = ''.obs;
 
   void selectDateTime(DateTime dateTime) {
+  //   final DateFormat formatter = DateFormat('yyyy-MM-dd');
+  // final String formatted = formatter.format(now);
     selectedDate?.value = dateTime.toString().split(' ')[0];
     update();
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/controllers/date_picker_controller.dart';
@@ -9,7 +10,6 @@ import 'package:musaneda/app/modules/locations/controllers/locations_controller.
 import 'package:musaneda/components/hourly/packages/package_card.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
-import 'package:musaneda/components/myInkWell.dart';
 import 'package:musaneda/config/myColor.dart';
 
 class OrderDetailsView extends GetView<OrderdetailsController> {
@@ -30,6 +30,7 @@ class OrderDetailsView extends GetView<OrderdetailsController> {
           style: TextStyle(color: MYColor.primary),
         ),
         leading: ReturnButton(color: MYColor.primary, size: 20.0),
+         systemOverlayStyle: const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark) ,
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
@@ -38,201 +39,325 @@ class OrderDetailsView extends GetView<OrderdetailsController> {
         color: MYColor.primary.withOpacity(0.1),
         child: GetBuilder(
           init: controller,
-          builder: (controller) => Column(
-            children: [
-              MyPackageCard(
-                  package: packageController.packages.firstWhere((package) =>
-                      package.id == packageController.selectedPackage.value),
-                  isActive: false),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: const EdgeInsets.all(15.0),
-                //height: 80.0,
-                width: Get.width,
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: MYColor.primary.withOpacity(0.2),
-                          blurRadius: 5.0,
-                          offset: const Offset(1, 1))
-                    ],
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: MYColor.white),
-                child: Column(
-                  children: [
-                    Text(
-                      'date'.tr,
-                      style: TextStyle(
-                          color: MYColor.primary,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0),
+          builder: (controller) => SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 0.0, top: 10.0),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/hamaLogo.png',
+                      height: 80.0,
+                      width: 150.0,
+                      fit: BoxFit.fill,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      datePickerController.selectedDate.value,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'address'.tr,
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          color: MYColor.primary,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                        locationController.hourLocations.value
-                            .firstWhere((location) =>
-                                location.id ==
-                                serviceTypeController.selectedLocation.value)
-                            .address!,
-                        style: const TextStyle(
-                            // color: MYColor.primary,
-                            fontWeight: FontWeight.bold))
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Container(
-                padding: const EdgeInsets.all(15.0),
-                //height: 80.0,
-                width: Get.width,
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: MYColor.primary.withOpacity(0.2),
-                          blurRadius: 5.0,
-                          offset: const Offset(1, 1))
-                    ],
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: MYColor.white),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'nationality'.tr,
-                          style: TextStyle(
-                              color: MYColor.primary,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0),
-                        ),
-                        Text(
-                          LanguageController.I.isEnglish
-                              ? serviceTypeController.nationalityList
-                                  .firstWhere((nationality) =>
-                                      nationality.id ==
-                                      serviceTypeController.nationality.value)
-                                  .name!
-                                  .en!
-                              : serviceTypeController.nationalityList
-                                  .firstWhere((nationality) =>
-                                      nationality.id ==
-                                      serviceTypeController.nationality.value)
-                                  .name!
-                                  .ar!,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(15.0),
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: MYColor.primary.withOpacity(0.2),
+                            blurRadius: 5.0,
+                            offset: const Offset(1, 1))
                       ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'visits_number'.tr,
+                      border: Border.all(color: MYColor.primary, width: 2.0),
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: MYColor.white),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'total_price'.tr,
+                            style: TextStyle(
+                                color: MYColor.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0),
+                          ),
+                          VerticalDivider(
+                            color: MYColor.primary,
+                            thickness: 5.0,
+                            width: 5.0,
+                            indent: 1.0,
+                            endIndent: 5.0,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                serviceTypeController.totalPackageCost
+                                    .toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: MYColor.primary),
+                              ),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              Text('sar'.tr,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: MYColor.primary,
+                                      fontWeight: FontWeight.bold))
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5.0,
+                ),
+                MyPackageCard(
+                    package: packageController.hourPackages.firstWhere(
+                        (package) =>
+                            package.id ==
+                            packageController.selectedPackage.value),
+                    isActive: false),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(15.0),
+                  //height: 80.0,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: MYColor.primary.withOpacity(0.2),
+                            blurRadius: 5.0,
+                            offset: const Offset(1, 1))
+                      ],
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: MYColor.white),
+                  child: Column(
+                    children: [
+                      Text(
+                        'date'.tr,
+                        style: TextStyle(
+                            color: MYColor.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        datePickerController.selectedDate.value,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: MYColor.primary),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'address'.tr,
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: MYColor.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                          locationController.hourLocations
+                              .firstWhere(
+                                  (location) =>
+                                      location.id ==
+                                      serviceTypeController
+                                          .selectedLocation.value,
+                                  orElse: () =>
+                                      locationController.hourLocations[0])
+                              .address!,
                           style: TextStyle(
-                              fontSize: 16.0,
-                              color: MYColor.primary,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
+                              fontWeight: FontWeight.bold,
+                              color: MYColor.primary))
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(15.0),
+                  //height: 80.0,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: MYColor.primary.withOpacity(0.2),
+                            blurRadius: 5.0,
+                            offset: const Offset(1, 1))
+                      ],
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: MYColor.white),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'nationality'.tr,
+                            style: TextStyle(
+                                color: MYColor.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0),
+                          ),
+                          VerticalDivider(
+                            color: MYColor.primary,
+                            thickness: 5.0,
+                            width: 5.0,
+                            indent: 1.0,
+                            endIndent: 5.0,
+                          ),
+                          Text(
                             LanguageController.I.isEnglish
-                                ? serviceTypeController.visitNumberList
-                                    .firstWhere((visit) =>
-                                        visit.id ==
-                                        serviceTypeController
-                                            .visitsNumber.value)
+                                ? serviceTypeController.nationalityList
+                                    .firstWhere((nationality) =>
+                                        nationality.id ==
+                                        serviceTypeController.nationality.value)
                                     .name!
                                     .en!
-                                : serviceTypeController.visitNumberList
-                                    .firstWhere((visit) =>
-                                        visit.id ==
-                                        serviceTypeController
-                                            .visitsNumber.value)
+                                : serviceTypeController.nationalityList
+                                    .firstWhere((nationality) =>
+                                        nationality.id ==
+                                        serviceTypeController.nationality.value)
                                     .name!
                                     .ar!,
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('maids_number'.tr,
                             style: TextStyle(
-                                fontSize: 16.0,
-                                color: MYColor.primary,
-                                fontWeight: FontWeight.bold)),
-                        Text(serviceTypeController.maidsNumber.value.toString(),
-                            style: const TextStyle(fontWeight: FontWeight.bold))
-                      ],
-                    ),
-                  ],
+                                fontWeight: FontWeight.bold,
+                                color: MYColor.primary),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'visits_number'.tr,
+                            style: TextStyle(
+                                fontSize: 15.0,
+                                color: MYColor.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                              LanguageController.I.isEnglish
+                                  ? serviceTypeController.visitNumberList
+                                      .firstWhere((visit) =>
+                                          visit.id ==
+                                          serviceTypeController
+                                              .visitsNumber.value)
+                                      .name!
+                                      .en!
+                                  : serviceTypeController.visitNumberList
+                                      .firstWhere((visit) =>
+                                          visit.id ==
+                                          serviceTypeController
+                                              .visitsNumber.value)
+                                      .name!
+                                      .ar!,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: MYColor.primary)),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('maids_number'.tr,
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: MYColor.black,
+                                  fontWeight: FontWeight.bold)),
+                          Text(
+                              serviceTypeController.maidsNumber.value
+                                  .toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: MYColor.primary))
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const Spacer(),
-              SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: MyCupertinoButton(
-                    fun: () {},
-                    text: 'استكمال الطلب والدفع اونلاين',
-                    btnColor: MYColor.buttons,
-                    txtColor: MYColor.btnTxtColor),
-              ),
-              const SizedBox(height:5.0),
-              SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: MyCupertinoButton(
-                    fun: () {},
-                    text: ' استكمال الطلب والدفع عبر مدى عند الاستلام',
-                    btnColor: MYColor.buttons,
-                    txtColor: MYColor.btnTxtColor),
-              ),
-              const SizedBox(height:5.0),
-              SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: MyCupertinoButton(
-                    fun: () {
-                      serviceTypeController.submitHourlyOrder(
-                          datePickerController.selectedDate.value,
-                          packageController.selectedPackage.value);
-                    },
-                    text: ' استكمال الطلب والدفع عبر طريق حوالة بنكية',
-                    btnColor: MYColor.buttons,
-                    txtColor: MYColor.btnTxtColor),
-              )
-            ],
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const SizedBox(height: 15.0),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50.0,
+                  child: MyCupertinoButton(
+                      fun: () {
+                        // const PAYMENT_WAY = [
+                        //  1 => 'CASH',
+                        //  2 => 'Online',
+                        //  3 => 'Bank transfer',
+                        //  4 => 'MADA',
+                        //      ];
+                        serviceTypeController.submitHourlyOrder(
+                            datePickerController.selectedDate.value,
+                            packageController.selectedPackage.value,
+                            2);
+                      },
+                      text: 'btn_title_online'.tr,
+                      btnColor: MYColor.buttons,
+                      txtColor: MYColor.btnTxtColor),
+                ),
+                const SizedBox(height: 5.0),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50.0,
+                  child: MyCupertinoButton(
+                      fun: () {
+                        controller.payViaMada(
+                            date: datePickerController.selectedDate.value,
+                            package: packageController.selectedPackage.value,
+                            paymentOption: 4);
+
+                      },
+                      text: 'btn_title_mada'.tr,
+                      btnColor: MYColor.buttons,
+                      txtColor: MYColor.btnTxtColor),
+                ),
+                const SizedBox(height: 5.0),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50.0,
+                  child: MyCupertinoButton(
+                      fun: () {
+                        // const PAYMENT_WAY = [
+                        //  1 => 'CASH',
+                        //  2 => 'Online',
+                        //  3 => 'Bank transfer',
+                        //  4 => 'MADA',
+                        //      ];
+                        serviceTypeController.submitHourlyOrder(
+                            datePickerController.selectedDate.value,
+                            packageController.selectedPackage.value,
+                            3);
+                      },
+                      text: 'btn_title_bank_transfer'.tr,
+                      btnColor: MYColor.buttons,
+                      txtColor: MYColor.btnTxtColor),
+                )
+              ],
+            ),
           ),
         ),
       ),
