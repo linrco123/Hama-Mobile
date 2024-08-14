@@ -16,6 +16,7 @@ class ProfileProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
+      print('==========================update profile=============================');
       print(res.body);
       if (res.body['code'] == 0) {
         mySnackBar(
@@ -37,9 +38,8 @@ class ProfileProvider extends GetConnect {
     }
   }
 
-  postProfile(Map data) async {
+  Future<Profile> postProfile(Map data) async {
     try {
-      print('903475907243537-3-15-157-1237551345=173409509=345709=7324309=56');
       final res = await put(
         "${Constance.apiEndpoint}/profile",
         data,
@@ -47,7 +47,7 @@ class ProfileProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-       if (res.body['code'] == 0) {
+        if (res.body['code'] == 0) {
         if (res.body['error']['name'] != null) {
           mySnackBar(
             title: "error".tr,
@@ -100,7 +100,6 @@ class ProfileProvider extends GetConnect {
         return Profile.fromJson(res.body);
       }
     } catch (e, s) {
-      print('exception ================>>>>>>>>>>>>>>  $e');
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

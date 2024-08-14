@@ -23,7 +23,7 @@ class LocationsProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
+      print(res.body);
       await EasyLoading.dismiss();
 
       if (res.status.hasError) {

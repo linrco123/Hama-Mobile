@@ -124,7 +124,7 @@ class RegisterController extends GetxController {
 
         Map data = {
           "name": txtFullName.text,
-          "phone": "966${txtPhone.text}",
+          "phone": txtPhone.text.toString(),
           "iqama": txtIqama.text,
           "email": txtEmail.text,
           "password": txtPassword.text,
@@ -138,9 +138,10 @@ class RegisterController extends GetxController {
               Map data = {
                 "id": res.data!.id,
                 "name": res.data!.name,
-                "phone": res.data!.phone!.substring(4),
+                "phone": res.data!.phone!,
                 "email": res.data!.email,
                 "token": res.data!.token,
+                "iqama": res.data!.iqama,
                 "firebaseToken": "",
               };
               box.write('LOGIN_MODEL', data).then((value) {});
@@ -162,7 +163,7 @@ class RegisterController extends GetxController {
       isProcessing(true);
 
       Map data = {
-        "phone": "966${txtPhone.text}",
+        "phone": txtPhone.text,
         "code": otpCode,
       };
 
@@ -184,8 +185,9 @@ class RegisterController extends GetxController {
   /// resend OTP after 60 seconds
   void resendOtp() {
     Map data = {
-      "phone": "966${txtPhone.text}",
+      "phone": txtPhone.text.toString(),
     };
+    print(txtPhone.text);
     RegisterProvider().postResendOtp(data);
     update();
   }
@@ -267,13 +269,6 @@ class RegisterController extends GetxController {
                             fontSize: 14,
                           )),
                     )
-                    // myInkWell(
-                    //   fun: () => resendOtp(),
-                    //   text: "resend_code".tr,
-                    //   size: 14,
-                    //   font: 'cairo_extra_light',
-                    //   color: MYColor.white,
-                    // ),
                   ],
                 )
               ],

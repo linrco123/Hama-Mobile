@@ -140,6 +140,7 @@ class ServiceTypeController extends GetxController {
         //   'totalPrice': totalPrice,
         //   'page': 'hour'
         // });
+        Get.toNamed(Routes.HOURPAYMENT);
       } else if (paymmentOption == 4) {
         showAlertDialogue(
             title: 'alert'.tr,
@@ -227,8 +228,7 @@ class ServiceTypeController extends GetxController {
   //nationalities section
   List<NationalitiesData> nationalityList =
       List<NationalitiesData>.empty(growable: true).obs;
-
-  Future<void> getNationalities() async {
+   Future<void> getNationalities() async {
     nationalityList.add(
       NationalitiesData(
         id: 0,

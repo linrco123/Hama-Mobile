@@ -1,4 +1,3 @@
-
 const Map<String, String> arSA = {
   "location_address_text": "مثال: المنزل, العمل, الخ",
   "other_details_text": "مثال: رقم المبنى, الطابق, الشقة",
@@ -46,7 +45,7 @@ const Map<String, String> arSA = {
   "msg_plz_enter_email": "الرجاء إدخال البريد الإلكتروني",
   "msg_plz_enter_correct_email": "الرجاء إدخال بريد إلكتروني صحيح",
   "msg_register_success":
-      " يرجى ادخل رمز التأكيد الذي وصلك لإستكمال عملية انشاء الحساب",
+      " لقد استلمت رمز التأكيد بالفعل",
   "msg_phone_already_exist": "رقم الهاتف موجود بالفعل",
   "msg_iqama_already_exist": "رقم الاقامة موجود بالفعل",
   "msg_email_already_exist": "البريد الإلكتروني موجود بالفعل",
@@ -79,7 +78,7 @@ const Map<String, String> arSA = {
   "enter_the_code_below": " ادخل الرمز ادناه لتأكيد حسابك",
   "did_not_receive_the_code": "لم تستلم الرمز؟",
   "resend_code": "اعادة ارسال",
-  "msg_verification_code_is_invalid":"رمز التأكيد غير صحيح !",
+  "msg_verification_code_is_invalid": "رمز التأكيد غير صحيح !",
 
   // Verification messages and errors
   "msg_plz_enter_otp": "الرجاء ادخال رمز التحقق",
@@ -151,7 +150,7 @@ const Map<String, String> arSA = {
   "Can't_find": "لا توجد نتائج للبحث",
   "choose_atleast_one": "على الأقل إختيار واحد فقط",
   "card_holder_name": "اسم صاحب البطاقة",
-  "card_number": "رقم البطاقة",
+  "card_number": "رقم التأشيرة",
   "expiry_date": "تاريخ الانتهاء",
   "cvv": "الرمز (CVV)",
   "confirm": "تأكيد",
@@ -381,8 +380,7 @@ const Map<String, String> arSA = {
   'hour_service_desc':
       'الزيارات المحددة تبدأ من الزيارة الواحدة إلى باقة الزيارات المتعددة',
   'stayin_service': ' خدمة مقيمة',
-  'stayin_service_desc':
-      'خدمات مقيمة تبدأ من شهر إلى سنتين بباقات شهرية',
+  'stayin_service_desc': 'خدمات مقيمة تبدأ من شهر إلى سنتين بباقات شهرية',
   'working_hours': 'ساعات العمل',
   'shift_type': 'نوبة الخدمة',
   'morning': 'صباحى',
@@ -445,7 +443,14 @@ const Map<String, String> arSA = {
   'total_price': 'السعر الكلى',
   'btn_title_online': 'استكمال الطلب والدفع اونلاين',
   'btn_title_mada': ' استكمال الطلب والدفع عبر مدى عند الاستلام',
-  'btn_title_bank_transfer':' استكمال الطلب والدفع عن طريق حوالة بنكية',
-   'mada_content': 'عملية الدفع ستكون من خلال مدى عند استلام العاملة من المشرفة فى المنزل',
-
+  'btn_title_bank_transfer': ' استكمال الطلب والدفع عن طريق حوالة بنكية',
+  'mada_content':
+      'عملية الدفع ستكون من خلال مدى عند استلام العاملة من المشرفة فى المنزل',
+  "mediation_service": 'خدمة الوساطة',
+  'send': 'ارسال',
+  'visa_number_card_required':'*رقم التأشيرة مطلوب',
+  'invalid_visa_number':'رقم التأشيرة غير صالح',
+   "choose_job":"اختر الوظيفة المناسبة",
+   "choose_experience":'اختر عدد سنوات الخبرة',
+    "msg_mediation_success":'تم تقديم الوساطة بنجاح',
 };

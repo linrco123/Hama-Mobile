@@ -121,7 +121,6 @@ class RegisterProvider extends GetConnect {
     await EasyLoading.show(status: 'create'.tr);
     try {
       final res = await post("${Constance.apiEndpoint}/send_otp", data);
-
       await EasyLoading.dismiss();
 
       if (res.body['code'] == 0) {

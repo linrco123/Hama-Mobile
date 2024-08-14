@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/profile/profile_model.dart';
 import 'package:musaneda/app/modules/profile/providers/profile_provider.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 
 import '../../../../config/constance.dart';
 import '../../../data/iqama_validator.dart';
@@ -59,7 +61,7 @@ class ProfileController extends GetxController {
   validateIqama(String value) {
     if (value.isEmpty) {
       return "msg_plz_enter_iqama_number".tr;
-    } else if (IqamaValidator.validate(value) == false) {
+    } else if (IqamaValidator().validateSaudiNationalID(value) == false) {
       return "msg_plz_enter_correct_iqama_number".tr;
     }
     return null;
@@ -91,7 +93,7 @@ class ProfileController extends GetxController {
         createdAt: value.data?.createdAt,
         updatedAt: value.data?.updatedAt,
       );
-       txtFullName.text = profile.name!;
+      txtFullName.text = profile.name!;
       txtPhone.text = profile.phone!;
       txtIqama.text = profile.iqama!;
       txtEmail.text = profile.email!;
@@ -100,6 +102,7 @@ class ProfileController extends GetxController {
     update();
   }
 
+  final box = GetStorage();
   postProfile() async {
     if (formProfileKey.currentState!.validate()) {
       isProcessing.value = true;
@@ -110,6 +113,22 @@ class ProfileController extends GetxController {
         "email": txtEmail.text,
       };
       ProfileProvider().postProfile(data).then((value) {
+        Map localData = box.read('LOGIN_MODEL') as Map;
+        Map data = {
+          "id": localData['id'],
+          "name": txtFullName.text,
+          "phone": localData['phone'],
+          "email": txtEmail.text,
+          "token": localData['token'],
+          "iqama": localData['iqama'],
+          "firebaseToken": "",
+        };
+
+        print(data);
+        box.write('LOGIN_MODEL', data).then((value) {
+          getProfile();
+        });
+
         isProcessing.value = false;
         setEnabled = false;
 

@@ -40,7 +40,8 @@ class ShowAddressessView extends GetView<LocationsController> {
             color: MYColor.primary,
           ),
         ),
-        systemOverlayStyle: const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark) ,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.dark),
       ),
       body: Container(
         color: MYColor.primary.withOpacity(0.1),
@@ -144,8 +145,9 @@ class ShowAddressessView extends GetView<LocationsController> {
                             Text(
                               'no_addressess'.tr,
                               style: TextStyle(
-                                fontFamily: 'cairo_regular',
-                                  color: MYColor.grey, fontSize: 18.0),
+                                  fontFamily: 'cairo_regular',
+                                  color: MYColor.grey,
+                                  fontSize: 18.0),
                             ),
                           ]))
                     : ListView.separated(

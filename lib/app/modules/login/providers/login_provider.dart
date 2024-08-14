@@ -13,7 +13,6 @@ class LoginProvider extends GetConnect {
   Future<Login> postLogin(Map data) async {
     try {
       final res = await post("${Constance.apiEndpoint}/login", data);
-
       if (res.body['code'] == 0) {
         if (res.body['message'] == 'phone Or Password InCorrect') {
           mySnackBar(
@@ -39,8 +38,7 @@ class LoginProvider extends GetConnect {
         return Login.fromJson(res.body);
       }
     } catch (e, s) {
-      print('Exception ====================>   $e');
-      await Sentry.captureException(e, stackTrace: s);
+       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }
   }

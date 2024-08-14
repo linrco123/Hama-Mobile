@@ -69,6 +69,15 @@ Widget homeTap(context) {
           //     onPageChanged: (index, reason) {},
           //   ),
           // ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: Image.asset(
+              'assets/images/png/slider_1.png',
+              height: 159,
+              width: double.infinity,
+              fit: BoxFit.fill,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(
               top: 15,

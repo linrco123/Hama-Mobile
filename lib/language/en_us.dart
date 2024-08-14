@@ -47,7 +47,7 @@ const Map<String, String> enUS = {
   "msg_plz_enter_correct_iqama_number": "Please enter correct iqama number",
   "msg_plz_enter_email": "Please enter email",
   "msg_plz_enter_correct_email": "Please enter correct email",
-  "msg_register_success": "Enter verification code to complete signup",
+  "msg_register_success": "Already ! received code",
   "msg_phone_already_exist": "Phone number already exists!",
   "msg_iqama_already_exist": "Iqama number already exists!",
   "msg_email_already_exist": "Email already exists!",
@@ -155,7 +155,7 @@ const Map<String, String> enUS = {
   "Can't_find": "Can't find any filtered workers",
   "choose_atleast_one": "Choose at least one option",
   "card_holder_name": "Card Holder Name",
-  "card_number": "Card Number",
+  "card_number": "Visa Number",
   "expiry_date": "Expiry Date",
   "cvv": "CVV",
   "confirm": "Confirm",
@@ -446,4 +446,14 @@ const Map<String, String> enUS = {
   'btn_title_mada': 'Complete order and Pay via MADA on hand over',
   'btn_title_bank_transfer': 'Complete order and Pay via bank transfer',
   'mada_content':'Payment process \'ll be through MADA when handing over a house worker from a supervisor at home',
+   "mediation_service":'Mediation Service',
+   'send':'Send',
+   'visa_number_card_required':'*Visa number is required',
+    'invalid_visa_number':'*visa number is invalid',
+     "choose_job":"Select your job ",
+   "choose_experience":' Select experience period',
+       "msg_mediation_success":'Mediation sent successfully',
+
+
+
 };

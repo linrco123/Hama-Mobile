@@ -33,7 +33,9 @@ abstract class Routes {
   static const TECHNICAL_SUPPORT = _Paths.TECHNICAL_SUPPORT;
   static const PACKAGES = _Paths.PACKAGES;  
   static const ORDERDETAILS = _Paths.ORDERDETAILS; 
-}
+  static const HOURPAYMENT = _Paths.HOURPAYMENT; 
+  static const MEDIATION = _Paths.MEDIATION;
+ }
 
 abstract class _Paths {
   _Paths._();
@@ -65,7 +67,11 @@ abstract class _Paths {
   static const TRANSFER_SPONSORSHIP = '/transfer-sponsorship';
   static const TECHNICAL_SUPPORT = '/technical-support';
   static const PACKAGES = '/packages';  
-  static const ORDERDETAILS = '/orderDetails';  
+  static const ORDERDETAILS = '/orderDetails'; 
+  static const HOURPAYMENT = '/hourPayment'; 
+  static const MEDIATION = '/mediation';  
+
+    
 
   
 }

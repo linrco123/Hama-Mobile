@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/app/modules/register/controllers/register_controller.dart';
@@ -91,7 +90,7 @@ class LoginController extends GetxController {
     try {
       if (formLoginKey.currentState!.validate()) {
         Map data = {
-          "phone": "966${txtPhone.text}",
+          "phone": txtPhone.text,
           "password": txtPassword.text,
           "device_token": box.read("fcm_token"),
         };
@@ -102,6 +101,7 @@ class LoginController extends GetxController {
           (res) {
             if(res.code == 0 && res.message! == "Verify account"){
               // data should be stored here 
+              RegisterController.I.txtPhone.text = LoginController.I.txtPhone.text;
               RegisterController.I.showLogInDialog(Get.context);
               
             }
@@ -112,6 +112,7 @@ class LoginController extends GetxController {
                 "phone": res.data!.phone!.substring(4),
                 "email": res.data!.email,
                 "token": res.data!.token,
+                "iqama":res.data!.iqama,
                 "firebaseToken": "",
               };
               print('=========================LOGIN======================');

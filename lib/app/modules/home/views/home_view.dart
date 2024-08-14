@@ -12,6 +12,7 @@ import 'package:musaneda/app/modules/home/views/taps/services_tap.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
+import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/exitapp_alert.dart';
 import 'package:musaneda/config/myColor.dart';
 
@@ -363,7 +364,7 @@ class HomeView extends GetView<HomeController> {
         ),
         IconButton(
           onPressed: () {
-            Get.toNamed(Routes.NOTIFICATION);
+            //Get.toNamed(Routes.NOTIFICATION);
           },
           icon: const Icon(CupertinoIcons.bell),
         ),
@@ -503,7 +504,7 @@ class HomeView extends GetView<HomeController> {
                 bottom: 10,
               ),
               child: Text(
-                "${LoginController.I.getName()}",
+                Constance.instance.name,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

@@ -89,17 +89,7 @@ class ProfileView extends GetView<ProfileController> {
                 const SizedBox(height: 10),
                 _nameTextField(context),
                 const SizedBox(height: 20),
-                Text(
-                  'iqama_number'.tr,
-                  style: TextStyle(
-                    color: MYColor.buttons,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                _iqamaTextField(context),
-                const SizedBox(height: 20),
-                Text(
+               Text(
                   'email'.tr,
                   style: TextStyle(
                     color: MYColor.buttons,
@@ -108,6 +98,17 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 const SizedBox(height: 10),
                 _emailTextField(context),
+                const SizedBox(height: 20),
+                
+                 Text(
+                  'iqama_number'.tr,
+                  style: TextStyle(
+                    color: MYColor.buttons,
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _iqamaTextField(context),
                 const SizedBox(height: 20),
                 Text(
                   'phone_number'.tr,
@@ -129,7 +130,7 @@ class ProfileView extends GetView<ProfileController> {
                       txtColor: MYColor.btnTxtColor,
                       text: "save_updates".tr,
                       fun: () {
-                          controller.postProfile();
+                        controller.postProfile();
                       },
                     ),
                   ),

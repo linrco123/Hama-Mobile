@@ -433,7 +433,7 @@ class ForgetController extends GetxController {
   postVerify(context) {
     /// Send POST Request to Server for validate OTP Code
     Map data = {
-      "phone": '+966${txtPhone.text}',
+      "phone": txtPhone.text.toString(),
       "code": otpCode,
     };
     ForgotProvider().postVerify(data).then((value) {
@@ -451,7 +451,7 @@ class ForgetController extends GetxController {
   restPassword(context) {
     if (formRestKey.currentState!.validate()) {
       Map data = {
-        "phone": "966${txtPhone.text}",
+        "phone": txtPhone.text,
         "code": otpCode,
         "password": txtPassword.text,
       };
@@ -469,7 +469,7 @@ class ForgetController extends GetxController {
     if (formForgetKey.currentState!.validate()) {
       /// Send POST Request to Server for sending sms OTP
       Map data = {
-        "phone": txtPhone.text,
+        "phone": txtPhone.text.toString(),
       };
       ForgotProvider().forgotPassword(data).then((value) {
         if (value == 1) {

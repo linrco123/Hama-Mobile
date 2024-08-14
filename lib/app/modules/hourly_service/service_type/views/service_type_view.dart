@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/components/hourly/service_type/oneHour_filter_dialog.dart';
 import 'package:musaneda/components/hourly/service_type/service_type_card.dart';
@@ -77,9 +78,11 @@ class ServiceTypeView extends GetView<ServiceTypeController> {
                       height: 10.0,
                     ),
                     ServiceTypeCard(
-                        title: 'خدمة الوساطة',
-                        description: 'خدمة الوساطة',
-                        function: () {},
+                        title: "mediation_service".tr,
+                        description:  "mediation_service".tr,
+                        function: () {
+                          Get.toNamed(Routes.MEDIATION);
+                        },
                         svg: true,
                         image: 'assets/images/drawer/delegation.svg')
                   ],
