@@ -68,8 +68,8 @@ class RegisterView extends GetView<RegisterController> {
                                       value: item.id!,
                                       child: Text(
                                         LanguageController.I.isEnglish
-                                            ? item.name!.ar!
-                                            : item.name!.en!,
+                                            ? item.name!.en!
+                                            : item.name!.ar!,
                                         style:
                                             TextStyle(color: MYColor.primary),
                                       )))

@@ -72,7 +72,7 @@ class Constance {
       return value;
     }
   }
-
+                                                                      
   static const domain = "https://kdamat.com"; 
   //static const domain = "https://devlop.kdamat.com";
   static const apiEndpoint = "$domain/api/v1";
@@ -84,8 +84,11 @@ class Constance {
   static const String ALinma_BankAccount = '260000010006080001019';
   static const String ALinma_BankAccountIBAN = 'SA8180000260608010001019';
   static const int technicalSupport_phone = 920033335;
-  static const String phoneRegExp =
-      r'(^(5|9665|\5|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$)';
+  // static const String phoneRegExp =
+  //     r'(^(5|9665|\5|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$)';
+
+static const String phoneRegExp =r'(^5\d{8}$)';
+    
 
   static String privacyLinkEn = '$domain/en/privacy';
   static String privacyLinkAr = '$domain/ar/privacy';
