@@ -27,12 +27,10 @@ class PackagesProvider extends GetConnect {
           Uri.parse(
               '${Constance.apiEndpoint}/hour-packages/$lang?country_id=$nationalityId'),
           headers: {
+            "Accept-Language": lang,
             "Accept": "application/json",
             "Authorization": "Bearer ${Constance.instance.token}",
           });
-
-      print(res.body);
-      print(res.body.runtimeType);
       final response = jsonDecode(res.body);
       if (response['code'] == 0) {
         // Get.snackbar('error'.tr, 'there is an error');

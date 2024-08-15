@@ -18,74 +18,77 @@ class ForgetView extends GetView<ForgetController> {
       body: GetBuilder(
         init: controller,
         builder: (ctx) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Form(
-              key: controller.formForgetKey,
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: Get.height / 10,
-                    ),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 0.0, top: 0.0),
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/hamaLogo.png',
-                          height: 80.0,
-                          width: 150.0,
-                          fit: BoxFit.fill,
+          return Container(
+            color: MYColor.primary.withOpacity(0.1),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Form(
+                key: controller.formForgetKey,
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: Get.height / 10,
+                      ),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 0.0, top: 0.0),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/hamaLogo.png',
+                            height: 80.0,
+                            width: 150.0,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Center(
-                    child: Text(
-                      "reset_password".tr,
-                      style: TextStyle(
-                        color: MYColor.buttons,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  _phoneTextField(context),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    height: 52,
-                    width: double.infinity,
-                    child: MyCupertinoButton(
-                      btnColor: MYColor.buttons,
-                      txtColor: MYColor.white,
-                      text: "send_verification_code".tr,
-                      fun: () => controller.forgotPassword(context),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "back_to_login".tr,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
+                    const SizedBox(height: 10.0),
+                    Center(
+                      child: Text(
+                        "reset_password".tr,
+                        style: TextStyle(
+                          color: MYColor.buttons,
+                          fontSize: 16,
                         ),
                       ),
-                      myInkWell(
-                        fun: () {
-                          Get.offAllNamed(Routes.LOGIN);
-                        },
-                        text: "sign_in".tr,
-                        size: 14,
-                        font: 'cairo_regular',
-                        color: MYColor.buttons,
+                    ),
+                    const SizedBox(height: 25),
+                    _phoneTextField(context),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: 52,
+                      width: double.infinity,
+                      child: MyCupertinoButton(
+                        btnColor: MYColor.buttons,
+                        txtColor: MYColor.btnTxtColor,
+                        text: "send_verification_code".tr,
+                        fun: () => controller.forgotPassword(context),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "back_to_login".tr,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                        myInkWell(
+                          fun: () {
+                            Get.offAllNamed(Routes.LOGIN);
+                          },
+                          text: "sign_in".tr,
+                          size: 14,
+                          font: 'cairo_regular',
+                          color: MYColor.buttons,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );

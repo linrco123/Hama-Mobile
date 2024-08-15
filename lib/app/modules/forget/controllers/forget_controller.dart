@@ -18,20 +18,31 @@ class ForgetController extends GetxController {
 
   final formRestKey = GlobalKey<FormState>();
 
-  RxBool obscureText = true.obs;
+  RxBool obscureText1 = true.obs;
+  RxBool obscureText2 = true.obs;
 
-  void toggleObscureText() {
-    obscureText.value = !obscureText.value;
+  void toggleObscureText1() {
+    obscureText1.value = !obscureText1.value;
     update();
   }
 
-  Icon getIcon() {
+  Icon getIcon1() {
     return Icon(
-      obscureText.value ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye,
+      obscureText1.value ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye,
       color: MYColor.icons,
     );
   }
+  void toggleObscureText2() {
+    obscureText2.value = !obscureText2.value;
+    update();
+  }
 
+  Icon getIcon2() {
+    return Icon(
+      obscureText2.value ? CupertinoIcons.eye_slash_fill : CupertinoIcons.eye,
+      color: MYColor.icons,
+    );
+  }
   TextEditingController txtPhone = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtConfirmPassword = TextEditingController();
@@ -199,60 +210,64 @@ class ForgetController extends GetxController {
       context: context,
       anchorPoint: const Offset(0.5, 0.5),
       builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          insetAnimationCurve: Curves.easeInCirc,
-          alignment: Alignment.center,
-          child: Container(
-            height: 350.0,
-            width: double.infinity,
-            padding: const EdgeInsets.all(8),
-            child: Form(
-              key: formRestKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "change_password".tr,
-                    style: TextStyle(
-                      color: MYColor.buttons,
-                      fontSize: 16,
-                      decoration: TextDecoration.underline,
-                      fontFamily: 'cairo_medium',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "enter_new_password".tr,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  _passwordTextField(context),
-                  const SizedBox(height: 10),
-                  _confirmPasswordTextField(context),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    height: 52,
-                    width: double.infinity,
-                    child: MyCupertinoButton(
-                      btnColor: MYColor.buttons,
-                      txtColor: MYColor.white,
-                      text: "change".tr,
-                      fun: () => restPassword(context),
-                    ),
-                  ),
-                ],
+        return GetBuilder<ForgetController>(
+          builder: (_) {
+            return Dialog(
+              backgroundColor: MYColor.secondary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-            ),
-          ),
+              insetAnimationCurve: Curves.easeInCirc,
+              alignment: Alignment.center,
+              child: Container(
+                height: 350.0,
+                width: double.infinity,
+                padding: const EdgeInsets.all(8),
+                child: Form(
+                  key: formRestKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "change_password".tr,
+                        style: TextStyle(
+                          color: MYColor.white,
+                          fontSize: 16,
+                           fontFamily: 'cairo_medium',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "enter_new_password".tr,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 20),
+                      Obx(()=> _passwordTextField(context)),
+                      const SizedBox(height: 10),
+                      Obx(()=>  _confirmPasswordTextField(context)),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        height: 52,
+                        width: double.infinity,
+                        child: MyCupertinoButton(
+                          btnColor: MYColor.buttons,
+                          txtColor: MYColor.btnTxtColor,
+                          text: "change".tr,
+                          fun: () => restPassword(context),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
         );
       },
     );
@@ -335,7 +350,7 @@ class ForgetController extends GetxController {
     return TextFormField(
       controller: txtPassword,
       keyboardType: TextInputType.visiblePassword,
-      obscureText: obscureText.value,
+      obscureText: obscureText1.value,
       validator: (value) => validatePassword(value!),
       decoration: InputDecoration(
         fillColor: Colors.grey.shade100,
@@ -345,7 +360,7 @@ class ForgetController extends GetxController {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.padlock),
+        prefixIcon:   Icon(CupertinoIcons.padlock , color: MYColor.primary,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -354,8 +369,8 @@ class ForgetController extends GetxController {
         ),
         suffixIcon: IconButton(
           splashRadius: 10,
-          onPressed: () => toggleObscureText(),
-          icon: getIcon(),
+          onPressed: () => toggleObscureText1(),
+          icon: getIcon1(),
         ),
       ),
     );
@@ -366,7 +381,7 @@ class ForgetController extends GetxController {
     return TextFormField(
       controller: txtConfirmPassword,
       keyboardType: TextInputType.visiblePassword,
-      obscureText: obscureText.value,
+      obscureText: obscureText2.value,
       validator: (value) => validateConfirmPassword(value!),
       decoration: InputDecoration(
         fillColor: Colors.grey.shade100,
@@ -376,7 +391,7 @@ class ForgetController extends GetxController {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon: const Icon(CupertinoIcons.padlock),
+        prefixIcon:  Icon(CupertinoIcons.padlock , color: MYColor.primary,),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -385,8 +400,8 @@ class ForgetController extends GetxController {
         ),
         suffixIcon: IconButton(
           splashRadius: 10,
-          onPressed: () => toggleObscureText(),
-          icon: getIcon(),
+          onPressed: () => toggleObscureText2(),
+          icon: getIcon2(),
         ),
       ),
     );
