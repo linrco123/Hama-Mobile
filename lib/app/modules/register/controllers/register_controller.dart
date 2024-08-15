@@ -78,9 +78,10 @@ class RegisterController extends GetxController {
     );
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
-    } else if (!regExp.hasMatch(value)) {
-      return "msg_plz_enter_correct_phone".tr;
-    }
+      }
+    // } else if (!regExp.hasMatch(value)) {
+    //   return "msg_plz_enter_correct_phone".tr;
+    // }
     return null;
   }
 
@@ -88,9 +89,10 @@ class RegisterController extends GetxController {
   validateIqama(String value) {
     if (value.isEmpty) {
       return "msg_plz_enter_iqama_number".tr;
-    } else if (IqamaValidator().validateSaudiNationalID(value) == false) {
-      return "msg_plz_enter_correct_iqama_number".tr;
-    }
+      }
+    // } else if (IqamaValidator().validateSaudiNationalID(value) == false) {
+    //   return "msg_plz_enter_correct_iqama_number".tr;
+    // }
     return null;
   }
 
@@ -172,7 +174,7 @@ class RegisterController extends GetxController {
           if (res == 1) {
             isProcessing(false);
             Get.back();
-            Get.offNamed(Routes.MAIN_HOME_PAGE);
+            Get.offNamed(Routes.WELCOME);
           }
         },
       );
@@ -282,6 +284,7 @@ class RegisterController extends GetxController {
 
   /// pin text field
   PinFieldAutoFill _pinTextField(BuildContext context) {
+
     return PinFieldAutoFill(
       keyboardType: TextInputType.number,
       autoFocus: true,
