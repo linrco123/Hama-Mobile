@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/packages/packages_model.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class PackagesProvider extends GetConnect {
   @override
@@ -22,8 +23,9 @@ class PackagesProvider extends GetConnect {
   Future<PackagesModel> getHourPackages(String lang, int nationalityId) async {
     try {
       await EasyLoading.show(status: 'loading'.tr);
-      final res = await get(
-          '${Constance.apiEndpoint}/hour-packages/$lang?country_id=$nationalityId',
+      final res = await http.get(
+          Uri.parse(
+              '${Constance.apiEndpoint}/hour-packages/$lang?country_id=$nationalityId'),
           headers: {
             "Accept": "application/json",
             "Authorization": "Bearer ${Constance.instance.token}",
@@ -31,21 +33,21 @@ class PackagesProvider extends GetConnect {
 
       print(res.body);
       print(res.body.runtimeType);
-      final response = res.body;
+      final response = jsonDecode(res.body);
       if (response['code'] == 0) {
         // Get.snackbar('error'.tr, 'there is an error');
       }
       if (response['code'] == 1) {
         //Get.snackbar('success'.tr, 'Get Packages');
-        }
+      }
 
-      if (res.status.hasError) {
-        return Future.error(res.status.code!);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode!);
       } else {
-         return PackagesModel.fromJson(response);
+        return PackagesModel.fromJson(response);
       }
     } catch (e, s) {
-        await Sentry.captureException(s);
+      await Sentry.captureException(s);
       return Future.error(e);
     }
   }
