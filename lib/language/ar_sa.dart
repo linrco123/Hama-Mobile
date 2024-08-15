@@ -71,6 +71,7 @@ const Map<String, String> arSA = {
   "reset_password": "اعادة تعيين كلمة المرور",
   "send_verification_code": "ارسال رمز التحقق",
   "back_to_login": "العودة لتسجيل الدخول",
+  "msg_reset_password":"تم اعادة تعيين كلمة المرور بنجاح",
 
   // Verification
   "verification_code": "ادخل كود التحقق",

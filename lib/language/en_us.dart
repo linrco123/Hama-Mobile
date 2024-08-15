@@ -73,6 +73,7 @@ const Map<String, String> enUS = {
   "reset_password": "Reset password",
   "send_verification_code": "Send verification code",
   "back_to_login": "Back to login",
+  "msg_reset_password":" Password reset successfully ",
 
   // Verification
   "verification_code": "Enter Verification Code",

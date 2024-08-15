@@ -140,22 +140,20 @@ class MediationView extends GetView<MediationController> {
                   const SizedBox(
                     height: 15.0,
                   ),
-                  TextFormField( 
+                  TextFormField(
                     textDirection: TextDirection.ltr,
                     keyboardType: TextInputType.phone,
                     controller: controller.cardNumberController,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(
-                        10,maxLengthEnforcement: MaxLengthEnforcement.enforced
-                       ),
-                       CardNumberInputFormatter()
+                      LengthLimitingTextInputFormatter(10,
+                          maxLengthEnforcement: MaxLengthEnforcement.enforced),
+                      //CardNumberInputFormatter()
                     ],
                     validator: (number) =>
                         controller.validateCardNumber(number),
                     decoration: InputDecoration(
-
-                        constraints: const BoxConstraints(maxHeight: 40.0),
+                        constraints: const BoxConstraints(maxHeight: 60.0),
                         contentPadding: const EdgeInsets.only(
                             top: 0.0, bottom: 0.0, left: 10.0, right: 10.0),
                         hintStyle: TextStyle(
@@ -163,6 +161,11 @@ class MediationView extends GetView<MediationController> {
                             fontWeight: FontWeight.bold,
                             fontSize: 14.0),
                         hintText: "card_number".tr,
+                        labelText: "card_number".tr,
+                        labelStyle: TextStyle(
+                            color: MYColor.primary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0),
                         disabledBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(color: MYColor.primary, width: 5.0),
@@ -172,6 +175,10 @@ class MediationView extends GetView<MediationController> {
                         //   borderSide:
                         //       BorderSide(color: MYColor.primary, width: 5.0),
                         // ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: MYColor.primary, width: 2.0),
+                        ),
                         border: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: MYColor.primary, width: 5.0),

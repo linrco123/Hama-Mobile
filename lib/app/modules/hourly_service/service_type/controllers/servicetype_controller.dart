@@ -54,9 +54,10 @@ class ServiceTypeController extends GetxController {
   void pickAddress(int addressId) {
     selectedLocation.value = addressId;
     update();
-    Future.delayed(const Duration(seconds: 1)).then((value) {
-      Get.toNamed(Routes.ORDERDETAILS);
-    });
+    Get.toNamed(Routes.ORDERDETAILS);
+
+    // Future.delayed(const Duration(seconds: 1)).then((value) {
+    // });
   }
 
   //void Function(String)? onChanged
@@ -84,9 +85,11 @@ class ServiceTypeController extends GetxController {
       showAlertDialogue(
         title: 'alert'.tr,
         content: "acceptance_condition".tr,
-        onConfirm: () {
+        onConfirm: () async {
           acceptHourService = true;
           Get.back();
+          await EasyLoading.show(status: 'loading'.tr);
+          myOneHourFilterDialog(context);
         },
       );
     } else {
@@ -228,7 +231,7 @@ class ServiceTypeController extends GetxController {
   //nationalities section
   List<NationalitiesData> nationalityList =
       List<NationalitiesData>.empty(growable: true).obs;
-   Future<void> getNationalities() async {
+  Future<void> getNationalities() async {
     nationalityList.add(
       NationalitiesData(
         id: 0,

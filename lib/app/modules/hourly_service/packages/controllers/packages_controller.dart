@@ -36,8 +36,9 @@ class PackagesController extends GetxController {
   void selectPackage(int package) {
     selectedPackage.value = package;
     update();
-    Future.delayed(const Duration(seconds: 1)).then((value) {
-      Get.toNamed(Routes.DATEPICKER);
-    });
+    Get.toNamed(Routes.DATEPICKER);
+    // Future.delayed(const Duration(milliseconds: 500)).then((value) {
+      
+    // });
   }
 }

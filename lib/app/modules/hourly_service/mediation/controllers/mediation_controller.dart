@@ -13,6 +13,9 @@ class MediationController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     getNationalities();
+    cardNumberController.text = '';
+    print('==================cardNumberController========================');
+    print(cardNumberController.text.isEmpty);
   }
 
   var formKey = GlobalKey<FormState>();
@@ -85,12 +88,12 @@ class MediationController extends GetxController {
         icon: CupertinoIcons.info_circle,
       );
     } else {
-      if (formKey.currentState!.validate()) {
+      // if (formKey.currentState!.validate()) {
         Map data = {
           "job": selectedJob.value,
           "experience": selectedExperience.value,
           "country_id": nationality.value,
-          "visa_number": cardNumberController.text
+          "visa_number": cardNumberController.text.isEmpty? '0000000000': cardNumberController.text
         };
         MediationProvider().submitMediation(data).then((value) async {
           await EasyLoading.dismiss();
@@ -104,7 +107,7 @@ class MediationController extends GetxController {
         }).catchError((error) async {
           await EasyLoading.dismiss();
         });
-      }
+    
     }
   }
 
