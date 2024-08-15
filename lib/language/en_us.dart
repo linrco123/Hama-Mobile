@@ -155,7 +155,7 @@ const Map<String, String> enUS = {
   "Can't_find": "Can't find any filtered workers",
   "choose_atleast_one": "Choose at least one option",
   "card_holder_name": "Card Holder Name",
-  "card_number": "Visa Number",
+  "card_number": "Visa number",
   "expiry_date": "Expiry Date",
   "cvv": "CVV",
   "confirm": "Confirm",
