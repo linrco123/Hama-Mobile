@@ -140,17 +140,16 @@ class MediationView extends GetView<MediationController> {
                   const SizedBox(
                     height: 15.0,
                   ),
-                  TextFormField(
-                    
+                  TextFormField( 
                     textDirection: TextDirection.ltr,
                     keyboardType: TextInputType.phone,
                     controller: controller.cardNumberController,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
-                      // LengthLimitingTextInputFormatter(
-                      //   14,
-                      // ),
-                      // CardNumberInputFormatter()
+                      LengthLimitingTextInputFormatter(
+                        10,maxLengthEnforcement: MaxLengthEnforcement.enforced
+                       ),
+                       CardNumberInputFormatter()
                     ],
                     validator: (number) =>
                         controller.validateCardNumber(number),

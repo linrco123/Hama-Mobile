@@ -22,7 +22,6 @@ class MediationController extends GetxController {
   String? validateCardNumber(String? cardNumber) {
     if (cardNumber!.isEmpty) {
       return 'visa_number_card_required'.tr;
-      
     } else if (cardNumber.length != 10) {
       return 'invalid_visa_number'.tr;
     }
@@ -93,14 +92,18 @@ class MediationController extends GetxController {
           "country_id": nationality.value,
           "visa_number": cardNumberController.text
         };
-        MediationProvider()
-            .submitMediation(data)
-            .then((value) async {
-              await EasyLoading.dismiss();
-            })
-            .catchError((error) async {
-               await EasyLoading.dismiss();
-            });
+        MediationProvider().submitMediation(data).then((value) async {
+          await EasyLoading.dismiss();
+
+          cardNumberController.text = '';
+          nationality.value = 0;
+          selectedExperience.value = 0;
+          selectedJob.value = 0;
+          update();
+          Get.back();
+        }).catchError((error) async {
+          await EasyLoading.dismiss();
+        });
       }
     }
   }
@@ -175,15 +178,3 @@ class MediationController extends GetxController {
 
   void sendData() {}
 }
-
- /*
-
- {
-    "job" :1,
-    "experience":1,
-    "country_id":1,
-    "visa_number":562563232
-
-}
-
-*/

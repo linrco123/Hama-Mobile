@@ -68,14 +68,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   
-   FirebaseMessaging.instance.getToken().then(
-      (token) {
-         GetStorage().write('fcm_token', token);
-       },
-    );
- 
-  // var notificationController = Get.put(NotificationController());
-  // await notificationController.initNotify();
+  var notificationController = Get.put(NotificationController());
+  await notificationController.initNotify();
   await GetStorage.init();
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])

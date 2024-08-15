@@ -45,7 +45,7 @@ const Map<String, String> arSA = {
   "msg_plz_enter_email": "الرجاء إدخال البريد الإلكتروني",
   "msg_plz_enter_correct_email": "الرجاء إدخال بريد إلكتروني صحيح",
   "msg_register_success":
-      " لقد استلمت رمز التأكيد بالفعل",
+      "! لقد استلمت رمز التأكيد بالفعل",
   "msg_phone_already_exist": "رقم الهاتف موجود بالفعل",
   "msg_iqama_already_exist": "رقم الاقامة موجود بالفعل",
   "msg_email_already_exist": "البريد الإلكتروني موجود بالفعل",

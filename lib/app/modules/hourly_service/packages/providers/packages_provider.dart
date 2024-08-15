@@ -31,7 +31,7 @@ class PackagesProvider extends GetConnect {
 
       print(res.body);
       print(res.body.runtimeType);
-      final response = jsonDecode(res.body);
+      final response = res.body;
       if (response['code'] == 0) {
         // Get.snackbar('error'.tr, 'there is an error');
       }
@@ -42,10 +42,10 @@ class PackagesProvider extends GetConnect {
       if (res.status.hasError) {
         return Future.error(res.status.code!);
       } else {
-        return PackagesModel.fromJson(response);
+         return PackagesModel.fromJson(response);
       }
     } catch (e, s) {
-       await Sentry.captureException(s);
+        await Sentry.captureException(s);
       return Future.error(e);
     }
   }
