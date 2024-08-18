@@ -15,6 +15,8 @@ import 'package:musaneda/app/modules/hourly_service/service_type/views/service_t
 import 'package:musaneda/app/modules/hourly_service/show_addressess/views/show_addressess_view.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/bindings/welcome_bindings.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/views/welcome_view.dart';
+import 'package:musaneda/app/modules/internet_conn_status/bindings/internet_conn_bindings.dart';
+import 'package:musaneda/app/modules/internet_conn_status/views/internet_connection.dart';
 import 'package:musaneda/app/modules/locations/views/create_location_view.dart';
 
 import '../modules/complaint/bindings/complaint_binding.dart';
@@ -61,6 +63,7 @@ class AppPages {
   static const WELCOME = Routes.WELCOME;
   static const INITIAL = Routes.LOGIN;
   static const MAIN = Routes.HOME;
+   static const INTERNETCONNECTION = Routes.INTERNETCONNECTION;
   static const MAIN_HOME_PAGE = Routes.MAIN_HOME_PAGE;
 
   static final routes = [
@@ -154,6 +157,11 @@ class AppPages {
       name: _Paths.ORDERDETAILS,
       page: () => const OrderDetailsView(),
       binding: OrderdetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.INTERNETCONNECTION,
+      page: () => const InternetConnectionView(),
+      binding: InternetConnBindings(),
     ),
     // GetPage(
     //   name: _Paths.NOTIFICATION,

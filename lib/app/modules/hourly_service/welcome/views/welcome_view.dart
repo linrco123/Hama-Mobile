@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/controllers/welcome_controller.dart';
+import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/components/hourly/welcome/welcome_card.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/exitapp_alert.dart';
@@ -18,13 +19,55 @@ class WelcomeView extends GetView<WelcomeController> {
     return GetBuilder<WelcomeController>(
       init: controller,
       builder: (controller) => WillPopScope(
-        onWillPop:  exitAlertApp,
+        onWillPop: exitAlertApp,
         child: Scaffold(
-          body: SafeArea(
-              child: Container(
+          appBar: AppBar(
+            systemOverlayStyle: SystemUiOverlayStyle.dark,
+            backgroundColor: MYColor.primary.withOpacity(0.1),
+            leading: IconButton(
+              icon: Icon(
+                Icons.logout,
+                color: MYColor.primary,
+              ),
+              onPressed: () {
+                LoginController.I.logout();
+              },
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: DropdownButton(
+                  borderRadius: BorderRadius.circular(20.0),
+                  elevation: 1,
+                  iconEnabledColor: MYColor.buttons,
+                  alignment: AlignmentDirectional.centerEnd,
+                  value: LoginController.I.selectedLanguage.value,
+                  dropdownColor: MYColor.white,
+                  items: LoginController.I.languageList
+                      .map((item) => DropdownMenuItem(
+                          value: item.id!,
+                          child: Text(
+                            LanguageController.I.isEnglish
+                                ? item.name!.en!
+                                : item.name!.ar!,
+                            style: TextStyle(color: MYColor.primary),
+                          )))
+                      .toList(),
+                  onChanged: (value) {
+                    if (value != 0) {
+                      LanguageController.I.updateLangForLOGINSIGNUP(value!);
+                      LoginController.I.selectedLanguage.value = value;
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
+          body: Container(
             color: MYColor.primary.withOpacity(0.1),
             child: Padding(
-              padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
+              padding:
+                  const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
               child: Column(
                 children: [
                   const SizedBox(
@@ -35,8 +78,8 @@ class WelcomeView extends GetView<WelcomeController> {
                     child: Center(
                       child: Image.asset(
                         'assets/images/hamaLogo.png',
-                          height: 80.0,
-                          width: 150.0,
+                        height: 80.0,
+                        width: 150.0,
                         // fit: BoxFit.fill,
                       ),
                     ),
@@ -84,7 +127,8 @@ class WelcomeView extends GetView<WelcomeController> {
                                     padding: const EdgeInsets.only(
                                         top: 7.0, right: 10.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           controller.greetings(),
@@ -98,7 +142,7 @@ class WelcomeView extends GetView<WelcomeController> {
                                           width: 5.0,
                                         ),
                                         Text(
-                                          Constance.instance.name,
+                                          Constance.getName(),
                                           style: TextStyle(
                                               fontSize: 20.0,
                                               color: MYColor.white,
@@ -146,7 +190,7 @@ class WelcomeView extends GetView<WelcomeController> {
                 ],
               ),
             ),
-          )),
+          ),
         ),
       ),
     );

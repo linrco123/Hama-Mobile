@@ -298,27 +298,7 @@ class OrderDetailsView extends GetView<OrderdetailsController> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                const SizedBox(height: 15.0),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50.0,
-                  child: MyCupertinoButton(
-                      fun: () {
-                        // const PAYMENT_WAY = [
-                        //  1 => 'CASH',
-                        //  2 => 'Online',
-                        //  3 => 'Bank transfer',
-                        //  4 => 'MADA',
-                        //      ];
-                        serviceTypeController.submitHourlyOrder(
-                            datePickerController.selectedDate.value,
-                            packageController.selectedPackage.value,
-                            2);
-                      },
-                      text: 'btn_title_online'.tr,
-                      btnColor: MYColor.buttons,
-                      txtColor: MYColor.btnTxtColor),
-                ),
+               
                 const SizedBox(height: 5.0),
                 SizedBox(
                   width: double.infinity,
@@ -355,7 +335,28 @@ class OrderDetailsView extends GetView<OrderdetailsController> {
                       text: 'btn_title_bank_transfer'.tr,
                       btnColor: MYColor.buttons,
                       txtColor: MYColor.btnTxtColor),
-                )
+                ),
+                 const SizedBox(height: 5.0),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50.0,
+                  child: MyCupertinoButton(
+                      fun: () {
+                        // const PAYMENT_WAY = [
+                        //  1 => 'CASH',
+                        //  2 => 'Online',
+                        //  3 => 'Bank transfer',
+                        //  4 => 'MADA',
+                        //      ];
+                        serviceTypeController.submitHourlyOrder(
+                            datePickerController.selectedDate.value,
+                            packageController.selectedPackage.value,
+                            2);
+                      },
+                      text: 'btn_title_online'.tr,
+                      btnColor: MYColor.buttons,
+                      txtColor: MYColor.btnTxtColor),
+                ),
               ],
             ),
           ),

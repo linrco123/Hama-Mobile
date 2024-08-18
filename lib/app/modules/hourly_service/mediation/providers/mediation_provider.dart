@@ -41,10 +41,11 @@ class MediationProvider extends GetConnect {
       return Future.error(e.toString());
     }
   }
-   Future<int> submitMediation(Map map) async {
+
+  Future<int> submitMediation(Map map) async {
     try {
       await EasyLoading.show(status: 'waiting'.tr);
-       final res = await post(
+      final res = await post(
         "${Constance.apiEndpoint}/services-mediation",
         map,
         headers: {
@@ -52,9 +53,17 @@ class MediationProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-        print('=================================================');
-        print(res.body);
-        if (res.body['code'] == 0) {
+      print('=================================================');
+      print(res.body);
+      if (res.body['message'] == 'Server Error' || res.body['errors'] == []) {
+        mySnackBar(
+          title: "error".tr,
+          message: 'Server Error !'.tr,
+          color: MYColor.error,
+          icon: CupertinoIcons.info_circle,
+        );
+      }
+      if (res.body['code'] == 0) {
         mySnackBar(
           title: "warning".tr,
           message: 'try_again'.tr,
@@ -62,7 +71,7 @@ class MediationProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-      if ( res.body['code'] == 1) {
+      if (res.body['code'] == 1) {
         mySnackBar(
           title: "success".tr,
           message: "msg_mediation_success".tr,

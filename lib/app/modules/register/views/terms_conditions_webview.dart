@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
-import 'package:musaneda/config/myColor.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class TermsConditionsWebview extends GetView<HomeController> {

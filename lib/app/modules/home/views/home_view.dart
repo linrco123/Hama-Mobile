@@ -360,12 +360,12 @@ class HomeView extends GetView<HomeController> {
           },
           icon: const Icon(CupertinoIcons.search),
         ),
-        IconButton(
-          onPressed: () {
-            Get.toNamed(Routes.NOTIFICATION);
-          },
-          icon: const Icon(CupertinoIcons.bell),
-        ),
+        // IconButton(
+        //   onPressed: () {
+        //     Get.toNamed(Routes.NOTIFICATION);
+        //   },
+        //   icon: const Icon(CupertinoIcons.bell),
+        // ),
         IconButton(
             onPressed: () {
               Get.back();
@@ -502,7 +502,7 @@ class HomeView extends GetView<HomeController> {
                 bottom: 10,
               ),
               child: Text(
-                Constance.instance.name,
+                Constance.getName(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -511,7 +511,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               onTap: () {
-                Get.toNamed(Routes.PROFILE);
+                Get.offNamed(Routes.PROFILE);
               },
               leading: SvgPicture.asset(
                 'assets/images/drawer/person.svg',
@@ -581,7 +581,7 @@ class HomeView extends GetView<HomeController> {
 
             DefaultTextStyle(
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 15,
                 color: Colors.white54,
               ),
               child: Container(
@@ -595,7 +595,8 @@ class HomeView extends GetView<HomeController> {
                   child: Text(
                     '${'service_terms'.tr} | ${'privacy_policy'.tr}',
                     style: const TextStyle(
-                      fontFamily: 'mikhak_medium',
+
+                      fontFamily: 'cairo_regular',
                     ),
                   ),
                 ),
@@ -603,12 +604,12 @@ class HomeView extends GetView<HomeController> {
             ),
             DefaultTextStyle(
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 13,
                 color: Colors.white54,
               ),
               child: Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 5.0,
+                  vertical: 0.0,
                 ),
                 child: GetBuilder(
                   init: controller,
@@ -616,7 +617,7 @@ class HomeView extends GetView<HomeController> {
                     return Text(
                       controller.versions.value.toString(),
                       style: const TextStyle(
-                        fontFamily: 'mikhak_medium',
+                        fontFamily: 'cairo_regular',
                       ),
                     );
                   },

@@ -165,15 +165,15 @@ class LocationsController extends GetxController {
   }
 
   void saveLocation(context, page) {
-    if (countryCode.value != 'SA') {
-      mySnackBar(
-        message: 'msg_excuse_location_out_of_country'.tr,
-        color: MYColor.warning,
-        title: 'warning'.tr,
-        icon: Icons.warning,
-      );
-      return;
-    }
+    // if (countryCode.value != 'SA') {
+    //   mySnackBar(
+    //     message: 'msg_excuse_location_out_of_country'.tr,
+    //     color: MYColor.warning,
+    //     title: 'warning'.tr,
+    //     icon: Icons.warning,
+    //   );
+    //   return;
+    // }
     getAddress(myLocation!);
 
     if (page == 'order' || page == 'main_home_page') {

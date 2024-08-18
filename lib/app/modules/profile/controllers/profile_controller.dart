@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/profile/profile_model.dart';
 import 'package:musaneda/app/modules/profile/providers/profile_provider.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
@@ -131,9 +132,11 @@ class ProfileController extends GetxController {
 
         isProcessing.value = false;
         setEnabled = false;
-
-        // Get.offAllNamed(Routes.HOME);
-
+      // To refresh all system for getting updated data
+      
+      // LanguageController.I.changeLocaleCode(LanguageController.I.getLocale);
+        Get.offAllNamed(Routes.WELCOME);
+        Get.offNamed(Routes.HOME);
         getProfile();
       });
     }

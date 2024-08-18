@@ -389,7 +389,9 @@ const Map<String, String> arSA = {
   'visits_number': ' عدد الزيارات ',
   'maids_number': 'عدد العاملات',
   'proceed': "تابع",
-  'choose_package': 'اختر الباقة المناسبة ',
+  'choose_package': 'الباقات',
+    "choose_package_desc":"اختر الباقة المناسبة من خدمة الساعة",
+
   //'Address Name' 'Street Name'  building_number floor_number 'Postal Code/Zip Code'
   'address_name': '  العنوان',
   'street_name': '  الشارع',
@@ -454,4 +456,11 @@ const Map<String, String> arSA = {
    "choose_job":"اختر الوظيفة المناسبة",
    "choose_experience":'اختر عدد سنوات الخبرة',
     "msg_mediation_success":'تم تقديم الوساطة بنجاح',
+     'no_internet_conn': 'لا يوجد اتصال بالأنترنت',
+  'steps_back_conn': 'جرب هذه الخطوات لمعاودة الاتصال بالإنترنت:',
+  "check_modem": 'التحقق من المودم وجهاز التوجيه',
+  "check_wifi": 'إعادة الإتصال بشبكة Wi-Fi',
+  'reload':'إعادة تحميل الصفحة',
+    'server_error':'خطأ فى الخادم',
+
 };

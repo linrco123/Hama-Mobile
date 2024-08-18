@@ -53,6 +53,11 @@ class Constance {
   final String iqama = box.read('LOGIN_MODEL')['iqama'] ?? '';
   final String token = box.read('LOGIN_MODEL')['token'] ?? '';
 
+  static String getName() {
+    String name = box.read('LOGIN_MODEL')['name'] ?? '';
+    return name;
+  }
+
   static double checkDouble(dynamic value) {
     // check if value is null
     if (value == null) {
@@ -72,8 +77,8 @@ class Constance {
       return value;
     }
   }
-                                                                      
-  static const domain = "https://kdamat.com"; 
+
+  static const domain = "https://kdamat.com";
   //static const domain = "https://devlop.kdamat.com";
   static const apiEndpoint = "$domain/api/v1";
   static const mediaEndpoint = "$domain/storage/media/";
@@ -87,18 +92,17 @@ class Constance {
   // static const String phoneRegExp =
   //     r'(^(5|9665|\5|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$)';
 
-static const String phoneRegExp =r'(^5\d{8}$)';
-    
+  static const String phoneRegExp = r'(^5\d{8}$)';
 
-  static String privacyLinkEn = '$domain/en/privacy';
-  static String privacyLinkAr = '$domain/ar/privacy';
+  static String privacyLinkEn = 'https://musaneda.com/?page=terms';
+  static String privacyLinkAr = 'https://musaneda.com/?page=terms-en';
 
 ////////////////////////amazon baseurl//////////////////////////////////////////
-
 
   static const sandenyAmazonPay = '/amazon-pay';
   static const sandenyBaseUrl = 'https://develop.sanedny.com/api';
 }
+
 class Cards {
   String cardNumber;
   String expiryDate;
@@ -137,7 +141,4 @@ class Cards {
       status: 'success',
     ),
   ];
-
-
-
 }

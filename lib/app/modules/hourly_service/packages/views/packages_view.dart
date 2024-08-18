@@ -18,9 +18,11 @@ class PackagesView extends GetView<PackagesController> {
       appBar: AppBar(
         backgroundColor: MYColor.primary.withOpacity(0.1),
         title: Text('choose_package'.tr,
-            style: TextStyle(color: MYColor.primary, fontSize: 18.0)),
+            style: TextStyle(
+                color: MYColor.primary, fontSize: 20.0, letterSpacing: 2.0)),
         leading: ReturnButton(color: MYColor.primary, size: 20.0),
-        systemOverlayStyle: const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.dark),
       ),
       body: Container(
         width: double.infinity,
@@ -56,6 +58,27 @@ class PackagesView extends GetView<PackagesController> {
                     ),
                     const SizedBox(
                       height: 15.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/package.png',
+                            height: 25.0,
+                            width: 25.0,
+                            fit: BoxFit.fill,
+                            color: MYColor.primary),
+                        const SizedBox(
+                          width: 5.0,
+                        ),
+                        Text('choose_package_desc'.tr,
+                            style: TextStyle(
+                                color: MYColor.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.0)),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10.0,
                     ),
                     Expanded(
                         child: ListView.separated(

@@ -4,7 +4,7 @@ const Map<String, String> enUS = {
   "delivery_location": "Delivery Location",
   "waiting": "Please wait",
   "app_name": "Hama Services",
-  "app_name_sa": "هامة للخادمات",
+  "app_name_sa": "مساندة للخادمات",
   "success": "Success",
   "error": "Error",
   "warning": "Warning",
@@ -73,7 +73,7 @@ const Map<String, String> enUS = {
   "reset_password": "Reset password",
   "send_verification_code": "Send verification code",
   "back_to_login": "Back to login",
-  "msg_reset_password":" Password reset successfully ",
+  "msg_reset_password": " Password reset successfully ",
 
   // Verification
   "verification_code": "Enter Verification Code",
@@ -391,7 +391,8 @@ const Map<String, String> enUS = {
   'visits_number': 'Visits number',
   'maids_number': 'Workers number',
   'proceed': "Proceed",
-  'choose_package': 'Choose a package',
+  'choose_package': 'packages',
+  "choose_package_desc":"Choose a package from hourly service",
   //'Address Name' 'Street Name'  'Building Name'   'Floor Name'  'Postal Code/Zip Code'
   'address_name': 'Address',
   'street_name': 'Street',
@@ -446,15 +447,20 @@ const Map<String, String> enUS = {
   'btn_title_online': 'Complete order and Pay Online',
   'btn_title_mada': 'Complete order and Pay via MADA on hand over',
   'btn_title_bank_transfer': 'Complete order and Pay via bank transfer',
-  'mada_content':'Payment process \'ll be through MADA when handing over a house worker from a supervisor at home',
-   "mediation_service":'Mediation Service',
-   'send':'Send',
-   'visa_number_card_required':'*Visa number is required',
-    'invalid_visa_number':'*visa number is invalid',
-     "choose_job":"Select your job ",
-   "choose_experience":' Select experience period',
-       "msg_mediation_success":'Mediation sent successfully',
-
-
-
+  'mada_content':
+      'Payment process \'ll be through MADA when handing over a house worker from a supervisor at home',
+  "mediation_service": 'Mediation Service',
+  'send': 'Send',
+  'visa_number_card_required': '*Visa number is required',
+  'invalid_visa_number': '*visa number is invalid',
+  "choose_job": "Select your job ",
+  "choose_experience": ' Select experience period',
+  "msg_mediation_success": 'Mediation sent successfully',
+  'no_internet_conn': 'No internet connection',
+  'steps_back_conn': 'Try these steps to get back online:',
+  "check_modem": 'Check your modem or router',
+  "check_wifi": 'Reconnect to Wi-Fi',
+  'reload':'Reload',
+  'server_error':' Server Error !',
 };
+

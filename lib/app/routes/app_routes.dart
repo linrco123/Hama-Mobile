@@ -35,6 +35,7 @@ abstract class Routes {
   static const ORDERDETAILS = _Paths.ORDERDETAILS; 
   static const HOURPAYMENT = _Paths.HOURPAYMENT; 
   static const MEDIATION = _Paths.MEDIATION;
+  static const INTERNETCONNECTION = _Paths.INTERNETCONNECTION;
  }
 
 abstract class _Paths {
@@ -70,6 +71,7 @@ abstract class _Paths {
   static const ORDERDETAILS = '/orderDetails'; 
   static const HOURPAYMENT = '/hourPayment'; 
   static const MEDIATION = '/mediation';  
+  static const INTERNETCONNECTION = '/InternetConnection';
 
     
 

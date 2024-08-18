@@ -50,11 +50,12 @@ class LanguageController extends GetxController implements Translations {
 
   set setLocale(languageCode) {
     storage.write('locale', languageCode);
-    
+
     if (Get.currentRoute == Routes.LOGIN ||
-        Get.currentRoute == Routes.REGISTER) {
+        Get.currentRoute == Routes.REGISTER ||
+        Get.currentRoute == Routes.WELCOME) {
       update();
-    }else{
+    } else {
       Get.offAllNamed('home');
     }
   }
@@ -73,6 +74,12 @@ class LanguageController extends GetxController implements Translations {
     final locale = _getLocaleFromLanguage(language);
 
     Get.updateLocale(locale!);
+    setLocale = locale.languageCode;
+  }
+  
+   changeLocaleCode(String code) {
+
+    Get.updateLocale(Locale(code));
     setLocale = locale.languageCode;
   }
 
