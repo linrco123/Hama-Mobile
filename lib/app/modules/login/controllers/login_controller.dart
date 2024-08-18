@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -18,6 +19,25 @@ import '../providers/login_provider.dart';
 
 class LoginController extends GetxController {
   static LoginController get I => Get.put(LoginController());
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    connectivity().then((value){
+      if(value == false){
+        Get.toNamed(Routes.INTERNETCONNECTION);
+      }
+    });
+  }
+
+  Future<bool> connectivity() async {
+  if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
+    return false;
+  } else {
+    return true;
+  }
+}
   var isProcessing = false.obs;
   final box = GetStorage();
   final formLoginKey = GlobalKey<FormState>();
@@ -71,9 +91,10 @@ class LoginController extends GetxController {
     );
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
-    } else if (!regExp.hasMatch(value)) {
-      return "msg_plz_enter_correct_phone".tr;
     }
+    //  else if (!regExp.hasMatch(value)) {
+    //   return "msg_plz_enter_correct_phone".tr;
+    // }
     return null;
   }
 

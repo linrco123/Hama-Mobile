@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/custom_payment/controllers/custom_payment_controller.dart';
 import 'package:musaneda/app/modules/main_home_page/providers/main_home_page_provider.dart';
@@ -15,7 +16,20 @@ class MainHomePageController extends GetxController {
     getContractList();
     setSelectedService = services.first;
     super.onInit();
+    connectivity().then((value){
+      if(value == false){
+        Get.toNamed(Routes.INTERNETCONNECTION);
+      }
+    });
   }
+
+ Future<bool> connectivity() async {
+  if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
   final _tap = 0.obs;
   set setTap(int value) {

@@ -78,7 +78,7 @@ class RegisterController extends GetxController {
     );
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
-      }
+    }
     // } else if (!regExp.hasMatch(value)) {
     //   return "msg_plz_enter_correct_phone".tr;
     // }
@@ -89,7 +89,9 @@ class RegisterController extends GetxController {
   validateIqama(String value) {
     if (value.isEmpty) {
       return "msg_plz_enter_iqama_number".tr;
-      }
+    } else if (value.length < 8 || value.length > 11) {
+      return 'should_less_11_more_8'.tr;
+    }
     // } else if (IqamaValidator().validateSaudiNationalID(value) == false) {
     //   return "msg_plz_enter_correct_iqama_number".tr;
     // }
@@ -128,7 +130,6 @@ class RegisterController extends GetxController {
           "name": txtFullName.text,
           "phone": txtPhone.text.toString(),
           "iqama": txtIqama.text,
-          "email": txtEmail.text,
           "password": txtPassword.text,
           "device_token": box.read("fcm_token"),
         };
@@ -284,7 +285,6 @@ class RegisterController extends GetxController {
 
   /// pin text field
   PinFieldAutoFill _pinTextField(BuildContext context) {
-
     return PinFieldAutoFill(
       keyboardType: TextInputType.number,
       autoFocus: true,

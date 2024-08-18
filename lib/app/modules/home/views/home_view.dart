@@ -369,6 +369,7 @@ class HomeView extends GetView<HomeController> {
         IconButton(
             onPressed: () {
               Get.back();
+             // Navigator.of(context).pop();
             },
             icon: const Icon(Icons.arrow_forward_ios_outlined))
       ],
@@ -586,7 +587,7 @@ class HomeView extends GetView<HomeController> {
               ),
               child: Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 16.0,
+                  vertical: 13.0,
                 ),
                 child: InkWell(
                   onTap: () {

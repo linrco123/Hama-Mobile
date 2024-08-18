@@ -18,17 +18,16 @@ class ForgotProvider extends GetConnect {
       log(res.body.toString(), name: 'forgot password');
 
       await EasyLoading.dismiss();
-    
+
       if (res.body['code'] == 0) {
         // Phone number already exists!
-        if (res.body['data']['phone'] != null) {
-          mySnackBar(
-            title: "error".tr,
-            message: "msg_phone_already_exist".tr,
-            color: MYColor.warning,
-            icon: CupertinoIcons.info_circle,
-          );
-        }
+
+        mySnackBar(
+          title: "error".tr,
+          message: 'try_again'.tr,
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
       }
 
       if (res.body['code'] == 1) {

@@ -111,7 +111,6 @@ class ProfileController extends GetxController {
         "name": txtFullName.text,
         "phone": txtPhone.text,
         "iqama": txtIqama.text,
-        "email": txtEmail.text,
       };
       ProfileProvider().postProfile(data).then((value) {
         Map localData = box.read('LOGIN_MODEL') as Map;

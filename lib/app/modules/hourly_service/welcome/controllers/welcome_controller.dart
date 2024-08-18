@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 
@@ -6,8 +7,22 @@ class WelcomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    connectivity().then((value){
+      if(value == false){
+        Get.toNamed(Routes.INTERNETCONNECTION);
+      }
+    });
   }
 
+
+
+  Future<bool> connectivity() async {
+  if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
+    return false;
+  } else {
+    return true;
+  }
+}
   String greetings() {
     DateTime greeting = DateTime.now();
     if (greeting.isAfter(desiredTime(hour: 16, minutes: 59)) ||

@@ -89,17 +89,6 @@ class ProfileView extends GetView<ProfileController> {
                 const SizedBox(height: 10),
                 _nameTextField(context),
                 const SizedBox(height: 20),
-               Text(
-                  'email'.tr,
-                  style: TextStyle(
-                    color: MYColor.buttons,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                _emailTextField(context),
-                const SizedBox(height: 20),
-                
                  Text(
                   'iqama_number'.tr,
                   style: TextStyle(

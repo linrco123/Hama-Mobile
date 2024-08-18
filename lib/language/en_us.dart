@@ -43,15 +43,15 @@ const Map<String, String> enUS = {
   "msg_plz_enter_full_name": "Please enter full name",
   "msg_plz_name_should_be_more_than_6_char":
       "Name should be more than 6 characters",
-  "msg_plz_enter_iqama_number": "Please enter iqama number",
-  "msg_plz_enter_correct_iqama_number": "Please enter correct iqama number",
+  "msg_plz_enter_iqama_number": "Please enter national-iqama number",
+  "msg_plz_enter_correct_iqama_number": "Please enter correct national-iqama number",
   "msg_plz_enter_email": "Please enter email",
   "msg_plz_enter_correct_email": "Please enter correct email",
   "msg_register_success": "Already, received verification code !",
   "msg_phone_already_exist": "Phone number already exists!",
-  "msg_iqama_already_exist": "Iqama number already exists!",
+  "msg_iqama_already_exist": "National-Iqama ID already exists!",
   "msg_email_already_exist": "Email already exists!",
-
+  "should_less_11_more_8":"must be more than 8 ,less than 11",
   // Login
   "sign_in": "Sign in",
   "forgot_password": "Forgot password?",
@@ -89,6 +89,7 @@ const Map<String, String> enUS = {
   "msg_plz_enter_correct_otp": "Please enter correct OTP",
   "msg_otp_sent_success": "OTP sent successfully",
   "msg_otp_verified_success": "OTP verified successfully",
+  "msg_not_otp_sent":"Otp not reached yet !",
 
   // Home
   "home": "Home",

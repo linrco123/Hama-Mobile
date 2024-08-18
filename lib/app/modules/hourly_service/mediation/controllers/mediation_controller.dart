@@ -86,26 +86,34 @@ class MediationController extends GetxController {
         icon: CupertinoIcons.info_circle,
       );
     } else {
-     //  if (formKey.currentState!.validate()) {
-        Map data = {
+      //  if (formKey.currentState!.validate()) {
+      Map data = {};
+      if (cardNumberController.text.isEmpty) {
+        data = {
           "job": selectedJob.value,
           "experience": selectedExperience.value,
           "country_id": nationality.value,
-          "visa_number": cardNumberController.text.isEmpty
-          ? '1234567890': cardNumberController.text
         };
-        MediationProvider().submitMediation(data).then((value) async {
-          await EasyLoading.dismiss();
+      } else {
+        data = {
+          "job": selectedJob.value,
+          "experience": selectedExperience.value,
+          "country_id": nationality.value,
+          "visa_number": cardNumberController.text
+        };
+      }
+      MediationProvider().submitMediation(data).then((value) async {
+        await EasyLoading.dismiss();
 
-          cardNumberController.text = '';
-          nationality.value = 0;
-          selectedExperience.value = 0;
-          selectedJob.value = 0;
-          update();
-          Get.back();
-        }).catchError((error) async {
-          await EasyLoading.dismiss();
-        });
+        cardNumberController.text = '';
+        nationality.value = 0;
+        selectedExperience.value = 0;
+        selectedJob.value = 0;
+        update();
+        Get.back();
+      }).catchError((error) async {
+        await EasyLoading.dismiss();
+      });
       // }
     }
   }

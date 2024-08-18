@@ -37,14 +37,17 @@ class NotificationController extends GetxController {
 
   Future<void> _firebaseMessagingBackgroundHandler(
       RemoteMessage message) async {
-    FirebaseMessageModel frmModel = FirebaseMessageModel(
-      title: message.notification!.title!,
-      body: message.notification!.body!,
-      type: message.data['type'],
-      dateTime: since(date: message.data['date_time']),
-    );
+    FirebaseMessageModel frmModel;
+    if (message != null) {
+      frmModel = FirebaseMessageModel(
+        title: message.notification!.title!,
+        body: message.notification!.body!,
+        type: message.data['type'],
+        dateTime: since(date: message.data['date_time']),
+      );
 
-    notifyList.add(frmModel);
+      notifyList.add(frmModel);
+    }
   }
 
   Future<void> config() async {
@@ -135,70 +138,74 @@ class NotificationController extends GetxController {
   final FlutterLocalNotificationsPlugin fl = FlutterLocalNotificationsPlugin();
 
   Future<void> initNotify() async {
-    await requestPermission();
+    try {
+      await requestPermission();
 
-    await fl.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings(
-          '@drawable/notification',
+      await fl.initialize(
+        const InitializationSettings(
+          android: AndroidInitializationSettings(
+            '@drawable/notification',
+          ),
+          iOS: DarwinInitializationSettings(
+            requestAlertPermission: true,
+            requestBadgePermission: true,
+            requestSoundPermission: true,
+          ),
         ),
-        iOS: DarwinInitializationSettings(
-          requestAlertPermission: true,
-          requestBadgePermission: true,
-          requestSoundPermission: true,
-        ),
-      ),
-    );
+      );
 
-    // FirebaseMessaging.instance.getInitialMessage().then((message) {
-    //   FirebaseMessageModel frmModel = FirebaseMessageModel(
-    //     title: message!.notification!.title!,
-    //     body: message.notification!.body!,
-    //     type: message.data['type'],
-    //     dateTime: since(date: message.data['date_time']),
-    //   );
-    //   notifyList.add(frmModel);
-    
-    //   Get.toNamed(Routes.NOTIFICATION);
-    // });
+      FirebaseMessaging.instance.getInitialMessage().then((message) {
+        FirebaseMessageModel frmModel = FirebaseMessageModel(
+          title: message!.notification!.title!,
+          body: message.notification!.body!,
+          type: message.data['type'],
+          dateTime: since(date: message.data['date_time']),
+        );
+        notifyList.add(frmModel);
 
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-    // executed when interacting with notification while the app in the background
-    FirebaseMessaging.onMessageOpenedApp.listen(
-      (message) async {
-        log("on_message_opened_app", name: "on_message_opened_app");
         Get.toNamed(Routes.NOTIFICATION);
-      },
-    );
+      });
 
-    // FirebaseMessaging.onMessage.listen(
-    //   (message) async {
-    //     FirebaseMessageModel frmModel = FirebaseMessageModel(
-    //       title: message.notification!.title!,
-    //       body: message.notification!.body!,
-    //       type: message.data['type'],
-    //       dateTime: since(date: message.data['date_time']),
-    //     );
+      FirebaseMessaging.onBackgroundMessage(
+          _firebaseMessagingBackgroundHandler);
 
-    //     notifyList.add(frmModel);
+     // executed when interacting with notification while the app in the background
+      FirebaseMessaging.onMessageOpenedApp.listen(
+        (message) async {
+          log("on_message_opened_app", name: "on_message_opened_app");
+          Get.toNamed(Routes.NOTIFICATION);
+        },
+      );
 
-    //     await showNotify(
-    //       id: 1,
-    //       title: frmModel.title,
-    //       body: frmModel.body,
-    //       type: frmModel.type,
-    //     );
-    //   },
-    // );
+      FirebaseMessaging.onMessage.listen(
+        (message) async {
+          FirebaseMessageModel frmModel = FirebaseMessageModel(
+            title: message.notification!.title!,
+            body: message.notification!.body!,
+            type: message.data['type'],
+            dateTime: since(date: message.data['date_time']),
+          );
 
-    FirebaseMessaging.instance.getToken().then(
-      (token) {
-        Pretty.instance.logger.d("get_token_tow: $token");
-        box.write('fcm_token', token);
-        print('fcm_token ::::::::::::::::::::::: ${token}');
-      },
-    );
+          notifyList.add(frmModel);
+
+          await showNotify(
+            id: 1,
+            title: frmModel.title,
+            body: frmModel.body,
+            type: frmModel.type,
+          );
+        },
+      );
+
+      FirebaseMessaging.instance.getToken().then(
+        (token) {
+          Pretty.instance.logger.d("get_token_tow: $token");
+          box.write('fcm_token', token);
+        },
+      );
+    } catch (e, s) {
+      await Sentry.captureException(e, stackTrace: s);
+    }
   }
 
   var notifyList = <FirebaseMessageModel>[

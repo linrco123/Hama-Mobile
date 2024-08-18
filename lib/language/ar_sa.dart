@@ -36,18 +36,19 @@ const Map<String, String> arSA = {
   "terms_and_conditions": "الشروط والاحكام",
   "create_an_account": "انشاء حساب جديد",
   "already_have_an_account": "لديك حساب بالفعل؟",
+  "should_less_11_more_8":"يجب ان يكون اكبر من 8 اقل من 11",
 
   // Register messages and errors
   "msg_plz_enter_full_name": "الرجاء إدخال الاسم الكامل",
   "msg_plz_name_should_be_more_than_6_char": "يجب أن يكون الاسم أكثر من 6 أحرف",
-  "msg_plz_enter_iqama_number": "الرجاء إدخال رقم الاقامة",
-  "msg_plz_enter_correct_iqama_number": "الرجاء إدخال رقم الاقامة الصحيح",
+  "msg_plz_enter_iqama_number": "الرجاء إدخال رقم الهوية-الاقامة",
+  "msg_plz_enter_correct_iqama_number": "الرجاء إدخال رقم الهوية-الاقامة الصحيح",
   "msg_plz_enter_email": "الرجاء إدخال البريد الإلكتروني",
   "msg_plz_enter_correct_email": "الرجاء إدخال بريد إلكتروني صحيح",
   "msg_register_success":
       "! لقد استلمت رمز التأكيد بالفعل",
   "msg_phone_already_exist": "رقم الهاتف موجود بالفعل",
-  "msg_iqama_already_exist": "رقم الاقامة موجود بالفعل",
+  "msg_iqama_already_exist": "رقم الهوية-الاقامة موجود بالفعل",
   "msg_email_already_exist": "البريد الإلكتروني موجود بالفعل",
 
   // Login
@@ -86,6 +87,8 @@ const Map<String, String> arSA = {
   "msg_plz_enter_correct_otp": "الرجاء ادخال رمز التحقق الصحيح",
   "msg_otp_sent_success": "تم ارسال رمز التحقق بنجاح",
   "msg_otp_verified_success": "تم تحقق رمز التحقق بنجاح",
+  "msg_not_otp_sent":"رمز التحقق لم يصل بعد !",
+
 
   // Home
   "home": "الرئيسية",
