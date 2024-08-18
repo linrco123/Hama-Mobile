@@ -59,15 +59,12 @@ class ForgotProvider extends GetConnect {
       await EasyLoading.dismiss();
 
       if (res.body['code'] == 0) {
-        // Phone number already exists!
-        if (res.body['data']['phone'] != null) {
-          mySnackBar(
+           mySnackBar(
             title: "error".tr,
-            message: "msg_phone_already_exist".tr,
+            message: "try_again".tr,
             color: MYColor.warning,
             icon: CupertinoIcons.info_circle,
           );
-        }
       }
 
       if (res.body['code'] == 1) {
@@ -99,11 +96,10 @@ class ForgotProvider extends GetConnect {
       await EasyLoading.dismiss();
 
       if (res.body['code'] == 0) {
-        // Phone number already exists!
         if (res.body['data']['phone'] != null) {
           mySnackBar(
             title: "error".tr,
-            message: "msg_phone_already_exist".tr,
+            message: "try_again".tr,
             color: MYColor.warning,
             icon: CupertinoIcons.info_circle,
           );
@@ -113,7 +109,7 @@ class ForgotProvider extends GetConnect {
       if (res.body['code'] == 1) {
         mySnackBar(
           title: "success".tr,
-          message: "msg_register_success".tr,
+          message: "enter_the_code_sent_to".tr,
           color: MYColor.success,
           icon: CupertinoIcons.check_mark_circled,
         );
@@ -139,16 +135,6 @@ class ForgotProvider extends GetConnect {
       await EasyLoading.dismiss();
 
       if (res.body['code'] == 0) {
-        // Verification code is required
-        if (res.body['data']['code'] != null) {
-          mySnackBar(
-            title: "error".tr,
-            message: "msg_plz_enter_verification_code".tr,
-            color: MYColor.warning,
-            icon: CupertinoIcons.info_circle,
-          );
-        }
-
         // Verification code is invalid
         if (res.body['data']['code'] != null) {
           mySnackBar(

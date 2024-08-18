@@ -84,17 +84,15 @@ class RegisterProvider extends GetConnect {
       final res = await post("${Constance.apiEndpoint}/verify_otp", data);
 
       await EasyLoading.dismiss();
-     print(res.body);
+      print(res.body);
       if (res.body['code'] == 0) {
         // Verification code is invalid
-        if (res.body['data']['code'] != null) {
-          mySnackBar(
-            title: "error".tr,
-            message: "msg_verification_code_is_invalid".tr,
-            color: MYColor.warning,
-            icon: CupertinoIcons.info_circle,
-          );
-        }
+        mySnackBar(
+          title: "error".tr,
+          message: "msg_verification_code_is_invalid".tr,
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
       }
 
       if (res.body['code'] == 1) {
@@ -125,14 +123,12 @@ class RegisterProvider extends GetConnect {
 
       if (res.body['code'] == 0) {
         // Phone number already exists!
-        if (res.body['data']['phone'] != null) {
-          mySnackBar(
-            title: "error".tr,
-            message: "msg_phone_already_exist".tr,
-            color: MYColor.warning,
-            icon: CupertinoIcons.info_circle,
-          );
-        }
+        mySnackBar(
+          title: "error".tr,
+          message: "try_again".tr,
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
       }
 
       if (res.body['code'] == 1) {
