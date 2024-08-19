@@ -582,12 +582,12 @@ class HomeView extends GetView<HomeController> {
 
             DefaultTextStyle(
               style: const TextStyle(
-                fontSize: 15,
+                fontSize: 13,
                 color: Colors.white54,
               ),
               child: Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 13.0,
+                  vertical: 10.0,
                 ),
                 child: InkWell(
                   onTap: () {

@@ -86,7 +86,6 @@ class MediationController extends GetxController {
         icon: CupertinoIcons.info_circle,
       );
     } else {
-      //  if (formKey.currentState!.validate()) {
       Map data = {};
       if (cardNumberController.text.isEmpty) {
         data = {
@@ -109,9 +108,9 @@ class MediationController extends GetxController {
         nationality.value = 0;
         selectedExperience.value = 0;
         selectedJob.value = 0;
-        update();
-        Get.back();
-      }).catchError((error) async {
+       // update();
+       Navigator.of(Get.context!).pop();
+       }).catchError((error) async {
         await EasyLoading.dismiss();
       });
       // }

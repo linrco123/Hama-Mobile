@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -9,15 +11,15 @@ import '../../../../components/mySnackbar.dart';
 import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../locations_model.dart';
-
+import 'package:http/http.dart' as http;
 class LocationsProvider extends GetConnect {
   final box = GetStorage();
 
   Future<Locations> getLocations() async {
     await EasyLoading.show(status: 'waiting'.tr);
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/locations",
+      final res = await http.get(
+        Uri.parse("${Constance.apiEndpoint}/locations"),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
@@ -26,10 +28,10 @@ class LocationsProvider extends GetConnect {
       print(res.body);
       await EasyLoading.dismiss();
 
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return Locations.fromJson(res.body);
+        return Locations.fromJson(jsonDecode(res.body));
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
