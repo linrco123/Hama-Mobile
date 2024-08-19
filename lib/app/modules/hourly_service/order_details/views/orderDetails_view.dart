@@ -168,6 +168,10 @@ class OrderDetailsView extends GetView<OrderdetailsController> {
                       const SizedBox(
                         height: 10,
                       ),
+                      locationController.hourLocations.isEmpty?
+                      Text('السعودية ,الملز,الرياض,building :2,floor:3',style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: MYColor.primary)):
                       Text(
                           locationController.hourLocations
                               .firstWhere(

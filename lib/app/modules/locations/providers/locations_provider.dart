@@ -21,6 +21,7 @@ class LocationsProvider extends GetConnect {
       final res = await http.get(
         Uri.parse("${Constance.apiEndpoint}/locations"),
         headers: {
+          "Accept-Language":"en",
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },

@@ -213,7 +213,7 @@ class RegisterController extends GetxController {
           insetAnimationCurve: Curves.easeInCirc,
           alignment: Alignment.center,
           child: Container(
-            height: 330.0,
+            height: 340.0,
             width: double.infinity,
             padding: const EdgeInsets.all(8),
             child: Column(

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
@@ -8,13 +9,19 @@ import '../../../../components/mySnackbar.dart';
 import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../login_model.dart';
+import 'package:http/http.dart' as http;
 
 class LoginProvider extends GetConnect {
   Future<Login> postLogin(Map data) async {
     try {
-      final res = await post("${Constance.apiEndpoint}/login", data);
-      if (res.body['code'] == 0) {
-        if (res.body['message'] == 'phone Or Password InCorrect') {
+      final res = await http.post(
+        Uri.parse("${Constance.apiEndpoint}/login"),
+        body: data,
+      );
+      print(res.body);
+      var decodedBody = jsonDecode(res.body);
+      if (decodedBody['code'] == 0) {
+        if (decodedBody['message'] == 'phone Or Password InCorrect') {
           mySnackBar(
             title: "error".tr,
             message: "msg_unauthorized".tr,
@@ -24,7 +31,7 @@ class LoginProvider extends GetConnect {
         }
       }
 
-      if (res.body['code'] == 1) {
+      if (decodedBody['code'] == 1) {
         mySnackBar(
           title: "success".tr,
           message: "msg_login_success".tr,
@@ -32,13 +39,13 @@ class LoginProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return Login.fromJson(res.body);
+        return Login.fromJson(decodedBody);
       }
     } catch (e, s) {
-       await Sentry.captureException(e, stackTrace: s);
+      await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }
   }

@@ -29,11 +29,11 @@ class OrderController extends GetxController {
   @override
   void onInit() {
     getBranches();
-    // if (Get.previousRoute == Routes.MUSANEDA) {
-    //   MusanedaData musanedaData = Get.arguments;
-    //   setMusanedaID = musanedaData;
-    //   getPackages(theNationalID: musanedaData.id);
-    // }
+    if (Get.previousRoute == Routes.MUSANEDA) {
+      MusanedaData musanedaData = Get.arguments;
+      setMusanedaID = musanedaData;
+      getPackages(theNationalID: musanedaData.id);
+    }
     getLocations();
     setMerchantTransactionID();
     super.onInit();

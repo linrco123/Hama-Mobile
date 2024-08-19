@@ -278,7 +278,8 @@ class HomeView extends GetView<HomeController> {
             ),
             IconButton(
             onPressed: () {
-              Get.back();
+              //Get.back();
+              Navigator.of(context).pop();
             },
             icon: const Icon(Icons.arrow_forward_ios_outlined))
           ],
@@ -486,7 +487,7 @@ class HomeView extends GetView<HomeController> {
               width: 100,
               height: 100,
               margin: const EdgeInsets.only(
-                top: 50.0,
+                top: 20.0,
                 bottom: 10.0,
               ),
               clipBehavior: Clip.antiAlias,
@@ -556,14 +557,13 @@ class HomeView extends GetView<HomeController> {
               title: Text('tickets'.tr),
             ),
             // Technical support
-
-            // ListTile(
-            //   onTap: () {
-            //     Get.toNamed(Routes.TECHNICAL_SUPPORT);
-            //   },
-            //   leading: const Icon(CupertinoIcons.chat_bubble_2),
-            //   title: Text('technical_support'.tr),
-            // ),
+            ListTile(
+              onTap: () {
+                Get.toNamed(Routes.TECHNICAL_SUPPORT);
+              },
+              leading: const Icon(CupertinoIcons.chat_bubble_2),
+              title: Text('technical_support'.tr),
+            ),
             ListTile(
               onTap: () async {
                 await controller.makePhoneCall();
