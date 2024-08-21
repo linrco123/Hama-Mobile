@@ -8,12 +8,13 @@ class WelcomeCard extends StatelessWidget {
   final String title;
   final String description;
   final String image;
+  final void Function()? onPressed;
 
   const WelcomeCard(
       {super.key,
       required this.title,
       required this.description,
-      required this.image});
+      required this.image, this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -89,16 +90,14 @@ class WelcomeCard extends StatelessWidget {
                   color: MYColor.buttons,
                   padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical:10.0),
                   minSize: 30.0,
+                  onPressed: onPressed,
                   child: Text(
                     'check_service'.tr,
                     style: TextStyle(
                         fontSize: 17.0,
                         color: MYColor.btnTxtColor,
                         fontFamily: 'cairo_regular'),
-                  ),
-                  onPressed: () {
-                    WelcomeController.instance.goToServiceTypeView();
-                  }),
+                  )),
               const SizedBox(
                 height: 15.0,
               ),

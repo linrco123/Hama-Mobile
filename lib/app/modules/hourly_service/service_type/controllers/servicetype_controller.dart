@@ -3,9 +3,11 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/models/get_hour_order_model.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/providers/servicetype_provider.dart';
 import 'package:musaneda/app/modules/order/views/bank_account/bank_accounts_details_view.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
@@ -20,9 +22,10 @@ class ServiceTypeController extends GetxController {
     super.onInit();
     getCities();
     getNationalities();
+    getHourOrders();
     workersNumbercontroller = TextEditingController()..text = '1';
   }
-
+  final languageController = LanguageController.I;
   RxDouble packageCost = 0.0.obs;
   set setPackageCost(double cost) {
     packageCost.value = cost;
@@ -241,7 +244,6 @@ class ServiceTypeController extends GetxController {
         ),
       ),
     );
-
     isLoading(true);
     ServiceTypeProvider().getNationalities().then((value) {
       for (var data in value.data as List) {
@@ -322,4 +324,37 @@ class ServiceTypeController extends GetxController {
       ),
     ),
   ];
+
+   var listHourOrders = List<HourData>.empty(growable: true).obs;
+  var page = 1.obs;
+  var lastPage = false.obs;
+
+  Future<void> getHourOrders() async {
+    isLoading(true);
+    ServiceTypeProvider().getHourOrders(page.value , languageController.getLocale).then(
+      (value) {
+        for (var data in value.data!.data as List) {
+          listHourOrders.add(data);
+        }
+        isLoading(false);
+      },
+    );
+    update();
+  }
+
+  Future<void> getMoreHourOrders() async {
+    isLoading(true);
+     ServiceTypeProvider().getHourOrders(page.value++ , languageController.getLocale).then(
+      (value) {
+        for (var data in value.data as List) {
+          listHourOrders.add(data);
+        }
+        isLoading(false);
+        if (value.data!.total! <= page.value) {
+           lastPage(true);
+        }
+       },
+    );
+    update();
+  }
 }

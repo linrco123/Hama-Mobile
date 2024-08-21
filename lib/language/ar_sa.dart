@@ -1,10 +1,11 @@
 const Map<String, String> arSA = {
+  'about_musaneda': 'عن مساندة',
   "location_address_text": "مثال: المنزل, العمل, الخ",
   "other_details_text": "مثال: رقم المبنى, الطابق, الشقة",
   "delivery_location": "عنوان التوصيل",
   "waiting": "لحظة من فضلك",
-  "app_name": "هامة للخدمات",
-  "app_name_sa": "هامة للخدمات",
+  "app_name": "مساندة للخدمات",
+  "app_name_sa": "مساندة للخدمات",
   "success": "نجاح",
   "error": "خطأ",
   "warning": "تحذير",
@@ -36,17 +37,17 @@ const Map<String, String> arSA = {
   "terms_and_conditions": "الشروط والاحكام",
   "create_an_account": "انشاء حساب جديد",
   "already_have_an_account": "لديك حساب بالفعل؟",
-  "should_less_11_more_8":"يجب ان يكون اكبر من 8 اقل من 11",
+  "should_less_11_more_8": "يجب ان يكون اكبر من 8 اقل من 11",
 
   // Register messages and errors
   "msg_plz_enter_full_name": "الرجاء إدخال الاسم الكامل",
   "msg_plz_name_should_be_more_than_6_char": "يجب أن يكون الاسم أكثر من 6 أحرف",
   "msg_plz_enter_iqama_number": "الرجاء إدخال رقم الهوية-الاقامة",
-  "msg_plz_enter_correct_iqama_number": "الرجاء إدخال رقم الهوية-الاقامة الصحيح",
+  "msg_plz_enter_correct_iqama_number":
+      "الرجاء إدخال رقم الهوية-الاقامة الصحيح",
   "msg_plz_enter_email": "الرجاء إدخال البريد الإلكتروني",
   "msg_plz_enter_correct_email": "الرجاء إدخال بريد إلكتروني صحيح",
-  "msg_register_success":
-      "! لقد استلمت رمز التأكيد بالفعل",
+  "msg_register_success": "! لقد استلمت رمز التأكيد بالفعل",
   "msg_phone_already_exist": "رقم الهاتف موجود بالفعل",
   "msg_iqama_already_exist": "رقم الهوية-الاقامة موجود بالفعل",
   "msg_email_already_exist": "البريد الإلكتروني موجود بالفعل",
@@ -72,7 +73,7 @@ const Map<String, String> arSA = {
   "reset_password": "اعادة تعيين كلمة المرور",
   "send_verification_code": "ارسال رمز التحقق",
   "back_to_login": "العودة لتسجيل الدخول",
-  "msg_reset_password":"تم اعادة تعيين كلمة المرور بنجاح",
+  "msg_reset_password": "تم اعادة تعيين كلمة المرور بنجاح",
 
   // Verification
   "verification_code": "ادخل كود التحقق",
@@ -87,8 +88,7 @@ const Map<String, String> arSA = {
   "msg_plz_enter_correct_otp": "الرجاء ادخال رمز التحقق الصحيح",
   "msg_otp_sent_success": "تم ارسال رمز التحقق بنجاح",
   "msg_otp_verified_success": "تم تحقق رمز التحقق بنجاح",
-  "msg_not_otp_sent":"رمز التحقق لم يصل بعد !",
-
+  "msg_not_otp_sent": "رمز التحقق لم يصل بعد !",
 
   // Home
   "home": "الرئيسية",
@@ -109,6 +109,9 @@ const Map<String, String> arSA = {
   "request": "الطلبات",
   "service_request": "طلب الخدمة",
   "back_to_home": " العودة للرئيسية ",
+  "moquima": "مقيمة",
+  "hour": "ساعة",
+  "mediation": "الوساطة",
   // Order
   "information": "المعلومات",
   "package": "الباقة",
@@ -246,6 +249,7 @@ const Map<String, String> arSA = {
   "select_location": "اختر الموقع",
   "other_details": "تفاصيل اخرى",
   "no_notifications": "لا توجد اشعارات",
+  'address_deleted_success': "تم مسح العنوان بنجاح",
 
   // Tickets
   'via': 'عن طريق',
@@ -386,6 +390,10 @@ const Map<String, String> arSA = {
   'stayin_service': ' خدمة مقيمة',
   'stayin_service_desc': 'خدمات مقيمة تبدأ من شهر إلى سنتين بباقات شهرية',
   'working_hours': 'ساعات العمل',
+  'moquima_orders': 'طلبات مقيمة',
+  'hour_orders': ' طلبات الساعة',
+  'mediations_orders': 'طلبات الوساطة ',
+
   'shift_type': 'نوبة الخدمة',
   'morning': 'صباحى',
   'evening': 'مسائى',
@@ -393,7 +401,7 @@ const Map<String, String> arSA = {
   'maids_number': 'عدد العاملات',
   'proceed': "تابع",
   'choose_package': 'الباقات',
-    "choose_package_desc":"اختر الباقة المناسبة من خدمة الساعة",
+  "choose_package_desc": "اختر الباقة المناسبة من خدمة الساعة",
 
   //'Address Name' 'Street Name'  building_number floor_number 'Postal Code/Zip Code'
   'address_name': '  العنوان',
@@ -454,16 +462,20 @@ const Map<String, String> arSA = {
       'عملية الدفع ستكون من خلال مدى عند استلام العاملة من المشرفة فى المنزل',
   "mediation_service": 'خدمة الوساطة',
   'send': 'ارسال',
-  'visa_number_card_required':'*رقم التأشيرة مطلوب',
-  'invalid_visa_number':'رقم التأشيرة غير صالح',
-   "choose_job":"اختر الوظيفة المناسبة",
-   "choose_experience":'اختر عدد سنوات الخبرة',
-    "msg_mediation_success":'تم تقديم الوساطة بنجاح',
-     'no_internet_conn': 'لا يوجد اتصال بالأنترنت',
+  'visa_number_card_required': '*رقم التأشيرة مطلوب',
+  'invalid_visa_number': 'رقم التأشيرة غير صالح',
+  "choose_job": "اختر الوظيفة المناسبة",
+  "choose_experience": 'اختر عدد سنوات الخبرة',
+  "msg_mediation_success": 'تم تقديم الوساطة بنجاح',
+  'no_internet_conn': 'لا يوجد اتصال بالأنترنت',
   'steps_back_conn': 'جرب هذه الخطوات لمعاودة الاتصال بالإنترنت:',
   "check_modem": 'التحقق من المودم وجهاز التوجيه',
   "check_wifi": 'إعادة الإتصال بشبكة Wi-Fi',
-  'reload':'إعادة تحميل الصفحة',
-    'server_error':'خطأ فى الخادم',
-
+  'reload': 'إعادة تحميل الصفحة',
+  'server_error': 'خطأ فى الخادم',
+  'status': 'الحالة',
+  'experience': "الخبرة",
+  'job': "الوظيفة",
+  'no_hour_orders':'لا يوجد طلبات ساعة بعد !',
+   'no_mediation_orders':'لا يوجد طلبات ساعة بعد !',
 };

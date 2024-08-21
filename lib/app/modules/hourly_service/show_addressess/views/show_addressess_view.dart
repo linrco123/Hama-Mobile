@@ -153,65 +153,71 @@ class ShowAddressessView extends GetView<LocationsController> {
                     : ListView.separated(
                         itemCount: locationController.hourLocations.length,
                         itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              serviceTypeController.pickAddress(
-                                  locationController.hourLocations[index].id!);
+                          return Dismissible(
+                            key: UniqueKey(),
+                            onDismissed: (direction) {
+                              locationController.deleteHourLocation(locationController.hourLocations[index].id!);
                             },
-                            child: Obx(
-                              () => Container(
-                                padding: const EdgeInsets.all(15.0),
-                                //height: 80.0,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    color: serviceTypeController
-                                                .selectedLocation.value ==
-                                            locationController
-                                                .hourLocations[index].id
-                                        ? MYColor.primary
-                                        : MYColor.white),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      locationController
-                                          .hourLocations[index].title!,
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          color: serviceTypeController
-                                                      .selectedLocation.value ==
-                                                  locationController
-                                                      .hourLocations[index].id
-                                              ? MYColor.white
-                                              : MYColor.primary,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 10.0,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            locationController
-                                                .hourLocations[index].address!,
-                                            style: TextStyle(
-                                              fontSize: 12.0,
-                                              color: serviceTypeController
-                                                          .selectedLocation
-                                                          .value ==
-                                                      locationController
-                                                          .hourLocations[index]
-                                                          .id
-                                                  ? MYColor.white
-                                                  : MYColor.primary,
+                            child: InkWell(
+                              onTap: () {
+                                serviceTypeController.pickAddress(
+                                    locationController.hourLocations[index].id!);
+                              },
+                              child: Obx(
+                                () => Container(
+                                  padding: const EdgeInsets.all(15.0),
+                                  //height: 80.0,
+                                  width: Get.width,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      color: serviceTypeController
+                                                  .selectedLocation.value ==
+                                              locationController
+                                                  .hourLocations[index].id
+                                          ? MYColor.primary
+                                          : MYColor.white),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        locationController
+                                            .hourLocations[index].title!,
+                                        style: TextStyle(
+                                            fontSize: 14.0,
+                                            color: serviceTypeController
+                                                        .selectedLocation.value ==
+                                                    locationController
+                                                        .hourLocations[index].id
+                                                ? MYColor.white
+                                                : MYColor.primary,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 10.0,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              locationController
+                                                  .hourLocations[index].address!,
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                color: serviceTypeController
+                                                            .selectedLocation
+                                                            .value ==
+                                                        locationController
+                                                            .hourLocations[index]
+                                                            .id
+                                                    ? MYColor.white
+                                                    : MYColor.primary,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -223,29 +229,6 @@ class ShowAddressessView extends GetView<LocationsController> {
                       ),
               );
             }),
-            // const SizedBox(
-            //   height: 10.0,
-            // ),
-            // SizedBox(
-            //   height: 50.0,
-            //   width: Get.width,
-            //   child: MyCupertinoButton(
-            //       fun: () {
-            //         if (serviceTypeController.selectedLocation.value != 0) {
-            //           Get.toNamed(Routes.DATEPICKER);
-            //         } else {
-            //           mySnackBar(
-            //             title: "warning".tr,
-            //             message: 'choose_addressess'.tr,
-            //             color: MYColor.warning,
-            //             icon: CupertinoIcons.info_circle,
-            //           );
-            //         }
-            //       },
-            //       text: 'choose_location'.tr,
-            //       btnColor: MYColor.buttons,
-            //       txtColor: MYColor.btnTxtColor),
-            // )
           ],
         ),
       ),

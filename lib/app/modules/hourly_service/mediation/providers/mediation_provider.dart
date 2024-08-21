@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';
+import 'package:musaneda/app/modules/hourly_service/mediation/model/get_mediation_model.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/models/get_hour_order_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
@@ -86,7 +90,33 @@ class MediationProvider extends GetConnect {
         return res.body['code'];
       }
     } catch (e, s) {
-      print('exception is     ***********            $e');
+      await Sentry.captureException(e, stackTrace: s);
+      return Future.error(e.toString());
+    }
+  }
+
+  Future<GetMediationModel> getMediations(int page, String lang) async {
+    try {
+      final res = await get(
+        "${Constance.apiEndpoint}/services-mediation?page=$page",
+        headers: {
+          "Accept-Language": lang,
+          "Accept": "application/json",
+          "Authorization": "Bearer ${Constance.instance.token}",
+        },
+      );
+      print(
+          '============================mediations=====================================');
+      print(res.body);
+
+      print(res.body.runtimeType);
+
+      if (res.status.hasError) {
+        return Future.error(res.status);
+      } else {
+        return GetMediationModel.fromJson(res.body);
+      }
+    } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

@@ -251,84 +251,85 @@ class PaymentsView extends GetView<MainHomePageController> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text(
-                  "payment_method".tr,
-                  style: TextStyle(
-                    color: MYColor.buttons,
-                    fontSize: 16,
-                    fontFamily: 'cairo_medium',
-                  ),
-                ),
-                const SizedBox(height: 10),
-                ...List.generate(
-                    OrderController.I.fakePaymentMethods.length,
-                    (index) => InkWell(
-                          onTap: () {
-                            OrderController.I.changePaymentMethod(index);
-                          },
-                          child: index == 2
-                              ? Visibility(
-                                  visible: GetPlatform.isIOS,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10.0),
-                                    margin: const EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        border: Border.all(
-                                            width: 1.0,
-                                            color: OrderController.I
-                                                        .paymentMethod?.value ==
-                                                    index
-                                                ? MYColor.primary
-                                                : MYColor.white)),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          OrderController.I
-                                              .fakePaymentMethods[index].image,
-                                          height: 30.0,
-                                          width: 30.0,
-                                        ),
-                                        const SizedBox(
-                                          width: 10.0,
-                                        ),
-                                        Text(OrderController
-                                            .I.fakePaymentMethods[index].name)
-                                      ],
-                                    ),
-                                  ))
-                              : Container(
-                                  padding: const EdgeInsets.all(10.0),
-                                  margin: const EdgeInsets.all(8.0),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      border: Border.all(
-                                          width: 1.0,
-                                          color: OrderController
-                                                      .I.paymentMethod.value ==
-                                                  index
-                                              ? MYColor.primary
-                                              : MYColor.white)),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        OrderController
-                                            .I.paymentMethods[index].image,
-                                        height: 20.0,
-                                        width: 20.0,
-                                        // color:
-                                        //     index == 0 ? MYColor.buttons : null,
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      Text(OrderController
-                                          .I.paymentMethods[index].name)
-                                    ],
-                                  ),
-                                ),
-                        )),
+                // Text(
+                //   "payment_method".tr,
+                //   style: TextStyle(
+                //     color: MYColor.buttons,
+                //     fontSize: 16,
+                //     fontFamily: 'cairo_medium',
+                //   ),
+                // ),
+                // const SizedBox(height: 10),
+                // ...List.generate(
+                //     OrderController.I.fakePaymentMethods.length,
+                //     (index) => InkWell(
+                //           onTap: () {
+                //             OrderController.I.changePaymentMethod(index);
+                //           },
+                //           child: index == 2
+                //               ? Visibility(
+                //                   //visible: GetPlatform.isIOS,
+                //                   visible: false,
+                //                   child: Container(
+                //                     padding: const EdgeInsets.all(10.0),
+                //                     margin: const EdgeInsets.all(8.0),
+                //                     decoration: BoxDecoration(
+                //                         borderRadius:
+                //                             BorderRadius.circular(10.0),
+                //                         border: Border.all(
+                //                             width: 1.0,
+                //                             color: OrderController.I
+                //                                         .paymentMethod?.value ==
+                //                                     index
+                //                                 ? MYColor.primary
+                //                                 : MYColor.white)),
+                //                     child: Row(
+                //                       children: [
+                //                         SvgPicture.asset(
+                //                           OrderController.I
+                //                               .fakePaymentMethods[index].image,
+                //                           height: 30.0,
+                //                           width: 30.0,
+                //                         ),
+                //                         const SizedBox(
+                //                           width: 10.0,
+                //                         ),
+                //                         Text(OrderController
+                //                             .I.fakePaymentMethods[index].name)
+                //                       ],
+                //                     ),
+                //                   ))
+                //               : Container(
+                //                   padding: const EdgeInsets.all(10.0),
+                //                   margin: const EdgeInsets.all(8.0),
+                //                   decoration: BoxDecoration(
+                //                       borderRadius: BorderRadius.circular(10.0),
+                //                       border: Border.all(
+                //                           width: 1.0,
+                //                           color: OrderController
+                //                                       .I.paymentMethod.value ==
+                //                                   index
+                //                               ? MYColor.primary
+                //                               : MYColor.white)),
+                //                   child: Row(
+                //                     children: [
+                //                       SvgPicture.asset(
+                //                         OrderController
+                //                             .I.paymentMethods[index].image,
+                //                         height: 20.0,
+                //                         width: 20.0,
+                //                         // color:
+                //                         //     index == 0 ? MYColor.buttons : null,
+                //                       ),
+                //                       const SizedBox(
+                //                         width: 10.0,
+                //                       ),
+                //                       Text(OrderController
+                //                           .I.paymentMethods[index].name)
+                //                     ],
+                //                   ),
+                //                 ),
+                //         )),
                 const SizedBox(
                   height: 20,
                 ),
@@ -364,12 +365,13 @@ class PaymentsView extends GetView<MainHomePageController> {
           ],
         ),
         padding: const EdgeInsets.all(1),
-        child: Obx(
-          () => CupertinoButton(
+        child: CupertinoButton(
             padding: EdgeInsets.zero,
             minSize: 45,
             onPressed: () {
-              CustomPaymentController.I.payWithAmazon(isFake: true);
+              print('==================================mada=======================================');
+              MainHomePageController.I
+                  .postOrderToServer(isPaid: true, showSuccess: true);
             },
             color: MYColor.white,
             borderRadius: BorderRadius.circular(10),
@@ -381,7 +383,7 @@ class PaymentsView extends GetView<MainHomePageController> {
                   Text(
                     OrderController
                         .I
-                        .paymentMethods[OrderController.I.paymentMethod.value]
+                        .paymentMethods[1]
                         .name,
                     style: TextStyle(
                       color: MYColor.buttons,
@@ -397,7 +399,7 @@ class PaymentsView extends GetView<MainHomePageController> {
                       height: 25.0,
                       OrderController
                           .I
-                          .paymentMethods[OrderController.I.paymentMethod.value]
+                          .paymentMethods[1]
                           .image,
                       fit: BoxFit.contain,
                       // color: OrderController.I.paymentMethod.value == 0?MYColor.buttons : null,
@@ -408,7 +410,7 @@ class PaymentsView extends GetView<MainHomePageController> {
             ),
           ),
         ),
-      ),
+      
     );
   }
 

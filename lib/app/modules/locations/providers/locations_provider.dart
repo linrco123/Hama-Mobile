@@ -12,6 +12,7 @@ import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../locations_model.dart';
 import 'package:http/http.dart' as http;
+
 class LocationsProvider extends GetConnect {
   final box = GetStorage();
 
@@ -21,14 +22,12 @@ class LocationsProvider extends GetConnect {
       final res = await http.get(
         Uri.parse("${Constance.apiEndpoint}/locations"),
         headers: {
-          "Accept-Language":"en",
+          "Accept-Language": "en",
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(res.body);
       await EasyLoading.dismiss();
-
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {
@@ -47,6 +46,8 @@ class LocationsProvider extends GetConnect {
         "${Constance.apiEndpoint}/locations",
         data,
         headers: {
+          "Accept-Language": "en",
+          "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
@@ -157,7 +158,7 @@ class LocationsProvider extends GetConnect {
       if (res.body['code'] == 1) {
         mySnackBar(
           title: "success".tr,
-          message: "success".tr,
+          message: "address_deleted_success".tr,
           color: MYColor.success,
           icon: CupertinoIcons.info_circle,
         );

@@ -1,9 +1,10 @@
 const Map<String, String> enUS = {
+  'about_musaneda': 'About Musaneda',
   "location_address_text": "ex: Home, Work, etc.",
   "other_details_text": "ex: Building number, Floor number, etc.",
   "delivery_location": "Delivery Location",
   "waiting": "Please wait",
-  "app_name": "Hama Services",
+  "app_name": "Musaneda Services",
   "app_name_sa": "مساندة للخادمات",
   "success": "Success",
   "error": "Error",
@@ -44,14 +45,15 @@ const Map<String, String> enUS = {
   "msg_plz_name_should_be_more_than_6_char":
       "Name should be more than 6 characters",
   "msg_plz_enter_iqama_number": "Please enter national-iqama number",
-  "msg_plz_enter_correct_iqama_number": "Please enter correct national-iqama number",
+  "msg_plz_enter_correct_iqama_number":
+      "Please enter correct national-iqama number",
   "msg_plz_enter_email": "Please enter email",
   "msg_plz_enter_correct_email": "Please enter correct email",
   "msg_register_success": "Already, received verification code !",
   "msg_phone_already_exist": "Phone number already exists!",
   "msg_iqama_already_exist": "National-Iqama ID already exists!",
   "msg_email_already_exist": "Email already exists!",
-  "should_less_11_more_8":"must be more than 8 ,less than 11",
+  "should_less_11_more_8": "must be more than 8 ,less than 11",
   // Login
   "sign_in": "Sign in",
   "forgot_password": "Forgot password?",
@@ -89,7 +91,7 @@ const Map<String, String> enUS = {
   "msg_plz_enter_correct_otp": "Please enter correct OTP",
   "msg_otp_sent_success": "OTP sent successfully",
   "msg_otp_verified_success": "OTP verified successfully",
-  "msg_not_otp_sent":"Otp not reached yet !",
+  "msg_not_otp_sent": "Otp not reached yet !",
 
   // Home
   "home": "Home",
@@ -110,6 +112,9 @@ const Map<String, String> enUS = {
   "request": "Request",
   "service_request": "Request Service",
   "back_to_home": "Back To Home",
+  "moquima": "Moquima",
+  "hour": "Hour",
+  "mediation": "Mediation",
   // Order
   "information": "Information",
   "package": "Package",
@@ -250,6 +255,8 @@ const Map<String, String> enUS = {
   "location_address": "Location Address",
   "select_location": "Select Location",
   "other_details": "Other Details",
+  'address_deleted_success': "Address deleted successfully ",
+
   'via': 'Via',
   // Tickets
   "ticket": "Ticket",
@@ -386,6 +393,9 @@ const Map<String, String> enUS = {
   'stayin_service_desc':
       'Specified stay-in services starting from a month up to 2 years with monthly installments',
   'working_hours': 'Working Hours',
+  'moquima_orders': 'Mouquima Orders',
+  'hour_orders': 'Hour Orders',
+  'mediations_orders': 'Mediation Orders',
   'shift_type': 'Shift Type',
   'morning': 'Morning',
   'evening': 'Evening',
@@ -393,7 +403,7 @@ const Map<String, String> enUS = {
   'maids_number': 'Workers number',
   'proceed': "Proceed",
   'choose_package': 'packages',
-  "choose_package_desc":"Choose a package from hourly service",
+  "choose_package_desc": "Choose a package from hourly service",
   //'Address Name' 'Street Name'  'Building Name'   'Floor Name'  'Postal Code/Zip Code'
   'address_name': 'Address',
   'street_name': 'Street',
@@ -411,7 +421,7 @@ const Map<String, String> enUS = {
   'confirm_date': 'Confirm Date',
   'choose_addressess': 'Please, choose an address',
   'choose_address': 'Choose Addresss',
-  'confirm_address': 'confirm Address',
+  'confirm_address': 'Confirm Address',
   //"choose_nationality"  "choose_visit_number" "choose_working_hour" "choose_shift_type" "choose_maid_number"
 
   "choose_nationality": "Choose nationality",
@@ -461,7 +471,11 @@ const Map<String, String> enUS = {
   'steps_back_conn': 'Try these steps to get back online:',
   "check_modem": 'Check your modem or router',
   "check_wifi": 'Reconnect to Wi-Fi',
-  'reload':'Reload',
-  'server_error':' Server Error !',
+  'reload': 'Reload',
+  'server_error': ' Server Error !',
+  'status': 'Status',
+  'job': "Job",
+  'experience': "ُExperience",
+  'no_hour_orders': 'No hour orders yet !',
+  'no_mediation_orders': 'No mediation orders yet !',
 };
-

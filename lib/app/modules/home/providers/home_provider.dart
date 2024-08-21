@@ -57,11 +57,10 @@ class HomeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
       if (res.status.hasError) {
         return Future.error(res.status);
       } else {
-        return Musaneda.fromJson(jsonDecode(res.body));
+        return Musaneda.fromJson(res.body);
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);

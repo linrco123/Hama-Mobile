@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
+import 'package:musaneda/app/modules/home/views/taps/home_tap.dart';
+import 'package:musaneda/app/modules/hourly_service/mediation/views/add_mediation_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
-import 'package:musaneda/components/hourly/return_back_btn.dart';
-import 'package:musaneda/components/hourly/service_type/oneHour_filter_dialog.dart';
 import 'package:musaneda/components/hourly/service_type/service_type_card.dart';
 import 'package:musaneda/config/myColor.dart';
 
-class ServiceTypeView extends GetView<ServiceTypeController> {
+class ServiceTypeView extends GetView<HomeController> {
   const ServiceTypeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var serviceTypeController = Get.put(ServiceTypeController());
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: MYColor.primary.withOpacity(0.1),
-        leading: ReturnButton(color: MYColor.primary, size: 20.0),
-        systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.dark),
-      ),
-      body: GetBuilder<ServiceTypeController>(
+      body: GetBuilder<HomeController>(
           init: controller,
           builder: (controller) {
             return Container(
@@ -61,7 +56,7 @@ class ServiceTypeView extends GetView<ServiceTypeController> {
                         description: 'hour_service_desc'.tr,
                         image: 'assets/images/hours.png',
                         function: () async {
-                          controller.showAcceptanceDialogue(context);
+                          serviceTypeController.showAcceptanceDialogue(context);
                         }),
                     const SizedBox(
                       height: 10.0,
@@ -71,17 +66,17 @@ class ServiceTypeView extends GetView<ServiceTypeController> {
                         description: 'stayin_service_desc'.tr,
                         image: 'assets/images/contract.png',
                         function: () async {
-                          await EasyLoading.show(status: 'loading'.tr);
-                          controller.goToHomePage();
+                          // await EasyLoading.show(status: 'loading'.tr);
+                          Get.to(const HomeServices());
                         }),
-                        const SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
                     ServiceTypeCard(
                         title: "mediation_service".tr,
-                        description:  "mediation_service".tr,
+                        description: "mediation_service".tr,
                         function: () {
-                          Get.toNamed(Routes.MEDIATION);
+                          Get.to(const AddMediationView());
                         },
                         svg: true,
                         image: 'assets/images/drawer/delegation.svg')

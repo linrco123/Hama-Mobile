@@ -20,7 +20,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const DELEGATION = _Paths.DELEGATION;
   static const LOCATIONS = _Paths.LOCATIONS;
-   static const CREATELOCATIONS = _Paths.CREATELOCATIONS;
+  static const CREATELOCATIONS = _Paths.CREATELOCATIONS;
   static const COMPLAINT = _Paths.COMPLAINT;
   static const ORDER = _Paths.ORDER;
   static const NOTIFICATION = _Paths.NOTIFICATION;
@@ -31,17 +31,20 @@ abstract class Routes {
   static const MESSAGE = _Paths.MESSAGE;
   static const TRANSFER_SPONSORSHIP = _Paths.TRANSFER_SPONSORSHIP;
   static const TECHNICAL_SUPPORT = _Paths.TECHNICAL_SUPPORT;
-  static const PACKAGES = _Paths.PACKAGES;  
-  static const ORDERDETAILS = _Paths.ORDERDETAILS; 
-  static const HOURPAYMENT = _Paths.HOURPAYMENT; 
+  static const PACKAGES = _Paths.PACKAGES;
+  static const ORDERDETAILS = _Paths.ORDERDETAILS;
+  static const HOURPAYMENT = _Paths.HOURPAYMENT;
   static const MEDIATION = _Paths.MEDIATION;
+
+  static const ADDMEDIATION = _Paths.ADDMEDIATION;
+
   static const INTERNETCONNECTION = _Paths.INTERNETCONNECTION;
- }
+}
 
 abstract class _Paths {
   _Paths._();
   static const WELCOME = '/welcome';
-  static const SERVICETYPE = '/serviceType'; 
+  static const SERVICETYPE = '/serviceType';
   static const DATEPICKER = '/datePicker';
   static const SHOWADDRESS = '/showAddress';
   static const HOME = '/home';
@@ -56,7 +59,7 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const DELEGATION = '/delegation';
   static const LOCATIONS = '/locations';
-  static const CREATELOCATIONS = '/createLocations';             
+  static const CREATELOCATIONS = '/createLocations';
   static const COMPLAINT = '/complaint';
   static const ORDER = '/order';
   static const NOTIFICATION = '/notification';
@@ -67,13 +70,10 @@ abstract class _Paths {
   static const MESSAGE = '/message';
   static const TRANSFER_SPONSORSHIP = '/transfer-sponsorship';
   static const TECHNICAL_SUPPORT = '/technical-support';
-  static const PACKAGES = '/packages';  
-  static const ORDERDETAILS = '/orderDetails'; 
-  static const HOURPAYMENT = '/hourPayment'; 
-  static const MEDIATION = '/mediation';  
+  static const PACKAGES = '/packages';
+  static const ORDERDETAILS = '/orderDetails';
+  static const HOURPAYMENT = '/hourPayment';
+  static const MEDIATION = '/mediation';
+  static const ADDMEDIATION = '/addMediation';
   static const INTERNETCONNECTION = '/InternetConnection';
-
-    
-
-  
 }

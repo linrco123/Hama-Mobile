@@ -6,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/models/get_hour_order_model.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/models/hourly_order_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
@@ -54,7 +55,6 @@ class ServiceTypeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
       if (res.body['code'] == 0) {
         mySnackBar(
           title: "error".tr,
@@ -78,7 +78,7 @@ class ServiceTypeProvider extends GetConnect {
   Future<HourlyOrderModel> submitHourOrder(Map<String, dynamic> map) async {
     try {
       await EasyLoading.show(status: 'waiting'.tr);
-       final res = await post(
+      final res = await post(
         "${Constance.apiEndpoint}/create/hour/order",
         map,
         headers: {
@@ -87,7 +87,7 @@ class ServiceTypeProvider extends GetConnect {
         },
       );
       print(res.body);
-        if (res.body['code'] == 0) {
+      if (res.body['code'] == 0) {
         mySnackBar(
           title: "warning".tr,
           message: 'try_again'.tr,
@@ -95,7 +95,7 @@ class ServiceTypeProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-      if ( res.body['code'] == 1) {
+      if (res.body['code'] == 1) {
         mySnackBar(
           title: "success".tr,
           message: "msg_order_success".tr,
@@ -111,6 +111,29 @@ class ServiceTypeProvider extends GetConnect {
       }
     } catch (e, s) {
       print('exception is     ***********            $e');
+      await Sentry.captureException(e, stackTrace: s);
+      return Future.error(e.toString());
+    }
+  }
+
+   Future<GetHourOrderModel> getHourOrders(int page , String lang) async {
+    try {
+      final res = await get(
+        "${Constance.apiEndpoint}/hour-orders?page=$page",
+        headers: {
+          "Accept-Language":lang,
+          "Accept": "application/json",
+          "Authorization": "Bearer ${Constance.instance.token}",
+        },
+      );
+      print('=================================hour servce-=========================');
+
+      if (res.status.hasError) {
+        return Future.error(res.status);
+      } else {
+        return GetHourOrderModel.fromJson(res.body);
+      }
+    } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

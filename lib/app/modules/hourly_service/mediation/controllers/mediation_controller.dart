@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';
+import 'package:musaneda/app/modules/hourly_service/mediation/model/get_mediation_model.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/providers/mediation_provider.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/myColor.dart';
@@ -13,9 +15,10 @@ class MediationController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     getNationalities();
+    getMediations();
     cardNumberController.text = '';
   }
-
+  var languageController = LanguageController.I;
   var formKey = GlobalKey<FormState>();
   var cardNumberController = TextEditingController();
   var isLoading = false.obs;
@@ -185,5 +188,36 @@ class MediationController extends GetxController {
     ),
   ];
 
-  void sendData() {}
+   var listmediations = List<MediationData>.empty(growable: true).obs;
+  var page = 1.obs;
+  var lastPage = false.obs;
+
+  Future<void> getMediations() async {
+    isLoading(true);
+    MediationProvider().getMediations(page.value , languageController.getLocale).then(
+      (value) {
+        for (var data in value.data!.data! as List) {
+          listmediations.add(data);
+        }
+        isLoading(false);
+      },
+    );
+    update();
+  }
+
+  Future<void> getMoreMediation() async {
+    isLoading(true);
+    MediationProvider().getMediations(page.value++ , languageController.getLocale).then(
+      (value) {
+        for (var data in value.data!.data as List) {
+          listmediations.add(data);
+        }
+        isLoading(false);
+        if (value.data!.total! <= page.value) {
+          lastPage(true);
+        }
+      },
+    );
+    update();
+  }
 }

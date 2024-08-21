@@ -5,6 +5,7 @@ import 'package:musaneda/app/modules/hourly_service/date_picker/bindings/date_pi
 import 'package:musaneda/app/modules/hourly_service/date_picker/views/date_picker_view.dart';
 import 'package:musaneda/app/modules/hourly_service/hour_payment/views/hour_payment_view.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/bindings/mediation_bindings.dart';
+import 'package:musaneda/app/modules/hourly_service/mediation/views/add_mediation_view.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
 import 'package:musaneda/app/modules/hourly_service/order_details/bindings/orderDetails_binding.dart';
 import 'package:musaneda/app/modules/hourly_service/order_details/views/orderDetails_view.dart';
@@ -209,10 +210,14 @@ class AppPages {
       name: _Paths.HOURPAYMENT,
       page: () => const HourPaymentView(),
      ),
-
       GetPage(
       name: _Paths.MEDIATION,
       page: () => const MediationView(),
+      binding: MediationBindings()
+     ),
+     GetPage(
+      name: _Paths.ADDMEDIATION,
+      page: () => const AddMediationView(),
       binding: MediationBindings()
      ),
 

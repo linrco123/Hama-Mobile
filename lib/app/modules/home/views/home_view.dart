@@ -6,15 +6,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/modules/home/views/about_musaneda.dart';
 import 'package:musaneda/app/modules/home/views/taps/contract_tap.dart';
-import 'package:musaneda/app/modules/home/views/taps/home_tap.dart';
-import 'package:musaneda/app/modules/home/views/taps/services_tap.dart';
+import 'package:musaneda/app/modules/hourly_service/mediation/controllers/mediation_controller.dart';
+import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/views/hour_orders_view.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/views/service_type_view.dart';
+import 'package:musaneda/app/modules/hourly_service/welcome/views/welcome_view.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
- import 'package:musaneda/config/constance.dart';
- import 'package:musaneda/config/myColor.dart';
-
-import '../../../../components/myFilterDialog.dart';
+import 'package:musaneda/config/constance.dart';
+import 'package:musaneda/config/exitapp_alert.dart';
+import 'package:musaneda/config/myColor.dart';
 import '../../../controllers/language_controller.dart';
 import '../../register/views/terms_conditions_webview.dart';
 import '../controllers/home_controller.dart';
@@ -26,7 +30,9 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
+    Get.put(ServiceTypeController());
+    Get.put(MediationController());
+    return GetBuilder<HomeController>(
       key: const ValueKey("home-view"),
       init: controller,
       builder: (ctx) {
@@ -50,7 +56,7 @@ class HomeView extends GetView<HomeController> {
           drawer: myDrawer(context),
           child: Scaffold(
             appBar: myAppBar(context),
-            body: myHome(context),
+            body: WillPopScope(onWillPop: exitAlertApp, child: myHome(context)),
             bottomNavigationBar: Container(
               height: 85,
               decoration: BoxDecoration(
@@ -66,8 +72,8 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
                 children: [
                   InkWell(
                     onTap: () {
@@ -112,9 +118,9 @@ class HomeView extends GetView<HomeController> {
                   InkWell(
                     onTap: () {
                       HapticFeedback.mediumImpact();
-                      controller.setPrev();
+                      //controller.setPrev();
                       controller.setTap = 1;
-                      myFilterDialog(context);
+                      //myFilterDialog(context);
                     },
                     borderRadius: BorderRadius.circular(20),
                     child: SizedBox(
@@ -169,8 +175,8 @@ class HomeView extends GetView<HomeController> {
                             width: 25,
                             child: SvgPicture.asset(
                               controller.tap.value == 2
-                                  ? "assets/images/bar/services_red.svg"
-                                  : "assets/images/bar/services_black.svg",
+                                  ? "assets/images/bar/contracts_red.svg"
+                                  : "assets/images/bar/contracts_black.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 2
                                   ? MYColor.buttons
@@ -179,7 +185,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            "services".tr,
+                            "moquima".tr,
                             style: TextStyle(
                               color: controller.tap.value == 2
                                   ? MYColor.buttons
@@ -209,8 +215,8 @@ class HomeView extends GetView<HomeController> {
                             width: 25,
                             child: SvgPicture.asset(
                               controller.tap.value == 3
-                                  ? "assets/images/bar/contracts_red.svg"
-                                  : "assets/images/bar/contracts_black.svg",
+                                  ? "assets/images/bar/services_red.svg"
+                                  : "assets/images/bar/services_black.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 3
                                   ? MYColor.buttons
@@ -219,9 +225,58 @@ class HomeView extends GetView<HomeController> {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            "contract".tr,
+                            "hour".tr,
                             style: TextStyle(
                               color: controller.tap.value == 3
+                                  ? MYColor.buttons
+                                  : MYColor.black,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      controller.setTap = 4;
+                    },
+                    borderRadius: BorderRadius.circular(20),
+                    child: SizedBox(
+                      height: 60,
+                      width: Get.width / 5,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: controller.tap.value == 4
+                                    ? MYColor.primary.withOpacity(0.1)
+                                    : MYColor.white,
+                                shape: BoxShape.circle),
+
+                            // height: 25,
+                            // width: 25,
+                            padding: const EdgeInsets.all(5.0),
+                            child: SvgPicture.asset(
+                              controller.tap.value == 4
+                                  ? "assets/images/drawer/delegation.svg"
+                                  : "assets/images/drawer/delegation.svg",
+                              fit: BoxFit.fill,
+                              color: controller.tap.value == 4
+                                  ? MYColor.buttons
+                                  : MYColor.black,
+                              height: controller.tap.value == 4 ? 15 : 20.0,
+                              width: controller.tap.value == 4 ? 15 : 20.0,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "mediation".tr,
+                            style: TextStyle(
+                              color: controller.tap.value == 4
                                   ? MYColor.buttons
                                   : MYColor.black,
                               fontSize: 12,
@@ -243,71 +298,37 @@ class HomeView extends GetView<HomeController> {
   Widget myHome(context) {
     switch (controller.tap.value) {
       case 0:
-        return homeTap(context);
+        return const WelcomeView();
+      case 1:
+        return const ServiceTypeView();
       case 2:
-        return servicesTap(context);
-      case 3:
         return contractsTap(context);
+      case 3:
+        return const HourOrdersView();
+      case 4:
+        return const MediationView();
       default:
-        return homeTap(context);
+        return const WelcomeView();
     }
   }
 
+  // Widget myHome(context) {
+  //   switch (controller.tap.value) {
+  //     case 0:
+  //       return homeTap(context);
+  //     case 2:
+  //       return servicesTap(context);
+  //     case 3:
+  //       return contractsTap(context);
+  //     case 4:
+  //       return controller.welcome.value == 0? const WelcomeView(): const ServiceTypeView();
+  //     default:
+  //       return homeTap(context);
+  //   }
+  // }
+
   PreferredSizeWidget myAppBar(BuildContext context) {
-    switch (controller.tap.value) {
-      case 0:
-        return myHomeAppBar(context);
-      case 2:
-        return AppBar(
-          backgroundColor: MYColor.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: Text(
-            'best_services'.tr,
-            style: TextStyle(
-              color: MYColor.white,
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Get.toNamed(Routes.SEARCH);
-              },
-              icon: const Icon(CupertinoIcons.search),
-              color: MYColor.white,
-            ),
-            IconButton(
-            onPressed: () {
-              //Get.back();
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_forward_ios_outlined))
-          ],
-          leading: myDrawerIcon(context, MYColor.white),
-        );
-      case 3:
-        return AppBar(
-          backgroundColor: MYColor.primary,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: Text(
-            'contract'.tr,
-            style: TextStyle(
-              color: MYColor.white,
-            ),
-          ),
-          centerTitle: true,
-          leading: myDrawerIcon(context, MYColor.white),
-          actions: [
-            IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_forward_ios_outlined))
-          ],
-        );
-      default:
-        return myHomeAppBar(context);
-    }
+    return myHomeAppBar(context);
   }
 
   Widget myDrawerIcon(context, Color color) {
@@ -335,45 +356,49 @@ class HomeView extends GetView<HomeController> {
 
   PreferredSizeWidget myHomeAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: MYColor.transparent,
+      backgroundColor: MYColor.primary.withOpacity(0.1),
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'home'.tr,
+            controller.tap.value == 2
+                ? 'moquima_orders'.tr
+                : controller.tap.value == 3
+                    ? 'hour_orders'.tr
+                    : controller.tap.value == 4
+                        ? 'mediations_orders'.tr
+                        : 'app_name'.tr,
             style: TextStyle(
               color: MYColor.buttons,
             ),
           ),
         ],
       ),
+      actions: [
+        controller.tap.value != 0 && controller.tap.value != 1
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: IconButton(
+                  onPressed: () {
+                    controller.setTap = 1;
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/images/icon/plus.svg',
+                    color: MYColor.primary,
+                    height: 22,
+                    width: 22,
+                  ),
+                ),
+              )
+            : const SizedBox()
+      ],
       centerTitle: true,
       iconTheme: IconThemeData(
         color: MYColor.buttons,
         size: 20,
       ),
       leading: myDrawerIcon(context, MYColor.buttons),
-      actions: [
-        IconButton(
-          onPressed: () {
-            Get.toNamed(Routes.SEARCH);
-          },
-          icon: const Icon(CupertinoIcons.search),
-        ),
-        // IconButton(
-        //   onPressed: () {
-        //     Get.toNamed(Routes.NOTIFICATION);
-        //   },
-        //   icon: const Icon(CupertinoIcons.bell),
-        // ),
-        IconButton(
-            onPressed: () {
-              Get.back();
-             // Navigator.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_forward_ios_outlined))
-      ],
     );
   }
 
@@ -480,152 +505,171 @@ class HomeView extends GetView<HomeController> {
       child: ListTileTheme(
         textColor: Colors.white,
         iconColor: Colors.white,
-        child: Column(
-          //mainAxisSize: MainAxisSize.max,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              margin: const EdgeInsets.only(
-                top: 20.0,
-                bottom: 10.0,
+        child: SingleChildScrollView(
+          child: Column(
+            //mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                margin: const EdgeInsets.only(
+                  top: 40.0,
+                  bottom: 10.0,
+                ),
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(
+                  color: Colors.black26,
+                  shape: BoxShape.circle,
+                ),
+                child: SvgPicture.asset(
+                  'assets/images/drawer/user.svg',
+                ),
               ),
-              clipBehavior: Clip.antiAlias,
-              decoration: const BoxDecoration(
-                color: Colors.black26,
-                shape: BoxShape.circle,
+              Container(
+                margin: const EdgeInsets.only(
+                  bottom: 10,
+                ),
+                child: Text(
+                  Constance.getName(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              child: SvgPicture.asset(
-                'assets/images/drawer/user.svg',
+              ListTile(
+                onTap: () {
+                  Get.offNamed(Routes.PROFILE);
+                },
+                leading: SvgPicture.asset(
+                  'assets/images/drawer/person.svg',
+                ),
+                title: Text('profile'.tr),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                bottom: 10,
+
+              ListTile(
+                onTap: () {
+                  Get.toNamed(Routes.DELEGATION);
+                },
+                leading: SvgPicture.asset(
+                  'assets/images/drawer/delegation.svg',
+                ),
+                title: Text('delegation'.tr),
               ),
-              child: Text(
-                Constance.getName(),
+              ListTile(
+                onTap: () {
+                  Get.toNamed(Routes.LOCATIONS);
+                },
+                leading: SvgPicture.asset(
+                  'assets/images/drawer/location.svg',
+                ),
+                title: Text('location'.tr),
+              ),
+              ListTile(
+                onTap: () {
+                  showLanguageDialog(context);
+                },
+                leading: SvgPicture.asset(
+                  'assets/images/drawer/language.svg',
+                ),
+                title: Text('language'.tr),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.toNamed(Routes.COMPLAINT);
+                },
+                leading: SvgPicture.asset(
+                  'assets/images/drawer/complain.svg',
+                ),
+                title: Text('tickets'.tr),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.toNamed(Routes.TECHNICAL_SUPPORT);
+                },
+                leading: const Icon(CupertinoIcons.chat_bubble_2),
+                title: Text('technical_support'.tr),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.to(const AboutMusanedaWebview());
+                },
+                leading: SvgPicture.asset(
+                  'assets/images/bar/contracts_black.svg',
+                  height: 20.0,
+                  width: 20.0,
+                  color: MYColor.white,
+                ),
+                title: Text('about_musaneda'.tr),
+              ),
+              ListTile(
+                onTap: () async {
+                  await controller.makePhoneCall();
+                },
+                leading: const Icon(CupertinoIcons.phone_arrow_up_right),
+                title: Text('contact_us'.tr),
+              ),
+              ListTile(
+                onTap: () => LoginController.I.logout(),
+                leading: SvgPicture.asset(
+                  'assets/images/drawer/logout.svg',
+                ),
+                title: Text('logout'.tr),
+              ),
+              // const Spacer(),
+
+              DefaultTextStyle(
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Colors.white54,
                 ),
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                Get.offNamed(Routes.PROFILE);
-              },
-              leading: SvgPicture.asset(
-                'assets/images/drawer/person.svg',
-              ),
-              title: Text('profile'.tr),
-            ),
-            ListTile(
-              onTap: () {
-                Get.toNamed(Routes.DELEGATION);
-              },
-              leading: SvgPicture.asset(
-                'assets/images/drawer/delegation.svg',
-              ),
-              title: Text('delegation'.tr),
-            ),
-            ListTile(
-              onTap: () {
-                Get.toNamed(Routes.LOCATIONS);
-              },
-              leading: SvgPicture.asset(
-                'assets/images/drawer/location.svg',
-              ),
-              title: Text('location'.tr),
-            ),
-            ListTile(
-              onTap: () {
-                showLanguageDialog(context);
-              },
-              leading: SvgPicture.asset(
-                'assets/images/drawer/language.svg',
-              ),
-              title: Text('language'.tr),
-            ),
-            ListTile(
-              onTap: () {
-                Get.toNamed(Routes.COMPLAINT);
-              },
-              leading: SvgPicture.asset(
-                'assets/images/drawer/complain.svg',
-              ),
-              title: Text('tickets'.tr),
-            ),
-            // Technical support
-            ListTile(
-              onTap: () {
-                Get.toNamed(Routes.TECHNICAL_SUPPORT);
-              },
-              leading: const Icon(CupertinoIcons.chat_bubble_2),
-              title: Text('technical_support'.tr),
-            ),
-            ListTile(
-              onTap: () async {
-                await controller.makePhoneCall();
-              },
-              leading: const Icon(CupertinoIcons.phone_arrow_up_right),
-              title: Text('contact_us'.tr),
-            ),
-            ListTile(
-              onTap: () => LoginController.I.logout(),
-              leading: SvgPicture.asset(
-                'assets/images/drawer/logout.svg',
-              ),
-              title: Text('logout'.tr),
-            ),
-            // const Spacer(),
-
-            DefaultTextStyle(
-              style: const TextStyle(
-                fontSize: 13,
-                color: Colors.white54,
-              ),
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10.0,
-                ),
-                child: InkWell(
-                  onTap: () {
-                    Get.to(const TermsConditionsWebview());
-                  },
-                  child: Text(
-                    '${'service_terms'.tr} | ${'privacy_policy'.tr}',
-                    style: const TextStyle(
-
-                      fontFamily: 'cairo_regular',
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10.0, bottom: 0.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(const TermsConditionsWebview());
+                    },
+                    child: Text(
+                      '${'service_terms'.tr} | ${'privacy_policy'.tr}',
+                      style: const TextStyle(
+                        fontFamily: 'cairo_regular',
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            DefaultTextStyle(
-              style: const TextStyle(
-                fontSize: 13,
-                color: Colors.white54,
-              ),
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 0.0,
+              // Text(
+              //   controller.versions.value.toString(),
+              //   style: const TextStyle(
+              //     fontFamily: 'cairo_regular',
+              //     fontSize: 13,
+              //     color: Colors.white54,
+              //   ),
+              // )
+              DefaultTextStyle(
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: Colors.white54,
                 ),
-                child: GetBuilder(
-                  init: controller,
-                  builder: (controller) {
-                    return Text(
-                      controller.versions.value.toString(),
-                      style: const TextStyle(
-                        fontFamily: 'cairo_regular',
-                      ),
-                    );
-                  },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 20.0, top: 5.0),
+                  child: GetBuilder(
+                    init: controller,
+                    builder: (controller) {
+                      return Text(
+                        'v  ${controller.versions.value.toString()}',
+                        style: const TextStyle(
+                          fontFamily: 'cairo_regular',
+                          fontSize: 15,
+                          color: Colors.white54,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

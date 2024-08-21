@@ -109,10 +109,10 @@ initialRoute() {
       return AppPages.MAIN_HOME_PAGE;
     } else {
       if (LoginController.I.isSA()) {
-        return AppPages.WELCOME;
+        return Routes.HOME;
         //return AppPages.MAIN_HOME_PAGE;
       } else {
-        return AppPages.WELCOME;
+        return Routes.HOME;
         //return AppPages.MAIN_HOME_PAGE;
       }
     }

@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/custom_payment/controllers/custom_payment_controller.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/app/modules/main_home_page/providers/main_home_page_provider.dart';
 import 'package:musaneda/config/constance.dart';
 
@@ -16,20 +17,20 @@ class MainHomePageController extends GetxController {
     getContractList();
     setSelectedService = services.first;
     super.onInit();
-    connectivity().then((value){
-      if(value == false){
+    connectivity().then((value) {
+      if (value == false) {
         Get.toNamed(Routes.INTERNETCONNECTION);
       }
     });
   }
 
- Future<bool> connectivity() async {
-  if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
-    return false;
-  } else {
-    return true;
+  Future<bool> connectivity() async {
+    if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
+      return false;
+    } else {
+      return true;
+    }
   }
-}
 
   final _tap = 0.obs;
   set setTap(int value) {
@@ -89,13 +90,15 @@ class MainHomePageController extends GetxController {
   int get getYear => _year.value;
 
   double get finalPrice {
-    return ((Constance.checkDouble(getServiceModel.packages![selectedPackageIndex.value].price) *
+    return ((Constance.checkDouble(
+                getServiceModel.packages![selectedPackageIndex.value].price) *
             getDuration) -
         finalDiscount);
   }
 
   double get beforeDiscount {
-    return (Constance.checkDouble(getServiceModel.packages![selectedPackageIndex.value].price) *
+    return (Constance.checkDouble(
+            getServiceModel.packages![selectedPackageIndex.value].price) *
         getDuration);
   }
 
@@ -104,11 +107,14 @@ class MainHomePageController extends GetxController {
       case 1:
         return 0;
       case 3:
-        return (getServiceModel.packages![selectedPackageIndex.value].price! * 0.1);
+        return (getServiceModel.packages![selectedPackageIndex.value].price! *
+            0.1);
       case 6:
-        return (getServiceModel.packages![selectedPackageIndex.value].price! * 0.2);
+        return (getServiceModel.packages![selectedPackageIndex.value].price! *
+            0.2);
       case 12:
-        return (getServiceModel.packages![selectedPackageIndex.value].price! * 0.3);
+        return (getServiceModel.packages![selectedPackageIndex.value].price! *
+            0.3);
       default:
         return 0;
     }
@@ -263,9 +269,10 @@ class MainHomePageController extends GetxController {
       duration: 12,
     ),
   ];
+  final serviceTypeController = Get.put(ServiceTypeController());
   RxInt selectedPackageIndex = 0.obs;
   void postOrderToServer(
-      {required bool isPaid , bool showSuccess = false}) async {
+      {required bool isPaid, bool showSuccess = false}) async {
     Map<String, dynamic> data = {
       "service_id": getServiceModel.id,
       "package_id": getServiceModel.packages![selectedPackageIndex.value].id,
@@ -276,12 +283,18 @@ class MainHomePageController extends GetxController {
       "is_paid": isPaid,
       "merchant_id": CustomPaymentController.I.merchantTransactionID,
     };
-    
-    MainHomePageProvider().postContractList(data,showSuccess).then(
+    print(data);
+    MainHomePageProvider().postContractList(data, showSuccess).then(
       (res) {
         if (res.code == 1) {
           getContractList();
-          Get.offAllNamed(Routes.MAIN_HOME_PAGE);
+          serviceTypeController.showAlertDialogue(
+            title: 'alert'.tr,
+            content: 'mada_content'.tr,
+            onConfirm: () {
+              Get.offAllNamed(Routes.MAIN_HOME_PAGE);
+            },
+          );
         }
       },
     );
@@ -335,14 +348,14 @@ class MainHomePageController extends GetxController {
     return days;
   }
 
-  void payOrder({isPaid ,bool showSuccess = false }) {
+  void payOrder({isPaid, bool showSuccess = false}) {
     Map data = {
       "order_id": CustomPaymentController.I.contractModel.value.id,
       "is_paid": isPaid,
       "merchant_id": CustomPaymentController.I.getMerchantTransactionID,
     };
 
-    MainHomePageProvider().payOrder(data,showSuccess).then((res) {
+    MainHomePageProvider().payOrder(data, showSuccess).then((res) {
       if (res.code == 1) {
         getContractList();
         setTap = 1;

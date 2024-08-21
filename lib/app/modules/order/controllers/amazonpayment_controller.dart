@@ -51,7 +51,7 @@ class AmazonPayController extends GetxController {
         amount: amount * 100,
         customerName: customerName,
         customerEmail: customerEmail,
-        orderDescription: 'Sandeny order description',
+        orderDescription: 'musaneda order description',
         sdkToken: sdkTokenResponse?.sdkToken ?? '',
         merchantReference: merchantReference,
         currency: 'SAR',
@@ -62,7 +62,6 @@ class AmazonPayController extends GetxController {
       );
 
       EasyLoading.dismiss();
-
       _payfort.callPayFort(
         request: request,
         callBack: PayFortResultCallback(
@@ -72,7 +71,7 @@ class AmazonPayController extends GetxController {
         ),
       );
     } catch (e) {
-      EasyLoading.dismiss();
+       EasyLoading.dismiss();
       onFailed(e.toString());
     }
   }

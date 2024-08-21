@@ -38,6 +38,7 @@ class LocationsController extends GetxController {
     update();
   }
 
+  var serviceTypeController = Get.put(ServiceTypeController());
   @override
   void onInit() {
     getLocations();
@@ -127,7 +128,7 @@ class LocationsController extends GetxController {
     Map location = {
       'address': first.street,
       'formattedAddress': '${first.name}, ${first.street}',
-      "name":first.name,
+      "name": first.name,
       'city': first.locality,
       'country': first.country,
       'latitude': position.latitude,
@@ -143,7 +144,7 @@ class LocationsController extends GetxController {
       'hashCode': first.hashCode,
     };
     print(location);
-   // log(location.toString(), name: 'location');
+    // log(location.toString(), name: 'location');
 
     box.write('my_location_objects', location);
     box.write('countryCode', first.isoCountryCode);
@@ -378,6 +379,7 @@ class LocationsController extends GetxController {
 
   Future<void> getLocations() async {
     isLoading(true);
+
     LocationsProvider().getLocations().then((value) {
       listLocations.clear();
       hourLocations.clear();
@@ -391,11 +393,13 @@ class LocationsController extends GetxController {
           contractsLocations.add(data);
         }
       }
+
       isLoading(false);
+
       update();
     });
 
-    update();
+   // update();
   }
 
 //should add street name,building #,floor #,zipcode
@@ -410,12 +414,13 @@ class LocationsController extends GetxController {
       "notes": page == 'hour' ? address.value : txtNotes.text,
       "type": page == 'hour' ? 'h' : 'c'
     };
-    print(data);
-    LocationsProvider().postLocations(data).then((value) {
+    LocationsProvider().postLocations(data).then((value) async {
       if (value.code == 1) {
-        getLocations();
+        await getLocations();
         ServiceTypeController.I.selectedLocation.value = value.data!.id!;
-        OrderController.I.getLocations();
+        if (page == 'order') {
+          OrderController.I.getLocations();
+        }
         Get.back();
         if (page == 'hour') {
           Get.toNamed(Routes.ORDERDETAILS);
@@ -471,6 +476,15 @@ class LocationsController extends GetxController {
       }
     });
     update();
+  }
+
+  void deleteHourLocation(id) {
+    LocationsProvider().deleteLocations(id).then((value) {
+      if (value == 1) {
+        getLocations();
+      }
+    });
+    // update();
   }
 
   void onCameraIdle() {
