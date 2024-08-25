@@ -81,8 +81,9 @@ class ProfileController extends GetxController {
   ProfileData profile = ProfileData();
 
   ProfileData get getProfileData => profile;
-
+  final isLoading = false.obs;
   void getProfile() async {
+    isLoading.value = true;
     ProfileProvider().getProfile().then((value) {
       profile = ProfileData(
         id: value.data!.id,
@@ -98,6 +99,8 @@ class ProfileController extends GetxController {
       txtPhone.text = profile.phone!;
       txtIqama.text = profile.iqama!;
       txtEmail.text = profile.email!;
+      isLoading.value = false;
+
     });
 
     update();

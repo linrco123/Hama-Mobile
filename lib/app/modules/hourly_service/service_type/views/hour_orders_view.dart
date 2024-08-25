@@ -45,15 +45,15 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                 ),
                 serviceTypeController.listHourOrders.isEmpty
                     ? Center(
-                      child: Text(
-                        textAlign: TextAlign.center,
+                        child: Text(
+                          textAlign: TextAlign.center,
                           'no_hour_orders'.tr,
                           style: TextStyle(
                               fontFamily: 'cairo_regular',
                               color: MYColor.grey,
                               fontSize: 18.0),
                         ),
-                    )
+                      )
                     : Expanded(
                         child: Obx(
                           () => LazyLoadScrollView(
@@ -326,6 +326,8 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       'date'.tr,
@@ -350,6 +352,8 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                                                   ],
                                                 ),
                                                 Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       'status'.tr,
@@ -362,26 +366,19 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                                                     const SizedBox(
                                                       height: 10.0,
                                                     ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          hourOrder
-                                                              .paymentStatus!,
-                                                          style: TextStyle(
-                                                              fontSize: 14.0,
-                                                              color: MYColor
-                                                                  .primary,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 5.0,
-                                                        ),
-                                                      ],
+                                                    Text(
+                                                      hourOrder
+                                                          .paymentStatus!,
+                                                      style: TextStyle(
+                                                          fontSize: 14.0,
+                                                          color: MYColor
+                                                              .primary,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .bold),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 5.0,
                                                     ),
                                                   ],
                                                 ),

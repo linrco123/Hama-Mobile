@@ -105,12 +105,6 @@ class MediationProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(
-          '============================mediations=====================================');
-      print(res.body);
-
-      print(res.body.runtimeType);
-
       if (res.status.hasError) {
         return Future.error(res.status);
       } else {

@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myCupertinoButton.dart';
@@ -17,7 +18,8 @@ class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key, required this.isReal}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
+    controller.getProfile();
+    return GetX(
       init: controller,
       builder: (ctx) {
         return Scaffold(
@@ -44,7 +46,7 @@ class ProfileView extends GetView<ProfileController> {
                       LoginController.I.logout();
                     },
                   )
-                : null,
+                : ReturnButton(color: MYColor.primary, size: 20.0),
             actions: [
               if (!controller.enabled.value)
                 IconButton(
@@ -66,67 +68,80 @@ class ProfileView extends GetView<ProfileController> {
                 )
             ],
           ),
-          body: Form(
-            key: controller.formProfileKey,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: [
-                const SizedBox(height: 40),
-                SvgPicture.asset(
-                  "assets/images/drawer/user.svg",
-                  color: MYColor.primary,
-                  height: 80,
-                  width: 80,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'full_name'.tr,
-                  style: TextStyle(
-                    color: MYColor.buttons,
-                    fontSize: 14,
+          body: controller.isLoading.value
+              ? SizedBox(
+                height: double.infinity,
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        backgroundColor: MYColor.primary,
+                      )
+                    ],
+                  ),
+              )
+              : Form(
+                  key: controller.formProfileKey,
+                  child: ListView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    children: [
+                      const SizedBox(height: 40),
+                      SvgPicture.asset(
+                        "assets/images/drawer/user.svg",
+                        color: MYColor.primary,
+                        height: 80,
+                        width: 80,
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        'full_name'.tr,
+                        style: TextStyle(
+                          color: MYColor.buttons,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      _nameTextField(context),
+                      const SizedBox(height: 20),
+                      Text(
+                        'iqama_number'.tr,
+                        style: TextStyle(
+                          color: MYColor.buttons,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      _iqamaTextField(context),
+                      const SizedBox(height: 20),
+                      Text(
+                        'phone_number'.tr,
+                        style: TextStyle(
+                          color: MYColor.buttons,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      _phoneTextField(context),
+                      const SizedBox(height: 20),
+                      Visibility(
+                        visible: controller.enabled.value,
+                        child: SizedBox(
+                          height: 52,
+                          width: double.infinity,
+                          child: MyCupertinoButton(
+                            btnColor: MYColor.buttons,
+                            txtColor: MYColor.btnTxtColor,
+                            text: "save_updates".tr,
+                            fun: () {
+                              controller.postProfile();
+                            },
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                const SizedBox(height: 10),
-                _nameTextField(context),
-                const SizedBox(height: 20),
-                 Text(
-                  'iqama_number'.tr,
-                  style: TextStyle(
-                    color: MYColor.buttons,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                _iqamaTextField(context),
-                const SizedBox(height: 20),
-                Text(
-                  'phone_number'.tr,
-                  style: TextStyle(
-                    color: MYColor.buttons,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                _phoneTextField(context),
-                const SizedBox(height: 20),
-                Visibility(
-                  visible: controller.enabled.value,
-                  child: SizedBox(
-                    height: 52,
-                    width: double.infinity,
-                    child: MyCupertinoButton(
-                      btnColor: MYColor.buttons,
-                      txtColor: MYColor.btnTxtColor,
-                      text: "save_updates".tr,
-                      fun: () {
-                        controller.postProfile();
-                      },
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
         );
       },
     );

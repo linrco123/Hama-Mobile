@@ -710,7 +710,7 @@ class OrderView extends GetView<OrderController> {
                               children: [
                                 Column(
                                   children: [
-                                    Text(
+                                  Text(
                                       "full_name".tr,
                                       style: TextStyle(
                                         color: MYColor.black,

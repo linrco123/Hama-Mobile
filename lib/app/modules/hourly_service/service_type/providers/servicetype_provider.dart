@@ -86,7 +86,6 @@ class ServiceTypeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(res.body);
       if (res.body['code'] == 0) {
         mySnackBar(
           title: "warning".tr,
@@ -110,7 +109,6 @@ class ServiceTypeProvider extends GetConnect {
         return HourlyOrderModel.fromJson(res.body);
       }
     } catch (e, s) {
-      print('exception is     ***********            $e');
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }
@@ -126,8 +124,6 @@ class ServiceTypeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print('=================================hour servce-=========================');
-
       if (res.status.hasError) {
         return Future.error(res.status);
       } else {

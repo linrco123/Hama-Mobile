@@ -73,31 +73,6 @@ class HomeController extends GetxController {
         ? Constance.privacyLinkEn
         : Constance.privacyLinkAr));
 
-  var aboutUSwebViewController = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(MYColor.primary)
-    ..setNavigationDelegate(
-      NavigationDelegate(
-        onProgress: (int progress) async {
-          await EasyLoading.show(status: 'loading'.tr);
-          if (progress == 100) {
-            await EasyLoading.dismiss();
-          }
-        },
-        onWebResourceError: (WebResourceError error) async {
-          await EasyLoading.dismiss();
-        },
-        onNavigationRequest: (NavigationRequest request) {
-          if (request.url
-              .startsWith(Constance.privacyLinkEn.split('en').first)) {
-            return NavigationDecision.navigate;
-          }
-          return NavigationDecision.prevent;
-        },
-      ),
-    )
-    ..loadRequest(Uri.parse('https://kdamat.com/about_us'));
-
   final packageNames = ''.obs;
   final versions = ''.obs;
   final buildNumbers = ''.obs;

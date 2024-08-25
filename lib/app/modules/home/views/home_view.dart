@@ -145,7 +145,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            "add_order".tr,
+                            "new_order".tr,
                             style: TextStyle(
                               color: controller.tap.value == 1
                                   ? MYColor.buttons
@@ -539,7 +539,7 @@ class HomeView extends GetView<HomeController> {
               ),
               ListTile(
                 onTap: () {
-                  Get.offNamed(Routes.PROFILE);
+                  Get.toNamed(Routes.PROFILE);
                 },
                 leading: SvgPicture.asset(
                   'assets/images/drawer/person.svg',
@@ -657,7 +657,7 @@ class HomeView extends GetView<HomeController> {
                     init: controller,
                     builder: (controller) {
                       return Text(
-                        'v  ${controller.versions.value.toString()}',
+                        'v  ${controller.versions.value}',
                         style: const TextStyle(
                           fontFamily: 'cairo_regular',
                           fontSize: 15,

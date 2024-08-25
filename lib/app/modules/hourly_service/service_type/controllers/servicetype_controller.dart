@@ -152,12 +152,11 @@ class ServiceTypeController extends GetxController {
             title: 'alert'.tr,
             content: 'mada_content'.tr,
             onConfirm: () {
-              Get.offAllNamed(Routes.SERVICETYPE);
+              Get.offAllNamed(Routes.HOME);
             });
       }
     }).catchError((error) {
       EasyLoading.dismiss();
-      print('=================== Error =============');
     });
   }
 

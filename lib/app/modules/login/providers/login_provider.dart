@@ -18,7 +18,6 @@ class LoginProvider extends GetConnect {
         Uri.parse("${Constance.apiEndpoint}/login"),
         body: data,
       );
-      print(res.body);
       var decodedBody = jsonDecode(res.body);
       if (decodedBody['code'] == 0) {
         if (decodedBody['message'] == 'phone Or Password InCorrect') {

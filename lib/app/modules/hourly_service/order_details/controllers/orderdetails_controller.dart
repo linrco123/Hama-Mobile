@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 
 class OrderdetailsController extends GetxController {
   @override
@@ -35,7 +36,7 @@ class OrderdetailsController extends GetxController {
           title: 'alert'.tr,
           content: 'mada_content'.tr,
           onConfirm: () {
-            Get.back();
+            Get.offAllNamed(Routes.HOME);
           });
     }
   }

@@ -78,10 +78,9 @@ class RegisterController extends GetxController {
     );
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
+    } else if (!regExp.hasMatch(value)) {
+      return "msg_plz_enter_correct_phone".tr;
     }
-    // } else if (!regExp.hasMatch(value)) {
-    //   return "msg_plz_enter_correct_phone".tr;
-    // }
     return null;
   }
 

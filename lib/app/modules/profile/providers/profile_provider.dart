@@ -16,8 +16,6 @@ class ProfileProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print('==========================update profile=============================');
-      print(res.body);
       if (res.body['code'] == 0) {
         mySnackBar(
           title: "error".tr,

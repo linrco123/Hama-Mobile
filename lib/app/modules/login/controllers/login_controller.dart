@@ -24,20 +24,21 @@ class LoginController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    connectivity().then((value){
-      if(value == false){
+    connectivity().then((value) {
+      if (value == false) {
         Get.toNamed(Routes.INTERNETCONNECTION);
       }
     });
   }
 
   Future<bool> connectivity() async {
-  if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
-    return false;
-  } else {
-    return true;
+    if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
+      return false;
+    } else {
+      return true;
+    }
   }
-}
+
   var isProcessing = false.obs;
   final box = GetStorage();
   final formLoginKey = GlobalKey<FormState>();
@@ -120,11 +121,11 @@ class LoginController extends GetxController {
         isProcessing(true);
         LoginProvider().postLogin(data).then(
           (res) {
-            if(res.code == 0 && res.message! == "Verify account"){
-              // data should be stored here 
-              RegisterController.I.txtPhone.text = LoginController.I.txtPhone.text;
+            if (res.code == 0 && res.message! == "Verify account") {
+              // data should be stored here
+              RegisterController.I.txtPhone.text =
+                  LoginController.I.txtPhone.text;
               RegisterController.I.showLogInDialog(Get.context);
-              
             }
             if (res.code == 1) {
               Map data = {
@@ -133,7 +134,7 @@ class LoginController extends GetxController {
                 "phone": res.data!.phone!.substring(4),
                 "email": res.data!.email,
                 "token": res.data!.token,
-                "iqama":res.data!.iqama,
+                "iqama": res.data!.iqama,
                 "firebaseToken": "",
               };
               print('=========================LOGIN======================');

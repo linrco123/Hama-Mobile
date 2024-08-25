@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
-  import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../components/myCupertinoButton.dart';
@@ -16,6 +17,7 @@ class MusanedaView extends GetView<MusanedaController> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       body: SafeArea(
         child: GetBuilder<MusanedaController>(
@@ -23,6 +25,35 @@ class MusanedaView extends GetView<MusanedaController> {
             builder: (_) {
               return Column(
                 children: [
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  SizedBox(
+                    height: 90.0,
+                    child: Stack(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 0.0, top: 10.0),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/images/hamaLogo.png',
+                              height: 80.0,
+                              width: 150.0,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        const Stack(
+                          children: [
+                            Positioned(
+                                top: 0.0,
+                                right: 10,
+                                child: CircledBackButton()),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                   Expanded(
                     child: Stack(
                       children: [
@@ -43,7 +74,6 @@ class MusanedaView extends GetView<MusanedaController> {
                                   bottomLeft: Radius.circular(15),
                                   bottomRight: Radius.circular(8),
                                 ),
-
                                 image: DecorationImage(
                                   image: CachedNetworkImageProvider(
                                     controller.musanedaData.image!,
@@ -51,14 +81,6 @@ class MusanedaView extends GetView<MusanedaController> {
                                   filterQuality: FilterQuality.high,
                                   fit: BoxFit.fill,
                                 ),
-                              ),
-                              child: const Stack(
-                                children: [
-                                  Positioned(
-                                      top: 50,
-                                      right: 10,
-                                      child: CircledBackButton()),
-                                ],
                               ),
                             ),
                           ),
@@ -136,36 +158,42 @@ class MusanedaView extends GetView<MusanedaController> {
                                           ),
                                         ),
                                         const Spacer(),
-                                        // InkWell(
-                                        //   onTap: () {},
-                                        //   child: SvgPicture.asset(
-                                        //     "assets/images/icon/video.svg",
-                                        //     width: 30,
-                                        //     height: 30,
-                                        //     color: MYColor.icons,
-                                        //   ),
-                                        // ),
                                         const SizedBox(width: 10),
-                                        InkWell(
-                                          onTap: () {
-                                            // controller.changeIsReady(false);
-                                            controller
-                                                .createFileOfPdfUrl(controller
-                                                    .musanedaData.resume!)
-                                                .then((f) {
-                                              // controller.changeIsReady(true);
-                                              Get.toNamed(
-                                                Routes.RESUME,
-                                                arguments: f.path,
-                                              );
-                                            });
-                                          },
-                                          child: SvgPicture.asset(
-                                            "assets/images/icon/pdf.svg",
-                                            width: 30,
-                                            height: 30,
-                                            color: MYColor.icons,
-                                          ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'CV',
+                                              style: TextStyle(
+                                                  fontFamily: 'cairo_regular',
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: MYColor.secondary),
+                                            ),
+                                            const SizedBox(width: 5.0,),
+                                            InkWell(
+                                              onTap: () {
+                                                // controller.changeIsReady(false);
+                                                controller
+                                                    .createFileOfPdfUrl(
+                                                        controller.musanedaData
+                                                            .resume!)
+                                                    .then((f) {
+                                                  // controller.changeIsReady(true);
+                                                  Get.toNamed(
+                                                    Routes.RESUME,
+                                                    arguments: f.path,
+                                                  );
+                                                });
+                                              },
+                                              child: SvgPicture.asset(
+                                                "assets/images/icon/pdf.svg",
+                                                width: 40,
+                                                height: 40,
+                                                color: MYColor.icons,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
@@ -281,17 +309,6 @@ class MusanedaView extends GetView<MusanedaController> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        Text(
-                          'services_include'.tr,
-                          style: TextStyle(
-                            color: MYColor.buttons,
-                            fontSize: 16,
-                            fontFamily: 'cairo_medium',
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        const MyServices(left: 0, right: 0),
                         Padding(
                           padding: const EdgeInsets.only(top: 15, bottom: 5),
                           child: Text(
