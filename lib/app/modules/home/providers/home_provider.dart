@@ -197,8 +197,6 @@ class HomeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(res.body);
-      print('================================================');
       var response = jsonDecode(res.body);
       // print('response is ${response}');
       if (response['code'] == 0) {

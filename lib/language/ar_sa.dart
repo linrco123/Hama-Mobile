@@ -467,6 +467,8 @@ const Map<String, String> arSA = {
   'btn_title_bank_transfer': ' استكمال الطلب والدفع عن طريق حوالة بنكية',
   'mada_content':
       'عملية الدفع ستكون من خلال مدى عند استلام العاملة من المشرفة فى المنزل',
+  'mada_content1':
+      'عملية الدفع ستكون من خلال مدى عند استلام الطلب من العامل فى المنزل',
   "mediation_service": 'خدمة الوساطة',
   'send': 'ارسال',
   'visa_number_card_required': '*رقم التأشيرة مطلوب',

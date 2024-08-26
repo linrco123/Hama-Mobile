@@ -260,8 +260,8 @@ const Map<String, String> enUS = {
   "select_location": "Select Location",
   "other_details": "Other Details",
   'address_deleted_success': "Address deleted successfully ",
-  'please_enter_building_number' :'please, enter building number', 
-  'please_enter_floor_number':'please, enter floor number',
+  'please_enter_building_number': 'please, enter building number',
+  'please_enter_floor_number': 'please, enter floor number',
 
   'via': 'Via',
   // Tickets
@@ -305,7 +305,7 @@ const Map<String, String> enUS = {
   "please_select_payment_method": "Please select payment method",
   "msg_order_success": "Order submitted successfully",
   "create_new_location": "Create New Location",
-  'msg_location_success':'Location added successfully',
+  'msg_location_success': 'Location added successfully',
   "no_tickets_found": "No tickets yet",
   "you_have_no_locations_yet": "You have no locations yet",
   "you_have_unexpired_contract": "You have unexpired contract",
@@ -467,7 +467,9 @@ const Map<String, String> enUS = {
   'btn_title_mada': 'Complete order and Pay via MADA on hand over',
   'btn_title_bank_transfer': 'Complete order and Pay via bank transfer',
   'mada_content':
-      'Payment process \'ll be through MADA when handing over a house worker from a supervisor at home',
+      'Payment process will be through MADA when receiving a house worker from a supervisor at home',
+  'mada_content1':
+      'Payment process will be through MADA when receiving the order from a worker at home',
   "mediation_service": 'Mediation Service',
   'send': 'Send',
   'visa_number_card_required': '*Visa number is required',

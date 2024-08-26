@@ -290,7 +290,7 @@ class MainHomePageController extends GetxController {
           getContractList();
           serviceTypeController.showAlertDialogue(
             title: 'alert'.tr,
-            content: 'mada_content'.tr,
+            content: 'mada_content1'.tr,
             onConfirm: () {
               Get.offAllNamed(Routes.MAIN_HOME_PAGE);
             },
