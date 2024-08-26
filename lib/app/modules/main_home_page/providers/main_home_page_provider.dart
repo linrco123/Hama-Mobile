@@ -26,7 +26,7 @@ class MainHomePageProvider extends GetConnect {
     }
   }
 
-  Future<ApiResponse> postContractList(Map data , bool showSuccess) async {
+  Future<ApiResponse> postContractList(Map data, bool showSuccess) async {
     final response = await post(
       '${Constance.apiEndpoint}/create_order',
       data,
@@ -36,27 +36,25 @@ class MainHomePageProvider extends GetConnect {
       },
     );
 
-    log(response.body.toString(), name: 'post contract list');
     if (response.body['code'] == 0) {
-
-       if(response.body['message'] == 'sorry you have an order'){
-         mySnackBar(
-            title: "warning".tr,
-            message: "you_have_unexpired_contract".tr,
-            color: MYColor.sadad,
-            icon: CupertinoIcons.info_circle,
-          );
-       }
+      if (response.body['message'] == 'sorry you have an order') {
+        mySnackBar(
+          title: "warning".tr,
+          message: "you_have_unexpired_contract".tr,
+          color: MYColor.sadad,
+          icon: CupertinoIcons.info_circle,
+        );
+      }
     }
     if (response.body['code'] == 1) {
-       if(showSuccess){
-         mySnackBar(
-           title: "success".tr,
-           message: "msg_order_successfully_done".tr,
-           color: MYColor.success,
-           icon: CupertinoIcons.check_mark_circled,
-         );
-       }
+      if (showSuccess) {
+        mySnackBar(
+          title: "success".tr,
+          message: "msg_order_successfully_done".tr,
+          color: MYColor.success,
+          icon: CupertinoIcons.check_mark_circled,
+        );
+      }
     }
 
     if (response.status.hasError) {
@@ -100,7 +98,7 @@ class MainHomePageProvider extends GetConnect {
     }
   }
 
-  Future<ApiResponse> payOrder(Map data ,bool showSuccess) async {
+  Future<ApiResponse> payOrder(Map data, bool showSuccess) async {
     final response = await post(
       '${Constance.apiEndpoint}/pay_order',
       data,
@@ -120,7 +118,7 @@ class MainHomePageProvider extends GetConnect {
     }
 
     if (response.body['code'] == 1) {
-      if(showSuccess){
+      if (showSuccess) {
         mySnackBar(
           title: "success".tr,
           message: "order_paid_successfully".tr,

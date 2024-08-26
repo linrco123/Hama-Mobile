@@ -51,7 +51,7 @@ class LocationsProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      await EasyLoading.dismiss();
+       await EasyLoading.dismiss();
       if (res.body['code'] == 0) {
         if (res.body['data']['city'] != null) {
           mySnackBar(
@@ -116,7 +116,7 @@ class LocationsProvider extends GetConnect {
       if (res.body['code'] == 1) {
         mySnackBar(
           title: "success".tr,
-          message: "success".tr,
+          message: 'msg_location_success'.tr,
           color: MYColor.success,
           icon: CupertinoIcons.info_circle,
         );
@@ -130,7 +130,7 @@ class LocationsProvider extends GetConnect {
         return LocationModel.fromJson(res.body);
       }
     } catch (e, s) {
-      await Sentry.captureException(e, stackTrace: s);
+       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }
   }

@@ -1,6 +1,6 @@
 const Map<String, String> arSA = {
   'about_musaneda': 'عن مساندة',
-  'about_us':'من نحن',
+  'about_us': 'من نحن',
   'about_musaneda_desc':
       'نبحث دائمًا عن أفضل طرق توفير الراحة لأنفسنا ولأحبائنا؛ وهذا ما يقدمه لكم مساندة. اكتشفوا مجموعة من الخدمات المتوفرة خصيصًا لراحتكم، من خدمات تنظيف المنازل والتدبير المنزلي إلى خدمات الضيافة ومربيات للأطفال وخدمة الاعتناء بكبار السن . تأكدوا من حصولكم على المساعدة والدعم دائمًا مها كان ما تبحثون عنه. احصلوا على خدمة عالية الجودة مع عمال وعاملات متدربين تدريبًا عاليًا وجديرين بالثقة من مختلف الجنسيات، وذلك عند اختيار واحدة من الباقات المتوفرة لدينا. اكتشفوا المزيد عن مساندة، وذلك عند تحميل تطبيق مساندة وحجز الزيارة الأولى اليوم',
   "location_address_text": "مثال: المنزل, العمل, الخ",
@@ -103,7 +103,7 @@ const Map<String, String> arSA = {
   "best_services": "العاملات المنزلية",
   "see_all": "عرض الكل",
   "add_order": "اضافة طلب",
-  'new_order':'طلب جديد',
+  'new_order': 'طلب جديد',
   "services": "العاملات ",
   "contract": "عقودي",
   "education": "التعليم",
@@ -254,6 +254,8 @@ const Map<String, String> arSA = {
   "other_details": "تفاصيل اخرى",
   "no_notifications": "لا توجد اشعارات",
   'address_deleted_success': "تم مسح العنوان بنجاح",
+  'please_enter_building_number': 'من فضلك ادخل رقم المبنى',
+  'please_enter_floor_number': 'من فضلك ادخل رقم الطابق',
 
   // Tickets
   'via': 'عن طريق',
@@ -298,6 +300,7 @@ const Map<String, String> arSA = {
   "please_select_payment_method": "الرجاء اختيار طريقة الدفع",
   "msg_order_success": "تم ارسال الطلب بنجاح",
   "create_new_location": "اضافة موقع جديد",
+  'msg_location_success': 'تم غضافة العنوان بنجاح',
   "no_tickets_found": "لم يتم العثور على تذاكر",
   "you_have_no_locations_yet": "ليس لديك مواقع بعد",
   "you_have_unexpired_contract": "لديك عقد غير منتهي الصلاحية",
@@ -406,7 +409,6 @@ const Map<String, String> arSA = {
   'proceed': "تابع",
   'choose_package': 'الباقات',
   "choose_package_desc": "اختر الباقة المناسبة من خدمة الساعة",
-
   //'Address Name' 'Street Name'  building_number floor_number 'Postal Code/Zip Code'
   'address_name': '  العنوان',
   'street_name': '  الشارع',
@@ -415,6 +417,7 @@ const Map<String, String> arSA = {
   'zip_code': 'الرمز البريدى',
   'add_address': "اضف عنوان",
   'Pick_new_location_map': 'اختر عنوان اخر على الخريطة',
+  'Pick_location_map': 'اختر عنوان على الخريطة',
   'no_addressess': 'لا يوجد عناوين',
   'choose_location': 'اختر الموقع',
   'address_details': 'تفاصيل الموقع',

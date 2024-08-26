@@ -26,13 +26,11 @@ class LocationsController extends GetxController {
   TextEditingController txtTitle =
       TextEditingController(); //use this controller for address name in hour service
   TextEditingController txtNotes = TextEditingController();
-  TextEditingController streetController = TextEditingController();
-  TextEditingController buildingController = TextEditingController();
+   TextEditingController buildingController = TextEditingController();
   TextEditingController floorController = TextEditingController();
-  TextEditingController zipController = TextEditingController();
-  var isLoading = false.obs;
+   var isLoading = false.obs;
 
-  var isMoving = true.obs;
+  var isMoving = false.obs;
   set isCameraMoving(move) {
     isMoving.value = move;
     update();
@@ -82,6 +80,7 @@ class LocationsController extends GetxController {
 
   void getCurrentLocation() async {
     var position = await determinePosition();
+    myLocation = LatLng(position.latitude, position.longitude);
     final GoogleMapController controller = await gMC.future;
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
@@ -177,16 +176,17 @@ class LocationsController extends GetxController {
     // }
     getAddress(myLocation!);
 
-    if (page == 'order' || page == 'main_home_page') {
+    if (page == 'order' && myLocation != null ||
+        page == 'main_home_page' && myLocation != null) {
       showExtraDetailsDialog(context, page);
     } else if (page == 'hour' && myLocation != null) {
       txtTitle.text = name.value;
-      streetController.text = address.value!;
+      txtNotes.text = address.value;
       Get.to(const AddressDetailsView());
     } else {
       mySnackBar(
         title: "warning".tr,
-        message: 'Pick_new_location_map'.tr,
+        message: 'Pick_location_map'.tr,
         color: MYColor.warning,
         icon: CupertinoIcons.info_circle,
       );
@@ -222,74 +222,78 @@ class LocationsController extends GetxController {
           ),
           child: Form(
             key: formExtraKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "delivery_location".tr,
-                  style: TextStyle(
-                    color: MYColor.buttons,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "delivery_location".tr,
+                    style: TextStyle(
+                      color: MYColor.buttons,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  subLocality.value,
-                  style: TextStyle(
-                    color: MYColor.greyDeep,
-                    fontSize: 12,
-                    height: 2,
+                  const SizedBox(height: 5),
+                  Text(
+                    subLocality.value,
+                    style: TextStyle(
+                      color: MYColor.greyDeep,
+                      fontSize: 12,
+                      height: 2,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  address.value,
-                  style: TextStyle(
-                    color: MYColor.greyDeep,
-                    fontSize: 12,
-                    height: 2,
+                  const SizedBox(height: 5),
+                  Text(
+                    address.value,
+                    style: TextStyle(
+                      color: MYColor.greyDeep,
+                      fontSize: 12,
+                      height: 2,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  "other_details".tr,
-                  style: TextStyle(
-                    color: MYColor.primary,
-                    fontFamily: 'cairo_medium',
-                    fontSize: 16,
+                  const SizedBox(height: 5),
+                  Text(
+                    "other_details".tr,
+                    style: TextStyle(
+                      color: MYColor.primary,
+                      fontFamily: 'cairo_medium',
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 15),
-                _titleTextField(context),
-                const SizedBox(height: 15),
-                _notesTextField(context),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: 52,
-                  width: double.infinity,
-                  child: MyCupertinoButton(
-                    btnColor: MYColor.buttons,
-                    txtColor: MYColor.btnTxtColor,
-                    text: "add_location".tr,
-                    fun: () {
-                      if (formExtraKey.currentState!.validate()) {
-                        //should take page as a parameter
-                        postLocations(page);
-                        log('main_home_page', name: 'main_home_page');
-                        Get.back();
-                        Get.back();
-
-                        if (page == 'main_home_page') {
-                          Get.to(() => const SelectedPackageView());
+                  const SizedBox(height: 15),
+                  _titleTextField(context),
+                  const SizedBox(height: 15),
+                  _notesTextField(context),
+                  const SizedBox(height: 10),
+                  _buildingNumberTextField(context),
+                  const SizedBox(height: 10),
+                  _floorNumberTextField(context),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: 52,
+                    width: double.infinity,
+                    child: MyCupertinoButton(
+                      btnColor: MYColor.buttons,
+                      txtColor: MYColor.btnTxtColor,
+                      text: "add_location".tr,
+                      fun: () {
+                        if (formExtraKey.currentState!.validate()) {
+                          //should take page as a parameter
+                          postLocations(page);
+                           Get.back();
+                          if (page == 'order') {
+                           // Get.back();
+                            Get.back();
+                          }
                         }
-                      }
-                    },
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-              ],
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         );
@@ -373,6 +377,80 @@ class LocationsController extends GetxController {
     );
   }
 
+  TextFormField _buildingNumberTextField(BuildContext context) {
+    return TextFormField(
+      controller: buildingController,
+      keyboardType: TextInputType.number,
+      textAlign: TextAlign.start,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'please_enter_building_number'.tr;
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        suffixStyle: const TextStyle(
+          color: Colors.black,
+        ),
+        fillColor: Colors.grey.shade100,
+        filled: true,
+        labelText: 'building_number'.tr,
+        hintText: 'building_number'.tr,
+        labelStyle: TextStyle(
+          color: MYColor.greyDeep,
+          fontSize: 14,
+        ),
+        hintStyle: TextStyle(
+          color: MYColor.greyDeep,
+          fontSize: 12,
+        ),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.all(
+            Radius.circular(8),
+          ),
+        ),
+      ),
+    );
+  }
+
+  TextFormField _floorNumberTextField(BuildContext context) {
+    return TextFormField(
+      controller: floorController,
+      keyboardType: TextInputType.number,
+      textAlign: TextAlign.start,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'please_enter_floor_number'.tr;
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        suffixStyle: const TextStyle(
+          color: Colors.black,
+        ),
+        fillColor: Colors.grey.shade100,
+        filled: true,
+        labelText: 'floor_number'.tr,
+        hintText: 'floor_number'.tr,
+        labelStyle: TextStyle(
+          color: MYColor.greyDeep,
+          fontSize: 14,
+        ),
+        hintStyle: TextStyle(
+          color: MYColor.greyDeep,
+          fontSize: 12,
+        ),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.all(
+            Radius.circular(8),
+          ),
+        ),
+      ),
+    );
+  }
+
   var listLocations = List<LocationsData>.empty(growable: true).obs;
   var contractsLocations = List<LocationsData>.empty(growable: true).obs;
   var hourLocations = List<LocationsData>.empty(growable: true).obs;
@@ -381,17 +459,8 @@ class LocationsController extends GetxController {
     isLoading(true);
 
     LocationsProvider().getLocations().then((value) {
-      listLocations.clear();
-      hourLocations.clear();
-      contractsLocations.clear();
       for (var data in value.data as List) {
         listLocations.add(data);
-
-        if ((data as LocationsData).type == 'h') {
-          hourLocations.add(data);
-        } else {
-          contractsLocations.add(data);
-        }
       }
 
       isLoading(false);
@@ -399,31 +468,39 @@ class LocationsController extends GetxController {
       update();
     });
 
-   // update();
+    // update();
   }
 
 //should add street name,building #,floor #,zipcode
   void postLocations(String page) {
     Map data = {
-      "address": page == 'hour' ? getStreetBuildingFloorZipcode : address.value,
+      "address": address.value,
       "city": city.value,
       "country": country.value,
       "latitude": latitude.value,
       "longitude": longitude.value,
       "title": txtTitle.text,
-      "notes": page == 'hour' ? address.value : txtNotes.text,
-      "type": page == 'hour' ? 'h' : 'c'
+      "notes": txtNotes.text,
+      "type": page == 'hour' ? 'h' : 'c',
+      "building_num": buildingController.text,
+      "floor_num": floorController.text,
     };
     LocationsProvider().postLocations(data).then((value) async {
       if (value.code == 1) {
-        await getLocations();
+        if (page == 'hour') {
+          await getLocations();
+        }
         ServiceTypeController.I.selectedLocation.value = value.data!.id!;
         if (page == 'order') {
           OrderController.I.getLocations();
         }
-        Get.back();
+        // Get.back();
         if (page == 'hour') {
           Get.toNamed(Routes.ORDERDETAILS);
+        }
+        if (page == 'main_home_page') {
+          Get.to(() => const SelectedPackageView());
+          //Get.back();
         }
       }
     });
@@ -431,7 +508,7 @@ class LocationsController extends GetxController {
   }
 
   String get getStreetBuildingFloorZipcode =>
-      '${country.value}, ${city.value}, ${subLocality.value}, ${streetController.text.trim()}.Building: ${buildingController.text.trim()}.Floor: ${floorController.text.trim()}';
+      '${country.value}, ${city.value}, ${subLocality.value}.Building: ${buildingController.text.trim()}.Floor: ${floorController.text.trim()}';
 
   void postHourlyLocation(String page) {
     if (txtTitle.text.isEmpty) {
@@ -441,7 +518,7 @@ class LocationsController extends GetxController {
         color: MYColor.warning,
         icon: CupertinoIcons.info_circle,
       );
-    } else if (streetController.text.isEmpty) {
+    } else if (txtNotes.text.isEmpty) {
       mySnackBar(
         title: "warning".tr,
         message: "insert_street_name".tr,

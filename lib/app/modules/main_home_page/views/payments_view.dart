@@ -369,8 +369,7 @@ class PaymentsView extends GetView<MainHomePageController> {
             padding: EdgeInsets.zero,
             minSize: 45,
             onPressed: () {
-              print('==================================mada=======================================');
-              MainHomePageController.I
+               MainHomePageController.I
                   .postOrderToServer(isPaid: true, showSuccess: true);
             },
             color: MYColor.white,

@@ -778,13 +778,13 @@ class MainHomePageView extends GetView<MainHomePageController> {
                 .toList()[i];
             return InkWell(
               onTap: () {
-                MainHomePageController.I.setServiceModel = obj.service!;
-                Get.to(
-                  () => ContractDetailsView(
-                    isPaid: false,
-                    contractModel: obj,
-                  ),
-                );
+                // MainHomePageController.I.setServiceModel = obj.service!;
+                // Get.to(
+                //   () => ContractDetailsView(
+                //     isPaid: false,
+                //     contractModel: obj,
+                //   ),
+                // );
               },
               borderRadius: BorderRadius.circular(10),
               child: Container(

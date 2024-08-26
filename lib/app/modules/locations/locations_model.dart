@@ -32,6 +32,8 @@ class LocationsData {
   double? longitude;
   User? user;
   String? type;
+  String? buildingNumber;
+  String? floorNumber;
 
   LocationsData({
     this.id,
@@ -42,6 +44,8 @@ class LocationsData {
     this.notes,
     this.latitude,
     this.longitude,
+    this.buildingNumber,
+    this.floorNumber,
     this.user,
     this.type,
   });
@@ -57,6 +61,8 @@ class LocationsData {
     longitude = Constance.checkDouble(json['longitude']);
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     type = json['type'];
+    buildingNumber = json["building_num"];
+    floorNumber = json["floor_num"];
   }
 
   Map<String, dynamic> toJson() {
@@ -73,6 +79,8 @@ class LocationsData {
       data['user'] = user?.toJson();
     }
     data['type'] = type;
+    data["building_num"] = this.buildingNumber;
+    data["floor_num"] = this.floorNumber;
 
     return data;
   }

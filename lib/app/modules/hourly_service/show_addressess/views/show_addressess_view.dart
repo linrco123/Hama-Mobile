@@ -130,7 +130,7 @@ class ShowAddressessView extends GetView<LocationsController> {
             ),
             GetBuilder<LocationsController>(builder: (_) {
               return Expanded(
-                child: locationController.hourLocations.isEmpty
+                child: locationController.listLocations.isEmpty
                     ? Center(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -151,12 +151,12 @@ class ShowAddressessView extends GetView<LocationsController> {
                             ),
                           ]))
                     : ListView.separated(
-                        itemCount: locationController.hourLocations.length,
+                        itemCount: locationController.listLocations.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
                               serviceTypeController.pickAddress(
-                                  locationController.hourLocations[index].id!);
+                                  locationController.listLocations[index].id!);
                             },
                             child: Obx(
                               () => Container(
@@ -168,7 +168,7 @@ class ShowAddressessView extends GetView<LocationsController> {
                                     color: serviceTypeController
                                                 .selectedLocation.value ==
                                             locationController
-                                                .hourLocations[index].id
+                                                .listLocations[index].id
                                         ? MYColor.primary
                                         : MYColor.white),
                                 child: Column(
@@ -176,13 +176,13 @@ class ShowAddressessView extends GetView<LocationsController> {
                                   children: [
                                     Text(
                                       locationController
-                                          .hourLocations[index].title!,
+                                          .listLocations[index].title!,
                                       style: TextStyle(
                                           fontSize: 14.0,
                                           color: serviceTypeController
                                                       .selectedLocation.value ==
                                                   locationController
-                                                      .hourLocations[index].id
+                                                      .listLocations[index].id
                                               ? MYColor.white
                                               : MYColor.primary,
                                           fontWeight: FontWeight.bold),
@@ -195,14 +195,38 @@ class ShowAddressessView extends GetView<LocationsController> {
                                         Expanded(
                                           child: Text(
                                             locationController
-                                                .hourLocations[index].address!,
+                                                .listLocations[index].address!,
                                             style: TextStyle(
                                               fontSize: 12.0,
                                               color: serviceTypeController
                                                           .selectedLocation
                                                           .value ==
                                                       locationController
-                                                          .hourLocations[index]
+                                                          .listLocations[index]
+                                                          .id
+                                                  ? MYColor.white
+                                                  : MYColor.primary,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            textAlign: TextAlign.justify,
+                                            '${'building_number'.tr}: ${locationController.listLocations[index].buildingNumber} , ${'floor_number'.tr}: ${locationController.listLocations[index].floorNumber}',
+                                            style: TextStyle(
+                                              fontSize: 12.0,
+                                              color: serviceTypeController
+                                                          .selectedLocation
+                                                          .value ==
+                                                      locationController
+                                                          .listLocations[index]
                                                           .id
                                                   ? MYColor.white
                                                   : MYColor.primary,

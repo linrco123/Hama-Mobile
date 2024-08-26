@@ -1,4 +1,3 @@
-
 class LocationModel {
   int? code;
   String? message;
@@ -35,6 +34,8 @@ class Data {
   String? updatedAt;
   String? createdAt;
   int? id;
+  String? buildingNumber;
+  String? floorNumber;
 
   Data(
       {this.cityId,
@@ -45,6 +46,8 @@ class Data {
       this.longitude,
       this.latitude,
       this.userId,
+      this.buildingNumber,
+      this.floorNumber,
       this.updatedAt,
       this.createdAt,
       this.id});
@@ -61,6 +64,8 @@ class Data {
     updatedAt = json['updated_at'];
     createdAt = json['created_at'];
     id = json['id'];
+    buildingNumber = json["building_num"];
+    floorNumber = json["floor_num"];
   }
 
   Map<String, dynamic> toJson() {
@@ -76,6 +81,8 @@ class Data {
     data['updated_at'] = this.updatedAt;
     data['created_at'] = this.createdAt;
     data['id'] = this.id;
+    data["building_num"] = this.buildingNumber;
+    data["floor_num"] = this.floorNumber;
     return data;
   }
 }

@@ -61,7 +61,7 @@ class AddressDetailsView extends GetView<LocationsController> {
                   ),
                   AddressDetailsWidget(
                     title: 'street_name'.tr,
-                    controler: locationController.streetController,
+                    controler: locationController.txtNotes,
                     textInputType: TextInputType.name,
                   ),
                   AddressDetailsWidget(
