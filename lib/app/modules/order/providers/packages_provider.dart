@@ -10,11 +10,8 @@ import '../packages_model.dart';
 class PackagesProvider extends GetConnect {
   Future<Packages> getPackages({required theNationalID}) async {
     try {
-      Pretty.instance.logger
-          .d("${Constance.apiEndpoint}/packages/en");//$theNationalID
       final res = await get(
-        // "${Constance.apiEndpoint}/packages/$theNationalID",
-        "${Constance.apiEndpoint}/packages/en",//?id=$theNationalID
+         "${Constance.apiEndpoint}/packages/$theNationalID",
         headers: {
           "Authorization": "Bearer ${Constance.instance.token}",
         },

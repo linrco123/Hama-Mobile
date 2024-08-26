@@ -130,7 +130,7 @@ class HomeServices extends StatelessWidget {
                           myInkWell(
                             fun: () {
                               // HomeController.I.setTap = 2;
-                              Get.to(const ServicesView());
+                              Get.to(()=>const ServicesView());
                             },
                             text: "see_all".tr,
                             size: 14,

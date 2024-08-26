@@ -67,7 +67,7 @@ class ServiceTypeView extends GetView<HomeController> {
                         image: 'assets/images/contract.png',
                         function: () async {
                           // await EasyLoading.show(status: 'loading'.tr);
-                          Get.to(const HomeServices());
+                          Get.to(()=>const HomeServices());
                         }),
                     const SizedBox(
                       height: 10.0,

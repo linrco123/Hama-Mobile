@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/controllers/welcome_controller.dart';
-import 'package:musaneda/components/hourly/welcome/welcome_card.dart';
+ import 'package:musaneda/components/hourly/welcome/welcome_card.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
 

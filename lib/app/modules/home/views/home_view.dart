@@ -88,17 +88,24 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            width: 25,
+                          Container(
+                            decoration: BoxDecoration(
+                                color: controller.tap.value == 0
+                                    ? MYColor.primary.withOpacity(0.1)
+                                    : MYColor.white,
+                                shape: BoxShape.circle),
+
+                            // height: 25,
+                            // width: 25,
+                            padding: const EdgeInsets.all(5.0),
                             child: SvgPicture.asset(
-                              controller.tap.value == 0
-                                  ? "assets/images/bar/home_red.svg"
-                                  : "assets/images/bar/home_black.svg",
+                              "assets/images/bar/home_black.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 0
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
+                              height: controller.tap.value == 0 ? 15 : 23.0,
+                              width: controller.tap.value == 0 ? 15 : 23.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -107,7 +114,7 @@ class HomeView extends GetView<HomeController> {
                             style: TextStyle(
                               color: controller.tap.value == 0
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
                               fontSize: 12,
                             ),
                           ),
@@ -130,17 +137,24 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            width: 25,
+                           Container(
+                            decoration: BoxDecoration(
+                                color: controller.tap.value == 1
+                                    ? MYColor.primary.withOpacity(0.1)
+                                    : MYColor.white,
+                                shape: BoxShape.circle),
+
+                            // height: 25,
+                            // width: 25,
+                            padding: const EdgeInsets.all(5.0),
                             child: SvgPicture.asset(
-                              controller.tap.value == 1
-                                  ? "assets/images/bar/order_red.svg"
-                                  : "assets/images/bar/order_black.svg",
+                              "assets/images/bar/order_black.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 1
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
+                              height: controller.tap.value == 1 ? 15 : 23.0,
+                              width: controller.tap.value == 1 ? 15 : 23.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -149,7 +163,7 @@ class HomeView extends GetView<HomeController> {
                             style: TextStyle(
                               color: controller.tap.value == 1
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
                               fontSize: 12,
                             ),
                           ),
@@ -170,17 +184,24 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            width: 25,
+                          Container(
+                            decoration: BoxDecoration(
+                                color: controller.tap.value == 2
+                                    ? MYColor.primary.withOpacity(0.1)
+                                    : MYColor.white,
+                                shape: BoxShape.circle),
+
+                            // height: 25,
+                            // width: 25,
+                            padding: const EdgeInsets.all(5.0),
                             child: SvgPicture.asset(
-                              controller.tap.value == 2
-                                  ? "assets/images/bar/contracts_red.svg"
-                                  : "assets/images/bar/contracts_black.svg",
+                              "assets/images/bar/contracts_black.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 2
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
+                              height: controller.tap.value == 2 ? 15 : 23.0,
+                              width: controller.tap.value == 2 ? 15 : 23.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -189,7 +210,7 @@ class HomeView extends GetView<HomeController> {
                             style: TextStyle(
                               color: controller.tap.value == 2
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
                               fontSize: 12,
                             ),
                           ),
@@ -210,17 +231,21 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            width: 25,
+                          Container(
+                            decoration: BoxDecoration(
+                                color: controller.tap.value == 3
+                                    ? MYColor.primary.withOpacity(0.1)
+                                    : MYColor.white,
+                                shape: BoxShape.circle),
+                            padding: const EdgeInsets.all(5.0),
                             child: SvgPicture.asset(
-                              controller.tap.value == 3
-                                  ? "assets/images/bar/services_red.svg"
-                                  : "assets/images/bar/services_black.svg",
+                              "assets/images/bar/services_black.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 3
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
+                              height: controller.tap.value == 3 ? 15 : 23.0,
+                              width: controller.tap.value == 3 ? 15 : 23.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -229,7 +254,7 @@ class HomeView extends GetView<HomeController> {
                             style: TextStyle(
                               color: controller.tap.value == 3
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
                               fontSize: 12,
                             ),
                           ),
@@ -256,20 +281,17 @@ class HomeView extends GetView<HomeController> {
                                     ? MYColor.primary.withOpacity(0.1)
                                     : MYColor.white,
                                 shape: BoxShape.circle),
-
-                            // height: 25,
-                            // width: 25,
                             padding: const EdgeInsets.all(5.0),
                             child: SvgPicture.asset(
-                              controller.tap.value == 4
-                                  ? "assets/images/drawer/delegation.svg"
-                                  : "assets/images/drawer/delegation.svg",
-                              fit: BoxFit.fill,
+                              //"assets/images/drawer/delegation.svg",
+                               "assets/images/svg/handshake.svg",
+                              fit: BoxFit.contain,
+                              
                               color: controller.tap.value == 4
                                   ? MYColor.buttons
-                                  : MYColor.black,
-                              height: controller.tap.value == 4 ? 15 : 20.0,
-                              width: controller.tap.value == 4 ? 15 : 20.0,
+                                  : MYColor.grey,
+                              height: controller.tap.value == 4 ? 15 : 23.0,
+                              width: controller.tap.value == 4 ? 15 : 23.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -278,7 +300,7 @@ class HomeView extends GetView<HomeController> {
                             style: TextStyle(
                               color: controller.tap.value == 4
                                   ? MYColor.buttons
-                                  : MYColor.black,
+                                  : MYColor.grey,
                               fontSize: 12,
                             ),
                           ),
@@ -583,9 +605,16 @@ class HomeView extends GetView<HomeController> {
                 ),
                 title: Text('tickets'.tr),
               ),
+              // ListTile(
+              //   onTap: () {
+              //     Get.toNamed(Routes.TECHNICAL_SUPPORT);
+              //   },
+              //   leading: const Icon(CupertinoIcons.chat_bubble_2),
+              //   title: Text('technical_support'.tr),
+              // ),
               ListTile(
-                onTap: () {
-                  Get.toNamed(Routes.TECHNICAL_SUPPORT);
+                onTap: () async {
+                  await controller.whatsapp();
                 },
                 leading: const Icon(CupertinoIcons.chat_bubble_2),
                 title: Text('technical_support'.tr),

@@ -32,7 +32,7 @@ class OrderController extends GetxController {
     if (Get.previousRoute == Routes.MUSANEDA) {
       MusanedaData musanedaData = Get.arguments;
       setMusanedaID = musanedaData;
-      getPackages(theNationalID: musanedaData.id);
+      getPackages(theNationalID: musanedaData.nationality!.id);
     }
     getLocations();
     setMerchantTransactionID();

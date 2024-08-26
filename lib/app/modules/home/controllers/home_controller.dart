@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -85,6 +87,7 @@ class HomeController extends GetxController {
     packageInfo();
     getCities();
     getNationalities();
+    getContractsNationalities();
     getContracts();
     getMusaneda();
     getSliders();
@@ -120,6 +123,23 @@ class HomeController extends GetxController {
       path: Constance.technicalSupport_phone.toString(),
     );
     await launchUrl(launchUri);
+  }
+
+  whatsapp() async {
+    var contact = Constance.technicalSupport_phone;
+    var androidUrl = "whatsapp://send?phone=$contact&text=Hi, I need some help";
+    var iosUrl =
+        "https://wa.me/$contact?text=${Uri.parse('Hi, I need some help')}";
+
+    try {
+      if (Platform.isIOS) {
+        await launchUrl(Uri.parse(iosUrl));
+      } else {
+        await launchUrl(Uri.parse(androidUrl));
+      }
+    } on Exception {
+      EasyLoading.showError('WhatsApp is not installed.');
+    }
   }
 
   RxBool isLoading = false.obs;
@@ -249,43 +269,29 @@ class HomeController extends GetxController {
 
   var nationality = 0.obs;
   //will be updated in the future
-  List<NationalitiesData> nationalityList = [
-    NationalitiesData(
-      id: 0,
-      name: NameLanguage(
-        ar: "اختر الجنسيه",
-        en: "Select nationality",
+  List<NationalitiesData> nationalityList =
+      List<NationalitiesData>.empty(growable: true).obs;
+  //nationalities section
+  Future<void> getContractsNationalities() async {
+    nationalityList.add(
+      NationalitiesData(
+        id: 0,
+        name: NameLanguage(
+          ar: "اختر الجنسيه",
+          en: "Select nationality",
+        ),
       ),
-    ),
-    NationalitiesData(
-      id: 101,
-      name: NameLanguage(
-        ar: "اندونيسيا",
-        en: "Indonesia",
-      ),
-    ),
-    NationalitiesData(
-      id: 114,
-      name: NameLanguage(
-        ar: "كينيا",
-        en: "Kenya",
-      ),
-    ),
-    NationalitiesData(
-      id: 69,
-      name: NameLanguage(
-        ar: "اثيوبيا",
-        en: "Ethiopia",
-      ),
-    ),
-    NationalitiesData(
-      id: 176,
-      name: NameLanguage(
-        ar: "الفلبين",
-        en: "Philipin",
-      ),
-    ),
-  ];
+    );
+    isLoading(true);
+    HomeProvider().getContractsNationalities().then((value) {
+      for (var data in value.data as List) {
+        nationalityList.add(data);
+      }
+      isLoading(false);
+    });
+
+    update();
+  }
 
   set setNationality(setBranch) {
     nationality.value = setBranch;

@@ -11,15 +11,15 @@ import '../../../../components/mySnackbar.dart';
 import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../complaints_model.dart';
-
+import 'package:http/http.dart' as http;
 class ComplaintsProvider extends GetConnect {
   final box = GetStorage();
 
   Future<Complaints> getComplaints() async {
     await EasyLoading.show(status: 'waiting'.tr);
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/complaints",
+      final res = await http.get(
+       Uri.parse( "${Constance.apiEndpoint}/complaints"),
         headers: {"Authorization": "Bearer ${Constance.instance.token}"},
       );
       await EasyLoading.dismiss();
@@ -29,8 +29,8 @@ class ComplaintsProvider extends GetConnect {
       if(jsonDecode(res.body)['code'] == 1){
 
       }
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
         return Complaints.fromJson(jsonDecode(res.body));
       }
