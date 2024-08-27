@@ -101,6 +101,9 @@ class Constance {
 
   static const sandenyAmazonPay = '/amazon-pay';
   static const sandenyBaseUrl = 'https://develop.sanedny.com/api';
+
+  // ignore: constant_identifier_names
+  static const String  technicalSupport_Url = "https://kdamat.com/Alwatniaco_Webchat.html";
 }
 
 class Cards {

@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/views/about_musaneda.dart';
 import 'package:musaneda/app/modules/home/views/taps/contract_tap.dart';
+import 'package:musaneda/app/modules/home/views/techincal_support_webView.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/controllers/mediation_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
@@ -19,6 +20,7 @@ import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/exitapp_alert.dart';
 import 'package:musaneda/config/myColor.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../controllers/language_controller.dart';
 import '../../register/views/terms_conditions_webview.dart';
 import '../controllers/home_controller.dart';
@@ -104,8 +106,8 @@ class HomeView extends GetView<HomeController> {
                               color: controller.tap.value == 0
                                   ? MYColor.buttons
                                   : MYColor.grey,
-                              height: controller.tap.value == 0 ? 15 : 23.0,
-                              width: controller.tap.value == 0 ? 15 : 23.0,
+                              height: controller.tap.value == 0 ? 15 : 25.0,
+                              width: controller.tap.value == 0 ? 15 : 25.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -137,7 +139,7 @@ class HomeView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           Container(
+                          Container(
                             decoration: BoxDecoration(
                                 color: controller.tap.value == 1
                                     ? MYColor.primary.withOpacity(0.1)
@@ -146,15 +148,15 @@ class HomeView extends GetView<HomeController> {
 
                             // height: 25,
                             // width: 25,
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: SvgPicture.asset(
-                              "assets/images/bar/order_black.svg",
+                              "assets/images/bottom/neworder.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 1
                                   ? MYColor.buttons
                                   : MYColor.grey,
-                              height: controller.tap.value == 1 ? 15 : 23.0,
-                              width: controller.tap.value == 1 ? 15 : 23.0,
+                              height: controller.tap.value == 1 ? 20.0: 30.0,
+                              width: controller.tap.value == 1 ? 20.0 : 30.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -195,13 +197,13 @@ class HomeView extends GetView<HomeController> {
                             // width: 25,
                             padding: const EdgeInsets.all(5.0),
                             child: SvgPicture.asset(
-                              "assets/images/bar/contracts_black.svg",
+                              "assets/images/bottom/housemaid.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 2
                                   ? MYColor.buttons
                                   : MYColor.grey,
-                              height: controller.tap.value == 2 ? 15 : 23.0,
-                              width: controller.tap.value == 2 ? 15 : 23.0,
+                              height: controller.tap.value == 2 ? 15 : 25.0,
+                              width: controller.tap.value == 2 ? 15 : 25.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -239,13 +241,13 @@ class HomeView extends GetView<HomeController> {
                                 shape: BoxShape.circle),
                             padding: const EdgeInsets.all(5.0),
                             child: SvgPicture.asset(
-                              "assets/images/bar/services_black.svg",
+                              "assets/images/bottom/hours.svg",
                               fit: BoxFit.fill,
                               color: controller.tap.value == 3
                                   ? MYColor.buttons
                                   : MYColor.grey,
-                              height: controller.tap.value == 3 ? 15 : 23.0,
-                              width: controller.tap.value == 3 ? 15 : 23.0,
+                              height: controller.tap.value == 3 ? 15 : 25.0,
+                              width: controller.tap.value == 3 ? 15 : 25.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -281,17 +283,15 @@ class HomeView extends GetView<HomeController> {
                                     ? MYColor.primary.withOpacity(0.1)
                                     : MYColor.white,
                                 shape: BoxShape.circle),
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: SvgPicture.asset(
-                              //"assets/images/drawer/delegation.svg",
-                               "assets/images/svg/handshake.svg",
-                              fit: BoxFit.contain,
-                              
+                              "assets/images/bottom/handshake.svg",
+                              fit: BoxFit.cover,
                               color: controller.tap.value == 4
                                   ? MYColor.buttons
                                   : MYColor.grey,
-                              height: controller.tap.value == 4 ? 15 : 23.0,
-                              width: controller.tap.value == 4 ? 15 : 23.0,
+                              height: controller.tap.value == 4 ? 20 : 30.0,
+                              width: controller.tap.value == 4 ? 20 : 30.0,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -605,19 +605,26 @@ class HomeView extends GetView<HomeController> {
                 ),
                 title: Text('tickets'.tr),
               ),
-              // ListTile(
-              //   onTap: () {
-              //     Get.toNamed(Routes.TECHNICAL_SUPPORT);
-              //   },
-              //   leading: const Icon(CupertinoIcons.chat_bubble_2),
-              //   title: Text('technical_support'.tr),
-              // ),
+              ListTile(
+                onTap: () {
+                  Get.to(()=>const TechnicalSupportWebview());
+                  //launchUrl(Uri.parse("https://kdamat.com/Alwatniaco_Webchat.html"));
+
+                },
+                leading: const Icon(CupertinoIcons.chat_bubble_2),
+                title: Text('technical_support'.tr),
+              ),
               ListTile(
                 onTap: () async {
                   await controller.whatsapp();
                 },
-                leading: const Icon(CupertinoIcons.chat_bubble_2),
-                title: Text('technical_support'.tr),
+                leading: Image.asset(
+                  'assets/images/whatsapp.png',
+                  width: 20.0,
+                  height: 20.0,
+                  color: MYColor.white,
+                ),
+                title: Text('whats_app'.tr),
               ),
               ListTile(
                 onTap: () {
@@ -656,7 +663,7 @@ class HomeView extends GetView<HomeController> {
                   margin: const EdgeInsets.only(top: 10.0, bottom: 0.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(const TermsConditionsWebview());
+                      Get.to(()=>const TermsConditionsWebview());
                     },
                     child: Text(
                       '${'service_terms'.tr} | ${'privacy_policy'.tr}',

@@ -51,6 +51,7 @@ dependencies:
   date_picker_plus: ^4.1.0
   url_launcher: ^6.3.0
   flutter_launcher_icons: ^0.13.1
+  flutter_html: ^3.0.0-beta.2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -82,6 +83,11 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/bottom/hours.svg
+    - assets/images/bottom/housemaid.svg
+    - assets/images/bottom/handshake.svg
+    - assets/images/bottom/neworder.svg
+    - assets/images/bottom/neworder1.svg
     - assets/images/drawer/
     - assets/images/services/
     - assets/images/bar/

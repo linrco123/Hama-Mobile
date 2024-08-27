@@ -657,6 +657,7 @@ class MainHomePageView extends GetView<MainHomePageController> {
                               "assets/images/icon/contract.svg",
                               width: 18.75,
                               height: 25,
+                              color: MYColor.buttons,
                             ),
                           ),
                         ],

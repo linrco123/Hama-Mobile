@@ -265,7 +265,7 @@ const Map<String, String> enUS = {
 
   'via': 'Via',
   // Tickets
-  "ticket": "Ticket",
+  "ticket": "Complaint",
   "low": "Low",
   "medium": "Medium",
   "high": "High",
@@ -274,10 +274,10 @@ const Map<String, String> enUS = {
   "type": " Type",
   //"ticket_name": "Title",
   "ticket_name": "Complaint Title",
-  "ticket_details": "Ticket Details",
-  "ticket_priority": "Ticket Priority",
-  "ticket_status": "Ticket Status",
-  "ticket_type": "Ticket Type",
+  "ticket_details": "Complaint Details",
+  "ticket_priority": "Complaint Priority",
+  "ticket_status": "Complaint Status",
+  "ticket_type": "Complaint Type",
   "ticket_importance": "Complaint Importance",
   "upload_file": "Upload File",
   "add_ticket": "Add Complaint",
@@ -306,7 +306,7 @@ const Map<String, String> enUS = {
   "msg_order_success": "Order submitted successfully",
   "create_new_location": "Create New Location",
   'msg_location_success': 'Location added successfully',
-  "no_tickets_found": "No tickets yet",
+  "no_tickets_found": "No complaints yet",
   "you_have_no_locations_yet": "You have no locations yet",
   "you_have_unexpired_contract": "You have unexpired contract",
   "loading": "Loading...",
@@ -488,4 +488,6 @@ const Map<String, String> enUS = {
   'experience': "ُExperience",
   'no_hour_orders': 'No hour orders yet !',
   'no_mediation_orders': 'No mediation orders yet !',
+  'whats_app':"what's app",
+
 };

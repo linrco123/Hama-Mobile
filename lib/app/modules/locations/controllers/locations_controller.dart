@@ -26,9 +26,9 @@ class LocationsController extends GetxController {
   TextEditingController txtTitle =
       TextEditingController(); //use this controller for address name in hour service
   TextEditingController txtNotes = TextEditingController();
-   TextEditingController buildingController = TextEditingController();
+  TextEditingController buildingController = TextEditingController();
   TextEditingController floorController = TextEditingController();
-   var isLoading = false.obs;
+  var isLoading = false.obs;
 
   var isMoving = false.obs;
   set isCameraMoving(move) {
@@ -79,9 +79,9 @@ class LocationsController extends GetxController {
   }
 
   void getCurrentLocation() async {
-    var position = await determinePosition();
+     var position = await determinePosition();
     myLocation = LatLng(position.latitude, position.longitude);
-    final GoogleMapController controller = await gMC.future;
+      final GoogleMapController controller = await gMC.future;
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -282,9 +282,9 @@ class LocationsController extends GetxController {
                         if (formExtraKey.currentState!.validate()) {
                           //should take page as a parameter
                           postLocations(page);
-                           Get.back();
+                          Get.back();
                           if (page == 'order') {
-                           // Get.back();
+                            // Get.back();
                             Get.back();
                           }
                         }
