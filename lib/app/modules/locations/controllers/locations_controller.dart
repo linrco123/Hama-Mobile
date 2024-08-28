@@ -142,7 +142,7 @@ class LocationsController extends GetxController {
       'featureName': first.name,
       'hashCode': first.hashCode,
     };
-    print(location);
+      
     // log(location.toString(), name: 'location');
 
     box.write('my_location_objects', location);

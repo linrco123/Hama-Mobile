@@ -16,6 +16,6 @@ class HourPaymentController extends GetxController{
   void payhourlyService(){
 
 
-    print('payment through hourly');
+      
   }
 }

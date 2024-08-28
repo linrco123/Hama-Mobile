@@ -137,9 +137,7 @@ class LoginController extends GetxController {
                 "iqama": res.data!.iqama,
                 "firebaseToken": "",
               };
-              print('=========================LOGIN======================');
-              print(res!.data!.token);
-              print(res.data!.id);
+
               box.write('LOGIN_MODEL', data).then((value) {
                 getName();
               });

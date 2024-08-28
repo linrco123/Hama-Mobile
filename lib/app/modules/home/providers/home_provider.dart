@@ -198,7 +198,7 @@ class HomeProvider extends GetConnect {
         },
       );
       var response = jsonDecode(res.body);
-      // print('response is ${response}');
+      //   
       if (response['code'] == 0) {
         mySnackBar(
           title: "error".tr,
@@ -214,7 +214,7 @@ class HomeProvider extends GetConnect {
         return Contracts.fromJson(response);
       }
     } catch (e, s) {
-      print('error is ${e.toString()}');
+        
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

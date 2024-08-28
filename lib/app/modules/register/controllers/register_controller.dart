@@ -189,7 +189,7 @@ class RegisterController extends GetxController {
     Map data = {
       "phone": txtPhone.text.toString(),
     };
-    print(txtPhone.text);
+      
     RegisterProvider().postResendOtp(data);
     update();
   }

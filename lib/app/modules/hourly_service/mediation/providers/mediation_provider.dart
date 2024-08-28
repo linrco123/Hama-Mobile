@@ -10,23 +10,19 @@ import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-
+import 'package:http/http.dart' as http;
 class MediationProvider extends GetConnect {
-  void sendData(Map data) {
-    post('www.google.com', data);
-  }
-
   Future<Nationalities> getNationalities() async {
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/musaneda_nationality",
+      final res = await http.get(
+        Uri.parse("${Constance.apiEndpoint}/musaneda_nationality"),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
-      if (res.body['code'] == 0) {
+    final response = jsonDecode(res.body);
+      if (response['code'] == 0) {
         mySnackBar(
           title: "error".tr,
           message: "Can't fetch nationalities",
@@ -35,10 +31,10 @@ class MediationProvider extends GetConnect {
         );
       }
 
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode !=200) {
+        return Future.error(res.statusCode);
       } else {
-        return Nationalities.fromJson(res.body);
+        return Nationalities.fromJson(response);
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
@@ -57,8 +53,6 @@ class MediationProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print('=================================================');
-      print(res.body);
       if (res.body['message'] == 'Server Error' || res.body['errors'] == []) {
         mySnackBar(
           title: "error".tr,

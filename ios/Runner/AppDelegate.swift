@@ -66,7 +66,7 @@ class AppDelegate: FlutterAppDelegate, SFSafariViewControllerDelegate{
             
             // if call.method == "get_hyperpay_response" {
                     
-            //         print("ios ####################");
+            //           
                     
             //         let args = call.arguments as? [String: Any]
                 

@@ -133,8 +133,8 @@ class ComplaintController extends GetxController {
       if (result != null) {
         fileName.value = result!.files.single.name;
         filePath.value = result!.files.single.path!;
-        print('File Name is ${fileName.value}');
-        print('File Name is ${filePath.value}');
+          
+          
       } else {
         mySnackBar(
           title: "error".tr,

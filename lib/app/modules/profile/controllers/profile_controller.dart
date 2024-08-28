@@ -127,7 +127,7 @@ class ProfileController extends GetxController {
           "firebaseToken": "",
         };
 
-        print(data);
+          
         box.write('LOGIN_MODEL', data).then((value) {
           getProfile();
         });

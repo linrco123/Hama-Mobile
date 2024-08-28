@@ -24,7 +24,7 @@ class OrderProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(res.body);
+        
       if (res.body['code'] == 0) {
         await EasyLoading.dismiss();
         if (res.body['message'] == 'sorry you have an order') {
@@ -72,7 +72,7 @@ class OrderProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(res.body);
+        
       if (res.body['code'] == 0) {
         await EasyLoading.dismiss();
         mySnackBar(

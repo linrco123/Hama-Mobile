@@ -192,7 +192,7 @@ class TechnicalSupportController extends GetxController {
     } on PlatformException catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
       if (kDebugMode) {
-        print("Unsupported operation: $e");
+          
       }
     }
 

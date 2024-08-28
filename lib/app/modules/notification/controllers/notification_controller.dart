@@ -115,10 +115,10 @@ class NotificationController extends GetxController {
         sound: true,
       );
       if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-        print("FCM: authorized");
+          
       }
       if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-        print("FCM: provisional");
+          
       }
 
       update();

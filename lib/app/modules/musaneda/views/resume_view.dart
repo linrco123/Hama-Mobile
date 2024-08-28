@@ -38,13 +38,13 @@ class ResumeView extends GetView<MusanedaController> {
           onError: (error) {
             controller.errorMessage = error.toString();
             if (kDebugMode) {
-              print(error.toString());
+                
             }
           },
           onPageError: (page, error) {
             controller.errorMessage = '$page: ${error.toString()}';
             if (kDebugMode) {
-              print('$page: ${error.toString()}');
+                
             }
           },
           onViewCreated: (pdfCtrl) {
@@ -52,12 +52,12 @@ class ResumeView extends GetView<MusanedaController> {
           },
           onLinkHandler: (String? uri) {
             if (kDebugMode) {
-              print('Goto uri: $uri');
+                
             }
           },
           onPageChanged: (int? page, int? total) {
             if (kDebugMode) {
-              print('Page change: $page/$total');
+                
             }
             controller.currentPage = page;
           },

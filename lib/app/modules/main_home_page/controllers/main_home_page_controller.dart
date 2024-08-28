@@ -283,7 +283,7 @@ class MainHomePageController extends GetxController {
       "is_paid": isPaid,
       "merchant_id": CustomPaymentController.I.merchantTransactionID,
     };
-    print(data);
+      
     MainHomePageProvider().postContractList(data, showSuccess).then(
       (res) {
         if (res.code == 1) {

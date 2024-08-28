@@ -13,9 +13,9 @@ void main() {
     await tester.pump(const Duration(seconds: 2)); // Wait some time
 
     // Enumerate all states that exist in the app just to show we can
-    print("All states: ");
+      
     for (var s in tester.allStates) {
-      print(s);
+        
     }
 
     // Find textFields

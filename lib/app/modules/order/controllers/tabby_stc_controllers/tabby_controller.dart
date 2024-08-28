@@ -44,7 +44,7 @@ class TabbyPaymentController extends GetxController {
         transactionId: transactionId, type: 'TABBY', urlType: '0' , orderId: orderId);
     setTabbyData = generatedSignature;
   }catch(e){
-    print('exception in tabby controller $e');
+      
   }
   }
 

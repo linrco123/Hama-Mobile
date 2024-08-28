@@ -84,7 +84,7 @@ class RegisterProvider extends GetConnect {
       final res = await post("${Constance.apiEndpoint}/verify_otp", data);
 
       await EasyLoading.dismiss();
-      print(res.body);
+        
       if (res.body['code'] == 0) {
         // Verification code is invalid
         mySnackBar(

@@ -37,8 +37,8 @@ class TechnicalSupportProvider extends GetConnect {
           "Authorization": apiKey,
         },
       );
-       print('====================message====================');
-      print(res.body);
+         
+        
       Pretty.instance.logger.d(messageText);
        if (res.statusCode == 200) {
         return res.body;
