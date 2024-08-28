@@ -79,9 +79,9 @@ class LocationsController extends GetxController {
   }
 
   void getCurrentLocation() async {
-     var position = await determinePosition();
+    var position = await determinePosition();
     myLocation = LatLng(position.latitude, position.longitude);
-      final GoogleMapController controller = await gMC.future;
+    final GoogleMapController controller = await gMC.future;
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -459,6 +459,7 @@ class LocationsController extends GetxController {
     isLoading(true);
 
     LocationsProvider().getLocations().then((value) {
+      listLocations.clear();
       for (var data in value.data as List) {
         listLocations.add(data);
       }
@@ -468,7 +469,7 @@ class LocationsController extends GetxController {
       update();
     });
 
-    // update();
+    update();
   }
 
 //should add street name,building #,floor #,zipcode
@@ -549,8 +550,10 @@ class LocationsController extends GetxController {
     LocationsProvider().deleteLocations(id).then((value) {
       if (value == 1) {
         getLocations();
-        Get.back();
+        //Get.back();
+       // update();
       }
+      update();
     });
     update();
   }

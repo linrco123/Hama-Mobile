@@ -44,9 +44,10 @@ class HomeController extends GetxController {
     packageNames.value = packageInfo.packageName;
     versions.value = packageInfo.version;
     buildNumbers.value = packageInfo.buildNumber;
+    update();
   }
 
-  final WebViewController webViewController = WebViewController()
+  late final WebViewController webViewController = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(MYColor.primary)
     ..setNavigationDelegate(
@@ -75,7 +76,7 @@ class HomeController extends GetxController {
         ? Constance.privacyLinkEn
         : Constance.privacyLinkAr));
 
-  final WebViewController technicalSupportController = WebViewController()
+  late final WebViewController technicalSupportController = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(MYColor.primary)
     ..setNavigationDelegate(
@@ -157,6 +158,7 @@ class HomeController extends GetxController {
     var androidUrl = "whatsapp://send?phone=$contact&text=Hi, I need some help";
     var iosUrl =
         "https://wa.me/$contact?text=${Uri.parse('Hi, I need some help')}";
+    String webUrl = 'https://api.whatsapp.com/send/?phone=$contact&text=hi';
 
     try {
       if (Platform.isIOS) {
@@ -165,7 +167,7 @@ class HomeController extends GetxController {
         await launchUrl(Uri.parse(androidUrl));
       }
     } on Exception {
-      EasyLoading.showError('WhatsApp is not installed.');
+      await launchUrl(Uri.parse(webUrl), mode: LaunchMode.externalApplication);
     }
   }
 

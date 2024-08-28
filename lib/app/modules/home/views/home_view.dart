@@ -10,9 +10,8 @@ import 'package:musaneda/app/modules/home/views/about_musaneda.dart';
 import 'package:musaneda/app/modules/home/views/taps/contract_tap.dart';
 import 'package:musaneda/app/modules/home/views/techincal_support_webView.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/controllers/mediation_controller.dart';
-import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
-import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
-import 'package:musaneda/app/modules/hourly_service/service_type/views/hour_orders_view.dart';
+ import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
+ import 'package:musaneda/app/modules/hourly_service/service_type/views/hour_orders_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/views/service_type_view.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/views/welcome_view.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
@@ -20,7 +19,6 @@ import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/exitapp_alert.dart';
 import 'package:musaneda/config/myColor.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../controllers/language_controller.dart';
 import '../../register/views/terms_conditions_webview.dart';
 import '../controllers/home_controller.dart';
@@ -32,8 +30,8 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ServiceTypeController());
-    Get.put(MediationController());
+    // Get.put(ServiceTypeController());
+     Get.put(MediationController());
     return GetBuilder<HomeController>(
       key: const ValueKey("home-view"),
       init: controller,
@@ -334,21 +332,6 @@ class HomeView extends GetView<HomeController> {
     }
   }
 
-  // Widget myHome(context) {
-  //   switch (controller.tap.value) {
-  //     case 0:
-  //       return homeTap(context);
-  //     case 2:
-  //       return servicesTap(context);
-  //     case 3:
-  //       return contractsTap(context);
-  //     case 4:
-  //       return controller.welcome.value == 0? const WelcomeView(): const ServiceTypeView();
-  //     default:
-  //       return homeTap(context);
-  //   }
-  // }
-
   PreferredSizeWidget myAppBar(BuildContext context) {
     return myHomeAppBar(context);
   }
@@ -607,9 +590,8 @@ class HomeView extends GetView<HomeController> {
               ),
               ListTile(
                 onTap: () {
-                  Get.to(()=>const TechnicalSupportWebview());
+                  Get.to(() => const TechnicalSupportWebview());
                   //launchUrl(Uri.parse("https://kdamat.com/Alwatniaco_Webchat.html"));
-
                 },
                 leading: const Icon(CupertinoIcons.chat_bubble_2),
                 title: Text('technical_support'.tr),
@@ -627,6 +609,13 @@ class HomeView extends GetView<HomeController> {
                 title: Text('whats_app'.tr),
               ),
               ListTile(
+                onTap: () async {
+                  await controller.makePhoneCall();
+                },
+                leading: const Icon(CupertinoIcons.phone_arrow_up_right),
+                title: Text('contact_us'.tr),
+              ),
+              ListTile(
                 onTap: () {
                   Get.to(const AboutMusanedaWebview());
                 },
@@ -637,13 +626,6 @@ class HomeView extends GetView<HomeController> {
                   color: MYColor.white,
                 ),
                 title: Text('about_musaneda'.tr),
-              ),
-              ListTile(
-                onTap: () async {
-                  await controller.makePhoneCall();
-                },
-                leading: const Icon(CupertinoIcons.phone_arrow_up_right),
-                title: Text('contact_us'.tr),
               ),
               ListTile(
                 onTap: () => LoginController.I.logout(),
@@ -663,7 +645,7 @@ class HomeView extends GetView<HomeController> {
                   margin: const EdgeInsets.only(top: 10.0, bottom: 0.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(()=>const TermsConditionsWebview());
+                      Get.to(() => const TermsConditionsWebview());
                     },
                     child: Text(
                       '${'service_terms'.tr} | ${'privacy_policy'.tr}',
@@ -674,36 +656,31 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
               ),
-              // Text(
-              //   controller.versions.value.toString(),
-              //   style: const TextStyle(
-              //     fontFamily: 'cairo_regular',
-              //     fontSize: 13,
-              //     color: Colors.white54,
-              //   ),
-              // )
-              DefaultTextStyle(
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Colors.white54,
+              Container(
+                margin: const EdgeInsets.only(bottom: 20.0, top: 5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                     const Text(
+                      'V',
+                      style: TextStyle(
+                        fontFamily: 'cairo_regular',
+                        fontSize: 13,
+                        color: Colors.white54,
+                      ),
+                    ),
+                    const SizedBox(width: 5.0,),
+                    Text(
+                      controller.versions.value,
+                      style: const TextStyle(
+                        fontFamily: 'cairo_regular',
+                        fontSize: 15,
+                        color: Colors.white54,
+                      ),
+                    ),
+                  ],
                 ),
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 20.0, top: 5.0),
-                  child: GetBuilder(
-                    init: controller,
-                    builder: (controller) {
-                      return Text(
-                        'v  ${controller.versions.value}',
-                        style: const TextStyle(
-                          fontFamily: 'cairo_regular',
-                          fontSize: 15,
-                          color: Colors.white54,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
+              )
             ],
           ),
         ),

@@ -88,7 +88,8 @@ class Constance {
   static const String ALrajhi_BankAccountIBAN = 'SA8180000260608010001019';
   static const String ALinma_BankAccount = '260000010006080001019';
   static const String ALinma_BankAccountIBAN = 'SA8180000260608010001019';
-  static const int technicalSupport_phone = 920033335;
+  // ignore: constant_identifier_names
+  static const int technicalSupport_phone = 966920033335;
   // static const String phoneRegExp =
   //     r'(^(5|9665|\5|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$)';
 
