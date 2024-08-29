@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
- import 'package:get/get.dart';
+  import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:webview_flutter/webview_flutter.dart';

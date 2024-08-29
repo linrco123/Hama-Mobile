@@ -8,7 +8,6 @@ import 'package:musaneda/app/modules/forget/providers/forgot_provider.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../../../components/myCupertinoButton.dart';
-import '../../../../components/myInkWell.dart';
 import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../../../routes/app_pages.dart';
@@ -69,7 +68,7 @@ class ForgetController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _getAppSignature();
+     _getAppSignature();
     _listenSmsCode();
   }
 
@@ -412,7 +411,7 @@ class ForgetController extends GetxController {
     return PinFieldAutoFill(
       keyboardType: TextInputType.number,
       autoFocus: true,
-      cursor: Cursor(
+            cursor: Cursor(
         width: 2,
         color: MYColor.buttons,
         enabled: true,
@@ -438,7 +437,9 @@ class ForgetController extends GetxController {
       onCodeChanged: (code) {
         setOtpCode = code;
         if (code!.length == 4) {
-          FocusScope.of(context).requestFocus(FocusNode());
+          //To cancel keyboard off the screen
+        // FocusScope.of(context).requestFocus(FocusNode());
+         FocusManager.instance.primaryFocus?.unfocus();
           validateOtp(context);
         }
       },
@@ -509,7 +510,7 @@ class ForgetController extends GetxController {
 
   @override
   void dispose() {
-    SmsAutoFill().unregisterListener();
+        SmsAutoFill().unregisterListener();
     super.dispose();
   }
 }
