@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/order/branches_model.dart';
@@ -6,6 +8,7 @@ import 'package:musaneda/config/myColor.dart';
 
 import '../../../../config/constance.dart';
 import '../packages_model.dart';
+import 'package:http/http.dart'as http;
 
 class PackagesProvider extends GetConnect {
   Future<Packages> getPackages({required theNationalID}) async {
@@ -43,14 +46,14 @@ class PackagesProvider extends GetConnect {
 
   Future<Branches> getBranches() async {
     try {
-      final res = await get("${Constance.apiEndpoint}/branches");
+      final res = await http.get(Uri.parse("${Constance.apiEndpoint}/branches"));
 
       Pretty.instance.logger.d({"branches": res.body});
 
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode !=200) {
+        return Future.error(res.statusCode);
       } else {
-        return Branches.fromJson(res.body);
+        return Branches.fromJson(jsonDecode(res.body));
       }
     } catch (exception) {
       return Future.error(exception.toString());

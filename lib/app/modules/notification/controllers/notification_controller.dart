@@ -36,7 +36,7 @@ class NotificationController extends GetxController {
   }
 
   Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
+      RemoteMessage? message) async {
     FirebaseMessageModel frmModel;
     if (message != null) {
       frmModel = FirebaseMessageModel(
@@ -102,7 +102,7 @@ class NotificationController extends GetxController {
     }
   }
 
-  requestPermission() async {
+  Future<void> requestPermission() async {
     try {
       FirebaseMessaging messaging = FirebaseMessaging.instance;
       NotificationSettings settings = await messaging.requestPermission(
@@ -114,11 +114,12 @@ class NotificationController extends GetxController {
         provisional: false,
         sound: true,
       );
-      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-          
+      if (settings.authorizationStatus == AuthorizationStatus.authorized ||
+          settings.authorizationStatus == AuthorizationStatus.provisional) {
+        // notification accepted /allowed
       }
-      if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-          
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        // notification denied
       }
 
       update();
@@ -169,7 +170,7 @@ class NotificationController extends GetxController {
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
 
-     // executed when interacting with notification while the app in the background
+      // executed when interacting with notification while the app in the background
       FirebaseMessaging.onMessageOpenedApp.listen(
         (message) async {
           log("on_message_opened_app", name: "on_message_opened_app");
@@ -245,7 +246,7 @@ class NotificationController extends GetxController {
     getNotify.clear();
     update();
   }
-
+  // To show local push notification in our local timezone of our country
   Future<tz.TZDateTime> scheduled() async {
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation(localTimeZone));

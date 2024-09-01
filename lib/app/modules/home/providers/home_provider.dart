@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
+ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
@@ -12,6 +11,7 @@ import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../musaneda_model.dart';
 import '../sliders_model.dart';
+import 'package:http/http.dart' as http;
 
 class HomeProvider extends GetConnect {
   final box = GetStorage();
@@ -19,15 +19,15 @@ class HomeProvider extends GetConnect {
   /// Get all Sliders from api
   Future<Sliders> getSliders() async {
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/sliders",
+      final res = await http.get(
+       Uri.parse( "${Constance.apiEndpoint}/sliders"),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
-      if (res.body['code'] == 0) {
+    final response = jsonDecode(res.body);
+      if (response['code'] == 0) {
         mySnackBar(
           title: "error".tr,
           message: "Can't get Sliders",
@@ -36,10 +36,10 @@ class HomeProvider extends GetConnect {
         );
       }
 
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return Sliders.fromJson(res.body);
+        return Sliders.fromJson(response);
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
@@ -283,15 +283,15 @@ class HomeProvider extends GetConnect {
   /// Get all Cities from api
   Future<Cities> getCities() async {
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/cities",
+      final res = await http.get(
+        Uri.parse("${Constance.apiEndpoint}/cities"),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
-      if (res.body['code'] == 0) {
+    final response = jsonDecode(res.body);
+      if (response['code'] == 0) {
         mySnackBar(
           title: "error".tr,
           message: "Can't fetch cities",
@@ -300,10 +300,10 @@ class HomeProvider extends GetConnect {
         );
       }
 
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return Cities.fromJson(res.body);
+        return Cities.fromJson(response);
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);

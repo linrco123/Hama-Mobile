@@ -37,7 +37,7 @@ class OrderController extends GetxController {
     getLocations();
     setMerchantTransactionID();
     super.onInit();
-   }
+  }
 
   late String orderID;
   late OrderModel ordermodel;
@@ -45,7 +45,6 @@ class OrderController extends GetxController {
 
   late PackagesData packagesData;
 
- 
   //final pay = false.obs;
   final isLoading = false.obs;
   final rentEnded = false.obs;
@@ -279,9 +278,7 @@ class OrderController extends GetxController {
     isLoading(true);
     LocationsProvider().getLocations().then((value) {
       for (var data in value.data as List) {
-        if ((data as LocationsData).type == 'c') {
-          listLocations.add(data);
-        }
+        listLocations.add(data);
       }
       isLoading(false);
     });

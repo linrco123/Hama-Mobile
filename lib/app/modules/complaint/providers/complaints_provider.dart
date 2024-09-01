@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:musaneda/response/TheResponse.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../../components/mySnackbar.dart';
@@ -121,22 +120,5 @@ class ComplaintsProvider extends GetConnect {
     }
   }
 
-  Future<TheResponse<Complaints>> fetchComplaints() async {
-    await EasyLoading.show(status: 'waiting'.tr);
-    try {
-      final res = await get(
-        "${Constance.apiEndpoint}/complaints",
-        headers: {"Authorization": "Bearer ${Constance.instance.token}"},
-      );
-      await EasyLoading.dismiss();
-      if (res.status.hasError) {
-        return Future.error(res.status);
-      } else {
-        return TheResponse.fromJson(res.body);
-      }
-    } catch (e, s) {
-      await Sentry.captureException(e, stackTrace: s);
-      return Future.error(e.toString());
-    }
-  }
+
 }

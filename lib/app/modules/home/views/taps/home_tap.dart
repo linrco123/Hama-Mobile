@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/home/views/taps/services_tap.dart';
@@ -14,14 +15,16 @@ import '../../../../../components/myServices.dart';
 import '../../../../../config/myColor.dart';
 import '../../../../routes/app_pages.dart';
 
-class HomeServices extends StatelessWidget {
+class HomeServices extends GetView<HomeController> {
   const HomeServices({super.key});
 
   @override
   Widget build(BuildContext context) {
+    controller.getSliders();
+    controller.getMusaneda();
     return Scaffold(
         appBar: AppBar(
-          title:  Text(
+          title: Text(
             'service_request'.tr,
             style: TextStyle(
               color: MYColor.buttons,
@@ -34,57 +37,67 @@ class HomeServices extends StatelessWidget {
           builder: (ctx) {
             return ListView(
               children: [
-                CarouselSlider(
-                  items: HomeController.I.listSliders.map(
-                    (e) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return SizedBox(
-                            width: double.infinity,
-                            child: Card(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      e.image,
+                controller.isLoadingSliders.value == true
+                    ? SizedBox(
+                        height: 200.0,
+                        width: Get.width,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: MYColor.primary,
+                          ),
+                        ),
+                      )
+                    : CarouselSlider(
+                        items: HomeController.I.listSliders.map(
+                          (e) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                  width: double.infinity,
+                                  child: Card(
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(8),
+                                      ),
                                     ),
-                                    fit: BoxFit.fill,
+                                    child: Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            e.image,
+                                          ),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(8),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ).toList(),
-                  options: CarouselOptions(
-                    height: 159,
-                    aspectRatio: 16 / 9,
-                    viewportFraction: 0.8,
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enlargeCenterPage: true,
-                    scrollDirection: Axis.horizontal,
-                    autoPlayAnimationDuration: const Duration(
-                      milliseconds: 1000,
-                    ),
-                    onPageChanged: (index, reason) {},
-                  ),
-                ),
+                                );
+                              },
+                            );
+                          },
+                        ).toList(),
+                        options: CarouselOptions(
+                          height: 159,
+                          aspectRatio: 16 / 9,
+                          viewportFraction: 0.8,
+                          initialPage: 0,
+                          enableInfiniteScroll: true,
+                          reverse: false,
+                          autoPlay: true,
+                          autoPlayInterval: const Duration(seconds: 3),
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enlargeCenterPage: true,
+                          scrollDirection: Axis.horizontal,
+                          autoPlayAnimationDuration: const Duration(
+                            milliseconds: 1000,
+                          ),
+                          onPageChanged: (index, reason) {},
+                        ),
+                      ),
                 // Container(
                 //   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 //   child: Image.asset(
@@ -130,7 +143,7 @@ class HomeServices extends StatelessWidget {
                           myInkWell(
                             fun: () {
                               // HomeController.I.setTap = 2;
-                              Get.to(()=>const ServicesView());
+                              Get.to(() => const ServicesView());
                             },
                             text: "see_all".tr,
                             size: 14,
@@ -142,67 +155,74 @@ class HomeServices extends StatelessWidget {
                       // const SizedBox(height: 5),
                       Column(
                         children: [
-                          SizedBox(
-                            height: Get.height / 2.6,
-                            child: LazyLoadScrollView(
-                              onEndOfPage: () {
-                                HomeController.I.getMoreMusaneda();
-                              },
-                              isLoading: HomeController.I.lastPage.value,
-                              child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                itemCount: HomeController.I.listMusaneda.length,
-                                itemBuilder: (context, i) {
-                                  final musaneda =
-                                      HomeController.I.listMusaneda[i];
-                                  return Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: 5, top: 5),
-                                    child: InkWell(
-                                      onTap: () {
-                                        Get.toNamed(
-                                          Routes.MUSANEDA,
-                                          arguments: musaneda,
+                          controller.isLoadingSliders.value == true
+                              ? const SizedBox.shrink()
+                              : SizedBox(
+                                  height: Get.height / 2.6,
+                                  child: LazyLoadScrollView(
+                                    onEndOfPage: () {
+                                      HomeController.I.getMoreMusaneda();
+                                    },
+                                    isLoading: HomeController.I.lastPage.value,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount:
+                                          HomeController.I.listMusaneda.length,
+                                      itemBuilder: (context, i) {
+                                        final musaneda =
+                                            HomeController.I.listMusaneda[i];
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 5, top: 5),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Get.toNamed(
+                                                Routes.MUSANEDA,
+                                                arguments: musaneda,
+                                              );
+                                            },
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            child: myMusanedaCard(
+                                              context: context,
+                                              name: LanguageController
+                                                          .I.getLocale ==
+                                                      "ar"
+                                                  ? musaneda.name?.ar!
+                                                      .toLowerCase()
+                                                  : musaneda.name?.en!
+                                                      .toLowerCase(),
+                                              image: musaneda.image,
+                                              country: LanguageController
+                                                          .I.getLocale ==
+                                                      "ar"
+                                                  ? musaneda
+                                                      .nationality?.name?.ar
+                                                  : musaneda
+                                                      .nationality?.name?.en,
+                                              age:
+                                                  '${musaneda.age} ${'year'.tr}',
+                                              about: LanguageController
+                                                          .I.getLocale ==
+                                                      "ar"
+                                                  ? musaneda.description!.ar
+                                                  : musaneda.description!.en,
+                                            ),
+                                          ),
                                         );
                                       },
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: myMusanedaCard(
-                                        context: context,
-                                        name: LanguageController.I.getLocale ==
-                                                "ar"
-                                            ? musaneda.name?.ar!.toLowerCase()
-                                            : musaneda.name?.en!.toLowerCase(),
-                                        image: musaneda.image,
-                                        country: LanguageController
-                                                    .I.getLocale ==
-                                                "ar"
-                                            ? musaneda.nationality?.name?.ar
-                                            : musaneda.nationality?.name?.en,
-                                        age: '${musaneda.age} ${'year'.tr}',
-                                        about: LanguageController.I.getLocale ==
-                                                "ar"
-                                            ? musaneda.description!.ar
-                                            : musaneda.description!.en,
-                                      ),
                                     ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: HomeController.I.isLoading.value,
-                            maintainAnimation: true,
-                            maintainState: true,
-                            maintainSize: true,
-                            child: Center(
-                              child: LinearProgressIndicator(
-                                minHeight: 1,
-                                backgroundColor: MYColor.success,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  MYColor.warning,
+                                  ),
                                 ),
-                              ),
+                          Obx(
+                            () => Visibility(
+                              visible: HomeController.I.isLoading.value,
+                              maintainAnimation: true,
+                              maintainState: true,
+                              maintainSize: true,
+                              child: Center(
+                                  child: LoadingAnimationWidget.waveDots(
+                                      color: MYColor.primary, size: 50.0)),
                             ),
                           ),
                         ],

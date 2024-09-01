@@ -108,7 +108,7 @@ class HomeController extends GetxController {
   final buildNumbers = ''.obs;
 
   var box = GetStorage();
-
+ 
   @override
   void onInit() {
     super.onInit();
@@ -117,8 +117,6 @@ class HomeController extends GetxController {
     getNationalities();
     getContractsNationalities();
     getContracts();
-    getMusaneda();
-    getSliders();
   }
 
   final welcome = 0.obs;
@@ -172,16 +170,17 @@ class HomeController extends GetxController {
   }
 
   RxBool isLoading = false.obs;
+  RxBool isLoadingSliders = false.obs;
 
   var listSliders = List<SliderData>.empty(growable: true).obs;
 
   Future<void> getSliders() async {
-    isLoading(true);
+    isLoadingSliders(true);
     HomeProvider().getSliders().then((value) {
       for (var data in value.data as List) {
         listSliders.add(data);
       }
-      isLoading(false);
+      isLoadingSliders(false);
     });
 
     update();
