@@ -17,7 +17,7 @@ class HourOrdersView extends GetView<ServiceTypeController> {
       width: double.infinity,
       color: MYColor.primary.withOpacity(0.1),
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-      child: GetBuilder(
+      child: GetBuilder<ServiceTypeController>(
           init: controller,
           builder: (controller) {
             return Column(
@@ -31,18 +31,17 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                 //     maintainSize: true,
                 //     child: Center(
                 //       child: LinearProgressIndicator(
-                //         minHeight: 1,
-                //         backgroundColor: MYColor.success,
+                //         minHeight: 2,
+                //         backgroundColor: MYColor.primary,
                 //         valueColor: AlwaysStoppedAnimation<Color>(
-                //           MYColor.warning,
+                //           MYColor.secondary,
                 //         ),
                 //       ),
                 //     ),
                 //   ),
+                // const SizedBox(
+                //   height: 5.0,
                 // ),
-                const SizedBox(
-                  height: 5.0,
-                ),
                 serviceTypeController.listHourOrders.isEmpty
                     ? Center(
                         child: Text(

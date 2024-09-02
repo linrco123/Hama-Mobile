@@ -241,7 +241,7 @@ class HomeController extends GetxController {
       }
       isLoading(false);
     });
-    update();
+   // update();
   }
 
   var listNationalities = List<NationalitiesData>.empty(growable: true).obs;
@@ -265,7 +265,7 @@ class HomeController extends GetxController {
       isLoading(false);
     });
 
-    update();
+    //update();
   }
 
   var listCities = List<CitiesData>.empty(growable: true).obs;
@@ -288,7 +288,7 @@ class HomeController extends GetxController {
       isLoading(false);
     });
 
-    update();
+    //update();
   }
 
   /// On tap on second tab which is the add service tab
@@ -318,7 +318,7 @@ class HomeController extends GetxController {
       isLoading(false);
     });
 
-    update();
+    //update();
   }
 
   set setNationality(setBranch) {

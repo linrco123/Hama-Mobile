@@ -91,18 +91,18 @@ class MediationProvider extends GetConnect {
 
   Future<GetMediationModel> getMediations(int page, String lang) async {
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/services-mediation?page=$page",
+      final res = await http.get(
+      Uri.parse(  "${Constance.apiEndpoint}/services-mediation?page=$page"),
         headers: {
           "Accept-Language": lang,
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return GetMediationModel.fromJson(res.body);
+        return GetMediationModel.fromJson(jsonDecode(res.body));
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);

@@ -44,7 +44,7 @@ class Order {
   dynamic countryId;
   dynamic fromDate;
   dynamic visits;
- dynamic toDate;
+  dynamic toDate;
   dynamic servantCount;
   dynamic userAddressId;
   dynamic cost;

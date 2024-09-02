@@ -10,8 +10,8 @@ import 'package:musaneda/app/modules/home/views/about_musaneda.dart';
 import 'package:musaneda/app/modules/home/views/taps/contract_tap.dart';
 import 'package:musaneda/app/modules/home/views/techincal_support_webView.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/controllers/mediation_controller.dart';
- import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
- import 'package:musaneda/app/modules/hourly_service/service_type/views/hour_orders_view.dart';
+import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/views/hour_orders_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/views/service_type_view.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/views/welcome_view.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
@@ -30,8 +30,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    // Get.put(ServiceTypeController());
-     Get.put(MediationController());
+    Get.put(MediationController());
     return GetBuilder<HomeController>(
       key: const ValueKey("home-view"),
       init: controller,
@@ -153,7 +152,7 @@ class HomeView extends GetView<HomeController> {
                               color: controller.tap.value == 1
                                   ? MYColor.buttons
                                   : MYColor.grey,
-                              height: controller.tap.value == 1 ? 20.0: 30.0,
+                              height: controller.tap.value == 1 ? 20.0 : 30.0,
                               width: controller.tap.value == 1 ? 20.0 : 30.0,
                             ),
                           ),
@@ -661,7 +660,7 @@ class HomeView extends GetView<HomeController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     const Text(
+                    const Text(
                       'V',
                       style: TextStyle(
                         fontFamily: 'cairo_regular',
@@ -669,7 +668,9 @@ class HomeView extends GetView<HomeController> {
                         color: Colors.white54,
                       ),
                     ),
-                    const SizedBox(width: 5.0,),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
                     Text(
                       controller.versions.value,
                       style: const TextStyle(

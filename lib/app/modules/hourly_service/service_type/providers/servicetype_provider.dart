@@ -116,18 +116,18 @@ class ServiceTypeProvider extends GetConnect {
 
    Future<GetHourOrderModel> getHourOrders(int page , String lang) async {
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/hour-orders?page=$page",
+      final res = await http.get(
+        Uri.parse("${Constance.apiEndpoint}/hour-orders?page=$page"),
         headers: {
           "Accept-Language":lang,
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return GetHourOrderModel.fromJson(res.body);
+        return GetHourOrderModel.fromJson(jsonDecode(res.body));
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);

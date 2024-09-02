@@ -124,7 +124,7 @@ class ProfileController extends GetxController {
           "email": txtEmail.text,
           "token": localData['token'],
           "iqama": localData['iqama'],
-          "firebaseToken": "",
+           "verified": true
         };
 
           

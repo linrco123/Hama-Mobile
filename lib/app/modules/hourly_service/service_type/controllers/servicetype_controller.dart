@@ -25,6 +25,7 @@ class ServiceTypeController extends GetxController {
     getHourOrders();
     workersNumbercontroller = TextEditingController()..text = '1';
   }
+
   final languageController = LanguageController.I;
   RxDouble packageCost = 0.0.obs;
   set setPackageCost(double cost) {
@@ -324,18 +325,21 @@ class ServiceTypeController extends GetxController {
     ),
   ];
 
-   var listHourOrders = List<HourData>.empty(growable: true).obs;
+  var listHourOrders = List<HourData>.empty(growable: true).obs;
   var page = 1.obs;
   var lastPage = false.obs;
 
   Future<void> getHourOrders() async {
     isLoading(true);
-    ServiceTypeProvider().getHourOrders(page.value , languageController.getLocale).then(
+    ServiceTypeProvider()
+        .getHourOrders(page.value, languageController.getLocale)
+        .then(
       (value) {
         for (var data in value.data!.data as List) {
           listHourOrders.add(data);
         }
         isLoading(false);
+        update();
       },
     );
     update();
@@ -343,16 +347,18 @@ class ServiceTypeController extends GetxController {
 
   Future<void> getMoreHourOrders() async {
     isLoading(true);
-     ServiceTypeProvider().getHourOrders(page.value++ , languageController.getLocale).then(
+    ServiceTypeProvider()
+        .getHourOrders(page.value++, languageController.getLocale)
+        .then(
       (value) {
-        for (var data in value.data as List) {
+        for (var data in value.data!.data as List) {
           listHourOrders.add(data);
         }
         isLoading(false);
         if (value.data!.total! <= page.value) {
-           lastPage(true);
+          lastPage(true);
         }
-       },
+      },
     );
     update();
   }

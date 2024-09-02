@@ -197,7 +197,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        textAlign: TextAlign.start,
+                                        textAlign: TextAlign.center,
                                         '${'building_number'.tr}: ${chosenLocation.buildingNumber} , ${'floor_number'.tr}: ${chosenLocation.floorNumber}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,

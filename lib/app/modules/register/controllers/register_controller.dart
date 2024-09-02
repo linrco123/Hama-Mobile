@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +10,6 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
-import '../../../data/iqama_validator.dart';
 import '../providers/register_provider.dart';
 
 class RegisterController extends GetxController {
@@ -144,7 +144,7 @@ class RegisterController extends GetxController {
                 "email": res.data!.email,
                 "token": res.data!.token,
                 "iqama": res.data!.iqama,
-                "firebaseToken": "",
+                "verified": false
               };
               box.write('LOGIN_MODEL', data).then((value) {});
               _showDialog(context);
@@ -170,11 +170,23 @@ class RegisterController extends GetxController {
       };
 
       RegisterProvider().postVerify(data).then(
-        (res) {
+        (res) async {
           if (res == 1) {
             isProcessing(false);
             Get.back();
-            Get.offNamed(Routes.WELCOME);
+            Get.offNamed(Routes.HOME);
+            final localData = box.read('LOGIN_MODEL');
+            Map data = {
+              "id": localData['id'],
+              "name": localData['name'],
+              "phone": localData['phone'],
+              "email": localData['email'],
+              "token": localData['token'],
+              "iqama": localData['iqama'],
+              "verified": true
+            };
+            box.write('LOGIN_MODEL', data).then((value) {});
+            await FirebaseMessaging.instance.subscribeToTopic('all');
           }
         },
       );
@@ -189,7 +201,7 @@ class RegisterController extends GetxController {
     Map data = {
       "phone": txtPhone.text.toString(),
     };
-      
+
     RegisterProvider().postResendOtp(data);
     update();
   }

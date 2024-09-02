@@ -9,6 +9,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:logger/logger.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -155,22 +156,21 @@ class NotificationController extends GetxController {
         ),
       );
 
-      FirebaseMessaging.instance.getInitialMessage().then((message) {
-        FirebaseMessageModel frmModel = FirebaseMessageModel(
-          title: message!.notification!.title!,
-          body: message.notification!.body!,
-          type: message.data['type'],
-          dateTime: since(date: message.data['date_time']),
-        );
-        notifyList.add(frmModel);
+      // FirebaseMessaging.instance.getInitialMessage().then((message) {
+      //   FirebaseMessageModel frmModel = FirebaseMessageModel(
+      //     title: message!.notification!.title!,
+      //     body: message.notification!.body!,
+      //     type: message.data['type'],
+      //     dateTime: since(date: message.data['date_time']),
+      //   );
+      //   notifyList.add(frmModel);
 
-        Get.toNamed(Routes.NOTIFICATION);
-      });
+      //   Get.toNamed(Routes.NOTIFICATION);
+      // });
 
-      FirebaseMessaging.onBackgroundMessage(
-          _firebaseMessagingBackgroundHandler);
+      // FirebaseMessaging.onBackgroundMessage(
+      //     _firebaseMessagingBackgroundHandler);
 
-      // executed when interacting with notification while the app in the background
       FirebaseMessaging.onMessageOpenedApp.listen(
         (message) async {
           log("on_message_opened_app", name: "on_message_opened_app");
@@ -180,6 +180,8 @@ class NotificationController extends GetxController {
 
       FirebaseMessaging.onMessage.listen(
         (message) async {
+          print('=============================notifications onMessage =====================');
+          print(message.notification!.title);
           FirebaseMessageModel frmModel = FirebaseMessageModel(
             title: message.notification!.title!,
             body: message.notification!.body!,
@@ -198,6 +200,10 @@ class NotificationController extends GetxController {
         },
       );
 
+      FirebaseMessaging.instance.onTokenRefresh.listen((token){
+        Pretty.instance.logger.d(token);
+      });
+      
       FirebaseMessaging.instance.getToken().then(
         (token) {
           Pretty.instance.logger.d("get_token_tow: $token");
@@ -210,26 +216,6 @@ class NotificationController extends GetxController {
   }
 
   var notifyList = <FirebaseMessageModel>[
-    // FirebaseMessageModel(
-    //   title: 'سداد فواتير',
-    //   body: 'قد قمت بسداد الفاتورة رقم 352404134024 حى الله من جانا.',
-    //   dateTime: since(date: "2022-12-15 09:40:30"),
-    //   type: 'SADAD',
-    // ),
-    // FirebaseMessageModel(
-    //   title: 'بطاقة إئتمان',
-    //   body:
-    //       'تم سداد المبلغ المستحق من بطاقة الائتمان رقم 352404134024 حى الله من جانا.',
-    //   dateTime: since(date: "2022-12-15 09:50:30"),
-    //   type: 'MADA',
-    // ),
-    // FirebaseMessageModel(
-    //   title: 'Apple Pay',
-    //   body:
-    //       'تم سداد المبلغ المستحق من Apple Pay رقم 352404134024 حى الله من جانا.',
-    //   dateTime: since(date: "2010-12-15 09:50:30"),
-    //   type: 'APPLEPAY',
-    // ),
   ];
 
   List<FirebaseMessageModel> get getNotify => notifyList;

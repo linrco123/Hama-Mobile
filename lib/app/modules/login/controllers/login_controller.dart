@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -120,7 +121,7 @@ class LoginController extends GetxController {
         log(data.toString());
         isProcessing(true);
         LoginProvider().postLogin(data).then(
-          (res) {
+          (res) async {
             if (res.code == 0 && res.message! == "Verify account") {
               // data should be stored here
               RegisterController.I.txtPhone.text =
@@ -131,11 +132,11 @@ class LoginController extends GetxController {
               Map data = {
                 "id": res.data!.id,
                 "name": res.data!.name,
-                "phone": res.data!.phone!.substring(4),
+                "phone": res.data!.phone!,
                 "email": res.data!.email,
                 "token": res.data!.token,
                 "iqama": res.data!.iqama,
-                "firebaseToken": "",
+                "verified": true
               };
 
               box.write('LOGIN_MODEL', data).then((value) {
@@ -158,6 +159,7 @@ class LoginController extends GetxController {
                   }
                 },
               );
+              FirebaseMessaging.instance.subscribeToTopic('all');
             }
           },
         );

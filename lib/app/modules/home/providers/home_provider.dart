@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
 import 'package:musaneda/app/modules/home/contracts_model.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import '../../../../components/mySnackbar.dart';
 import '../../../../config/constance.dart';
@@ -207,7 +208,10 @@ class HomeProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-
+       if (res.statusCode == 401) {
+        Get.offAllNamed(Routes.LOGIN);
+       }
+       
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {
@@ -223,15 +227,15 @@ class HomeProvider extends GetConnect {
   /// Get all Nationalities from api
   Future<Nationalities> getNationalities() async {
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/nationalities",
+      final res = await http.get(
+        Uri.parse("${Constance.apiEndpoint}/nationalities"),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-
-      if (res.body['code'] == 0) {
+      final response = jsonDecode(res.body);
+      if (response['code'] == 0) {
         mySnackBar(
           title: "error".tr,
           message: "Can't fetch nationalities",
@@ -240,10 +244,10 @@ class HomeProvider extends GetConnect {
         );
       }
 
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return Nationalities.fromJson(res.body);
+        return Nationalities.fromJson(response);
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);
@@ -253,14 +257,15 @@ class HomeProvider extends GetConnect {
 
   Future<Nationalities> getContractsNationalities() async {
     try {
-      final res = await get(
-        "${Constance.apiEndpoint}/musaneda_nationality_contracts",
+      final res = await http.get(
+       Uri.parse( "${Constance.apiEndpoint}/musaneda_nationality_contracts"),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      if (res.body['code'] == 0) {
+      final response = jsonDecode(res.body);
+      if (response['code'] == 0) {
         // mySnackBar(
         //   title: "error".tr,
         //   message: "Can't fetch nationalities",
@@ -269,10 +274,10 @@ class HomeProvider extends GetConnect {
         // );
       }
 
-      if (res.status.hasError) {
-        return Future.error(res.status);
+      if (res.statusCode != 200) {
+        return Future.error(res.statusCode);
       } else {
-        return Nationalities.fromJson(res.body);
+        return Nationalities.fromJson(response);
       }
     } catch (e, s) {
        await Sentry.captureException(e, stackTrace: s);
@@ -299,7 +304,6 @@ class HomeProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {

@@ -68,10 +68,9 @@ Future<void> main() async {
     name: "musaneda",
     options: DefaultFirebaseOptions.currentPlatform,
   );
- // NotificationsHelper().getAccessToken();
-  var notificationController = Get.put(NotificationController());
-  await notificationController.initNotify();
+  await NotificationController().initNotify();
   await GetStorage.init();
+  //Controls operating system's graphical interface and how it interacts with the application.
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
       .then((_) async {
@@ -104,7 +103,8 @@ connectivity() async {
  */
 
 initialRoute() {
-  if (LoginController.I.isAuth()) {
+  final box = GetStorage().read('LOGIN_MODEL');
+  if (LoginController.I.isAuth() && box['verified'] == true) {
     if (connectivity() == false) {
       return AppPages.MAIN_HOME_PAGE;
     } else {
