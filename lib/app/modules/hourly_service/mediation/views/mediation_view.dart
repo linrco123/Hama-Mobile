@@ -18,26 +18,26 @@ class MediationView extends GetView<MediationController> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Obx(
-          //   () => Visibility(
-          //     visible: mediationController.isLoading.value,
-          //     maintainAnimation: true,
-          //     maintainState: true,
-          //     maintainSize: true,
-          //     child: Center(
-          //       child: LinearProgressIndicator(
-          //         minHeight: 2,
-          //         backgroundColor: MYColor.primary,
-          //         valueColor: AlwaysStoppedAnimation<Color>(
-          //           MYColor.secondary,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // const SizedBox(
-          //   height: 5.0,
-          // ),
+          Obx(
+            () => Visibility(
+              visible: mediationController.isLoading.value,
+              maintainAnimation: true,
+              maintainState: true,
+              maintainSize: true,
+              child: Center(
+                child: LinearProgressIndicator(
+                  minHeight: 2,
+                  backgroundColor: MYColor.primary,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    MYColor.secondary,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 5.0,
+          ),
           mediationController.listmediations.isEmpty
               ? Center(
                   child: Text(

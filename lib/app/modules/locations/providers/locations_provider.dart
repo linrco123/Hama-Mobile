@@ -54,7 +54,7 @@ class LocationsProvider extends GetConnect {
        await EasyLoading.dismiss();
       if (res.body['code'] == 0) {
         if (res.body['data']['city'] != null) {
-          mySnackBar(
+           mySnackBar(
             title: "error".tr,
             message: res.body['data']['city'][0],
             color: MYColor.warning,

@@ -101,7 +101,7 @@ const Map<String, String> enUS = {
   "services_include": "Services include",
   "baby_sitting": "Baby Sitting",
   "cleaning": "Cleaning",
-  "cooking": "Cooking",
+  "cooking": "Cooking assist",
   "washing": "Washing",
   "best_services": "House workers",
   "see_all": "See all",
@@ -488,6 +488,6 @@ const Map<String, String> enUS = {
   'experience': "ُExperience",
   'no_hour_orders': 'No hour orders yet !',
   'no_mediation_orders': 'No mediation orders yet !',
-  'whats_app':"what's app",
-
+  'whats_app': "what's app",
+  "session_expired_login_again": "Session expired ! please , login again "
 };

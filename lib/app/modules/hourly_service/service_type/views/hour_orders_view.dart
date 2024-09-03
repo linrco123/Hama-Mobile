@@ -23,25 +23,25 @@ class HourOrdersView extends GetView<ServiceTypeController> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Obx(
-                //   () => Visibility(
-                //     visible: serviceTypeController.isLoading.value,
-                //     maintainAnimation: true,
-                //     maintainState: true,
-                //     maintainSize: true,
-                //     child: Center(
-                //       child: LinearProgressIndicator(
-                //         minHeight: 2,
-                //         backgroundColor: MYColor.primary,
-                //         valueColor: AlwaysStoppedAnimation<Color>(
-                //           MYColor.secondary,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // const SizedBox(
-                //   height: 5.0,
-                // ),
+                Obx(
+                  () => Visibility(
+                    visible: serviceTypeController.isLoading.value,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    maintainSize: true,
+                    child: Center(
+                      child: LinearProgressIndicator(
+                        minHeight: 2,
+                        backgroundColor: MYColor.primary,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          MYColor.secondary,
+                        ),
+                      ),
+                    ),
+                  ),),
+                const SizedBox(
+                  height: 5.0,
+                ),
                 serviceTypeController.listHourOrders.isEmpty
                     ? Center(
                         child: Text(

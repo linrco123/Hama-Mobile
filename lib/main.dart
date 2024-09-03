@@ -9,7 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/internet_conn_status/controllers/internet_conn_controller.dart';
 import 'package:musaneda/app/modules/notification/controllers/notification_controller.dart';
 import 'package:musaneda/app/modules/profile/controllers/profile_controller.dart';
- import 'package:musaneda/firebase_options.dart';
+import 'package:musaneda/firebase_options.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'app/controllers/language_controller.dart';
@@ -68,7 +68,8 @@ Future<void> main() async {
     name: "musaneda",
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await NotificationController().initNotify();
+  final notifyController = Get.put(NotificationController());
+  await notifyController.initNotify();
   await GetStorage.init();
   //Controls operating system's graphical interface and how it interacts with the application.
   SystemChrome.setPreferredOrientations(

@@ -551,7 +551,7 @@ class LocationsController extends GetxController {
       if (value == 1) {
         getLocations();
         //Get.back();
-       // update();
+        // update();
       }
       update();
     });

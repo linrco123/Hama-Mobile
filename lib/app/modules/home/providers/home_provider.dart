@@ -209,6 +209,12 @@ class HomeProvider extends GetConnect {
         );
       }
        if (res.statusCode == 401) {
+         mySnackBar(
+          title: "warning".tr,
+          message: "session_expired_login_again".tr,
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
         Get.offAllNamed(Routes.LOGIN);
        }
        

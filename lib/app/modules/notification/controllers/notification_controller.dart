@@ -4,14 +4,16 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:logger/logger.dart';
-import 'package:musaneda/app/routes/app_pages.dart';
-import 'package:musaneda/config/constance.dart';
+ import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/components/mySnackbar.dart';
+ import 'package:musaneda/config/constance.dart';
+import 'package:musaneda/config/myColor.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -171,39 +173,52 @@ class NotificationController extends GetxController {
       // FirebaseMessaging.onBackgroundMessage(
       //     _firebaseMessagingBackgroundHandler);
 
-      FirebaseMessaging.onMessageOpenedApp.listen(
-        (message) async {
-          log("on_message_opened_app", name: "on_message_opened_app");
-          Get.toNamed(Routes.NOTIFICATION);
-        },
-      );
+      // FirebaseMessaging.onMessageOpenedApp.listen(
+      //   (message) async {
+      //     FirebaseMessageModel frmModel = FirebaseMessageModel(
+      //       title: message.notification!.title!,
+      //       body: message.notification!.body!,
+      //       type: message.data['type'],
+      //       dateTime: since(date: message.data['date_time']),
+      //     );
+
+      //     notifyList.add(frmModel);
+      //   },
+      // );
 
       FirebaseMessaging.onMessage.listen(
         (message) async {
-          print('=============================notifications onMessage =====================');
-          print(message.notification!.title);
-          FirebaseMessageModel frmModel = FirebaseMessageModel(
-            title: message.notification!.title!,
-            body: message.notification!.body!,
-            type: message.data['type'],
-            dateTime: since(date: message.data['date_time']),
-          );
-
-          notifyList.add(frmModel);
-
-          await showNotify(
-            id: 1,
-            title: frmModel.title,
-            body: frmModel.body,
-            type: frmModel.type,
-          );
+            FirebaseMessageModel frmModel = FirebaseMessageModel(
+              title: message.notification!.title!,
+              body: message.notification!.body!,
+              type: message.data['type']??' ',
+              dateTime:message.data['date_time']??' ',
+            );
+            notifyList.add(frmModel);
+              await showNotify(
+              id: 1,
+              title: frmModel.title,
+              body: frmModel.body,
+              type: 'firebase',
+            );
+        
         },
       );
 
-      FirebaseMessaging.instance.onTokenRefresh.listen((token){
-        Pretty.instance.logger.d(token);
+      FirebaseMessaging.instance.onTokenRefresh.listen((token) {
+        Pretty.instance.logger.d("Refreshed_token: $token");
+        box.write('fcm_token', token);
+        Get.offAllNamed(Routes.LOGIN);
+
+        mySnackBar(
+          title: "warning".tr,
+          message: "session_expired_login_again".tr,
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
+        FirebaseMessaging.instance.subscribeToTopic('all');
       });
-      
+
       FirebaseMessaging.instance.getToken().then(
         (token) {
           Pretty.instance.logger.d("get_token_tow: $token");
@@ -215,8 +230,7 @@ class NotificationController extends GetxController {
     }
   }
 
-  var notifyList = <FirebaseMessageModel>[
-  ];
+  var notifyList = <FirebaseMessageModel>[];
 
   List<FirebaseMessageModel> get getNotify => notifyList;
 
@@ -232,6 +246,7 @@ class NotificationController extends GetxController {
     getNotify.clear();
     update();
   }
+
   // To show local push notification in our local timezone of our country
   Future<tz.TZDateTime> scheduled() async {
     tz.initializeTimeZones();
@@ -280,7 +295,8 @@ class NotificationController extends GetxController {
   }
 
   Future<void> showNotify({id, title, body, type}) async {
-    await fl.zonedSchedule(
+    try{
+      await fl.zonedSchedule(
       id,
       title,
       body,
@@ -306,6 +322,10 @@ class NotificationController extends GetxController {
       androidAllowWhileIdle: true,
       payload: type,
     );
+    }catch(e){
+      print('exception ==================================>>>> $e');
+    }
+
     update();
   }
 }
