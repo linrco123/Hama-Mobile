@@ -248,7 +248,7 @@ class NotificationController extends GetxController {
   }
 
   // To show local push notification in our local timezone of our country
-  Future<tz.TZDateTime> scheduled() async {
+  tz.TZDateTime scheduled()   {
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation(localTimeZone));
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
@@ -296,11 +296,11 @@ class NotificationController extends GetxController {
 
   Future<void> showNotify({id, title, body, type}) async {
     try{
-      await fl.zonedSchedule(
+       await fl.zonedSchedule(
       id,
       title,
       body,
-      await scheduled(),
+       scheduled(),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'main_channel',
