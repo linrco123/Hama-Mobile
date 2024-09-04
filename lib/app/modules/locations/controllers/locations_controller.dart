@@ -476,7 +476,7 @@ class LocationsController extends GetxController {
   void postLocations(String page) {
     Map data = {
       "address": address.value,
-      "city": city.value,
+      "city": city.value.isNotEmpty?city.value:'another city',
       "country": country.value,
       "latitude": latitude.value,
       "longitude": longitude.value,

@@ -68,8 +68,7 @@ Future<void> main() async {
     name: "musaneda",
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final notifyController = Get.put(NotificationController());
-  await notifyController.initNotify();
+  NotificationController().initNotify();
   await GetStorage.init();
   //Controls operating system's graphical interface and how it interacts with the application.
   SystemChrome.setPreferredOrientations(

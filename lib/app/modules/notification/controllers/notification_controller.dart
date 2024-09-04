@@ -7,12 +7,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
- import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/mySnackbar.dart';
- import 'package:musaneda/config/constance.dart';
+import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -25,18 +24,7 @@ class NotificationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getLocalTimeZone();
-  }
-
-  late String localTimeZone;
-
-  getLocalTimeZone() async {
-    FlutterTimezone.getLocalTimezone().then(
-      (value) {
-        localTimeZone = value;
-      },
-    );
-  }
+   }
 
   Future<void> _firebaseMessagingBackgroundHandler(
       RemoteMessage? message) async {
@@ -173,35 +161,48 @@ class NotificationController extends GetxController {
       // FirebaseMessaging.onBackgroundMessage(
       //     _firebaseMessagingBackgroundHandler);
 
-      // FirebaseMessaging.onMessageOpenedApp.listen(
-      //   (message) async {
-      //     FirebaseMessageModel frmModel = FirebaseMessageModel(
-      //       title: message.notification!.title!,
-      //       body: message.notification!.body!,
-      //       type: message.data['type'],
-      //       dateTime: since(date: message.data['date_time']),
-      //     );
+      FirebaseMessaging.onMessageOpenedApp.listen(
+        (message) async {
+          FirebaseMessageModel frmModel = FirebaseMessageModel(
+            title: message.notification!.title!,
+            body: message.notification!.body!,
+            type: message.data['type'],
+            dateTime: since(date: message.data['date_time']),
+          );
 
-      //     notifyList.add(frmModel);
-      //   },
-      // );
+          notifyList.add(frmModel);
+        },
+      );
 
       FirebaseMessaging.onMessage.listen(
         (message) async {
-            FirebaseMessageModel frmModel = FirebaseMessageModel(
-              title: message.notification!.title!,
-              body: message.notification!.body!,
-              type: message.data['type']??' ',
-              dateTime:message.data['date_time']??' ',
-            );
-            notifyList.add(frmModel);
-              await showNotify(
-              id: 1,
-              title: frmModel.title,
-              body: frmModel.body,
-              type: 'firebase',
-            );
-        
+          FirebaseMessageModel frmModel = FirebaseMessageModel(
+            title: message.notification!.title!,
+            body: message.notification!.body!,
+            type: message.data['type'] ?? ' ',
+            dateTime: message.data['date_time'] ?? ' ',
+          );
+          notifyList.add(frmModel);
+          fl.show(
+              0,
+              frmModel.title,
+              frmModel.body,
+              const NotificationDetails(
+                android: AndroidNotificationDetails(
+                  'main_channel',
+                  'Main Channel',
+                  importance: Importance.max,
+                  priority: Priority.max,
+                  icon: '@drawable/notification',
+                  playSound: true,
+                ),
+                iOS: DarwinNotificationDetails(
+                  sound: 'default.wav',
+                  presentAlert: true,
+                  presentBadge: false,
+                  presentSound: true,
+                ),
+              ));
         },
       );
 
@@ -248,9 +249,9 @@ class NotificationController extends GetxController {
   }
 
   // To show local push notification in our local timezone of our country
-  tz.TZDateTime scheduled()   {
+  tz.TZDateTime scheduled() {
     tz.initializeTimeZones();
-    tz.setLocalLocation(tz.getLocation(localTimeZone));
+    tz.setLocalLocation(tz.getLocation('eg/cairo'));
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime date = tz.TZDateTime(
       tz.local,
@@ -295,34 +296,34 @@ class NotificationController extends GetxController {
   }
 
   Future<void> showNotify({id, title, body, type}) async {
-    try{
-       await fl.zonedSchedule(
-      id,
-      title,
-      body,
-       scheduled(),
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'main_channel',
-          'Main Channel',
-          importance: Importance.max,
-          priority: Priority.max,
-          icon: '@drawable/notification',
-          playSound: true,
+    try {
+      await fl.zonedSchedule(
+        id,
+        title,
+        body,
+        scheduled(),
+        const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'main_channel',
+            'Main Channel',
+            importance: Importance.max,
+            priority: Priority.max,
+            icon: '@drawable/notification',
+            playSound: true,
+          ),
+          iOS: DarwinNotificationDetails(
+            sound: 'default.wav',
+            presentAlert: true,
+            presentBadge: false,
+            presentSound: true,
+          ),
         ),
-        iOS: DarwinNotificationDetails(
-          sound: 'default.wav',
-          presentAlert: true,
-          presentBadge: false,
-          presentSound: true,
-        ),
-      ),
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      androidAllowWhileIdle: true,
-      payload: type,
-    );
-    }catch(e){
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        androidAllowWhileIdle: true,
+        payload: type,
+      );
+    } catch (e) {
       print('exception ==================================>>>> $e');
     }
 

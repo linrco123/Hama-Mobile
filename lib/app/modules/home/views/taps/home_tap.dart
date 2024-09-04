@@ -47,66 +47,67 @@ class HomeServices extends GetView<HomeController> {
                           ),
                         ),
                       )
-                    : CarouselSlider(
-                        items: HomeController.I.listSliders.map(
-                          (e) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return SizedBox(
-                                  width: double.infinity,
-                                  child: Card(
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(8),
-                                      ),
-                                    ),
-                                    child: Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            e.image,
-                                          ),
-                                          fit: BoxFit.fill,
-                                        ),
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(8),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ).toList(),
-                        options: CarouselOptions(
-                          height: 159,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 0.8,
-                          initialPage: 0,
-                          enableInfiniteScroll: true,
-                          reverse: false,
-                          autoPlay: true,
-                          autoPlayInterval: const Duration(seconds: 3),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enlargeCenterPage: true,
-                          scrollDirection: Axis.horizontal,
-                          autoPlayAnimationDuration: const Duration(
-                            milliseconds: 1000,
-                          ),
-                          onPageChanged: (index, reason) {},
+                    :
+                    // : CarouselSlider(
+                    //     items: HomeController.I.listSliders.map(
+                    //       (e) {
+                    //         return Builder(
+                    //           builder: (BuildContext context) {
+                    //             return SizedBox(
+                    //               width: double.infinity,
+                    //               child: Card(
+                    //                 shape: const RoundedRectangleBorder(
+                    //                   borderRadius: BorderRadius.all(
+                    //                     Radius.circular(8),
+                    //                   ),
+                    //                 ),
+                    //                 child: Container(
+                    //                   width: double.infinity,
+                    //                   decoration: BoxDecoration(
+                    //                     image: DecorationImage(
+                    //                       image: NetworkImage(
+                    //                         e.image,
+                    //                       ),
+                    //                       fit: BoxFit.fill,
+                    //                     ),
+                    //                     borderRadius: const BorderRadius.all(
+                    //                       Radius.circular(8),
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //             );
+                    //           },
+                    //         );
+                    //       },
+                    //     ).toList(),
+                    //     options: CarouselOptions(
+                    //       height: 159,
+                    //       aspectRatio: 16 / 9,
+                    //       viewportFraction: 0.8,
+                    //       initialPage: 0,
+                    //       enableInfiniteScroll: true,
+                    //       reverse: false,
+                    //       autoPlay: true,
+                    //       autoPlayInterval: const Duration(seconds: 3),
+                    //       autoPlayCurve: Curves.fastOutSlowIn,
+                    //       enlargeCenterPage: true,
+                    //       scrollDirection: Axis.horizontal,
+                    //       autoPlayAnimationDuration: const Duration(
+                    //         milliseconds: 1000,
+                    //       ),
+                    //       onPageChanged: (index, reason) {},
+                    //     ),
+                    //   ),
+                    Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Image.asset(
+                          'assets/images/png/slider_1.png',
+                          height: 190,
+                          width: double.infinity,
+                          fit: BoxFit.fill,
                         ),
                       ),
-                // Container(
-                //   padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                //   child: Image.asset(
-                //     'assets/images/png/slider_1.png',
-                //     height: 159,
-                //     width: double.infinity,
-                //     fit: BoxFit.fill,
-                //   ),
-                // ),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 15,
