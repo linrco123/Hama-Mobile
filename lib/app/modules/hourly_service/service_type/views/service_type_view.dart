@@ -76,7 +76,7 @@ class ServiceTypeView extends GetView<HomeController> {
                         title: "mediation_service".tr,
                         description: "mediation_service".tr,
                         function: () {
-                          Get.to(const AddMediationView());
+                          Get.to(()=>const AddMediationView());
                         },
                         svg: true,
                         image: 'assets/images/drawer/delegation.svg')

@@ -51,9 +51,10 @@ class MediationController extends GetxController {
         nationalityList.add(data);
       }
       isLoading(false);
+      update();
     });
 
-    update();
+   // update();
   }
 
   set setNationality(setBranch) {
@@ -200,6 +201,7 @@ class MediationController extends GetxController {
           listmediations.add(data);
         }
         isLoading(false);
+        update();
       },
     );
     update();
@@ -216,6 +218,7 @@ class MediationController extends GetxController {
         if (value.data!.total! <= page.value) {
           lastPage(true);
         }
+        update();
       },
     );
     update();

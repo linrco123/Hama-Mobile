@@ -5,7 +5,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/model/get_mediation_model.dart';
-import 'package:musaneda/app/modules/hourly_service/service_type/models/get_hour_order_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';

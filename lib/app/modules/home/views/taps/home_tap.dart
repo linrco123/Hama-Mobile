@@ -1,5 +1,3 @@
-// import 'package:carousel_slider/carousel_slider.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
@@ -20,7 +18,6 @@ class HomeServices extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getSliders();
     controller.getMusaneda();
     return Scaffold(
         appBar: AppBar(
@@ -47,59 +44,7 @@ class HomeServices extends GetView<HomeController> {
                           ),
                         ),
                       )
-                    :
-                    // : CarouselSlider(
-                    //     items: HomeController.I.listSliders.map(
-                    //       (e) {
-                    //         return Builder(
-                    //           builder: (BuildContext context) {
-                    //             return SizedBox(
-                    //               width: double.infinity,
-                    //               child: Card(
-                    //                 shape: const RoundedRectangleBorder(
-                    //                   borderRadius: BorderRadius.all(
-                    //                     Radius.circular(8),
-                    //                   ),
-                    //                 ),
-                    //                 child: Container(
-                    //                   width: double.infinity,
-                    //                   decoration: BoxDecoration(
-                    //                     image: DecorationImage(
-                    //                       image: NetworkImage(
-                    //                         e.image,
-                    //                       ),
-                    //                       fit: BoxFit.fill,
-                    //                     ),
-                    //                     borderRadius: const BorderRadius.all(
-                    //                       Radius.circular(8),
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //               ),
-                    //             );
-                    //           },
-                    //         );
-                    //       },
-                    //     ).toList(),
-                    //     options: CarouselOptions(
-                    //       height: 159,
-                    //       aspectRatio: 16 / 9,
-                    //       viewportFraction: 0.8,
-                    //       initialPage: 0,
-                    //       enableInfiniteScroll: true,
-                    //       reverse: false,
-                    //       autoPlay: true,
-                    //       autoPlayInterval: const Duration(seconds: 3),
-                    //       autoPlayCurve: Curves.fastOutSlowIn,
-                    //       enlargeCenterPage: true,
-                    //       scrollDirection: Axis.horizontal,
-                    //       autoPlayAnimationDuration: const Duration(
-                    //         milliseconds: 1000,
-                    //       ),
-                    //       onPageChanged: (index, reason) {},
-                    //     ),
-                    //   ),
-                    Container(
+                    : Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: Image.asset(
                           'assets/images/png/slider_1.png',

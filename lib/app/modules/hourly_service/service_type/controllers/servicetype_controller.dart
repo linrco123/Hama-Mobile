@@ -358,6 +358,7 @@ class ServiceTypeController extends GetxController {
         if (value.data!.total! <= page.value) {
           lastPage(true);
         }
+        update();
       },
     );
     update();

@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/views/about_musaneda.dart';
 import 'package:musaneda/app/modules/home/views/taps/contract_tap.dart';
 import 'package:musaneda/app/modules/home/views/techincal_support_webView.dart';
-import 'package:musaneda/app/modules/hourly_service/mediation/controllers/mediation_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/views/mediation_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/views/hour_orders_view.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/views/service_type_view.dart';
@@ -30,8 +29,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MediationController());
-    return GetBuilder<HomeController>(
+     return GetBuilder<HomeController>(
       key: const ValueKey("home-view"),
       init: controller,
       builder: (ctx) {

@@ -350,8 +350,9 @@ class OrderDetailsView extends GetView<LocationsController> {
                                 txtColor: MYColor.btnTxtColor),
                           ),
                           const SizedBox(height: 5.0),
-                          locationController.city.value ==  'الرياض'||
-                                  locationController.city.value == 'alriyadh'
+                          locationController.city.value.contains('الرياض') ||
+                                  locationController.city.value
+                                      .contains('riyadh')
                               ? SizedBox(
                                   width: double.infinity,
                                   height: 50.0,

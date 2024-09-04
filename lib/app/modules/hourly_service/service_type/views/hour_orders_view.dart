@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/config/myColor.dart';
 
@@ -20,28 +21,14 @@ class HourOrdersView extends GetView<ServiceTypeController> {
       child: GetBuilder<ServiceTypeController>(
           init: controller,
           builder: (controller) {
+            if (controller.isLoading.value) {
+              return Center(
+                  child: LoadingAnimationWidget.waveDots(
+                      color: MYColor.primary, size: 50.0 ));
+            }
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Obx(
-                  () => Visibility(
-                    visible: serviceTypeController.isLoading.value,
-                    maintainAnimation: true,
-                    maintainState: true,
-                    maintainSize: true,
-                    child: Center(
-                      child: LinearProgressIndicator(
-                        minHeight: 2,
-                        backgroundColor: MYColor.primary,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          MYColor.secondary,
-                        ),
-                      ),
-                    ),
-                  ),),
-                const SizedBox(
-                  height: 5.0,
-                ),
                 serviceTypeController.listHourOrders.isEmpty
                     ? Center(
                         child: Text(
@@ -366,15 +353,13 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                                                       height: 10.0,
                                                     ),
                                                     Text(
-                                                      hourOrder
-                                                          .paymentStatus!,
+                                                      hourOrder.paymentStatus!,
                                                       style: TextStyle(
                                                           fontSize: 14.0,
-                                                          color: MYColor
-                                                              .primary,
+                                                          color:
+                                                              MYColor.primary,
                                                           fontWeight:
-                                                              FontWeight
-                                                                  .bold),
+                                                              FontWeight.bold),
                                                     ),
                                                     const SizedBox(
                                                       width: 5.0,
