@@ -94,7 +94,7 @@ class HomeController extends GetxController {
         },
         onNavigationRequest: (NavigationRequest request) {
           if (request.url
-              .startsWith(Constance.privacyLinkEn.split('en').first)) {
+              .startsWith(Constance.technicalSupport_Url)) {
             return NavigationDecision.navigate;
           }
           return NavigationDecision.prevent;
