@@ -95,6 +95,9 @@ class LocationsController extends GetxController {
     );
     update();
   }
+  setCity(String chosenCity){
+    city.value = chosenCity;
+  }
 
   var address = ''.obs;
   var name = ''.obs;

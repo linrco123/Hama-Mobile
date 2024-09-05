@@ -157,6 +157,9 @@ class ShowAddressessView extends GetView<LocationsController> {
                             onTap: () {
                               serviceTypeController.pickAddress(
                                   locationController.listLocations[index].id!);
+
+                              locationController.setCity(locationController
+                                  .listLocations[index].city!);
                             },
                             child: Obx(
                               () => Container(

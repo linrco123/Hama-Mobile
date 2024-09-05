@@ -352,7 +352,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                           const SizedBox(height: 5.0),
                           locationController.city.value.contains('الرياض') ||
                                   locationController.city.value
-                                      .contains('riyadh')
+                                      .contains('Riyadh')
                               ? SizedBox(
                                   width: double.infinity,
                                   height: 50.0,
