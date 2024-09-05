@@ -185,7 +185,7 @@ class LocationsController extends GetxController {
     } else if (page == 'hour' && myLocation != null) {
       txtTitle.text = name.value;
       txtNotes.text = address.value;
-      Get.to(const AddressDetailsView());
+      Get.to(()=>const AddressDetailsView());
     } else {
       mySnackBar(
         title: "warning".tr,
