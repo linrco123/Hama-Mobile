@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:math';
+  import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +6,7 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
-import 'package:permission_handler/permission_handler.dart';
-
+ 
 import '../../../routes/app_pages.dart';
 import '../complaints_model.dart';
 import '../providers/complaints_provider.dart';
@@ -57,7 +54,7 @@ class ComplaintController extends GetxController {
     isLoading(true);
     ComplaintsProvider().getComplaints().then((value) {
       for (var data in value.data as List) {
-       listComplaints.add(data);
+        listComplaints.add(data);
         if (data.importance == 1) {
           listHigh.add(data);
         }
@@ -81,46 +78,7 @@ class ComplaintController extends GetxController {
   var fileBytes = "".obs;
   var fileBase64 = "".obs;
 
-  Future<void> requestPermission() async {
-    final PermissionStatus status = await Permission.storage.request();
-    if (status.isGranted) {
-      selectFile();
-    } else if (status.isDenied) {
-      await showDialog(
-        context: Get.overlayContext!,
-        builder: (_) => AlertDialog(
-          title: const Text('Permission Required'),
-          content: const Text('Please grant permission to select a file.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(Get.context!),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
-    } else if (status.isPermanentlyDenied) {
-      await showDialog(
-        context: Get.overlayContext!,
-        builder: (_) => AlertDialog(
-          title: const Text('Permission Required'),
-          content: const Text(
-              'Please grant permission to select a file. Go to app settings > permissions and enable storage permission.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(Get.context!),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () => openAppSettings(),
-              child: const Text('Settings'),
-            ),
-          ],
-        ),
-      );
-    }
-  }
-
+  
   final filePicker = FilePicker.platform;
   FilePickerResult? result;
   void selectFile() async {
@@ -133,8 +91,6 @@ class ComplaintController extends GetxController {
       if (result != null) {
         fileName.value = result!.files.single.name;
         filePath.value = result!.files.single.path!;
-          
-          
       } else {
         mySnackBar(
           title: "error".tr,
@@ -270,7 +226,7 @@ class ComplaintController extends GetxController {
             "name": txtTitle.text,
             "description": txtNotes.text,
             "contract_id": HomeController.I.listContracts.first.id ?? 0,
-            "type": Random().nextInt(200) % 2 == 0? 1:2,
+            "type": Random().nextInt(200) % 2 == 0 ? 1 : 2,
             "importance": selectedTicketPriority.value,
             "file": fileName.value,
           };

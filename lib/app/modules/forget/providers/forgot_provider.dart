@@ -16,8 +16,8 @@ class ForgotProvider extends GetConnect {
       final res = await post("${Constance.apiEndpoint}/forgot_password", data);
 
       log(res.body.toString(), name: 'forgot password');
-      print('-----------------------otp=-------------------------');
-      print(res.body);
+       
+       
       await EasyLoading.dismiss();
       if (res.body['code'] == 0) {
         // Phone number already exists!

@@ -38,23 +38,16 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/main_home_page/bindings/main_home_page_binding.dart';
 import '../modules/main_home_page/views/main_home_page_view.dart';
-import '../modules/message/bindings/message_binding.dart';
-import '../modules/message/views/message_view.dart';
-import '../modules/musaneda/bindings/musaneda_binding.dart';
+ import '../modules/musaneda/bindings/musaneda_binding.dart';
 import '../modules/musaneda/views/musaneda_view.dart';
 import '../modules/musaneda/views/resume_view.dart';
-import '../modules/notification/bindings/notification_binding.dart';
-import '../modules/notification/views/notification_view.dart';
-import '../modules/order/bindings/order_binding.dart';
+ import '../modules/order/bindings/order_binding.dart';
 import '../modules/order/views/order_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
-import '../modules/technical_support/bindings/technical_support_binding.dart';
-import '../modules/technical_support/views/technical_support_view.dart';
-import '../modules/transfer_sponsorship/bindings/transfer_sponsorship_binding.dart';
-import '../modules/transfer_sponsorship/views/transfer_sponsorship_view.dart';
+ 
 
 part 'app_routes.dart';
 
@@ -180,27 +173,6 @@ class AppPages {
       page: () => const ResumeView(),
       binding: MusanedaBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.CV,
-    //   page: () => const CvView(),
-    //   binding: CvBinding(),
-    // ),
-    GetPage(
-      name: _Paths.MESSAGE,
-      page: () => const MessageView(),
-      binding: MessageBinding(),
-    ),
-    GetPage(
-      name: _Paths.TRANSFER_SPONSORSHIP,
-      page: () => const TransferSponsorshipView(),
-      binding: TransferSponsorshipBinding(),
-    ),
-    GetPage(
-      name: _Paths.TECHNICAL_SUPPORT,
-      page: () => const TechnicalSupportView(),
-      binding: TechnicalSupportBinding(),
-    ),
-
      GetPage(
       name: _Paths.PACKAGES,
       page: () => const PackagesView(),

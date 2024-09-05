@@ -86,8 +86,8 @@ class ServiceTypeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print('================================ddddddddd=========================');
-      print(res.body);
+       
+       
       if (res.body['code'] == 0) {
         mySnackBar(
           title: "warning".tr,
@@ -126,7 +126,7 @@ class ServiceTypeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print(res.body);
+       
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {

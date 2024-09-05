@@ -324,7 +324,7 @@ class NotificationController extends GetxController {
         payload: type,
       );
     } catch (e) {
-      print('exception ==================================>>>> $e');
+       
     }
 
     update();
