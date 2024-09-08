@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
-import 'package:musaneda/config/myColor.dart';
+ import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myCupertinoButton.dart';
 import '../controllers/profile_controller.dart';
@@ -135,6 +135,21 @@ class ProfileView extends GetView<ProfileController> {
                             text: "save_updates".tr,
                             fun: () {
                               controller.postProfile();
+                            },
+                          ),
+                        ),
+                      ),
+                       Visibility(
+                        visible: !controller.enabled.value,
+                        child: SizedBox(
+                          height: 52,
+                          width: double.infinity,
+                          child: MyCupertinoButton(
+                            btnColor: MYColor.buttons,
+                            txtColor: MYColor.btnTxtColor,
+                            text: "remove_account".tr,
+                            fun: () {
+                              controller.removeAccount();
                             },
                           ),
                         ),

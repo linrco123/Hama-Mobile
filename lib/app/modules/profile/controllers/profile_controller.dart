@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
@@ -9,6 +10,7 @@ import 'package:musaneda/app/routes/app_pages.dart';
 import '../../../../config/constance.dart';
 import '../../../data/iqama_validator.dart';
 import 'package:http/http.dart' as http;
+
 class ProfileController extends GetxController {
   static ProfileController get I => Get.put(ProfileController());
   final isProcessing = false.obs;
@@ -100,7 +102,6 @@ class ProfileController extends GetxController {
       txtIqama.text = profile.iqama!;
       txtEmail.text = profile.email!;
       isLoading.value = false;
-
     });
 
     update();
@@ -124,24 +125,30 @@ class ProfileController extends GetxController {
           "email": txtEmail.text,
           "token": localData['token'],
           "iqama": localData['iqama'],
-           "verified": true
+          "verified": true
         };
 
-          
         box.write('LOGIN_MODEL', data).then((value) {
           getProfile();
         });
 
         isProcessing.value = false;
         setEnabled = false;
-      // To refresh all system for getting updated data
-      
-      // LanguageController.I.changeLocaleCode(LanguageController.I.getLocale);
-        Get.offAllNamed(Routes.WELCOME);
+        // To refresh all system for getting updated data
+
+        // LanguageController.I.changeLocaleCode(LanguageController.I.getLocale);
         Get.offNamed(Routes.HOME);
         getProfile();
       });
     }
     update();
+  }
+
+  Future<void> removeAccount() async {
+    ProfileProvider().removeAccount().then((value) {
+      if (value == 1) {
+        Get.offAllNamed(Routes.LOGIN);
+      }
+    });
   }
 }

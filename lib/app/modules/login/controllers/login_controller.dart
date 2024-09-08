@@ -109,6 +109,26 @@ class LoginController extends GetxController {
     return null;
   }
 
+  showAlertDialogue({title, content, void Function()? onConfirm}) =>
+      Get.defaultDialog(
+        backgroundColor: MYColor.secondary,
+        title: title, //'alert'.tr 'mada_content'.tr
+        titleStyle: TextStyle(color: MYColor.white),
+        content: Text(
+          textAlign: TextAlign.center,
+          content,
+          style: TextStyle(
+              color: MYColor.white,
+              fontSize: 16.0,
+              fontFamily: 'cairo_regular'),
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+        textConfirm: 'ok'.tr,
+        confirmTextColor: MYColor.white,
+        buttonColor: MYColor.buttons,
+        onConfirm: onConfirm,
+      );
   Future<void> login() async {
     try {
       if (formLoginKey.currentState!.validate()) {
@@ -127,6 +147,14 @@ class LoginController extends GetxController {
               RegisterController.I.txtPhone.text =
                   LoginController.I.txtPhone.text;
               RegisterController.I.showLogInDialog(Get.context);
+            }
+            if (res.code == 0 && res.message == "Account DeActivated") {
+              showAlertDialogue(
+                  title: 'warning'.tr,
+                  content: 'deactivate_content'.tr,
+                  onConfirm: () {
+                    Get.back();
+                  });
             }
             if (res.code == 1) {
               Map data = {

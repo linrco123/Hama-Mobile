@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/profile/profile_model.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -45,7 +46,7 @@ class ProfileProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-        if (res.body['code'] == 0) {
+      if (res.body['code'] == 0) {
         if (res.body['error']['name'] != null) {
           mySnackBar(
             title: "error".tr,
@@ -96,6 +97,48 @@ class ProfileProvider extends GetConnect {
         return Future.error(res.status);
       } else {
         return Profile.fromJson(res.body);
+      }
+    } catch (e, s) {
+      await Sentry.captureException(e, stackTrace: s);
+      return Future.error(e.toString());
+    }
+  }
+
+  Future<int> removeAccount() async {
+    try {
+      await EasyLoading.show(status: 'loading'.tr);
+
+      final res = await post(
+        "${Constance.apiEndpoint}/users/delete",
+        {},
+        headers: {
+          "Authorization": "Bearer ${Constance.instance.token}",
+        },
+      );
+      await EasyLoading.dismiss();
+
+      if (res.body['code'] == 0) {
+        mySnackBar(
+          title: "warning".tr,
+          message: 'try_again'.tr,
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
+      }
+
+      if (res.body['code'] == 1) {
+        mySnackBar(
+          title: "success".tr,
+          message: "msg_acount_deleted".tr,
+          color: MYColor.success,
+          icon: CupertinoIcons.check_mark_circled,
+        );
+      }
+
+      if (res.status.hasError) {
+        return Future.error(res.status);
+      } else {
+        return res.body['code'];
       }
     } catch (e, s) {
       await Sentry.captureException(e, stackTrace: s);

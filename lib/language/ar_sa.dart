@@ -488,5 +488,8 @@ const Map<String, String> arSA = {
   'no_hour_orders': 'لا يوجد طلبات ساعة بعد !',
   'no_mediation_orders': 'لا يوجد طلبات وساطة بعد !',
   'whats_app':"التواصل عبر الواتساب",
-  "session_expired_login_again":"لقد انتهت جلستك ! الرجاء تسجيل الدخول "
+  "session_expired_login_again":"لقد انتهت جلستك ! الرجاء تسجيل الدخول ",
+  'delete_deactivate_account':"حذف أو تعطيل الحساب",
+  'msg_acount_deleted':'تم إلغاء تفعيل الحساب بنجاح',
+  'deactivate_content_':'تم تعطيل حسابك الرجاء التواصل مع الدعم الفنى على 966920033335'
 };

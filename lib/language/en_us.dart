@@ -489,5 +489,9 @@ const Map<String, String> enUS = {
   'no_hour_orders': 'No hour orders yet !',
   'no_mediation_orders': 'No mediation orders yet !',
   'whats_app': "what's app",
-  "session_expired_login_again": "Session expired ! please , login again "
+  "session_expired_login_again": "Session expired ! please , login again ",
+  'delete_deactivate_account': "Delete or deactivate account",
+  'msg_acount_deleted': 'Account deActivated successfully.',
+  'deactivate_content':
+      'Your account is deActivated. Please contact technical support on 966920033335'
 };
