@@ -115,8 +115,6 @@ class ProfileProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      print('================================remove account===========================');
-      print(res.body);
       await EasyLoading.dismiss();
 
       if (res.body['code'] == 0) {

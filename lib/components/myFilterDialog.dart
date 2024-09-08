@@ -133,7 +133,7 @@ void myFilterDialog(context) => Get.defaultDialog(
                         );
                       }).toList(),
                     )),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 5),
                   child: Row(
                     children: [
@@ -208,10 +208,7 @@ void myFilterDialog(context) => Get.defaultDialog(
                 icon: CupertinoIcons.info_circle,
               );
             } else {
-              Get.back();
-              if (HomeController.I.tap.value != 0) {
-                HomeController.I.backTap();
-              }
+              
               HomeController.I.getFilter();
             }
           },
@@ -220,10 +217,6 @@ void myFilterDialog(context) => Get.defaultDialog(
       ),
       confirmTextColor: MYColor.primary,
       onWillPop: () {
-        Get.back();
-        if (HomeController.I.tap.value != 0) {
-          HomeController.I.backTap();
-        }
         return Future.value(true);
       },
     );

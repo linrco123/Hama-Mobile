@@ -4,8 +4,7 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
-import 'package:musaneda/app/modules/home/views/taps/services_tap.dart';
-import 'package:musaneda/components/hourly/return_back_btn.dart';
+ import 'package:musaneda/components/hourly/return_back_btn.dart';
 
 import '../../../../../components/myInkWell.dart';
 import '../../../../../components/myMusaneda.dart';
@@ -88,8 +87,7 @@ class HomeServices extends GetView<HomeController> {
                           const Spacer(),
                           myInkWell(
                             fun: () {
-                              // HomeController.I.setTap = 2;
-                              Get.to(() => const ServicesView());
+                               //Get.to(() => const ServicesView());
                             },
                             text: "see_all".tr,
                             size: 14,

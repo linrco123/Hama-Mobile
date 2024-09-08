@@ -93,8 +93,7 @@ class HomeController extends GetxController {
           await EasyLoading.dismiss();
         },
         onNavigationRequest: (NavigationRequest request) {
-          if (request.url
-              .startsWith(Constance.technicalSupport_Url)) {
+          if (request.url.startsWith(Constance.technicalSupport_Url)) {
             return NavigationDecision.navigate;
           }
           return NavigationDecision.prevent;
@@ -108,7 +107,7 @@ class HomeController extends GetxController {
   final buildNumbers = ''.obs;
 
   var box = GetStorage();
- 
+
   @override
   void onInit() {
     super.onInit();
@@ -241,7 +240,7 @@ class HomeController extends GetxController {
       }
       isLoading(false);
     });
-   // update();
+    // update();
   }
 
   var listNationalities = List<NationalitiesData>.empty(growable: true).obs;
@@ -420,6 +419,8 @@ class HomeController extends GetxController {
   var listFilter = List<MusanedaData>.empty(growable: true).obs;
 
   Future<void> getFilter() async {
+    await EasyLoading.show(status: 'loading'.tr);
+
     page.value = 1;
     isLoading(true);
     HomeProvider()
@@ -430,7 +431,10 @@ class HomeController extends GetxController {
       page: page.value,
     )
         .then(
-      (res) {
+      (res) async {
+        await EasyLoading.dismiss();
+        Get.back();
+
         listFilter.clear();
         for (var data in res.data as List) {
           listFilter.add(data);
@@ -438,7 +442,10 @@ class HomeController extends GetxController {
         isLoading(false);
         Get.to(() => const FilterView());
       },
-    ).catchError((error) {
+    ).catchError((error) async {
+      await EasyLoading.dismiss();
+      Get.back();
+
       isLoading(false);
       Get.to(() => const FilterView());
     });
@@ -468,43 +475,12 @@ class HomeController extends GetxController {
 
   /// Search for musaneda
   final FocusNode focusNode = FocusNode();
-  TextEditingController searchController = TextEditingController();
 
   List<MusanedaData> searchList = [];
-
-  /// check if the search is empty or not
-  bool check() {
-    return searchController.text.isNotEmpty && searchList.isEmpty;
-  }
-
-  /// count the number of musaneda
-  int count() {
-    return searchController.text.isNotEmpty
-        ? searchList.length
-        : listMusaneda.length;
-  }
-
-  /// search for musaneda on the api {db} and show it in the list
-  getSearch(String value) {
-    searchList.clear();
-    HomeProvider().getSearch(value).then((res) {
-      for (var data in res.data as List) {
-        searchList.add(data);
-      }
-      update();
-    });
-    update();
-  }
 
   @override
   void onClose() {
     focusNode.dispose();
-    searchController.dispose();
     super.onClose();
-  }
-
-  void goToHomePage() {
-    tap.value = 0;
-    update();
   }
 }

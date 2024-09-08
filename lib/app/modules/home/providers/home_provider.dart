@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
@@ -84,7 +85,7 @@ class HomeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      if (jsonDecode(res.body)['code'] == 0) {
+       if (jsonDecode(res.body)['code'] == 0) {
         // mySnackBar(
         //   title: "error".tr,
         //   message: "Can't_find".tr,

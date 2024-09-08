@@ -31,8 +31,7 @@ import '../modules/forget/views/forget_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/filter_view.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/home/views/search_view.dart';
-import '../modules/locations/bindings/locations_binding.dart';
+ import '../modules/locations/bindings/locations_binding.dart';
 import '../modules/locations/views/locations_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
@@ -114,10 +113,7 @@ class AppPages {
       name: _Paths.FILTER,
       page: () => const FilterView(),
     ),
-    GetPage(
-      name: _Paths.SEARCH,
-      page: () => const SearchView(),
-    ),
+    
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(isReal: false),

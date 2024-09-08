@@ -176,7 +176,7 @@ class LoginController extends GetxController {
                 "token": res.data!.token,
                 "iqama": res.data!.iqama,
                 "verified": true,
-                "deactivated":false
+                "deactivated": false,
               };
 
               box.write('LOGIN_MODEL', data).then((value) {

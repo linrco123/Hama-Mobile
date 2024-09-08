@@ -7,6 +7,7 @@ import 'package:musaneda/app/modules/hourly_service/mediation/views/add_mediatio
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/hourly/service_type/service_type_card.dart';
+import 'package:musaneda/components/myFilterDialog.dart';
 import 'package:musaneda/config/myColor.dart';
 
 class ServiceTypeView extends GetView<HomeController> {
@@ -67,7 +68,8 @@ class ServiceTypeView extends GetView<HomeController> {
                         image: 'assets/images/contract.png',
                         function: () async {
                           // await EasyLoading.show(status: 'loading'.tr);
-                          Get.to(()=>const HomeServices());
+                         // Get.to(()=>const HomeServices());
+                          myFilterDialog(context);
                         }),
                     const SizedBox(
                       height: 10.0,
