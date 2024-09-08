@@ -490,6 +490,7 @@ const Map<String, String> arSA = {
   'whats_app':"التواصل عبر الواتساب",
   "session_expired_login_again":"لقد انتهت جلستك ! الرجاء تسجيل الدخول ",
   'delete_deactivate_account':"حذف أو تعطيل الحساب",
-  'msg_acount_deleted':'تم إلغاء تفعيل الحساب بنجاح',
-  'deactivate_content_':'تم تعطيل حسابك الرجاء التواصل مع الدعم الفنى على 966920033335'
+  'msg_acount_deleted':'تم حذف الحساب بنجاح',
+  'deactivate_content_':'تم حذف حسابك الرجاء التواصل مع الدعم الفنى على 966920033335',
+  'call':'اتصل'
 };

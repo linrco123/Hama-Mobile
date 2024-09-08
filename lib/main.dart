@@ -104,7 +104,9 @@ connectivity() async {
 
 initialRoute() {
   final box = GetStorage().read('LOGIN_MODEL');
-  if (LoginController.I.isAuth() && box['verified'] == true) {
+  if (LoginController.I.isAuth() &&
+      box['verified'] == true &&
+      box['deactivated'] == false) {
     if (connectivity() == false) {
       return AppPages.MAIN_HOME_PAGE;
     } else {

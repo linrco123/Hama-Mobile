@@ -24,7 +24,7 @@ class NotificationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-   }
+  }
 
   Future<void> _firebaseMessagingBackgroundHandler(
       RemoteMessage? message) async {
@@ -323,9 +323,7 @@ class NotificationController extends GetxController {
         androidAllowWhileIdle: true,
         payload: type,
       );
-    } catch (e) {
-       
-    }
+    } catch (e) {}
 
     update();
   }

@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
@@ -11,6 +12,7 @@ import 'package:musaneda/app/modules/register/controllers/register_controller.da
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
@@ -109,6 +111,14 @@ class LoginController extends GetxController {
     return null;
   }
 
+  Future<void> makePhoneCall() async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: Constance.technicalSupport_phone.toString(),
+    );
+    await launchUrl(launchUri);
+  }
+
   showAlertDialogue({title, content, void Function()? onConfirm}) =>
       Get.defaultDialog(
         backgroundColor: MYColor.secondary,
@@ -124,7 +134,7 @@ class LoginController extends GetxController {
         ),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-        textConfirm: 'ok'.tr,
+        textConfirm: 'call'.tr,
         confirmTextColor: MYColor.white,
         buttonColor: MYColor.buttons,
         onConfirm: onConfirm,
@@ -154,6 +164,7 @@ class LoginController extends GetxController {
                   content: 'deactivate_content'.tr,
                   onConfirm: () {
                     Get.back();
+                    makePhoneCall();
                   });
             }
             if (res.code == 1) {
@@ -164,7 +175,8 @@ class LoginController extends GetxController {
                 "email": res.data!.email,
                 "token": res.data!.token,
                 "iqama": res.data!.iqama,
-                "verified": true
+                "verified": true,
+                "deactivated":false
               };
 
               box.write('LOGIN_MODEL', data).then((value) {

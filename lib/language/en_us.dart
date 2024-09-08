@@ -491,7 +491,8 @@ const Map<String, String> enUS = {
   'whats_app': "what's app",
   "session_expired_login_again": "Session expired ! please , login again ",
   'delete_deactivate_account': "Delete or deactivate account",
-  'msg_acount_deleted': 'Account deActivated successfully.',
+  'msg_acount_deleted': 'Account deleted successfully.',
   'deactivate_content':
-      'Your account is deActivated. Please contact technical support on 966920033335'
+      'Your account is deleted. Please contact technical support on 966920033335',
+      'call':'Call',
 };

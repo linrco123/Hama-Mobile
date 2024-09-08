@@ -148,6 +148,18 @@ class ProfileController extends GetxController {
     ProfileProvider().removeAccount().then((value) {
       if (value == 1) {
         Get.offAllNamed(Routes.LOGIN);
+        final localData = box.read('LOGIN_MODEL');
+        Map data = {
+          "id": localData['id'],
+          "name": localData['name'],
+          "phone": localData['phone'],
+          "email": localData['email'],
+          "token": localData['token'],
+          "iqama": localData['iqama'],
+          "verified": true,
+          "deactivated": true,
+        };
+        box.write('LOGIN_MODEL', data).then((value) {});
       }
     });
   }

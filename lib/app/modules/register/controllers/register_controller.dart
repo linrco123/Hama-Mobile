@@ -144,7 +144,8 @@ class RegisterController extends GetxController {
                 "email": res.data!.email,
                 "token": res.data!.token,
                 "iqama": res.data!.iqama,
-                "verified": false
+                "verified": false,
+                "deactivated": false,
               };
               box.write('LOGIN_MODEL', data).then((value) {});
               _showDialog(context);
@@ -183,7 +184,8 @@ class RegisterController extends GetxController {
               "email": localData['email'],
               "token": localData['token'],
               "iqama": localData['iqama'],
-              "verified": true
+              "verified": true,
+              "deactivated": false,
             };
             box.write('LOGIN_MODEL', data).then((value) {});
             await FirebaseMessaging.instance.subscribeToTopic('all');
