@@ -11,6 +11,7 @@ import 'package:musaneda/app/modules/order/controllers/order_controller.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
+import 'package:path/path.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -127,19 +128,17 @@ class CustomPaymentController extends GetxController {
             transactionId.data!.transactionId!;
       } catch (e, s) {
         await Sentry.captureException(e, stackTrace: s);
-       }
+      }
     }
 
     if (OrderController.I.paymentMethod.value != 10 ||
         OrderController.I.tabbyOption.value == true) {
       if (OrderController.I.tabbyOption.value) {
-
         Get.put(TabbyPaymentController());
         Get.to(const TabbyPaymentView(), arguments: [
           OrderController.I.merchantTransactionID,
           OrderController.I.orderID
         ]);
-        
       } else {
         if (OrderController.I.paymentMethod.value == 0 ||
             OrderController.I.paymentMethod.value == 1) {
@@ -165,8 +164,8 @@ class CustomPaymentController extends GetxController {
                   MainHomePageController.I
                       .payOrder(isPaid: false, showSuccess: true);
                 } else {
-                  MainHomePageController.I
-                      .postOrderToServer(isPaid: true, showSuccess: true);
+                  MainHomePageController.I.postOrderToServer(context,
+                      isPaid: true, showSuccess: true);
                 }
               }
             },
@@ -184,7 +183,8 @@ class CustomPaymentController extends GetxController {
                     isPaid: false,
                   );
                 }
-                MainHomePageController.I.postOrderToServer(isPaid: false);
+                MainHomePageController.I
+                    .postOrderToServer(context, isPaid: false);
               }
             },
             onCancelled: () {
@@ -201,7 +201,8 @@ class CustomPaymentController extends GetxController {
                     isPaid: false,
                   );
                 }
-                MainHomePageController.I.postOrderToServer(isPaid: false);
+                MainHomePageController.I
+                    .postOrderToServer(context, isPaid: false);
               }
             },
             amount: isFake
@@ -236,7 +237,8 @@ class CustomPaymentController extends GetxController {
                     isPaid: false,
                   );
                 }
-                MainHomePageController.I.postOrderToServer(isPaid: true);
+                MainHomePageController.I
+                    .postOrderToServer(context, isPaid: true);
               }
             },
             onFailed: (error) {
@@ -252,7 +254,8 @@ class CustomPaymentController extends GetxController {
                     isPaid: false,
                   );
                 }
-                MainHomePageController.I.postOrderToServer(isPaid: false);
+                MainHomePageController.I
+                    .postOrderToServer(context, isPaid: false);
               }
             },
             amount: isFake
@@ -322,6 +325,7 @@ class CustomPaymentController extends GetxController {
                 );
               }
               MainHomePageController.I.postOrderToServer(
+                context,
                 isPaid: false,
               );
             }
@@ -342,6 +346,7 @@ class CustomPaymentController extends GetxController {
                 );
               }
               MainHomePageController.I.postOrderToServer(
+                context,
                 isPaid: true,
               );
             }
@@ -361,6 +366,7 @@ class CustomPaymentController extends GetxController {
                 );
               }
               MainHomePageController.I.postOrderToServer(
+                context,
                 isPaid: false,
               );
             }

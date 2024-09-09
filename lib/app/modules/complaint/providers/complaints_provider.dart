@@ -11,6 +11,7 @@ import '../../../../config/constance.dart';
 import '../../../../config/myColor.dart';
 import '../complaints_model.dart';
 import 'package:http/http.dart' as http;
+
 class ComplaintsProvider extends GetConnect {
   final box = GetStorage();
 
@@ -18,16 +19,12 @@ class ComplaintsProvider extends GetConnect {
     await EasyLoading.show(status: 'waiting'.tr);
     try {
       final res = await http.get(
-       Uri.parse( "${Constance.apiEndpoint}/complaints"),
+        Uri.parse("${Constance.apiEndpoint}/complaints"),
         headers: {"Authorization": "Bearer ${Constance.instance.token}"},
       );
       await EasyLoading.dismiss();
-      if(jsonDecode(res.body)['code'] == 0){
-
-      }
-      if(jsonDecode(res.body)['code'] == 1){
-
-      }
+      if (jsonDecode(res.body)['code'] == 0) {}
+      if (jsonDecode(res.body)['code'] == 1) {}
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {
@@ -47,7 +44,7 @@ class ComplaintsProvider extends GetConnect {
         formData,
         headers: {"Authorization": "Bearer ${Constance.instance.token}"},
       );
-       await EasyLoading.dismiss();
+      await EasyLoading.dismiss();
 
       if (res.body['code'] == 0) {
         if (res.body['data']['name'] != null) {
@@ -119,6 +116,4 @@ class ComplaintsProvider extends GetConnect {
       return Future.error(e.toString());
     }
   }
-
-
 }

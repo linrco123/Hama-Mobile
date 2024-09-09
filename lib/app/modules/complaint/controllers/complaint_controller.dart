@@ -1,12 +1,14 @@
-  import 'dart:math';
+import 'dart:io';
+import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
+ import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
- 
+import 'package:musaneda/config/constance.dart';
+
 import '../../../routes/app_pages.dart';
 import '../complaints_model.dart';
 import '../providers/complaints_provider.dart';
@@ -77,8 +79,8 @@ class ComplaintController extends GetxController {
   var fileSize = "".obs;
   var fileBytes = "".obs;
   var fileBase64 = "".obs;
+  File? fileObject;
 
-  
   final filePicker = FilePicker.platform;
   FilePickerResult? result;
   void selectFile() async {
@@ -91,6 +93,7 @@ class ComplaintController extends GetxController {
       if (result != null) {
         fileName.value = result!.files.single.name;
         filePath.value = result!.files.single.path!;
+        fileObject = File(filePath.value);
       } else {
         mySnackBar(
           title: "error".tr,
@@ -100,7 +103,9 @@ class ComplaintController extends GetxController {
         );
       }
       // ignore: empty_catches
-    } catch (e) {}
+    } catch (e) {
+      Pretty.instance.logger.e('Exception  is as follows $e');
+    }
   }
 
   Future<void> uploadFile() async {
@@ -228,7 +233,7 @@ class ComplaintController extends GetxController {
             "contract_id": HomeController.I.listContracts.first.id ?? 0,
             "type": Random().nextInt(200) % 2 == 0 ? 1 : 2,
             "importance": selectedTicketPriority.value,
-            "file": fileName.value,
+            "file": fileObject ?? ' ',
           };
           ComplaintsProvider().postComplaints(map).then(
             (value) {

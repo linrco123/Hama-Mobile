@@ -271,7 +271,7 @@ class MainHomePageController extends GetxController {
   ];
   final serviceTypeController = Get.put(ServiceTypeController());
   RxInt selectedPackageIndex = 0.obs;
-  void postOrderToServer(
+  void postOrderToServer(context,
       {required bool isPaid, bool showSuccess = false}) async {
     Map<String, dynamic> data = {
       "service_id": getServiceModel.id,
@@ -288,7 +288,7 @@ class MainHomePageController extends GetxController {
       (res) {
         if (res.code == 1) {
           getContractList();
-          serviceTypeController.showAlertDialogue(
+          serviceTypeController.showAlertDialogue(context,
             title: 'alert'.tr,
             content: 'mada_content1'.tr,
             onConfirm: () {

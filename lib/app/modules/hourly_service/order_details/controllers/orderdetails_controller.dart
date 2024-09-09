@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:path/path.dart';
 
 class OrderdetailsController extends GetxController {
   @override
@@ -23,21 +25,19 @@ class OrderdetailsController extends GetxController {
 
   void getDetails() {}
 
-  void payViaMada(
+  void payViaMada(BuildContext context,
       {required String date,
       required int package,
       required int paymentOption}) {
     if (getMadaButtonActivenessStatus) {
-      
-      serviceTypeController.submitHourlyOrder(date, package, paymentOption);
+      serviceTypeController.submitHourlyOrder(
+          context, date, package, paymentOption);
       setMadaButtonActivenessStatus = false;
     } else {
-      serviceTypeController.showAlertDialogue(
-          title: 'alert'.tr,
-          content: 'mada_content'.tr,
-          onConfirm: () {
-            Get.offAllNamed(Routes.HOME);
-          });
+      serviceTypeController.showAlertDialogue(context,
+          title: 'alert'.tr, content: 'mada_content'.tr, onConfirm: () {
+        Get.offAllNamed(Routes.HOME);
+      });
     }
   }
 }

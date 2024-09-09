@@ -87,66 +87,16 @@ class ServiceTypeController extends GetxController {
 
   showAcceptanceDialogue(context) async {
     if (hourServiceAcceptance.value == false) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(
-              'alert'.tr,
-              textAlign: TextAlign.center,
-            ),
-            titleTextStyle: TextStyle(color: MYColor.white, fontSize: 25.0),
-            content: Text(
-              "acceptance_condition".tr,
-              textAlign: TextAlign.center,
-            ),
-            contentTextStyle: TextStyle(
-                color: MYColor.white,
-                fontSize: 18.0,
-                fontFamily: 'cairo_regular'),
-            backgroundColor: MYColor.secondary,
-            clipBehavior: Clip.antiAlias,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        color: MYColor.primary.withOpacity(0.2),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20.0))),
-                    child: TextButton(
-                        onPressed: () async {
-                          acceptHourService = true;
-                         // Navigator.of(context).pop();
-                          await EasyLoading.show(status: 'loading'.tr);
-                          myOneHourFilterDialog(context);
-                        },
-                        child: Text(
-                          'ok'.tr,
-                          style: const TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                ],
-              )
-            ],
-          );
+      showAlertDialogue(
+        context,
+        title: 'alert'.tr,
+        content: "acceptance_condition".tr,
+        onConfirm: () async {
+          acceptHourService = true;
+          await EasyLoading.show(status: 'loading'.tr);
+          myOneHourFilterDialog(context);
         },
       );
-      // showAlertDialogue(
-      //   title: 'alert'.tr,
-      //   content: "acceptance_condition".tr,
-      //   onConfirm: () async {
-      //     acceptHourService = true;
-      //     Get.back();
-      //     await EasyLoading.show(status: 'loading'.tr);
-      //     myOneHourFilterDialog(context);
-      //   },
-      // );
     } else {
       await EasyLoading.show(status: 'loading'.tr);
       myOneHourFilterDialog(context);
@@ -162,7 +112,8 @@ class ServiceTypeController extends GetxController {
   RxInt maidsNumber = 1.obs;
   final selectedLocation = 0.obs;
 
-  void submitHourlyOrder(String date, int packageId, int paymmentOption) {
+  void submitHourlyOrder(
+      context, String date, int packageId, int paymmentOption) {
     double cost = maidsNumber.value * packageCost.value;
     Map<String, dynamic> map = {
       'from_date': date.toString(),
@@ -200,38 +151,83 @@ class ServiceTypeController extends GetxController {
         // });
         Get.toNamed(Routes.HOURPAYMENT);
       } else if (paymmentOption == 4) {
-        showAlertDialogue(
-            title: 'alert'.tr,
-            content: 'mada_content'.tr,
-            onConfirm: () {
-              Get.offAllNamed(Routes.HOME);
-            });
+        showAlertDialogue(context,
+            title: 'alert'.tr, content: 'mada_content'.tr, onConfirm: () {
+          Get.offAllNamed(Routes.HOME);
+        });
       }
     }).catchError((error) {
       EasyLoading.dismiss();
     });
   }
 
-  showAlertDialogue({title, content, void Function()? onConfirm}) =>
-      Get.defaultDialog(
-        backgroundColor: MYColor.secondary,
-        title: title, //'alert'.tr 'mada_content'.tr
-        titleStyle: TextStyle(color: MYColor.white),
-        content: Text(
-          textAlign: TextAlign.center,
-          content,
-          style: TextStyle(
+  showAlertDialogue(context, {title, content, void Function()? onConfirm}) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shadowColor: MYColor.primary,
+          title: Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
+          titleTextStyle: TextStyle(color: MYColor.white, fontSize: 27.0),
+          content: Text(
+            content,
+            textAlign: TextAlign.center,
+          ),
+          contentTextStyle: TextStyle(
               color: MYColor.white,
-              fontSize: 16.0,
+              fontSize: 17.0,
               fontFamily: 'cairo_regular'),
-        ),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-        textConfirm: 'ok'.tr,
-        confirmTextColor: MYColor.white,
-        buttonColor: MYColor.buttons,
-        onConfirm: onConfirm,
-      );
+          backgroundColor: MYColor.secondary,
+          clipBehavior: Clip.antiAlias,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(0.0),
+                  decoration: BoxDecoration(
+                      color: MYColor.primary.withOpacity(0.2),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20.0))),
+                  child: TextButton(
+                      onPressed: onConfirm,
+                      child: Text(
+                        'ok'.tr,
+                        style: const TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                      )),
+                ),
+              ],
+            )
+          ],
+        );
+      },
+    );
+    //  Get.defaultDialog(
+    //   backgroundColor: MYColor.secondary,
+    //   title: title, //'alert'.tr 'mada_content'.tr
+    //   titleStyle: TextStyle(color: MYColor.white),
+    //   content: Text(
+    //     textAlign: TextAlign.center,
+    //     content,
+    //     style: TextStyle(
+    //         color: MYColor.white,
+    //         fontSize: 16.0,
+    //         fontFamily: 'cairo_regular'),
+    //   ),
+    //   contentPadding:
+    //       const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+    //   textConfirm: 'ok'.tr,
+    //   confirmTextColor: MYColor.white,
+    //   buttonColor: MYColor.buttons,
+    //   onConfirm: onConfirm,
+    // );
+  }
 
   String get getShiftStartingTime =>
       shiftType.value == 'am' ? '08:00' : '12:00';
@@ -277,7 +273,7 @@ class ServiceTypeController extends GetxController {
       );
     } else {
       Get.back();
-      //Get.toNamed(Routes.SHOWADDRESS);
+      Get.back();
       Get.toNamed(Routes.PACKAGES);
     }
   }

@@ -338,7 +338,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                             height: 50.0,
                             child: MyCupertinoButton(
                                 fun: () {
-                                  orderDetailsController.payViaMada(
+                                  orderDetailsController.payViaMada(context,
                                       date: datePickerController
                                           .selectedDate.value,
                                       package: packageController
@@ -364,7 +364,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                         //  3 => 'Bank transfer',
                                         //  4 => 'MADA',
                                         //      ];
-                                        serviceTypeController.submitHourlyOrder(
+                                        serviceTypeController.submitHourlyOrder(context,
                                             datePickerController
                                                 .selectedDate.value,
                                             packageController

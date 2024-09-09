@@ -370,7 +370,7 @@ class PaymentsView extends GetView<MainHomePageController> {
             minSize: 45,
             onPressed: () {
                MainHomePageController.I
-                  .postOrderToServer(isPaid: true, showSuccess: true);
+                  .postOrderToServer(context,isPaid: true, showSuccess: true);
             },
             color: MYColor.white,
             borderRadius: BorderRadius.circular(10),
