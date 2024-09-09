@@ -419,6 +419,7 @@ class HomeController extends GetxController {
   var listFilter = List<MusanedaData>.empty(growable: true).obs;
 
   Future<void> getFilter() async {
+    Get.back();
     await EasyLoading.show(status: 'loading'.tr);
 
     page.value = 1;
@@ -433,7 +434,6 @@ class HomeController extends GetxController {
         .then(
       (res) async {
         await EasyLoading.dismiss();
-        Get.back();
 
         listFilter.clear();
         for (var data in res.data as List) {
@@ -444,7 +444,6 @@ class HomeController extends GetxController {
       },
     ).catchError((error) async {
       await EasyLoading.dismiss();
-      Get.back();
 
       isLoading(false);
       Get.to(() => const FilterView());

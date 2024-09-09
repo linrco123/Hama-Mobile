@@ -165,12 +165,20 @@ class MusanedaView extends GetView<MusanedaController> {
                                             Text(
                                               'CV',
                                               style: TextStyle(
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  decorationStyle:
+                                                      TextDecorationStyle.solid,
+                                                  decorationColor:
+                                                      MYColor.secondary1,
                                                   fontFamily: 'cairo_regular',
-                                                  fontSize: 20.0,
+                                                  fontSize: 25.0,
                                                   fontWeight: FontWeight.bold,
-                                                  color: MYColor.secondary),
+                                                  color: MYColor.secondary1),
                                             ),
-                                            const SizedBox(width: 5.0,),
+                                            const SizedBox(
+                                              width: 5.0,
+                                            ),
                                             InkWell(
                                               onTap: () {
                                                 // controller.changeIsReady(false);
@@ -188,9 +196,9 @@ class MusanedaView extends GetView<MusanedaController> {
                                               },
                                               child: SvgPicture.asset(
                                                 "assets/images/icon/pdf.svg",
-                                                width: 40,
-                                                height: 40,
-                                                color: MYColor.icons,
+                                                width: 42.0,
+                                                height: 42.0,
+                                                color: MYColor.secondary1,
                                               ),
                                             ),
                                           ],
