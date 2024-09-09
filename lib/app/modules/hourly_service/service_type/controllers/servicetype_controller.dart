@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
@@ -86,16 +87,66 @@ class ServiceTypeController extends GetxController {
 
   showAcceptanceDialogue(context) async {
     if (hourServiceAcceptance.value == false) {
-      showAlertDialogue(
-        title: 'alert'.tr,
-        content: "acceptance_condition".tr,
-        onConfirm: () async {
-          acceptHourService = true;
-          Get.back();
-          await EasyLoading.show(status: 'loading'.tr);
-          myOneHourFilterDialog(context);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              'alert'.tr,
+              textAlign: TextAlign.center,
+            ),
+            titleTextStyle: TextStyle(color: MYColor.white, fontSize: 25.0),
+            content: Text(
+              "acceptance_condition".tr,
+              textAlign: TextAlign.center,
+            ),
+            contentTextStyle: TextStyle(
+                color: MYColor.white,
+                fontSize: 18.0,
+                fontFamily: 'cairo_regular'),
+            backgroundColor: MYColor.secondary,
+            clipBehavior: Clip.antiAlias,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                        color: MYColor.primary.withOpacity(0.2),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0))),
+                    child: TextButton(
+                        onPressed: () async {
+                          acceptHourService = true;
+                         // Navigator.of(context).pop();
+                          await EasyLoading.show(status: 'loading'.tr);
+                          myOneHourFilterDialog(context);
+                        },
+                        child: Text(
+                          'ok'.tr,
+                          style: const TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        )),
+                  ),
+                ],
+              )
+            ],
+          );
         },
       );
+      // showAlertDialogue(
+      //   title: 'alert'.tr,
+      //   content: "acceptance_condition".tr,
+      //   onConfirm: () async {
+      //     acceptHourService = true;
+      //     Get.back();
+      //     await EasyLoading.show(status: 'loading'.tr);
+      //     myOneHourFilterDialog(context);
+      //   },
+      // );
     } else {
       await EasyLoading.show(status: 'loading'.tr);
       myOneHourFilterDialog(context);
