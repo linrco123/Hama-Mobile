@@ -103,8 +103,8 @@ class ForgetView extends GetView<ForgetController> {
       autofillHints: const [AutofillHints.telephoneNumber],
       controller: controller.txtPhone,
       keyboardType: TextInputType.phone,
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
+      inputFormatters: const [
+       // FilteringTextInputFormatter.digitsOnly,
       ],
       textAlign: TextAlign.left,
       validator: (value) => controller.validatePhone(value!),

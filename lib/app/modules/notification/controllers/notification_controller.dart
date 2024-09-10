@@ -4,15 +4,12 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:musaneda/app/routes/app_pages.dart';
-import 'package:musaneda/components/mySnackbar.dart';
+import 'package:musaneda/app/modules/notification/providers/notification_provider.dart';
 import 'package:musaneda/config/constance.dart';
-import 'package:musaneda/config/myColor.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -161,18 +158,18 @@ class NotificationController extends GetxController {
       // FirebaseMessaging.onBackgroundMessage(
       //     _firebaseMessagingBackgroundHandler);
 
-      FirebaseMessaging.onMessageOpenedApp.listen(
-        (message) async {
-          FirebaseMessageModel frmModel = FirebaseMessageModel(
-            title: message.notification!.title!,
-            body: message.notification!.body!,
-            type: message.data['type'],
-            dateTime: since(date: message.data['date_time']),
-          );
+      // FirebaseMessaging.onMessageOpenedApp.listen(
+      //   (message) async {
+      //     FirebaseMessageModel frmModel = FirebaseMessageModel(
+      //       title: message.notification!.title!,
+      //       body: message.notification!.body!,
+      //       type: message.data['type'],
+      //       dateTime: since(date: message.data['date_time']),
+      //     );
 
-          notifyList.add(frmModel);
-        },
-      );
+      //     notifyList.add(frmModel);
+      //   },
+      // );
 
       FirebaseMessaging.onMessage.listen(
         (message) async {
@@ -205,19 +202,16 @@ class NotificationController extends GetxController {
               ));
         },
       );
-
+      GetStorage box = GetStorage();
       FirebaseMessaging.instance.onTokenRefresh.listen((token) {
-        Pretty.instance.logger.d("Refreshed_token: $token");
-        box.write('fcm_token', token);
-        Get.offAllNamed(Routes.LOGIN);
-
-        mySnackBar(
-          title: "warning".tr,
-          message: "session_expired_login_again".tr,
-          color: MYColor.warning,
-          icon: CupertinoIcons.info_circle,
-        );
-        FirebaseMessaging.instance.subscribeToTopic('all');
+        Pretty.instance.logger.e("Refreshed_token: $token");
+        NotificationProvider()
+            .updateFCMToken({'fcm_token': token}).then((value) {
+          if (value == 200) {
+            box.write('fcm_token', token);
+            FirebaseMessaging.instance.subscribeToTopic('all');
+          }
+        });
       });
 
       FirebaseMessaging.instance.getToken().then(

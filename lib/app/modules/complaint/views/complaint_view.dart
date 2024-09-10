@@ -83,7 +83,7 @@ class ComplaintView extends GetView<ComplaintController> {
                               width: 166,
                               child: MyCupertinoButton(
                                 fun: () {
-                                  Get.to(const CreateComplaintView());
+                                  Get.to(()=>const CreateComplaintView());
                                 },
                                 text: "add_ticket".tr,
                                 btnColor: MYColor.buttons,

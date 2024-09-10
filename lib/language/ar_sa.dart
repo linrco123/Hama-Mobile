@@ -492,5 +492,6 @@ const Map<String, String> arSA = {
   'delete_deactivate_account':"حذف أو تعطيل الحساب",
   'msg_acount_deleted':'تم حذف الحساب بنجاح',
   'deactivate_content_':'تم حذف حسابك الرجاء التواصل مع الدعم الفنى على 966920033335',
-  'call':'اتصل'
+  'call':'اتصل',
+   'view_cv':"عرض السيرة الذاتية"
 };

@@ -112,99 +112,37 @@ class MusanedaView extends GetView<MusanedaController> {
                                       left: 20,
                                       right: 20,
                                     ),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          LanguageController.I.getLocale == "en"
-                                              ? controller
-                                                  .musanedaData.name!.en!
-                                                  .substring(
-                                                    0,
-                                                    controller
-                                                                .musanedaData
-                                                                .name!
-                                                                .en!
-                                                                .length >
-                                                            20
-                                                        ? 20
-                                                        : controller
-                                                            .musanedaData
-                                                            .name!
-                                                            .en!
-                                                            .length,
-                                                  )
-                                                  .toLowerCase()
-                                              : controller
-                                                  .musanedaData.name!.ar!
-                                                  .substring(
-                                                    0,
-                                                    controller
-                                                                .musanedaData
-                                                                .name!
-                                                                .ar!
-                                                                .length >
-                                                            20
-                                                        ? 20
-                                                        : controller
-                                                            .musanedaData
-                                                            .name!
-                                                            .ar!
-                                                            .length,
-                                                  )
-                                                  .toLowerCase(),
-                                          style: TextStyle(
-                                            color: MYColor.buttons,
-                                            fontSize: 16,
-                                          ),
+                                    child: Row(children: [
+                                      Text(
+                                        LanguageController.I.getLocale == "en"
+                                            ? controller.musanedaData.name!.en!
+                                                .substring(
+                                                  0,
+                                                  controller.musanedaData.name!
+                                                              .en!.length >
+                                                          20
+                                                      ? 20
+                                                      : controller.musanedaData
+                                                          .name!.en!.length,
+                                                )
+                                                .toLowerCase()
+                                            : controller.musanedaData.name!.ar!
+                                                .substring(
+                                                  0,
+                                                  controller.musanedaData.name!
+                                                              .ar!.length >
+                                                          20
+                                                      ? 20
+                                                      : controller.musanedaData
+                                                          .name!.ar!.length,
+                                                )
+                                                .toLowerCase(),
+                                        style: TextStyle(
+                                          color: MYColor.buttons,
+                                          fontSize: 16,
                                         ),
-                                        const Spacer(),
-                                        const SizedBox(width: 10),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                              'CV',
-                                              style: TextStyle(
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                  decorationStyle:
-                                                      TextDecorationStyle.solid,
-                                                  decorationColor:
-                                                      MYColor.secondary1,
-                                                  fontFamily: 'cairo_regular',
-                                                  fontSize: 25.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: MYColor.secondary1),
-                                            ),
-                                            const SizedBox(
-                                              width: 5.0,
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                // controller.changeIsReady(false);
-                                                controller
-                                                    .createFileOfPdfUrl(
-                                                        controller.musanedaData
-                                                            .resume!)
-                                                    .then((f) {
-                                                  // controller.changeIsReady(true);
-                                                  Get.toNamed(
-                                                    Routes.RESUME,
-                                                    arguments: f.path,
-                                                  );
-                                                });
-                                              },
-                                              child: SvgPicture.asset(
-                                                "assets/images/icon/pdf.svg",
-                                                width: 42.0,
-                                                height: 42.0,
-                                                color: MYColor.secondary1,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                      )
+                                    ]),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
@@ -288,6 +226,46 @@ class MusanedaView extends GetView<MusanedaController> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  // const SizedBox(
+                  //   height: 5.0,
+                  // ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 1.0, horizontal: 15.0),
+                    child: OutlinedButton.icon(
+                      iconAlignment: IconAlignment.start,
+                      style: OutlinedButton.styleFrom(
+                          side:
+                              BorderSide(width: 1.0, color: MYColor.secondary1),
+                          fixedSize: Size(Get.width, 30.0)),
+                      onPressed: () {
+                        controller
+                            .createFileOfPdfUrl(controller.musanedaData.resume!)
+                            .then((f) {
+                          // controller.changeIsReady(true);
+                          Get.toNamed(
+                            Routes.RESUME,
+                            arguments: f.path,
+                          );
+                        });
+                      },
+                      label: Text(
+                        'view_cv'.tr,
+                        style: TextStyle(
+                            letterSpacing: 2.0,
+                            color: MYColor.secondary1,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'cairo_regular'),
+                      ),
+                      icon: SvgPicture.asset(
+                        "assets/images/icon/pdf.svg",
+                        width: 30.0,
+                        height: 30.0,
+                        color: MYColor.secondary1,
+                      ),
                     ),
                   ),
                   Padding(

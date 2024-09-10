@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
- import 'package:musaneda/components/myInkWell.dart';
+import 'package:musaneda/components/myInkWell.dart';
 import 'package:musaneda/config/myColor.dart';
 
 import '../../../../components/myCupertinoButton.dart';
@@ -154,19 +154,19 @@ class LoginView extends GetView<LoginController> {
       ),
     );
   }
-
+  
   /// phone text field
   TextFormField _phoneTextField(BuildContext context) {
     return TextFormField(
       autofillHints: const [AutofillHints.telephoneNumber],
       controller: controller.txtPhone,
       keyboardType: TextInputType.phone,
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-      ],
+      // inputFormatters: [
+      //   //FilteringTextInputFormatter.digitsOnly, 
+      // ],
       textAlign: TextAlign.left,
       validator: (value) => controller.validatePhone(value!),
-      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+       maxLengthEnforcement: MaxLengthEnforcement.enforced,
       decoration: InputDecoration(
         suffixStyle: const TextStyle(
           color: Colors.black,

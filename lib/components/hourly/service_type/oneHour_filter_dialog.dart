@@ -13,6 +13,7 @@ import 'package:musaneda/config/myColor.dart';
 
 void myOneHourFilterDialog(context) => Get.defaultDialog(
       backgroundColor: MYColor.white,
+      
       title: "hour_filter_menu_due_to".tr,
       titleStyle: TextStyle(
         color: MYColor.primary,
@@ -138,104 +139,6 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
                       }).toList(),
                     ),
                   ),
-
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 20.0, bottom: 15.0),
-                  //   child: Row(
-                  //     children: [
-                  //       Icon(
-                  //         Icons.calendar_month_outlined,
-                  //         color: MYColor.buttons.withOpacity(0.7),
-                  //       ),
-                  //       const SizedBox(
-                  //         width: 10.0,
-                  //       ),
-                  //       Text(
-                  //         'working_hours'.tr,
-                  //         style: TextStyle(
-                  //             fontSize: 15.0,
-                  //             color: MYColor.primary,
-                  //            // fontWeight: FontWeight.bold
-                  //             ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // Obx(
-                  //   () => Row(
-                  //     children: [
-                  //       WorkingHoursButton(
-                  //           title: '4',
-                  //           isActive:
-                  //               serviceTypeController.workingHours.value == 4,
-                  //           onTap: () {
-                  //             serviceTypeController.changeWorkingHours = 4;
-                  //           }),
-                  //       const SizedBox(
-                  //         width: 10.0,
-                  //       ),
-                  //       WorkingHoursButton(
-                  //           title: '8',
-                  //           isActive:
-                  //               serviceTypeController.workingHours.value == 8,
-                  //           onTap: () {
-                  //             serviceTypeController.changeWorkingHours = 8;
-                  //           }),
-                  //     ],
-                  //   ),
-                  // ),
-
-                  // //Shift type
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 20.0, bottom: 15.0),
-                  //   child: Row(
-                  //     children: [
-                  //       Icon(
-                  //         Icons.calendar_today_outlined,
-                  //         color: MYColor.buttons.withOpacity(0.7),
-                  //       ),
-                  //       const SizedBox(
-                  //         width: 10.0,
-                  //       ),
-                  //       Text(
-                  //         'shift_type'.tr,
-                  //         style: TextStyle(
-                  //             fontSize: 15.0,
-                  //             color: MYColor.primary,
-                  //             //fontWeight: FontWeight.bold
-                  //             ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // serviceTypeController.workingHours.value == 8
-                  //     ? const DisabledShiftTypeWidget()
-                  //     : Obx(
-                  //         () => Row(
-                  //           children: [
-                  //             ShiftTypeButton(
-                  //                 title: 'morning'.tr,
-                  //                 isActive:
-                  //                     serviceTypeController.shiftType.value ==
-                  //                         'am',
-                  //                 onTap: () {
-                  //                   serviceTypeController.changeShiftType('am');
-                  //                 }),
-                  //             const SizedBox(
-                  //               width: 10.0,
-                  //             ),
-                  //             ShiftTypeButton(
-                  //                 title: 'evening'.tr,
-                  //                 isActive:
-                  //                     serviceTypeController.shiftType.value ==
-                  //                         'pm',
-                  //                 onTap: () {
-                  //                   serviceTypeController.changeShiftType('pm');
-                  //                 }),
-                  //           ],
-                  //         ),
-                  //       ),
-
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0, bottom: 15.0),
                     child: Row(

@@ -11,6 +11,7 @@ import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/app/modules/register/controllers/register_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/mySnackbar.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -93,12 +94,17 @@ class LoginController extends GetxController {
       caseSensitive: false,
       multiLine: false,
     );
+    String? normalizedValue;
+    if (containsArabicNumerals(value)) {
+      normalizedValue = normalizeArabicNumbers(value);
+      txtPhone.text = normalizedValue;
+    }
+
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
+    } else if (!regExp.hasMatch(normalizedValue ?? value)) {
+      return "msg_plz_enter_correct_phone".tr;
     }
-    //  else if (!regExp.hasMatch(value)) {
-    //   return "msg_plz_enter_correct_phone".tr;
-    // }
     return null;
   }
 

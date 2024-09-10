@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/forget/providers/forgot_provider.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../../../components/myCupertinoButton.dart';
@@ -31,6 +32,7 @@ class ForgetController extends GetxController {
       color: MYColor.icons,
     );
   }
+
   void toggleObscureText2() {
     obscureText2.value = !obscureText2.value;
     update();
@@ -42,6 +44,7 @@ class ForgetController extends GetxController {
       color: MYColor.icons,
     );
   }
+
   TextEditingController txtPhone = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtConfirmPassword = TextEditingController();
@@ -68,7 +71,7 @@ class ForgetController extends GetxController {
   void onInit() {
     super.onInit();
 
-     _getAppSignature();
+    _getAppSignature();
     _listenSmsCode();
   }
 
@@ -209,65 +212,63 @@ class ForgetController extends GetxController {
       context: context,
       anchorPoint: const Offset(0.5, 0.5),
       builder: (context) {
-        return GetBuilder<ForgetController>(
-          builder: (_) {
-            return Dialog(
-              backgroundColor: MYColor.secondary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              insetAnimationCurve: Curves.easeInCirc,
-              alignment: Alignment.center,
-              child: Container(
-                height: 350.0,
-                width: double.infinity,
-                padding: const EdgeInsets.all(8),
-                child: Form(
-                  key: formRestKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "change_password".tr,
-                        style: TextStyle(
-                          color: MYColor.white,
-                          fontSize: 16,
-                           fontFamily: 'cairo_medium',
-                        ),
+        return GetBuilder<ForgetController>(builder: (_) {
+          return Dialog(
+            backgroundColor: MYColor.secondary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            insetAnimationCurve: Curves.easeInCirc,
+            alignment: Alignment.center,
+            child: Container(
+              height: 350.0,
+              width: double.infinity,
+              padding: const EdgeInsets.all(8),
+              child: Form(
+                key: formRestKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "change_password".tr,
+                      style: TextStyle(
+                        color: MYColor.white,
+                        fontSize: 16,
+                        fontFamily: 'cairo_medium',
                       ),
-                      const SizedBox(
-                        height: 20,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "enter_new_password".tr,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
                       ),
-                      Text(
-                        "enter_new_password".tr,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                        textAlign: TextAlign.center,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    Obx(() => _passwordTextField(context)),
+                    const SizedBox(height: 10),
+                    Obx(() => _confirmPasswordTextField(context)),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 52,
+                      width: double.infinity,
+                      child: MyCupertinoButton(
+                        btnColor: MYColor.buttons,
+                        txtColor: MYColor.btnTxtColor,
+                        text: "change".tr,
+                        fun: () => restPassword(context),
                       ),
-                      const SizedBox(height: 20),
-                      Obx(()=> _passwordTextField(context)),
-                      const SizedBox(height: 10),
-                      Obx(()=>  _confirmPasswordTextField(context)),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        height: 52,
-                        width: double.infinity,
-                        child: MyCupertinoButton(
-                          btnColor: MYColor.buttons,
-                          txtColor: MYColor.btnTxtColor,
-                          text: "change".tr,
-                          fun: () => restPassword(context),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          }
-        );
+            ),
+          );
+        });
       },
     );
     update();
@@ -330,15 +331,23 @@ class ForgetController extends GetxController {
     return null;
   }
 
+
+   
   validatePhone(String value) {
     final regExp = RegExp(
       Constance.phoneRegExp,
       caseSensitive: false,
       multiLine: false,
     );
+      String? normalizedValue;
+    if(containsArabicNumerals(value)){
+      normalizedValue = normalizeArabicNumbers(value);
+    txtPhone.text = normalizedValue;
+    }
+
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
-    } else if (!regExp.hasMatch(value)) {
+    } else if (!regExp.hasMatch(normalizedValue?? value)) {
       return "msg_plz_enter_correct_phone".tr;
     }
     return null;
@@ -359,7 +368,10 @@ class ForgetController extends GetxController {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon:   Icon(CupertinoIcons.padlock , color: MYColor.primary,),
+        prefixIcon: Icon(
+          CupertinoIcons.padlock,
+          color: MYColor.primary,
+        ),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -390,7 +402,10 @@ class ForgetController extends GetxController {
           color: MYColor.greyDeep,
           fontSize: 14,
         ),
-        prefixIcon:  Icon(CupertinoIcons.padlock , color: MYColor.primary,),
+        prefixIcon: Icon(
+          CupertinoIcons.padlock,
+          color: MYColor.primary,
+        ),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
@@ -411,7 +426,7 @@ class ForgetController extends GetxController {
     return PinFieldAutoFill(
       keyboardType: TextInputType.number,
       autoFocus: true,
-            cursor: Cursor(
+      cursor: Cursor(
         width: 2,
         color: MYColor.buttons,
         enabled: true,
@@ -438,8 +453,8 @@ class ForgetController extends GetxController {
         setOtpCode = code;
         if (code!.length == 4) {
           //To cancel keyboard off the screen
-        // FocusScope.of(context).requestFocus(FocusNode());
-         FocusManager.instance.primaryFocus?.unfocus();
+          // FocusScope.of(context).requestFocus(FocusNode());
+          FocusManager.instance.primaryFocus?.unfocus();
           validateOtp(context);
         }
       },
@@ -510,7 +525,7 @@ class ForgetController extends GetxController {
 
   @override
   void dispose() {
-        SmsAutoFill().unregisterListener();
+    SmsAutoFill().unregisterListener();
     super.dispose();
   }
 }

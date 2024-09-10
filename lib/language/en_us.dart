@@ -495,4 +495,5 @@ const Map<String, String> enUS = {
   'deactivate_content':
       'Your account is deleted. Please contact technical support on 966920033335',
       'call':'Call',
+      'view_cv':"View Resume"
 };

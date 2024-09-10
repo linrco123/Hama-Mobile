@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
@@ -68,7 +69,6 @@ class RegisterController extends GetxController {
     }
     return null;
   }
-
   /// Validate Phone
   validatePhone(String value) {
     final regExp = RegExp(
@@ -76,9 +76,15 @@ class RegisterController extends GetxController {
       caseSensitive: false,
       multiLine: false,
     );
+    String? normalizedValue;
+    if (containsArabicNumerals(value)) {
+      normalizedValue = normalizeArabicNumbers(value);
+      txtPhone.text = normalizedValue;
+    }
+
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
-    } else if (!regExp.hasMatch(value)) {
+    } else if (!regExp.hasMatch(normalizedValue ?? value)) {
       return "msg_plz_enter_correct_phone".tr;
     }
     return null;
@@ -124,7 +130,6 @@ class RegisterController extends GetxController {
     if (formRegisterKey.currentState!.validate()) {
       try {
         isProcessing(true);
-
         Map data = {
           "name": txtFullName.text,
           "phone": txtPhone.text.toString(),

@@ -16,7 +16,7 @@ import 'package:musaneda/app/modules/hourly_service/welcome/views/welcome_view.d
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/config/constance.dart';
-import 'package:musaneda/config/exitapp_alert.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:musaneda/config/myColor.dart';
 import '../../../controllers/language_controller.dart';
 import '../../register/views/terms_conditions_webview.dart';

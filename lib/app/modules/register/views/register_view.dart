@@ -219,8 +219,8 @@ class RegisterView extends GetView<RegisterController> {
       autofillHints: const [AutofillHints.telephoneNumber],
       controller: controller.txtPhone,
       keyboardType: TextInputType.phone,
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
+      inputFormatters: const [
+        //FilteringTextInputFormatter.digitsOnly,
       ],
       textAlign: TextAlign.left,
       validator: (value) => controller.validatePhone(value!),
