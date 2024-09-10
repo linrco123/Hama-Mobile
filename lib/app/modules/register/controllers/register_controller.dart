@@ -105,6 +105,10 @@ class RegisterController extends GetxController {
 
   /// Validate Password
   validatePassword(String value) {
+     if (containsArabicNumerals(value)) {
+      value = normalizeArabicNumbers(value);
+      txtPassword.text = value;
+    }
     if (value.isEmpty) {
       return "msg_plz_enter_password".tr;
     } else if (value.length < 6) {

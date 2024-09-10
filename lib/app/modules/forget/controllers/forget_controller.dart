@@ -312,6 +312,10 @@ class ForgetController extends GetxController {
   }
 
   validatePassword(String value) {
+    if (containsArabicNumerals(value)) {
+      value = normalizeArabicNumbers(value);
+      txtPassword.text = value;
+    }
     if (value.isEmpty) {
       return "msg_plz_enter_password".tr;
     } else if (value.length < 6) {
@@ -321,6 +325,10 @@ class ForgetController extends GetxController {
   }
 
   validateConfirmPassword(String value) {
+    if (containsArabicNumerals(value)) {
+      value = normalizeArabicNumbers(value);
+      txtConfirmPassword.text = value;
+    }
     if (value.isEmpty) {
       return "msg_plz_enter_confirm_password".tr;
     } else if (value.length < 6) {
@@ -332,22 +340,22 @@ class ForgetController extends GetxController {
   }
 
 
-   
+
   validatePhone(String value) {
     final regExp = RegExp(
       Constance.phoneRegExp,
       caseSensitive: false,
       multiLine: false,
     );
-      String? normalizedValue;
-    if(containsArabicNumerals(value)){
+    String? normalizedValue;
+    if (containsArabicNumerals(value)) {
       normalizedValue = normalizeArabicNumbers(value);
-    txtPhone.text = normalizedValue;
+      txtPhone.text = normalizedValue;
     }
 
     if (value.isEmpty) {
       return "msg_plz_enter_phone".tr;
-    } else if (!regExp.hasMatch(normalizedValue?? value)) {
+    } else if (!regExp.hasMatch(normalizedValue ?? value)) {
       return "msg_plz_enter_correct_phone".tr;
     }
     return null;
