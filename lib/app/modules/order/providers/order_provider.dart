@@ -29,7 +29,7 @@ class OrderProvider extends GetConnect {
         await EasyLoading.dismiss();
         if (res.body['message'] == 'sorry you have an order') {
           mySnackBar(
-            title: "error".tr,
+            title: "warning".tr,
             message: "you_have_unexpired_contract".tr,
             color: MYColor.sadad,
             icon: CupertinoIcons.info_circle,
