@@ -116,6 +116,38 @@ class LoginProvider extends GetConnect {
     }
   }
 
+//    {
+//     "code": 1,
+//     "environment": 1,
+//     "msg": "production"
+// }
+
+  Future<int> getSystemType() async {
+    try {
+      final res = await http.get(
+        Uri.parse("${Constance.apiEndpoint}/check-system-status"),
+        headers: {"Accept": "application/json"},
+      );
+      if (jsonDecode(res.body)['environment'] == 1) {
+        Pretty.instance.logger.e(
+            '*****Environment**********${jsonDecode(res.body)['msg']}******');
+      }
+      if (jsonDecode(res.body)['environment'] == 0) {
+        Pretty.instance.logger.e(
+            '*****Environment**********${jsonDecode(res.body)['msg']}******');
+      }
+
+      if (res.statusCode != 200) {
+        return 1;
+      } else {
+        return jsonDecode(res.body)['environment'];
+      }
+    } catch (e, s) {
+      await Sentry.captureException(e, stackTrace: s);
+      return 1;
+    }
+  }
+
   Future<String> lookupUserCountry() async {
     try {
       final res = await get("https://api.ipregistry.co?key=3z5yh8nwrlaasqaj");

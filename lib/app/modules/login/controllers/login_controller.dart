@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -20,6 +21,7 @@ import '../../../../config/myColor.dart';
 import '../../home/nationalities_model.dart';
 import '../../profile/controllers/profile_controller.dart';
 import '../providers/login_provider.dart';
+import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
   static LoginController get I => Get.put(LoginController());
@@ -28,6 +30,7 @@ class LoginController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    getSystemType();
     connectivity().then((value) {
       if (value == false) {
         Get.toNamed(Routes.INTERNETCONNECTION);
@@ -43,6 +46,7 @@ class LoginController extends GetxController {
     }
   }
 
+  RxInt systemType = 1.obs;
   var isProcessing = false.obs;
   final box = GetStorage();
   final formLoginKey = GlobalKey<FormState>();
@@ -113,7 +117,7 @@ class LoginController extends GetxController {
       value = normalizeArabicNumbers(value);
       txtPassword.text = value;
     }
-    
+
     if (value.isEmpty) {
       return "msg_plz_enter_password".tr;
     } else if (value.length < 6) {
@@ -202,10 +206,10 @@ class LoginController extends GetxController {
                 (value) {
                   if (value == "SA") {
                     box.write('SA', true);
-                    //Get.offAllNamed(Routes.WELCOME);
-                    Get.offAllNamed(Routes.MAIN_HOME_PAGE);
+                  }
+                  if (systemType.value == 1) {
+                    Get.offAllNamed(Routes.HOME);
                   } else {
-                    //Get.offAllNamed(Routes.WELCOME);
                     Get.offAllNamed(Routes.MAIN_HOME_PAGE);
                   }
                 },
@@ -221,6 +225,17 @@ class LoginController extends GetxController {
 
       await Sentry.captureException(e, stackTrace: s);
     }
+  }
+
+// {
+//     "code": 1,
+//     "environment": 1,
+//     "msg": "production"
+// }
+  void getSystemType() {
+    LoginProvider().getSystemType().then((value) {
+      systemType.value = value;
+    });
   }
 
   Future<void> removeAccount() async {

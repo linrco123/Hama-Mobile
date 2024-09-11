@@ -19,11 +19,7 @@ class MediationView extends GetView<MediationController> {
       child: GetBuilder<MediationController>(
           init: controller,
           builder: (controller) {
-            // if (controller.isLoading.value) {
-            //   return Center(
-            //       child: LoadingAnimationWidget.waveDots(
-            //           color: MYColor.primary, size: 50.0));
-            // }
+
             return Stack(
               children: [
                 const SizedBox(height: 10.0,),

@@ -114,8 +114,8 @@ initialRoute() {
         return Routes.HOME;
         //return AppPages.MAIN_HOME_PAGE;
       } else {
-        return Routes.HOME;
-        //return AppPages.MAIN_HOME_PAGE;
+       // return Routes.HOME;
+        return AppPages.MAIN_HOME_PAGE;
       }
     }
   } else {
