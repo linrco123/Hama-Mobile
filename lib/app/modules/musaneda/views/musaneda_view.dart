@@ -235,7 +235,7 @@ class MusanedaView extends GetView<MusanedaController> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 1.0, horizontal: 15.0),
                     child: OutlinedButton.icon(
-                      iconAlignment: IconAlignment.start,
+                      // iconAlignment: IconAlignment.start,
                       style: OutlinedButton.styleFrom(
                           side:
                               BorderSide(width: 1.0, color: MYColor.secondary1),
