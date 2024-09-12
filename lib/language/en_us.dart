@@ -59,6 +59,8 @@ const Map<String, String> enUS = {
   "should_less_11_more_8": "must be more than 8 ,less than 11",
   // Login
   "sign_in": "Sign in",
+  "log_in": "Log in",
+
   "forgot_password": "Forgot password?",
   "do_not_have_an_account": "Don't have an account?",
   "create_one": "Create one",
@@ -307,7 +309,9 @@ const Map<String, String> enUS = {
   "create_new_location": "Create New Location",
   'msg_location_success': 'Location added successfully',
   "no_tickets_found": "No complaints yet",
-  "you_have_no_locations_yet": "You have no locations yet",
+    'select_piority':"Please , select priority",
+
+  "you_have_no_locations_yet": "You have no locations yet !",
   "you_have_unexpired_contract": "You have unexpired contract",
   "loading": "Loading...",
   "success_login": "Welcome to Musaneda",
@@ -494,6 +498,10 @@ const Map<String, String> enUS = {
   'msg_acount_deleted': 'Account deleted successfully.',
   'deactivate_content':
       'Your account is deleted. Please contact technical support on 966920033335',
-      'call':'Call',
-      'view_cv':"View Resume"
+  'call': 'Call',
+  'view_cv': "View Resume",
+  "skip": "SKIP",
+  'login_signup_heading':'If you want to request any service in our app Musaneda please, head to login or sign up ',
+  'guest':'Guest',
+  "delegations_empty":"No Delegations Yet !",
 };

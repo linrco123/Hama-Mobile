@@ -13,6 +13,7 @@ import 'package:musaneda/app/modules/home/providers/home_provider.dart';
 import 'package:musaneda/app/modules/home/sliders_model.dart';
 import 'package:musaneda/app/modules/home/views/filter_view.dart';
 import 'package:musaneda/config/constance.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:musaneda/config/myColor.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -239,6 +240,8 @@ class HomeController extends GetxController {
         }
       }
       isLoading(false);
+    }).catchError((error) {
+      isLoading.value = false;
     });
     // update();
   }
@@ -419,6 +422,13 @@ class HomeController extends GetxController {
   var listFilter = List<MusanedaData>.empty(growable: true).obs;
 
   Future<void> getFilter() async {
+    if(Constance.getToken().isEmpty){
+      Get.back();
+      Future.delayed(const Duration(milliseconds: 600),).then((value){
+         showLoginSignupDialogue(Get.context);
+      });
+      return;
+    }
     Get.back();
     await EasyLoading.show(status: 'loading'.tr);
 

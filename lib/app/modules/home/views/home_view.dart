@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-     return GetBuilder<HomeController>(
+    return GetBuilder<HomeController>(
       key: const ValueKey("home-view"),
       init: controller,
       builder: (ctx) {
@@ -538,7 +538,9 @@ class HomeView extends GetView<HomeController> {
                   bottom: 10,
                 ),
                 child: Text(
-                  Constance.getName(),
+                  Constance.getName().isNotEmpty
+                      ? Constance.getName()
+                      : 'guest'.tr,
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

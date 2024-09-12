@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../../components/mySnackbar.dart';
@@ -17,7 +18,7 @@ class DelegationsProvider extends GetConnect {
         "${Constance.apiEndpoint}/delegations",
         headers: {
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
 
@@ -39,7 +40,7 @@ class DelegationsProvider extends GetConnect {
       delete(
         "${Constance.apiEndpoint}/delegations/$i",
         headers: {
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       ).then((value) {
         if (value.body['code'] == 0) {
@@ -153,11 +154,16 @@ class DelegationsProvider extends GetConnect {
       post(
         "${Constance.apiEndpoint}/delegations",
         headers: {
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Accept":"application/json",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
         body,
       ).then(
         (value) {
+          if(value.statusCode == 401){
+            showLoginSignupDialogue(Get.context);
+            return Future.error(value.statusCode!);
+          }
           if (value.body['code'] == 0) {
             mySnackBar(
               title: "error".tr,

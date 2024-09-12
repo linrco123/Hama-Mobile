@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../../components/mySnackbar.dart';
@@ -20,7 +21,10 @@ class ComplaintsProvider extends GetConnect {
     try {
       final res = await http.get(
         Uri.parse("${Constance.apiEndpoint}/complaints"),
-        headers: {"Authorization": "Bearer ${Constance.instance.token}"},
+        headers: {
+          "Accept": "application/json",
+          "Authorization": "Bearer ${Constance.getToken()}"
+        },
       );
       await EasyLoading.dismiss();
       if (jsonDecode(res.body)['code'] == 0) {}
@@ -42,9 +46,18 @@ class ComplaintsProvider extends GetConnect {
       final res = await post(
         "${Constance.apiEndpoint}/create_complaints",
         formData,
-        headers: {"Authorization": "Bearer ${Constance.instance.token}"},
+        headers: {
+          "Accept": "application/json",
+          "Authorization": "Bearer ${Constance.getToken()}"
+        },
       );
+       print('=========================complaints=========================');
+       print(res.body);
       await EasyLoading.dismiss();
+      if (res.statusCode == 401) {
+        showLoginSignupDialogue(Get.context);
+        return Future.error(res.statusCode!);
+      }
 
       if (res.body['code'] == 0) {
         if (res.body['data']['name'] != null) {
@@ -112,6 +125,7 @@ class ComplaintsProvider extends GetConnect {
         return res.body['code'];
       }
     } catch (e, s) {
+      print('error=================================>>>>>>>>>>> $e');
       await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }

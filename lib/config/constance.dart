@@ -54,8 +54,19 @@ class Constance {
   final String token = box.read('LOGIN_MODEL')['token'] ?? '';
 
   static String getName() {
-    String name = box.read('LOGIN_MODEL')['name'] ?? '';
+    String name = '';
+    if (box.hasData('LOGIN_MODEL')) {
+      name = box.read('LOGIN_MODEL')['name'] ?? '';
+    }
+
     return name;
+  }
+
+  static String getToken() {
+    if (box.hasData('LOGIN_MODEL')) {
+      return box.read('LOGIN_MODEL')['name'] ?? '';
+    }
+    return '';
   }
 
   static double checkDouble(dynamic value) {
@@ -104,7 +115,8 @@ class Constance {
   static const sandenyBaseUrl = 'https://develop.sanedny.com/api';
 
   // ignore: constant_identifier_names
-  static const String  technicalSupport_Url = "https://kdamat.com/Alwatniaco_Webchat.html";
+  static const String technicalSupport_Url =
+      "https://kdamat.com/Alwatniaco_Webchat.html";
 }
 
 class Cards {

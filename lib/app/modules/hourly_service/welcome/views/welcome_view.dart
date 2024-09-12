@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/welcome/controllers/welcome_controller.dart';
- import 'package:musaneda/components/hourly/welcome/welcome_card.dart';
+import 'package:musaneda/components/hourly/welcome/welcome_card.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
 
@@ -19,8 +19,7 @@ class WelcomeView extends GetView<HomeController> {
         body: Container(
           color: MYColor.primary.withOpacity(0.1),
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
+            padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
             child: Column(
               children: [
                 const SizedBox(
@@ -80,8 +79,7 @@ class WelcomeView extends GetView<HomeController> {
                                   padding: const EdgeInsets.only(
                                       top: 7.0, right: 10.0),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
                                         welcomeController.greetings(),
@@ -95,7 +93,9 @@ class WelcomeView extends GetView<HomeController> {
                                         width: 5.0,
                                       ),
                                       Text(
-                                        Constance.getName(),
+                                        Constance.getName().isNotEmpty
+                                            ? Constance.getName()
+                                            : 'guest'.tr,
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             color: MYColor.white,

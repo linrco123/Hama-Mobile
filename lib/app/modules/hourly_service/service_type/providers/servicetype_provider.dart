@@ -21,7 +21,7 @@ class ServiceTypeProvider extends GetConnect {
         "${Constance.apiEndpoint}/cities",
         headers: {
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
 
@@ -83,7 +83,7 @@ class ServiceTypeProvider extends GetConnect {
         map,
         headers: {
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
        
@@ -123,7 +123,7 @@ class ServiceTypeProvider extends GetConnect {
         headers: {
           "Accept-Language": lang,
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
        

@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/modules/main_home_page/model/fake_package_model.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../../components/mySnackbar.dart';
 import '../../../../config/api_response.dart';
@@ -26,6 +28,27 @@ class MainHomePageProvider extends GetConnect {
     }
   }
 
+  Future<FakePackageModel> getFakePackages(String lang) async {
+   try{
+     final response = await get(
+      '${Constance.apiEndpoint}/fake-packages',
+      headers: {
+        "Accept-Language":lang,
+        "Content-Type": "application/json",
+       },
+    );
+    if (response.status.hasError) {
+      return Future.error(response.statusText!);
+    } else {
+      return FakePackageModel.fromJson(response.body);
+    }
+   }catch(e , s){
+    await Sentry.captureException(e,stackTrace: s);
+      return Future.error(e);
+
+   }
+  }
+
   Future<ApiResponse> postContractList(Map data, bool showSuccess) async {
     final response = await post(
       '${Constance.apiEndpoint}/create_order',
@@ -35,6 +58,12 @@ class MainHomePageProvider extends GetConnect {
         "Authorization": "Bearer ${Constance.instance.token}",
       },
     );
+
+    if (response.statusCode == 401) {
+
+
+      return Future.error(response.statusCode!);
+    }
 
     if (response.body['code'] == 0) {
       if (response.body['message'] == 'sorry you have an order') {

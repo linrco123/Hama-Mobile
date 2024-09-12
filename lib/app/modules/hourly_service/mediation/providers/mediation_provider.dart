@@ -7,9 +7,11 @@ import 'package:musaneda/app/modules/home/nationalities_model.dart';
 import 'package:musaneda/app/modules/hourly_service/mediation/model/get_mediation_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:musaneda/config/myColor.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:http/http.dart' as http;
+
 class MediationProvider extends GetConnect {
   Future<Nationalities> getNationalities() async {
     try {
@@ -17,10 +19,10 @@ class MediationProvider extends GetConnect {
         Uri.parse("${Constance.apiEndpoint}/musaneda_nationality"),
         headers: {
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
-    final response = jsonDecode(res.body);
+      final response = jsonDecode(res.body);
       if (response['code'] == 0) {
         mySnackBar(
           title: "error".tr,
@@ -30,7 +32,7 @@ class MediationProvider extends GetConnect {
         );
       }
 
-      if (res.statusCode !=200) {
+      if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {
         return Nationalities.fromJson(response);
@@ -49,9 +51,14 @@ class MediationProvider extends GetConnect {
         map,
         headers: {
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
+      await EasyLoading.dismiss();
+      if(res.statusCode == 401){
+        showLoginSignupDialogue(Get.context);
+      }
+
       if (res.body['message'] == 'Server Error' || res.body['errors'] == []) {
         mySnackBar(
           title: "error".tr,
@@ -91,15 +98,13 @@ class MediationProvider extends GetConnect {
   Future<GetMediationModel> getMediations(int page, String lang) async {
     try {
       final res = await http.get(
-      Uri.parse(  "${Constance.apiEndpoint}/services-mediation?page=$page"),
+        Uri.parse("${Constance.apiEndpoint}/services-mediation?page=$page"),
         headers: {
           "Accept-Language": lang,
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
-      print('=================================mediations=================================');
-      print(res.body);
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {

@@ -14,6 +14,8 @@ import 'package:musaneda/app/modules/order/views/bank_account/bank_accounts_deta
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/hourly/service_type/oneHour_filter_dialog.dart';
 import 'package:musaneda/components/mySnackbar.dart';
+import 'package:musaneda/config/constance.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:musaneda/config/myColor.dart';
 
 class ServiceTypeController extends GetxController {
@@ -251,12 +253,19 @@ class ServiceTypeController extends GetxController {
 
   void validateFilterOptions() {
     if (nationality.value == 0) {
-      mySnackBar(
-        title: "warning".tr,
-        message: "choose_nationality".tr,
-        color: MYColor.warning,
-        icon: CupertinoIcons.info_circle,
-      );
+      if (Constance.getToken().isEmpty) {
+        Get.back();
+        Get.back();
+
+        showLoginSignupDialogue(Get.context);
+      } else {
+        mySnackBar(
+          title: "warning".tr,
+          message: "choose_nationality".tr,
+          color: MYColor.warning,
+          icon: CupertinoIcons.info_circle,
+        );
+      }
     } else if (visitsNumber.value == 0) {
       mySnackBar(
         title: "warning".tr,

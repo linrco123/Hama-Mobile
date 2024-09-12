@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/config/myColor.dart';
 
 Future<bool> exitAlertApp() {
@@ -63,4 +65,82 @@ bool containsArabicNumerals(String text) {
   // Check for Arabic-Indic numerals (٠-٩)
   final arabicRegex = RegExp(r'[\u0660-\u0669]');
   return arabicRegex.hasMatch(text);
+}
+
+
+
+void showLoginSignupDialogue(context){
+  var languageController = Get.put(LanguageController());
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shadowColor: MYColor.primary,
+          title: Text(
+            'alert'.tr,
+            textAlign: TextAlign.center,
+          ),
+          titleTextStyle: TextStyle(color: MYColor.white, fontSize: 27.0),
+          content:   Text(
+            'login_signup_heading'.tr,
+            textAlign: TextAlign.center,
+          ),
+          contentTextStyle: TextStyle(
+              color: MYColor.white,
+              fontSize: 16.0,
+              fontFamily: 'cairo_regular'),
+          backgroundColor: MYColor.secondary,
+          clipBehavior: Clip.antiAlias,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 125.0,
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  decoration: BoxDecoration(
+                      color: MYColor.primary.withOpacity(0.2),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20.0))),
+                  child: Center(
+                    child: TextButton(
+                        onPressed: (){
+                          Get.offAllNamed(Routes.LOGIN);
+                        },
+                        child: Text(
+                          'log_in'.tr,
+                          style:   TextStyle(
+                            color: MYColor.secondary1,
+                              fontSize: languageController.isEnglish? 18.0:14.0, fontWeight: FontWeight.bold),
+                        )),
+                  ),
+                ),
+                const SizedBox(width: 2.0,),
+                 Container(
+                  width: 125.0,
+                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                      color: MYColor.primary.withOpacity(0.2),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20.0))),
+                  child: Center(
+                    child: TextButton(
+                        onPressed: (){
+                          Get.offAllNamed(Routes.REGISTER);
+                        },
+                        child: Text(
+                          'sign_up'.tr,
+                          style:   TextStyle(color: MYColor.secondary1,
+                              fontSize: languageController.isEnglish? 18.0:14.0, fontWeight: FontWeight.bold),
+                        )),
+                  ),
+                ),
+              ],
+            )
+          ],
+        );
+      },
+    );
 }

@@ -196,7 +196,7 @@ class HomeProvider extends GetConnect {
         Uri.parse("${Constance.apiEndpoint}/orders-history"),
         headers: {
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
       var response = jsonDecode(res.body);
@@ -208,15 +208,15 @@ class HomeProvider extends GetConnect {
           icon: CupertinoIcons.info_circle,
         );
       }
-      if (res.statusCode == 401) {
-        mySnackBar(
-          title: "warning".tr,
-          message: "session_expired_login_again".tr,
-          color: MYColor.warning,
-          icon: CupertinoIcons.info_circle,
-        );
-        Get.offAllNamed(Routes.LOGIN);
-      }
+      // if (res.statusCode == 401) {
+      //   mySnackBar(
+      //     title: "warning".tr,
+      //     message: "session_expired_login_again".tr,
+      //     color: MYColor.warning,
+      //     icon: CupertinoIcons.info_circle,
+      //   );
+      //   Get.offAllNamed(Routes.LOGIN);
+      // }
 
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);

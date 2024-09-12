@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
+import 'package:musaneda/app/modules/home/views/techincal_support_webView.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import '../../../../config/myColor.dart';
 import '../../locations/views/create_location_view.dart';
@@ -189,258 +192,277 @@ class MainHomePageView extends GetView<MainHomePageController> {
     return GetBuilder(
       init: controller,
       builder: (_) {
-        return Stack(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 1,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: MYColor.primary.withOpacity(0.2),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Column(
+        return controller.isLoading.value
+            ? Center(
+                child: LoadingAnimationWidget.waveDots(
+                    color: MYColor.primary, size: 50.0),
+              )
+            : Stack(
                 children: [
-                  SizedBox(
-                    height: 110,
-                    width: double.infinity,
-                    child: GetBuilder(
-                      init: controller,
-                      builder: (_) => ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.services.length,
-                        itemBuilder: (ctx, i) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                            ),
-                            child: Column(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    HapticFeedback.mediumImpact();
-                                    controller.setSelectedService =
-                                        controller.services[i];
-                                  },
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: MYColor.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow:
-                                          controller.getSelectedService ==
-                                                  controller.services[i].id
-                                              ? [
-                                                  BoxShadow(
-                                                    color: MYColor.primary,
-                                                    blurRadius: 0,
-                                                    offset: const Offset(0, 2),
-                                                  ),
-                                                ]
-                                              : [],
-                                    ),
-                                    child: SizedBox(
-                                      width: Get.width / 5,
-                                      height: 80,
-                                      child: SvgPicture.asset(
-                                          "${controller.services[i].image}",
-                                          fit: BoxFit.fill,
-                                          color: MYColor.buttons),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "${controller.services[i].name}",
-                                  style: TextStyle(
-                                    color: controller.getSelectedService ==
-                                            controller.services[i].id
-                                        ? MYColor.primary
-                                        : MYColor.black,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                  Stack(
+                    children: [
+                      Container(
+                        height: 1,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: MYColor.primary.withOpacity(0.2),
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-
-                  /// _list of _packages here
-                  Expanded(
-                    child: GetBuilder(
-                      init: controller,
-                      builder: (_) {
-                        return ListView.builder(
-                          itemCount: controller.services
-                              .where(
-                                  (e) => e.id == controller.getSelectedService)
-                              .first
-                              .packages!
-                              .length,
-                          itemBuilder: (ctx, i) {
-                            var package = controller.services
-                                .where((e) =>
-                                    e.id == controller.getSelectedService)
-                                .first
-                                .packages![i];
-
-                            var service = controller.services
-                                .where((e) =>
-                                    e.id == controller.getSelectedService)
-                                .first;
-
-                            return Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: InkWell(
-                                onTap: () {
-                                  HapticFeedback.mediumImpact();
-                                  controller.setServiceModel = service;
-                                  OrderController.I.setPackage = PackagesData(
-                                    id: package.id,
-                                    name: NameLanguage(
-                                      en: package.name,
-                                      ar: package.name,
-                                    ),
-                                    price: package.price,
-                                    discount: package.price,
-                                    tax: package.price,
-                                    total: package.price,
-                                  );
-                                  controller.selectedPackageIndex.value = i;
-                                  Get.to(
-                                    () => const CreateLocationView(
-                                      action: 'create',
-                                      page: 'main_home_page',
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: MYColor.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 5,
-                                        offset: Offset(0, 1),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 110,
+                          width: double.infinity,
+                          child: GetBuilder(
+                            init: controller,
+                            builder: (_) => ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: controller.services.length,
+                              itemBuilder: (ctx, i) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          HapticFeedback.mediumImpact();
+                                          controller.setSelectedService =
+                                              controller.services[i];
+                                        },
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: MYColor.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            boxShadow: controller
+                                                        .getSelectedService ==
+                                                    controller.services[i].id
+                                                ? [
+                                                    BoxShadow(
+                                                      color: MYColor.primary,
+                                                      blurRadius: 0,
+                                                      offset:
+                                                          const Offset(0, 2),
+                                                    ),
+                                                  ]
+                                                : [],
+                                          ),
+                                          child: SizedBox(
+                                            width: Get.width / 5,
+                                            height: 80,
+                                            child: SvgPicture.asset(
+                                                "${controller.services[i].image}",
+                                                fit: BoxFit.fill,
+                                                color: MYColor.buttons),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "${controller.services[i].name}",
+                                        style: TextStyle(
+                                          color:
+                                              controller.getSelectedService ==
+                                                      controller.services[i].id
+                                                  ? MYColor.primary
+                                                  : MYColor.black,
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(0),
-                                    child: Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 60,
-                                          height: 60,
-                                          child: Image.asset(
-                                            "${package.image}",
-                                            fit: BoxFit.contain,
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+
+                        /// _list of _packages here
+                        Expanded(
+                          child: GetBuilder(
+                            init: controller,
+                            builder: (_) {
+                              return ListView.builder(
+                                itemCount: controller.services
+                                    .where((e) =>
+                                        e.id == controller.getSelectedService)
+                                    .first
+                                    .packages!
+                                    .length,
+                                itemBuilder: (ctx, i) {
+                                  var package = controller.services
+                                      .where((e) =>
+                                          e.id == controller.getSelectedService)
+                                      .first
+                                      .packages![i];
+
+                                  var service = controller.services
+                                      .where((e) =>
+                                          e.id == controller.getSelectedService)
+                                      .first;
+
+                                  return Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: InkWell(
+                                      onTap: () {
+                                        HapticFeedback.mediumImpact();
+                                        controller.setServiceModel = service;
+                                        OrderController.I.setPackage =
+                                            PackagesData(
+                                          id: package.id,
+                                          name: NameLanguage(
+                                            en: package.name,
+                                            ar: package.name,
                                           ),
+                                          price: package.price,
+                                          discount: package.price,
+                                          tax: package.price,
+                                          total: package.price,
+                                        );
+                                        controller.selectedPackageIndex.value =
+                                            i;
+                                        Get.to(
+                                          () => const CreateLocationView(
+                                            action: 'create',
+                                            page: 'main_home_page',
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 110,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: MYColor.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              blurRadius: 5,
+                                              offset: Offset(0, 1),
+                                            ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(18),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(0),
                                           child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
-                                                width: Get.width / 2,
-                                                child: Column(
+                                                width: 60,
+                                                height: 60,
+                                                child: Image.asset(
+                                                  "${package.image}",
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(18),
+                                                child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      "${package.name}",
-                                                      style: TextStyle(
-                                                        color: MYColor.primary,
-                                                        fontSize: 18,
-                                                        fontFamily:
-                                                            'cairo_regular',
+                                                    SizedBox(
+                                                      width: Get.width / 2,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            "${package.name}",
+                                                            style: TextStyle(
+                                                              color: MYColor
+                                                                  .primary,
+                                                              fontSize: 18,
+                                                              fontFamily:
+                                                                  'cairo_regular',
+                                                            ),
+                                                          ),
+                                                          // const SizedBox(
+                                                          //   height: 15,
+                                                          // ),
+                                                          Text(
+                                                            "${'service'.tr} : ${service.name}",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  MYColor.black,
+                                                              fontSize: 12,
+                                                              fontFamily:
+                                                                  'cairo_regular',
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
-                                                    const SizedBox(
-                                                      height: 15,
-                                                    ),
-                                                    Text(
-                                                      "${'service'.tr} : ${service.name}",
-                                                      style: TextStyle(
-                                                        color: MYColor.black,
-                                                        fontSize: 12,
-                                                        fontFamily:
-                                                            'cairo_regular',
+                                                    SizedBox(
+                                                      width: Get.width / 5,
+                                                      child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            'price'.tr,
+                                                            style: TextStyle(
+                                                              color: MYColor
+                                                                  .primary,
+                                                              fontSize: 14,
+                                                              fontFamily:
+                                                                  'cairo_regular',
+                                                            ),
+                                                          ),
+                                                          // const SizedBox(
+                                                          //   height: 15,
+                                                          // ),
+                                                          Text(
+                                                            "${package.price} ${'sar'.tr}",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  MYColor.black,
+                                                              fontSize: 12,
+                                                              fontFamily:
+                                                                  'cairo_regular',
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
+                                                    )
                                                   ],
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: Get.width / 5,
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'price'.tr,
-                                                      style: TextStyle(
-                                                        color: MYColor.primary,
-                                                        fontSize: 14,
-                                                        fontFamily:
-                                                            'cairo_regular',
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 15,
-                                                    ),
-                                                    Text(
-                                                      "${package.price} ${'sar'.tr}",
-                                                      style: TextStyle(
-                                                        color: MYColor.black,
-                                                        fontSize: 12,
-                                                        fontFamily:
-                                                            'cairo_regular',
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
                                             ],
                                           ),
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              ),
-            ),
-          ],
-        );
+              );
       },
     );
   }
@@ -525,7 +547,8 @@ class MainHomePageView extends GetView<MainHomePageController> {
               tooltip: "Technical support",
               splashRadius: 20,
               onPressed: () {
-                Get.toNamed(Routes.TECHNICAL_SUPPORT);
+                Get.put(HomeController());
+                 Get.to(() => const TechnicalSupportWebview());
               },
               icon: Icon(
                 CupertinoIcons.chat_bubble_text,

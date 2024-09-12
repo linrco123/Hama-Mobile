@@ -308,4 +308,12 @@ class LoginController extends GetxController {
     });
     update();
   }
+
+  void checkServiceType() {
+    if (systemType.value == 1) {
+      Get.toNamed(Routes.HOME);
+    } else {
+      Get.toNamed(Routes.MAIN_HOME_PAGE);
+    }
+  }
 }

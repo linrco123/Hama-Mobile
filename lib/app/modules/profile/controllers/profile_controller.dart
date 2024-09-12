@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/profile/profile_model.dart';
 import 'package:musaneda/app/modules/profile/providers/profile_provider.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
@@ -80,6 +78,7 @@ class ProfileController extends GetxController {
     return null;
   }
 
+  var guest = false.obs;
   ProfileData profile = ProfileData();
 
   ProfileData get getProfileData => profile;
@@ -101,7 +100,13 @@ class ProfileController extends GetxController {
       txtPhone.text = profile.phone!;
       txtIqama.text = profile.iqama!;
       txtEmail.text = profile.email!;
+      guest.value = false;
       isLoading.value = false;
+    }).catchError((error) {
+      guest.value = true;
+      isLoading.value = false;
+
+      update();
     });
 
     update();

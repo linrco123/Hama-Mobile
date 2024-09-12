@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/locations/views/single_location_model.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../../components/mySnackbar.dart';
@@ -17,7 +18,6 @@ class LocationsProvider extends GetConnect {
   final box = GetStorage();
 
   Future<Locations> getLocations() async {
-    await EasyLoading.show(status: 'waiting'.tr);
     try {
       final res = await http.get(
         Uri.parse("${Constance.apiEndpoint}/locations"),
@@ -27,7 +27,6 @@ class LocationsProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.instance.token}",
         },
       );
-      await EasyLoading.dismiss();
       if (res.statusCode != 200) {
         return Future.error(res.statusCode);
       } else {
@@ -48,13 +47,19 @@ class LocationsProvider extends GetConnect {
         headers: {
           "Accept-Language": "en",
           "Accept": "application/json",
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
-       await EasyLoading.dismiss();
+      if (res.statusCode == 401) {
+        showLoginSignupDialogue(Get.context);
+        await EasyLoading.dismiss();
+
+        return Future.error(res.statusCode!);
+      }
+      await EasyLoading.dismiss();
       if (res.body['code'] == 0) {
         if (res.body['data']['city'] != null) {
-           mySnackBar(
+          mySnackBar(
             title: "error".tr,
             message: res.body['data']['city'][0],
             color: MYColor.warning,
@@ -130,7 +135,10 @@ class LocationsProvider extends GetConnect {
         return LocationModel.fromJson(res.body);
       }
     } catch (e, s) {
-       await Sentry.captureException(e, stackTrace: s);
+      print(
+          '=============================================location=======================');
+      print(e);
+      await Sentry.captureException(e, stackTrace: s);
       return Future.error(e.toString());
     }
   }

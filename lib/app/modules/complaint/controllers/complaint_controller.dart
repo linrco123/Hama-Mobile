@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
- import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
+import 'package:musaneda/app/modules/home/controllers/home_controller.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
@@ -135,37 +135,6 @@ class ComplaintController extends GetxController {
     update();
   }
 
-  List<TicketType> ticketTypes = [
-    TicketType(
-      id: 0,
-      name: NameLanguage(
-        ar: "اختر نوع التذكرة",
-        en: "Select Ticket Type",
-      ),
-    ),
-    TicketType(
-      id: 1,
-      name: NameLanguage(
-        ar: "تذكرة مشكلة",
-        en: "Problem Ticket",
-      ),
-    ),
-    TicketType(
-      id: 2,
-      name: NameLanguage(
-        ar: "تذكرة اقتراح",
-        en: "Suggestion Ticket",
-      ),
-    ),
-    // TicketType(
-    //   id: 3,
-    //   name: NameLanguage(
-    //     ar: "تذكرة شكوى",
-    //     en: "Complaint Ticket",
-    //   ),
-    // ),
-  ];
-
   var selectedTicketType = 0.obs;
 
   set setTicketType(int value) => selectedTicketType.value = value;
@@ -220,21 +189,28 @@ class ComplaintController extends GetxController {
       if (formComplaintKey.currentState!.validate()) {
         if (selectedTicketPriority.value == 0) {
           mySnackBar(
-            title: "error".tr,
-            message: "برجاء اختيار الأولوية",
+            title: "warning".tr,
+            message: 'select_piority'.tr,
             color: Colors.red,
             icon: Icons.error,
           );
         } else {
           isLoading(true);
-          Map map = {
-            "name": txtTitle.text,
-            "description": txtNotes.text,
-            "contract_id": HomeController.I.listContracts.first.id ?? 0,
-            "type": Random().nextInt(200) % 2 == 0 ? 1 : 2,
-            "importance": selectedTicketPriority.value,
-            "file": fileObject ?? ' ',
-          };
+          Map map = {};
+          try {
+            map = {
+              "name": txtTitle.text,
+              "description": txtNotes.text,
+              "contract_id": HomeController.I.listContracts.isNotEmpty
+                  ? HomeController.I.listContracts.first.id
+                  : 0,
+              "type": Random().nextInt(200) % 2 == 0 ? 1 : 2,
+              "importance": selectedTicketPriority.value,
+              "file": fileObject ?? ' ',
+            };
+          } catch (e) {
+            Pretty.instance.logger.d('error  :: $e');
+          }
           ComplaintsProvider().postComplaints(map).then(
             (value) {
               if (value == 1) {

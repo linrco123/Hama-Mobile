@@ -57,6 +57,7 @@ const Map<String, String> arSA = {
 
   // Login
   "sign_in": "تسجيل الدخول",
+  "log_in": "تسجيل الدخول",
   "forgot_password": "نسيت كلمة المرور؟",
   "do_not_have_an_account": "ليس لديك حساب؟",
   "create_one": "انشاء حساب",
@@ -302,7 +303,9 @@ const Map<String, String> arSA = {
   "create_new_location": "اضافة موقع جديد",
   'msg_location_success': 'تم إضافة العنوان بنجاح',
   "no_tickets_found": "لم يتم العثور على تذاكر",
-  "you_have_no_locations_yet": "ليس لديك مواقع بعد",
+  'select_piority': "برجاء اختيار الأولوية",
+
+  "you_have_no_locations_yet": "! ليس لديك مواقع بعد",
   "you_have_unexpired_contract": "لديك عقد غير منتهي الصلاحية",
   "loading": "جاري...",
   "success_login": "مرحبا بك في مساندة",
@@ -487,11 +490,17 @@ const Map<String, String> arSA = {
   'job': "الوظيفة",
   'no_hour_orders': 'لا يوجد طلبات ساعة بعد !',
   'no_mediation_orders': 'لا يوجد طلبات وساطة بعد !',
-  'whats_app':"التواصل عبر الواتساب",
-  "session_expired_login_again":"لقد انتهت جلستك ! الرجاء تسجيل الدخول ",
-  'delete_deactivate_account':"حذف أو تعطيل الحساب",
-  'msg_acount_deleted':'تم حذف الحساب بنجاح',
-  'deactivate_content_':'تم حذف حسابك الرجاء التواصل مع الدعم الفنى على 966920033335',
-  'call':'اتصل',
-   'view_cv':"عرض السيرة الذاتية"
+  'whats_app': "التواصل عبر الواتساب",
+  "session_expired_login_again": "لقد انتهت جلستك ! الرجاء تسجيل الدخول ",
+  'delete_deactivate_account': "حذف أو تعطيل الحساب",
+  'msg_acount_deleted': 'تم حذف الحساب بنجاح',
+  'deactivate_content':
+      'تم حذف حسابك الرجاء التواصل مع الدعم الفنى على 966920033335',
+  'call': 'اتصل',
+  'view_cv': "عرض السيرة الذاتية",
+  "skip": "تخطى",
+  'login_signup_heading':
+      'إذا كنت تريد طلب خدمة فى تطبيق مساندة توجه إلى شاشة تسجيل الدخول او إنشاء الحساب ',
+  'guest': 'كضيف',
+  "delegations_empty": "لا يوجد طلبات تفويض",
 };

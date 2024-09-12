@@ -81,7 +81,20 @@ class LoginView extends GetView<LoginController> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      Positioned(
+                          top: 10.0,
+                          right: LanguageController.I.isEnglish ? null : 0.0,
+                          left: LanguageController.I.isEnglish ? 0.0 : null,
+                          child: TextButton(
+                               onPressed: controller.checkServiceType,
+                              child: Text(
+                                "skip".tr,
+                                style: TextStyle(
+                                    color: MYColor.primary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              )))
                     ],
                   ),
                   const SizedBox(height: 10.0),
@@ -154,7 +167,7 @@ class LoginView extends GetView<LoginController> {
       ),
     );
   }
-  
+
   /// phone text field
   TextFormField _phoneTextField(BuildContext context) {
     return TextFormField(
@@ -162,11 +175,11 @@ class LoginView extends GetView<LoginController> {
       controller: controller.txtPhone,
       keyboardType: TextInputType.phone,
       // inputFormatters: [
-      //   //FilteringTextInputFormatter.digitsOnly, 
+      //   //FilteringTextInputFormatter.digitsOnly,
       // ],
       textAlign: TextAlign.left,
       validator: (value) => controller.validatePhone(value!),
-       maxLengthEnforcement: MaxLengthEnforcement.enforced,
+      maxLengthEnforcement: MaxLengthEnforcement.enforced,
       decoration: InputDecoration(
         suffixStyle: const TextStyle(
           color: Colors.black,

@@ -14,18 +14,12 @@ class ProfileProvider extends GetConnect {
       final res = await get(
         "${Constance.apiEndpoint}/profile",
         headers: {
-          "Authorization": "Bearer ${Constance.instance.token}",
+          "Accept": "application/json",
+          "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
-      if (res.body['code'] == 0) {
-        mySnackBar(
-          title: "error".tr,
-          message: "System Error",
-          color: MYColor.warning,
-          icon: CupertinoIcons.info_circle,
-        );
-      }
-
+      print(res.statusCode);
+      
       if (res.status.hasError) {
         return Future.error(res.status);
       } else {

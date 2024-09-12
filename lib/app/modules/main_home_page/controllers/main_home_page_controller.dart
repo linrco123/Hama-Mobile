@@ -1,7 +1,9 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/custom_payment/controllers/custom_payment_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
+import 'package:musaneda/app/modules/main_home_page/model/fake_package_model.dart';
 import 'package:musaneda/app/modules/main_home_page/providers/main_home_page_provider.dart';
 import 'package:musaneda/config/constance.dart';
 
@@ -11,10 +13,11 @@ import '../contract_model.dart';
 
 class MainHomePageController extends GetxController {
   static MainHomePageController get I => Get.put(MainHomePageController());
-
+  var languageController = Get.put(LanguageController());
   @override
   void onInit() {
     getContractList();
+    getFakePackages();
     setSelectedService = services.first;
     super.onInit();
     connectivity().then((value) {
@@ -22,110 +25,6 @@ class MainHomePageController extends GetxController {
         Get.toNamed(Routes.INTERNETCONNECTION);
       }
     });
-  }
-
-  Future<bool> connectivity() async {
-    if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  final _tap = 0.obs;
-  set setTap(int value) {
-    _tap.value = value;
-    update();
-  }
-
-  int get getTap => _tap.value;
-
-  final _getSelectedService = 0.obs;
-
-  set setSelectedService(ServiceData selectedService) {
-    _getSelectedService.value = selectedService.id!;
-    update();
-  }
-
-  int get getSelectedService => _getSelectedService.value;
-
-  late ServiceData _serviceModel;
-  set setServiceModel(ServiceData serviceModel) {
-    _serviceModel = serviceModel;
-    update();
-  }
-
-  ServiceData get getServiceModel => _serviceModel;
-
-  final _duration = 1.obs;
-  set setSelectedDuration(int value) {
-    _duration.value = value;
-    update();
-  }
-
-  int get getDuration => _duration.value;
-
-  final _day = DateTime.now().day.obs;
-  set selectedDay(int value) {
-    _day.value = value;
-    update();
-  }
-
-  int get getDay => _day.value;
-
-  final _month = DateTime.now().month.obs;
-  set selectedMonth(int value) {
-    _month.value = value;
-    update();
-  }
-
-  int get getMonth => _month.value;
-
-  final _year = DateTime.now().year.obs;
-  set selectedYear(int value) {
-    _year.value = value;
-    update();
-  }
-
-  int get getYear => _year.value;
-
-  double get finalPrice {
-    return ((Constance.checkDouble(
-                getServiceModel.packages![selectedPackageIndex.value].price) *
-            getDuration) -
-        finalDiscount);
-  }
-
-  double get beforeDiscount {
-    return (Constance.checkDouble(
-            getServiceModel.packages![selectedPackageIndex.value].price) *
-        getDuration);
-  }
-
-  double get finalDiscount {
-    switch (getDuration) {
-      case 1:
-        return 0;
-      case 3:
-        return (getServiceModel.packages![selectedPackageIndex.value].price! *
-            0.1);
-      case 6:
-        return (getServiceModel.packages![selectedPackageIndex.value].price! *
-            0.2);
-      case 12:
-        return (getServiceModel.packages![selectedPackageIndex.value].price! *
-            0.3);
-      default:
-        return 0;
-    }
-  }
-
-  DateTime get startDate {
-    return DateTime(getYear, getMonth, getDay);
-  }
-
-  DateTime get endDate {
-    return DateTime(getYear, getMonth, getDay).add(Duration(days: getDuration));
   }
 
   List<ServiceData> services = [
@@ -229,8 +128,6 @@ class MainHomePageController extends GetxController {
       packages: [
         PackagesData(
           id: 1,
-          name: "golden_package".tr,
-          price: 4800.00,
           image: 'assets/images/packages/golden.png',
         ),
         PackagesData(
@@ -255,6 +152,127 @@ class MainHomePageController extends GetxController {
     ),
   ];
 
+  void getFakePackages() {
+    isLoading.value = true;
+    // List<Data> fakePackages = [];
+    MainHomePageProvider().getFakePackages(languageController.getLocale).then((value) {
+      for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < value.data!.length; i++) {
+          services[j].packages![i].name = value!.data![i].name!;
+          services[j].packages![i].price = value!.data![i].price!.toDouble();
+        }
+      }
+      isLoading.value = false;
+      update();
+    });
+    update();
+  }
+
+  Future<bool> connectivity() async {
+    if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  var isLoading = true.obs;
+  final _tap = 0.obs;
+  set setTap(int value) {
+    _tap.value = value;
+    update();
+  }
+
+  int get getTap => _tap.value;
+
+  final _getSelectedService = 0.obs;
+
+  set setSelectedService(ServiceData selectedService) {
+    _getSelectedService.value = selectedService.id!;
+    update();
+  }
+
+  int get getSelectedService => _getSelectedService.value;
+
+  late ServiceData _serviceModel;
+  set setServiceModel(ServiceData serviceModel) {
+    _serviceModel = serviceModel;
+    update();
+  }
+
+  ServiceData get getServiceModel => _serviceModel;
+
+  final _duration = 1.obs;
+  set setSelectedDuration(int value) {
+    _duration.value = value;
+    update();
+  }
+
+  int get getDuration => _duration.value;
+
+  final _day = DateTime.now().day.obs;
+  set selectedDay(int value) {
+    _day.value = value;
+    update();
+  }
+
+  int get getDay => _day.value;
+
+  final _month = DateTime.now().month.obs;
+  set selectedMonth(int value) {
+    _month.value = value;
+    update();
+  }
+
+  int get getMonth => _month.value;
+
+  final _year = DateTime.now().year.obs;
+  set selectedYear(int value) {
+    _year.value = value;
+    update();
+  }
+
+  int get getYear => _year.value;
+
+  double get finalPrice {
+    return ((Constance.checkDouble(
+                getServiceModel.packages![selectedPackageIndex.value].price) *
+            getDuration) -
+        finalDiscount);
+  }
+
+  double get beforeDiscount {
+    return (Constance.checkDouble(
+            getServiceModel.packages![selectedPackageIndex.value].price) *
+        getDuration);
+  }
+
+  double get finalDiscount {
+    switch (getDuration) {
+      case 1:
+        return 0;
+      case 3:
+        return (getServiceModel.packages![selectedPackageIndex.value].price! *
+            0.1);
+      case 6:
+        return (getServiceModel.packages![selectedPackageIndex.value].price! *
+            0.2);
+      case 12:
+        return (getServiceModel.packages![selectedPackageIndex.value].price! *
+            0.3);
+      default:
+        return 0;
+    }
+  }
+
+  DateTime get startDate {
+    return DateTime(getYear, getMonth, getDay);
+  }
+
+  DateTime get endDate {
+    return DateTime(getYear, getMonth, getDay).add(Duration(days: getDuration));
+  }
+
   List<DurationData> durations = [
     DurationData(
       duration: 1,
@@ -269,6 +287,7 @@ class MainHomePageController extends GetxController {
       duration: 12,
     ),
   ];
+
   final serviceTypeController = Get.put(ServiceTypeController());
   RxInt selectedPackageIndex = 0.obs;
   void postOrderToServer(context,
@@ -283,12 +302,13 @@ class MainHomePageController extends GetxController {
       "is_paid": isPaid,
       "merchant_id": CustomPaymentController.I.merchantTransactionID,
     };
-      
+
     MainHomePageProvider().postContractList(data, showSuccess).then(
       (res) {
         if (res.code == 1) {
           getContractList();
-          serviceTypeController.showAlertDialogue(context,
+          serviceTypeController.showAlertDialogue(
+            context,
             title: 'alert'.tr,
             content: 'mada_content1'.tr,
             onConfirm: () {
